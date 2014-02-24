@@ -16,24 +16,7 @@
 #define NO_BLOCK 0
 #define BLOCK   1
 #define MAX_MSG_SIZE 128
-
-pthread_rwlock_t lock;
-
-struct Mailbox {
-	pid_t id;
-	bool stopped;
-	// Message Queue
-	UT_hash_handle hh;
-};
-
-typedef struct Message {
-	int sender;
-	void *msg;
-	int len;
-	struct Message *next;
-} Message;
-
-struct Mailbox *mailboxes = NULL;
+#define MAILBOX_SIZE 32
 
 /**
  * Functions for msgs
