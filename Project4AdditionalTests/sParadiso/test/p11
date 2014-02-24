@@ -1,0 +1,21 @@
+
+
+ -- Susan Paradiso --
+
+TEST: verify bad-rcv-arg (rcv msg ptr is 0) 
+waiting for kids level 0
+pid 6520 rcv'ed msg from 6519
+message #1
+RcvMsg, expected and got err MSG_ARG_ERROR (1006)
+pid 6520 rcv'ed msg from 6519
+message #3
+RcvMsg, expected and got err MSG_ARG_ERROR (1006)
+pid 6520 rcv'ed msg from 6519
+message #5
+RcvMsg, expected and got err MSG_ARG_ERROR (1006)
+pid 6520 rcv'ed msg from 6519
+message #7
+kids completed
+
+TEST PASSED
+

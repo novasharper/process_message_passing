@@ -1,0 +1,2398 @@
+Alfredo Porras
+July 12th, 2011
+CS 3013
+Project 4 - Output from testmailbox3
+
+PID of parent is 4426.
+PID of children range from 4427 to 4476.
+PID of the other child is 4477.
+----------------------------------------------------------
+Creating not a kernel thread.
+It's a new process.
+Mailbox allocated for 4426.
+Creating not a kernel thread.
+It's a new process.
+Mailbox allocated for 4427.
+4426 Trying to send a message to 4427.
+4426 Target 4427 found.
+4426 Got mailbox_lock from 4427.
+4427 POINTED 1
+4426 Cache space allocated.
+4426 Struct created.
+4426 Mailbox 4427 is NOT full.
+4426 Got spin_lock from 4427.
+4426 Message enqueued for 4427
+4426 Gave up spin_lock from 4427.
+4427 POINTED 0
+Creating not a kernel thread.
+It's a new process.
+Mailbox allocated for 4428.
+4426 Trying to send a message to 4428.
+4426 Target 4428 found.
+4426 Got mailbox_lock from 4428.
+4428 POINTED 1
+4426 Cache space allocated.
+4426 Struct created.
+4427 Able to retrieve message.
+4427 Got spin_lock.
+4427 Trying to retrieve a message.
+4427 Mailbox is not empty
+4427 Message dequeued
+4427 Gave up spin_lock.
+4427 Message info copied.
+4426 Mailbox 4428 is NOT full.
+4426 Got spin_lock from 4428.
+4426 Message enqueued for 4428
+4426 Gave up spin_lock from 4428.
+4428 POINTED 0
+4427 Message memory freed
+Creating not a kernel thread.
+It's a new process.
+Mailbox allocated for 4429.
+4426 Trying to send a message to 4429.
+4426 Target 4429 found.
+4426 Got mailbox_lock from 4429.
+4429 POINTED 1
+4426 Cache space allocated.
+4426 Struct created.
+4426 Mailbox 4429 is NOT full.
+4426 Got spin_lock from 4429.
+4426 Message enqueued for 4429
+4426 Gave up spin_lock from 4429.
+4429 POINTED 0
+4429 Able to retrieve message.
+4429 Got spin_lock.
+4429 Trying to retrieve a message.
+4429 Mailbox is not empty
+4429 Message dequeued
+4429 Gave up spin_lock.
+4429 Message info copied.
+4429 Message memory freed
+Creating not a kernel thread.
+It's a new process.
+Mailbox allocated for 4430.
+4429 Trying to send a message to 4426.
+4429 Target 4426 found.
+4429 Got mailbox_lock from 4426.
+4426 POINTED 1
+4429 Cache space allocated.
+4429 Struct created.
+4429 Able to send message to 4426.
+4429 Got spin_lock from 4426.
+4429 Message enqueued for 4426
+4429 Gave up spin_lock from 4426.
+4426 POINTED 0
+4429 Acquired my own mailbox_lock.
+4429 Group is dead, deleting mailbox.
+4429 Mailbox stopped.
+4429 MAILBOX STOPPED.
+4429 No processes in the mailbox.
+4429 Queue lock acquired.
+4429 No more messages in queue.
+4429 Queue lock released.
+Mailbox freed.
+4427 Trying to send a message to 4426.
+4427 Target 4426 found.
+4427 Got mailbox_lock from 4426.
+4426 POINTED 1
+4427 Cache space allocated.
+4427 Struct created.
+4427 Able to send message to 4426.
+4427 Got spin_lock from 4426.
+4427 Message enqueued for 4426
+4427 Gave up spin_lock from 4426.
+4426 POINTED 0
+4427 Acquired my own mailbox_lock.
+4427 Group is dead, deleting mailbox.
+4427 Mailbox stopped.
+4427 MAILBOX STOPPED.
+4427 No processes in the mailbox.
+4427 Queue lock acquired.
+4427 No more messages in queue.
+4427 Queue lock released.
+Mailbox freed.
+4428 Able to retrieve message.
+4428 Got spin_lock.
+4428 Trying to retrieve a message.
+4428 Mailbox is not empty
+4428 Message dequeued
+4428 Gave up spin_lock.
+4428 Message info copied.
+4428 Message memory freed
+4428 Trying to send a message to 4426.
+4428 Target 4426 found.
+4428 Got mailbox_lock from 4426.
+4426 POINTED 1
+4428 Cache space allocated.
+4428 Struct created.
+4428 Able to send message to 4426.
+4428 Got spin_lock from 4426.
+4428 Message enqueued for 4426
+4428 Gave up spin_lock from 4426.
+4426 POINTED 0
+4428 Acquired my own mailbox_lock.
+4428 Group is dead, deleting mailbox.
+4428 Mailbox stopped.
+4428 MAILBOX STOPPED.
+4428 No processes in the mailbox.
+4428 Queue lock acquired.
+4428 No more messages in queue.
+4428 Queue lock released.
+Mailbox freed.
+4426 Trying to send a message to 4430.
+4426 Target 4430 found.
+4426 Got mailbox_lock from 4430.
+4430 POINTED 1
+4426 Cache space allocated.
+4426 Struct created.
+4426 Mailbox 4430 is NOT full.
+4426 Got spin_lock from 4430.
+4426 Message enqueued for 4430
+4426 Gave up spin_lock from 4430.
+4430 POINTED 0
+4430 Able to retrieve message.
+4430 Got spin_lock.
+4430 Trying to retrieve a message.
+4430 Mailbox is not empty
+4430 Message dequeued
+4430 Gave up spin_lock.
+4430 Message info copied.
+4430 Message memory freed
+4430 Trying to send a message to 4426.
+4430 Target 4426 found.
+4430 Got mailbox_lock from 4426.
+4426 POINTED 1
+4430 Cache space allocated.
+4430 Struct created.
+4430 Able to send message to 4426.
+4430 Got spin_lock from 4426.
+4430 Message enqueued for 4426
+4430 Gave up spin_lock from 4426.
+4426 POINTED 0
+4430 Acquired my own mailbox_lock.
+4430 Group is dead, deleting mailbox.
+4430 Mailbox stopped.
+4430 MAILBOX STOPPED.
+4430 No processes in the mailbox.
+4430 Queue lock acquired.
+4430 No more messages in queue.
+4430 Queue lock released.
+Mailbox freed.
+Creating not a kernel thread.
+It's a new process.
+Mailbox allocated for 4431.
+4426 Trying to send a message to 4431.
+4426 Target 4431 found.
+4426 Got mailbox_lock from 4431.
+4431 POINTED 1
+4426 Cache space allocated.
+4426 Struct created.
+4426 Mailbox 4431 is NOT full.
+4426 Got spin_lock from 4431.
+4426 Message enqueued for 4431
+4426 Gave up spin_lock from 4431.
+4431 POINTED 0
+Creating not a kernel thread.
+It's a new process.
+Mailbox allocated for 4432.
+4426 Trying to send a message to 4432.
+4426 Target 4432 found.
+4426 Got mailbox_lock from 4432.
+4432 POINTED 1
+4426 Cache space allocated.
+4426 Struct created.
+4426 Mailbox 4432 is NOT full.
+4426 Got spin_lock from 4432.
+4426 Message enqueued for 4432
+4426 Gave up spin_lock from 4432.
+4432 POINTED 0
+Creating not a kernel thread.
+It's a new process.
+Mailbox allocated for 4433.
+4426 Trying to send a message to 4433.
+4426 Target 4433 found.
+4426 Got mailbox_lock from 4433.
+4433 POINTED 1
+4426 Cache space allocated.
+4426 Struct created.
+4426 Mailbox 4433 is NOT full.
+4426 Got spin_lock from 4433.
+4426 Message enqueued for 4433
+4426 Gave up spin_lock from 4433.
+4433 POINTED 0
+Creating not a kernel thread.
+It's a new process.
+Mailbox allocated for 4434.
+4426 Trying to send a message to 4434.
+4426 Target 4434 found.
+4426 Got mailbox_lock from 4434.
+4434 POINTED 1
+4426 Cache space allocated.
+4426 Struct created.
+4426 Mailbox 4434 is NOT full.
+4426 Got spin_lock from 4434.
+4426 Message enqueued for 4434
+4426 Gave up spin_lock from 4434.
+4434 POINTED 0
+Creating not a kernel thread.
+It's a new process.
+Mailbox allocated for 4435.
+4426 Trying to send a message to 4435.
+4426 Target 4435 found.
+4426 Got mailbox_lock from 4435.
+4435 POINTED 1
+4426 Cache space allocated.
+4426 Struct created.
+4426 Mailbox 4435 is NOT full.
+4426 Got spin_lock from 4435.
+4426 Message enqueued for 4435
+4426 Gave up spin_lock from 4435.
+4435 POINTED 0
+Creating not a kernel thread.
+It's a new process.
+Mailbox allocated for 4436.
+4426 Trying to send a message to 4436.
+4426 Target 4436 found.
+4426 Got mailbox_lock from 4436.
+4436 POINTED 1
+4426 Cache space allocated.
+4426 Struct created.
+4426 Mailbox 4436 is NOT full.
+4426 Got spin_lock from 4436.
+4426 Message enqueued for 4436
+4426 Gave up spin_lock from 4436.
+4436 POINTED 0
+Creating not a kernel thread.
+It's a new process.
+Mailbox allocated for 4437.
+4426 Trying to send a message to 4437.
+4426 Target 4437 found.
+4426 Got mailbox_lock from 4437.
+4437 POINTED 1
+4426 Cache space allocated.
+4426 Struct created.
+4426 Mailbox 4437 is NOT full.
+4426 Got spin_lock from 4437.
+4426 Message enqueued for 4437
+4426 Gave up spin_lock from 4437.
+4437 POINTED 0
+Creating not a kernel thread.
+It's a new process.
+Mailbox allocated for 4438.
+4426 Trying to send a message to 4438.
+4426 Target 4438 found.
+4426 Got mailbox_lock from 4438.
+4438 POINTED 1
+4426 Cache space allocated.
+4426 Struct created.
+4426 Mailbox 4438 is NOT full.
+4426 Got spin_lock from 4438.
+4426 Message enqueued for 4438
+4426 Gave up spin_lock from 4438.
+4438 POINTED 0
+Creating not a kernel thread.
+It's a new process.
+Mailbox allocated for 4439.
+4426 Trying to send a message to 4439.
+4426 Target 4439 found.
+4426 Got mailbox_lock from 4439.
+4439 POINTED 1
+4426 Cache space allocated.
+4426 Struct created.
+4426 Mailbox 4439 is NOT full.
+4426 Got spin_lock from 4439.
+4426 Message enqueued for 4439
+4426 Gave up spin_lock from 4439.
+4439 POINTED 0
+Creating not a kernel thread.
+It's a new process.
+Mailbox allocated for 4440.
+4426 Trying to send a message to 4440.
+4426 Target 4440 found.
+4426 Got mailbox_lock from 4440.
+4440 POINTED 1
+4426 Cache space allocated.
+4426 Struct created.
+4426 Mailbox 4440 is NOT full.
+4426 Got spin_lock from 4440.
+4426 Message enqueued for 4440
+4426 Gave up spin_lock from 4440.
+4440 POINTED 0
+Creating not a kernel thread.
+It's a new process.
+Mailbox allocated for 4441.
+4426 Trying to send a message to 4441.
+4426 Target 4441 found.
+4426 Got mailbox_lock from 4441.
+4441 POINTED 1
+4426 Cache space allocated.
+4426 Struct created.
+4426 Mailbox 4441 is NOT full.
+4426 Got spin_lock from 4441.
+4426 Message enqueued for 4441
+4426 Gave up spin_lock from 4441.
+4441 POINTED 0
+Creating not a kernel thread.
+It's a new process.
+Mailbox allocated for 4442.
+4426 Trying to send a message to 4442.
+4426 Target 4442 found.
+4426 Got mailbox_lock from 4442.
+4442 POINTED 1
+4426 Cache space allocated.
+4426 Struct created.
+4426 Mailbox 4442 is NOT full.
+4426 Got spin_lock from 4442.
+4426 Message enqueued for 4442
+4426 Gave up spin_lock from 4442.
+4442 POINTED 0
+4434 Able to retrieve message.
+4434 Got spin_lock.
+4434 Trying to retrieve a message.
+4434 Mailbox is not empty
+4434 Message dequeued
+4434 Gave up spin_lock.
+4434 Message info copied.
+4434 Message memory freed
+Creating not a kernel thread.
+It's a new process.
+Mailbox allocated for 4443.
+4426 Trying to send a message to 4443.
+4426 Target 4443 found.
+4426 Got mailbox_lock from 4443.
+4443 POINTED 1
+4426 Cache space allocated.
+4426 Struct created.
+4426 Mailbox 4443 is NOT full.
+4426 Got spin_lock from 4443.
+4426 Message enqueued for 4443
+4426 Gave up spin_lock from 4443.
+4443 POINTED 0
+4435 Able to retrieve message.
+4435 Got spin_lock.
+4435 Trying to retrieve a message.
+4435 Mailbox is not empty
+4435 Message dequeued
+4435 Gave up spin_lock.
+4435 Message info copied.
+4435 Message memory freed
+4434 Trying to send a message to 4426.
+4434 Target 4426 found.
+4434 Got mailbox_lock from 4426.
+4426 POINTED 1
+4434 Cache space allocated.
+4434 Struct created.
+4434 Able to send message to 4426.
+4434 Got spin_lock from 4426.
+4434 Message enqueued for 4426
+4434 Gave up spin_lock from 4426.
+4426 POINTED 0
+4435 Trying to send a message to 4426.
+4435 Target 4426 found.
+4435 Got mailbox_lock from 4426.
+4426 POINTED 1
+4435 Cache space allocated.
+4435 Struct created.
+4435 Able to send message to 4426.
+4435 Got spin_lock from 4426.
+4435 Message enqueued for 4426
+4435 Gave up spin_lock from 4426.
+4426 POINTED 0
+4434 Acquired my own mailbox_lock.
+4434 Group is dead, deleting mailbox.
+4434 Mailbox stopped.
+4434 MAILBOX STOPPED.
+4434 No processes in the mailbox.
+4434 Queue lock acquired.
+4434 No more messages in queue.
+4435 Acquired my own mailbox_lock.
+4434 Queue lock released.
+4435 Group is dead, deleting mailbox.
+Mailbox freed.
+4435 Mailbox stopped.
+4435 MAILBOX STOPPED.
+4435 No processes in the mailbox.
+4435 Queue lock acquired.
+4435 No more messages in queue.
+4435 Queue lock released.
+Mailbox freed.
+4433 Able to retrieve message.
+4433 Got spin_lock.
+4433 Trying to retrieve a message.
+4433 Mailbox is not empty
+4433 Message dequeued
+4433 Gave up spin_lock.
+4433 Message info copied.
+4433 Message memory freed
+4433 Trying to send a message to 4426.
+4433 Target 4426 found.
+4433 Got mailbox_lock from 4426.
+4426 POINTED 1
+4433 Cache space allocated.
+4433 Struct created.
+4433 Able to send message to 4426.
+4433 Got spin_lock from 4426.
+4433 Message enqueued for 4426
+4433 Gave up spin_lock from 4426.
+4426 POINTED 0
+4433 Acquired my own mailbox_lock.
+4433 Group is dead, deleting mailbox.
+4433 Mailbox stopped.
+4433 MAILBOX STOPPED.
+4433 No processes in the mailbox.
+4433 Queue lock acquired.
+4433 No more messages in queue.
+4433 Queue lock released.
+Mailbox freed.
+4437 Able to retrieve message.
+4437 Got spin_lock.
+4437 Trying to retrieve a message.
+4437 Mailbox is not empty
+4437 Message dequeued
+4437 Gave up spin_lock.
+4437 Message info copied.
+4437 Message memory freed
+4437 Trying to send a message to 4426.
+4437 Target 4426 found.
+4437 Got mailbox_lock from 4426.
+4426 POINTED 1
+4437 Cache space allocated.
+4437 Struct created.
+4437 Able to send message to 4426.
+4437 Got spin_lock from 4426.
+4437 Message enqueued for 4426
+4437 Gave up spin_lock from 4426.
+4426 POINTED 0
+4437 Acquired my own mailbox_lock.
+4437 Group is dead, deleting mailbox.
+4437 Mailbox stopped.
+4437 MAILBOX STOPPED.
+4437 No processes in the mailbox.
+4437 Queue lock acquired.
+4437 No more messages in queue.
+4437 Queue lock released.
+Mailbox freed.
+4431 Able to retrieve message.
+4431 Got spin_lock.
+4431 Trying to retrieve a message.
+4431 Mailbox is not empty
+4431 Message dequeued
+4431 Gave up spin_lock.
+4431 Message info copied.
+4431 Message memory freed
+4431 Trying to send a message to 4426.
+4431 Target 4426 found.
+4431 Got mailbox_lock from 4426.
+4426 POINTED 1
+4431 Cache space allocated.
+4431 Struct created.
+4431 Able to send message to 4426.
+4431 Got spin_lock from 4426.
+4431 Message enqueued for 4426
+4431 Gave up spin_lock from 4426.
+4426 POINTED 0
+4431 Acquired my own mailbox_lock.
+4431 Group is dead, deleting mailbox.
+4431 Mailbox stopped.
+4431 MAILBOX STOPPED.
+4431 No processes in the mailbox.
+4431 Queue lock acquired.
+4431 No more messages in queue.
+4431 Queue lock released.
+Mailbox freed.
+4432 Able to retrieve message.
+4432 Got spin_lock.
+4432 Trying to retrieve a message.
+4432 Mailbox is not empty
+4432 Message dequeued
+4432 Gave up spin_lock.
+4432 Message info copied.
+4432 Message memory freed
+4440 Able to retrieve message.
+4440 Got spin_lock.
+4440 Trying to retrieve a message.
+4440 Mailbox is not empty
+4440 Message dequeued
+4440 Gave up spin_lock.
+4440 Message info copied.
+4440 Message memory freed
+4432 Trying to send a message to 4426.
+4432 Target 4426 found.
+4432 Got mailbox_lock from 4426.
+4426 POINTED 1
+4432 Cache space allocated.
+4432 Struct created.
+4432 Able to send message to 4426.
+4432 Got spin_lock from 4426.
+4432 Message enqueued for 4426
+4432 Gave up spin_lock from 4426.
+4426 POINTED 0
+4440 Trying to send a message to 4426.
+4440 Target 4426 found.
+4440 Got mailbox_lock from 4426.
+4426 POINTED 1
+4440 Cache space allocated.
+4440 Struct created.
+4440 Able to send message to 4426.
+4440 Got spin_lock from 4426.
+4440 Message enqueued for 4426
+4440 Gave up spin_lock from 4426.
+4426 POINTED 0
+4432 Acquired my own mailbox_lock.
+4432 Group is dead, deleting mailbox.
+4432 Mailbox stopped.
+4432 MAILBOX STOPPED.
+4432 No processes in the mailbox.
+4432 Queue lock acquired.
+4432 No more messages in queue.
+4432 Queue lock released.
+Mailbox freed.
+4440 Acquired my own mailbox_lock.
+4440 Group is dead, deleting mailbox.
+4440 Mailbox stopped.
+4440 MAILBOX STOPPED.
+4440 No processes in the mailbox.
+4440 Queue lock acquired.
+4440 No more messages in queue.
+4440 Queue lock released.
+Mailbox freed.
+4443 Able to retrieve message.
+4443 Got spin_lock.
+4443 Trying to retrieve a message.
+4443 Mailbox is not empty
+4443 Message dequeued
+4443 Gave up spin_lock.
+4443 Message info copied.
+4443 Message memory freed
+4441 Able to retrieve message.
+4441 Got spin_lock.
+4441 Trying to retrieve a message.
+4441 Mailbox is not empty
+4441 Message dequeued
+4441 Gave up spin_lock.
+4441 Message info copied.
+4441 Message memory freed
+4443 Trying to send a message to 4426.
+4443 Target 4426 found.
+4443 Got mailbox_lock from 4426.
+4426 POINTED 1
+4443 Cache space allocated.
+4443 Struct created.
+4443 Able to send message to 4426.
+4443 Got spin_lock from 4426.
+4443 Message enqueued for 4426
+4443 Gave up spin_lock from 4426.
+4426 POINTED 0
+4441 Trying to send a message to 4426.
+4441 Target 4426 found.
+4441 Got mailbox_lock from 4426.
+4426 POINTED 1
+4441 Cache space allocated.
+4441 Struct created.
+4441 Able to send message to 4426.
+4441 Got spin_lock from 4426.
+4441 Message enqueued for 4426
+4441 Gave up spin_lock from 4426.
+4426 POINTED 0
+4443 Acquired my own mailbox_lock.
+4443 Group is dead, deleting mailbox.
+4443 Mailbox stopped.
+4443 MAILBOX STOPPED.
+4443 No processes in the mailbox.
+4443 Queue lock acquired.
+4443 No more messages in queue.
+4443 Queue lock released.
+Mailbox freed.
+4441 Acquired my own mailbox_lock.
+4441 Group is dead, deleting mailbox.
+4441 Mailbox stopped.
+4441 MAILBOX STOPPED.
+4441 No processes in the mailbox.
+4441 Queue lock acquired.
+4441 No more messages in queue.
+4441 Queue lock released.
+Mailbox freed.
+4436 Able to retrieve message.
+4436 Got spin_lock.
+4436 Trying to retrieve a message.
+4436 Mailbox is not empty
+4436 Message dequeued
+4436 Gave up spin_lock.
+4436 Message info copied.
+4436 Message memory freed
+4438 Able to retrieve message.
+4438 Got spin_lock.
+4438 Trying to retrieve a message.
+4438 Mailbox is not empty
+4438 Message dequeued
+4438 Gave up spin_lock.
+4438 Message info copied.
+4438 Message memory freed
+4436 Trying to send a message to 4426.
+4436 Target 4426 found.
+4436 Got mailbox_lock from 4426.
+4426 POINTED 1
+4436 Cache space allocated.
+4436 Struct created.
+4436 Able to send message to 4426.
+4436 Got spin_lock from 4426.
+4436 Message enqueued for 4426
+4436 Gave up spin_lock from 4426.
+4426 POINTED 0
+4438 Trying to send a message to 4426.
+4438 Target 4426 found.
+4438 Got mailbox_lock from 4426.
+4426 POINTED 1
+4438 Cache space allocated.
+4438 Struct created.
+4438 Able to send message to 4426.
+4438 Got spin_lock from 4426.
+4438 Message enqueued for 4426
+4438 Gave up spin_lock from 4426.
+4426 POINTED 0
+4436 Acquired my own mailbox_lock.
+4436 Group is dead, deleting mailbox.
+4436 Mailbox stopped.
+4436 MAILBOX STOPPED.
+4436 No processes in the mailbox.
+4436 Queue lock acquired.
+4436 No more messages in queue.
+4436 Queue lock released.
+Mailbox freed.
+4438 Acquired my own mailbox_lock.
+4438 Group is dead, deleting mailbox.
+4438 Mailbox stopped.
+4438 MAILBOX STOPPED.
+4438 No processes in the mailbox.
+4438 Queue lock acquired.
+4438 No more messages in queue.
+4438 Queue lock released.
+Mailbox freed.
+Creating not a kernel thread.
+It's a new process.
+Mailbox allocated for 4444.
+4439 Able to retrieve message.
+4439 Got spin_lock.
+4439 Trying to retrieve a message.
+4439 Mailbox is not empty
+4439 Message dequeued
+4439 Gave up spin_lock.
+4439 Message info copied.
+4439 Message memory freed
+4426 Trying to send a message to 4444.
+4426 Target 4444 found.
+4426 Got mailbox_lock from 4444.
+4444 POINTED 1
+4426 Cache space allocated.
+4426 Struct created.
+4426 Mailbox 4444 is NOT full.
+4426 Got spin_lock from 4444.
+4426 Message enqueued for 4444
+4426 Gave up spin_lock from 4444.
+4444 POINTED 0
+4439 Trying to send a message to 4426.
+4439 Target 4426 found.
+4439 Got mailbox_lock from 4426.
+4426 POINTED 1
+4439 Cache space allocated.
+4439 Struct created.
+4439 Able to send message to 4426.
+4439 Got spin_lock from 4426.
+4439 Message enqueued for 4426
+4439 Gave up spin_lock from 4426.
+4426 POINTED 0
+4439 Acquired my own mailbox_lock.
+4439 Group is dead, deleting mailbox.
+4439 Mailbox stopped.
+4439 MAILBOX STOPPED.
+4439 No processes in the mailbox.
+4439 Queue lock acquired.
+4439 No more messages in queue.
+4439 Queue lock released.
+Mailbox freed.
+4442 Able to retrieve message.
+4442 Got spin_lock.
+4442 Trying to retrieve a message.
+4442 Mailbox is not empty
+4442 Message dequeued
+4442 Gave up spin_lock.
+4442 Message info copied.
+4442 Message memory freed
+4442 Trying to send a message to 4426.
+4442 Target 4426 found.
+4442 Got mailbox_lock from 4426.
+4426 POINTED 1
+4442 Cache space allocated.
+4442 Struct created.
+4442 Able to send message to 4426.
+4442 Got spin_lock from 4426.
+4442 Message enqueued for 4426
+4442 Gave up spin_lock from 4426.
+4426 POINTED 0
+4442 Acquired my own mailbox_lock.
+4442 Group is dead, deleting mailbox.
+4442 Mailbox stopped.
+4442 MAILBOX STOPPED.
+4442 No processes in the mailbox.
+4442 Queue lock acquired.
+4442 No more messages in queue.
+4442 Queue lock released.
+Mailbox freed.
+4444 Able to retrieve message.
+4444 Got spin_lock.
+4444 Trying to retrieve a message.
+4444 Mailbox is not empty
+4444 Message dequeued
+4444 Gave up spin_lock.
+4444 Message info copied.
+4444 Message memory freed
+4444 Trying to send a message to 4426.
+4444 Target 4426 found.
+4444 Got mailbox_lock from 4426.
+4426 POINTED 1
+4444 Cache space allocated.
+4444 Struct created.
+4444 Able to send message to 4426.
+4444 Got spin_lock from 4426.
+4444 Message enqueued for 4426
+4444 Gave up spin_lock from 4426.
+4426 POINTED 0
+4444 Acquired my own mailbox_lock.
+4444 Group is dead, deleting mailbox.
+4444 Mailbox stopped.
+4444 MAILBOX STOPPED.
+4444 No processes in the mailbox.
+4444 Queue lock acquired.
+4444 No more messages in queue.
+4444 Queue lock released.
+Mailbox freed.
+Creating not a kernel thread.
+It's a new process.
+Mailbox allocated for 4445.
+4426 Trying to send a message to 4445.
+4426 Target 4445 found.
+4426 Got mailbox_lock from 4445.
+4445 POINTED 1
+4426 Cache space allocated.
+4426 Struct created.
+4426 Mailbox 4445 is NOT full.
+4426 Got spin_lock from 4445.
+4426 Message enqueued for 4445
+4426 Gave up spin_lock from 4445.
+4445 POINTED 0
+Creating not a kernel thread.
+It's a new process.
+Mailbox allocated for 4446.
+4426 Trying to send a message to 4446.
+4426 Target 4446 found.
+4426 Got mailbox_lock from 4446.
+4446 POINTED 1
+4426 Cache space allocated.
+4426 Struct created.
+4426 Mailbox 4446 is NOT full.
+4426 Got spin_lock from 4446.
+4426 Message enqueued for 4446
+4426 Gave up spin_lock from 4446.
+4446 POINTED 0
+Creating not a kernel thread.
+It's a new process.
+Mailbox allocated for 4447.
+4426 Trying to send a message to 4447.
+4426 Target 4447 found.
+4426 Got mailbox_lock from 4447.
+4447 POINTED 1
+4426 Cache space allocated.
+4426 Struct created.
+4426 Mailbox 4447 is NOT full.
+4426 Got spin_lock from 4447.
+4426 Message enqueued for 4447
+4426 Gave up spin_lock from 4447.
+4447 POINTED 0
+Creating not a kernel thread.
+It's a new process.
+Mailbox allocated for 4448.
+4426 Trying to send a message to 4448.
+4426 Target 4448 found.
+4426 Got mailbox_lock from 4448.
+4448 POINTED 1
+4426 Cache space allocated.
+4426 Struct created.
+4426 Mailbox 4448 is NOT full.
+4426 Got spin_lock from 4448.
+4426 Message enqueued for 4448
+4426 Gave up spin_lock from 4448.
+4448 POINTED 0
+Creating not a kernel thread.
+It's a new process.
+Mailbox allocated for 4449.
+4426 Trying to send a message to 4449.
+4426 Target 4449 found.
+4426 Got mailbox_lock from 4449.
+4449 POINTED 1
+4426 Cache space allocated.
+4426 Struct created.
+4426 Mailbox 4449 is NOT full.
+4426 Got spin_lock from 4449.
+4426 Message enqueued for 4449
+4426 Gave up spin_lock from 4449.
+4449 POINTED 0
+Creating not a kernel thread.
+It's a new process.
+Mailbox allocated for 4450.
+4426 Trying to send a message to 4450.
+4426 Target 4450 found.
+4426 Got mailbox_lock from 4450.
+4450 POINTED 1
+4426 Cache space allocated.
+4426 Struct created.
+4426 Mailbox 4450 is NOT full.
+4426 Got spin_lock from 4450.
+4426 Message enqueued for 4450
+4426 Gave up spin_lock from 4450.
+4450 POINTED 0
+Creating not a kernel thread.
+It's a new process.
+Mailbox allocated for 4451.
+4426 Trying to send a message to 4451.
+4426 Target 4451 found.
+4426 Got mailbox_lock from 4451.
+4451 POINTED 1
+4426 Cache space allocated.
+4426 Struct created.
+4426 Mailbox 4451 is NOT full.
+4426 Got spin_lock from 4451.
+4426 Message enqueued for 4451
+4426 Gave up spin_lock from 4451.
+4451 POINTED 0
+Creating not a kernel thread.
+It's a new process.
+Mailbox allocated for 4452.
+4426 Trying to send a message to 4452.
+4426 Target 4452 found.
+4426 Got mailbox_lock from 4452.
+4452 POINTED 1
+4426 Cache space allocated.
+4426 Struct created.
+4426 Mailbox 4452 is NOT full.
+4426 Got spin_lock from 4452.
+4426 Message enqueued for 4452
+4426 Gave up spin_lock from 4452.
+4452 POINTED 0
+Creating not a kernel thread.
+It's a new process.
+Mailbox allocated for 4453.
+4426 Trying to send a message to 4453.
+4426 Target 4453 found.
+4426 Got mailbox_lock from 4453.
+4453 POINTED 1
+4426 Cache space allocated.
+4426 Struct created.
+4426 Mailbox 4453 is NOT full.
+4426 Got spin_lock from 4453.
+4426 Message enqueued for 4453
+4426 Gave up spin_lock from 4453.
+4453 POINTED 0
+Creating not a kernel thread.
+It's a new process.
+Mailbox allocated for 4454.
+4426 Trying to send a message to 4454.
+4426 Target 4454 found.
+4426 Got mailbox_lock from 4454.
+4454 POINTED 1
+4426 Cache space allocated.
+4426 Struct created.
+4426 Mailbox 4454 is NOT full.
+4426 Got spin_lock from 4454.
+4426 Message enqueued for 4454
+4426 Gave up spin_lock from 4454.
+4454 POINTED 0
+Creating not a kernel thread.
+It's a new process.
+Mailbox allocated for 4455.
+4426 Trying to send a message to 4455.
+4426 Target 4455 found.
+4426 Got mailbox_lock from 4455.
+4455 POINTED 1
+4426 Cache space allocated.
+4426 Struct created.
+4426 Mailbox 4455 is NOT full.
+4426 Got spin_lock from 4455.
+4426 Message enqueued for 4455
+4426 Gave up spin_lock from 4455.
+4455 POINTED 0
+Creating not a kernel thread.
+It's a new process.
+Mailbox allocated for 4456.
+4426 Trying to send a message to 4456.
+4426 Target 4456 found.
+4426 Got mailbox_lock from 4456.
+4456 POINTED 1
+4426 Cache space allocated.
+4426 Struct created.
+4426 Mailbox 4456 is NOT full.
+4426 Got spin_lock from 4456.
+4426 Message enqueued for 4456
+4426 Gave up spin_lock from 4456.
+4456 POINTED 0
+Creating not a kernel thread.
+It's a new process.
+Mailbox allocated for 4457.
+4426 Trying to send a message to 4457.
+4426 Target 4457 found.
+4426 Got mailbox_lock from 4457.
+4457 POINTED 1
+4426 Cache space allocated.
+4426 Struct created.
+4426 Mailbox 4457 is NOT full.
+4426 Got spin_lock from 4457.
+4426 Message enqueued for 4457
+4426 Gave up spin_lock from 4457.
+4457 POINTED 0
+Creating not a kernel thread.
+It's a new process.
+Mailbox allocated for 4458.
+4426 Trying to send a message to 4458.
+4426 Target 4458 found.
+4426 Got mailbox_lock from 4458.
+4458 POINTED 1
+4426 Cache space allocated.
+4426 Struct created.
+4426 Mailbox 4458 is NOT full.
+4426 Got spin_lock from 4458.
+4426 Message enqueued for 4458
+4426 Gave up spin_lock from 4458.
+4458 POINTED 0
+Creating not a kernel thread.
+It's a new process.
+Mailbox allocated for 4459.
+4426 Trying to send a message to 4459.
+4426 Target 4459 found.
+4426 Got mailbox_lock from 4459.
+4459 POINTED 1
+4426 Cache space allocated.
+4426 Struct created.
+4426 Mailbox 4459 is NOT full.
+4426 Got spin_lock from 4459.
+4426 Message enqueued for 4459
+4426 Gave up spin_lock from 4459.
+4459 POINTED 0
+Creating not a kernel thread.
+It's a new process.
+Mailbox allocated for 4460.
+4426 Trying to send a message to 4460.
+4426 Target 4460 found.
+4426 Got mailbox_lock from 4460.
+4460 POINTED 1
+4426 Cache space allocated.
+4426 Struct created.
+4426 Mailbox 4460 is NOT full.
+4426 Got spin_lock from 4460.
+4426 Message enqueued for 4460
+4426 Gave up spin_lock from 4460.
+4460 POINTED 0
+4452 Able to retrieve message.
+4452 Got spin_lock.
+4452 Trying to retrieve a message.
+4452 Mailbox is not empty
+4452 Message dequeued
+4452 Gave up spin_lock.
+4452 Message info copied.
+4452 Message memory freed
+4452 Trying to send a message to 4426.
+4452 Target 4426 found.
+4452 Got mailbox_lock from 4426.
+4426 POINTED 1
+4452 Cache space allocated.
+4452 Struct created.
+4452 Able to send message to 4426.
+4452 Got spin_lock from 4426.
+4452 Message enqueued for 4426
+4452 Gave up spin_lock from 4426.
+4426 POINTED 0
+4452 Acquired my own mailbox_lock.
+4452 Group is dead, deleting mailbox.
+4452 Mailbox stopped.
+4452 MAILBOX STOPPED.
+4452 No processes in the mailbox.
+4452 Queue lock acquired.
+4452 No more messages in queue.
+4452 Queue lock released.
+Mailbox freed.
+4454 Able to retrieve message.
+4454 Got spin_lock.
+4454 Trying to retrieve a message.
+4454 Mailbox is not empty
+4454 Message dequeued
+4454 Gave up spin_lock.
+4454 Message info copied.
+4454 Message memory freed
+4454 Trying to send a message to 4426.
+4454 Target 4426 found.
+4454 Got mailbox_lock from 4426.
+4426 POINTED 1
+4454 Cache space allocated.
+4454 Struct created.
+4454 Able to send message to 4426.
+4454 Got spin_lock from 4426.
+4454 Message enqueued for 4426
+4454 Gave up spin_lock from 4426.
+4426 POINTED 0
+4454 Acquired my own mailbox_lock.
+4454 Group is dead, deleting mailbox.
+4454 Mailbox stopped.
+4454 MAILBOX STOPPED.
+4454 No processes in the mailbox.
+4454 Queue lock acquired.
+4454 No more messages in queue.
+4454 Queue lock released.
+Mailbox freed.
+4450 Able to retrieve message.
+4450 Got spin_lock.
+4450 Trying to retrieve a message.
+4450 Mailbox is not empty
+4450 Message dequeued
+4450 Gave up spin_lock.
+4450 Message info copied.
+4450 Message memory freed
+4450 Trying to send a message to 4426.
+4450 Target 4426 found.
+4450 Got mailbox_lock from 4426.
+4426 POINTED 1
+4450 Cache space allocated.
+4450 Struct created.
+4450 Able to send message to 4426.
+4450 Got spin_lock from 4426.
+4450 Message enqueued for 4426
+4450 Gave up spin_lock from 4426.
+4426 POINTED 0
+4450 Acquired my own mailbox_lock.
+4450 Group is dead, deleting mailbox.
+4450 Mailbox stopped.
+4450 MAILBOX STOPPED.
+4450 No processes in the mailbox.
+4450 Queue lock acquired.
+4450 No more messages in queue.
+4450 Queue lock released.
+Mailbox freed.
+4456 Able to retrieve message.
+4456 Got spin_lock.
+4456 Trying to retrieve a message.
+4456 Mailbox is not empty
+4456 Message dequeued
+4456 Gave up spin_lock.
+4456 Message info copied.
+4456 Message memory freed
+4456 Trying to send a message to 4426.
+4456 Target 4426 found.
+4456 Got mailbox_lock from 4426.
+4426 POINTED 1
+4456 Cache space allocated.
+4456 Struct created.
+4456 Able to send message to 4426.
+4456 Got spin_lock from 4426.
+4456 Message enqueued for 4426
+4456 Gave up spin_lock from 4426.
+4426 POINTED 0
+4456 Acquired my own mailbox_lock.
+4456 Group is dead, deleting mailbox.
+4456 Mailbox stopped.
+4456 MAILBOX STOPPED.
+4456 No processes in the mailbox.
+4456 Queue lock acquired.
+4456 No more messages in queue.
+4456 Queue lock released.
+Mailbox freed.
+4448 Able to retrieve message.
+4448 Got spin_lock.
+4448 Trying to retrieve a message.
+4448 Mailbox is not empty
+4448 Message dequeued
+4448 Gave up spin_lock.
+4448 Message info copied.
+4448 Message memory freed
+4448 Trying to send a message to 4426.
+4448 Target 4426 found.
+4448 Got mailbox_lock from 4426.
+4426 POINTED 1
+4448 Cache space allocated.
+4448 Struct created.
+4448 Able to send message to 4426.
+4448 Got spin_lock from 4426.
+4448 Message enqueued for 4426
+4448 Gave up spin_lock from 4426.
+4426 POINTED 0
+4448 Acquired my own mailbox_lock.
+4448 Group is dead, deleting mailbox.
+4448 Mailbox stopped.
+4448 MAILBOX STOPPED.
+4448 No processes in the mailbox.
+4448 Queue lock acquired.
+4448 No more messages in queue.
+4448 Queue lock released.
+Mailbox freed.
+4458 Able to retrieve message.
+4458 Got spin_lock.
+4458 Trying to retrieve a message.
+4458 Mailbox is not empty
+4458 Message dequeued
+4458 Gave up spin_lock.
+4458 Message info copied.
+4458 Message memory freed
+4458 Trying to send a message to 4426.
+4458 Target 4426 found.
+4458 Got mailbox_lock from 4426.
+4426 POINTED 1
+4458 Cache space allocated.
+4458 Struct created.
+4458 Able to send message to 4426.
+4458 Got spin_lock from 4426.
+4458 Message enqueued for 4426
+4458 Gave up spin_lock from 4426.
+4426 POINTED 0
+4458 Acquired my own mailbox_lock.
+4458 Group is dead, deleting mailbox.
+4458 Mailbox stopped.
+4458 MAILBOX STOPPED.
+4458 No processes in the mailbox.
+4458 Queue lock acquired.
+4458 No more messages in queue.
+4458 Queue lock released.
+Mailbox freed.
+4460 Able to retrieve message.
+4460 Got spin_lock.
+4460 Trying to retrieve a message.
+4460 Mailbox is not empty
+4460 Message dequeued
+4460 Gave up spin_lock.
+4460 Message info copied.
+4460 Message memory freed
+4460 Trying to send a message to 4426.
+4460 Target 4426 found.
+4460 Got mailbox_lock from 4426.
+4426 POINTED 1
+4460 Cache space allocated.
+4460 Struct created.
+4460 Able to send message to 4426.
+4460 Got spin_lock from 4426.
+4460 Message enqueued for 4426
+4460 Gave up spin_lock from 4426.
+4426 POINTED 0
+4460 Acquired my own mailbox_lock.
+4460 Group is dead, deleting mailbox.
+4460 Mailbox stopped.
+4460 MAILBOX STOPPED.
+4460 No processes in the mailbox.
+4460 Queue lock acquired.
+4460 No more messages in queue.
+4460 Queue lock released.
+Mailbox freed.
+4445 Able to retrieve message.
+4445 Got spin_lock.
+4445 Trying to retrieve a message.
+4445 Mailbox is not empty
+4445 Message dequeued
+4445 Gave up spin_lock.
+4445 Message info copied.
+4445 Message memory freed
+4445 Trying to send a message to 4426.
+4445 Target 4426 found.
+4445 Got mailbox_lock from 4426.
+4426 POINTED 1
+4445 Cache space allocated.
+4445 Struct created.
+4445 Able to send message to 4426.
+4445 Got spin_lock from 4426.
+4445 Message enqueued for 4426
+4445 Gave up spin_lock from 4426.
+4426 POINTED 0
+4445 Acquired my own mailbox_lock.
+4445 Group is dead, deleting mailbox.
+4445 Mailbox stopped.
+4445 MAILBOX STOPPED.
+4445 No processes in the mailbox.
+4445 Queue lock acquired.
+4445 No more messages in queue.
+4445 Queue lock released.
+Mailbox freed.
+4446 Able to retrieve message.
+4446 Got spin_lock.
+4446 Trying to retrieve a message.
+4446 Mailbox is not empty
+4446 Message dequeued
+4446 Gave up spin_lock.
+4451 Able to retrieve message.
+4451 Got spin_lock.
+4451 Trying to retrieve a message.
+4451 Mailbox is not empty
+4451 Message dequeued
+4446 Message info copied.
+4446 Message memory freed
+4451 Gave up spin_lock.
+4451 Message info copied.
+4451 Message memory freed
+4449 Able to retrieve message.
+4449 Got spin_lock.
+4449 Trying to retrieve a message.
+4449 Mailbox is not empty
+4449 Message dequeued
+4449 Gave up spin_lock.
+4449 Message info copied.
+4449 Message memory freed
+4446 Trying to send a message to 4426.
+4446 Target 4426 found.
+4446 Got mailbox_lock from 4426.
+4426 POINTED 1
+4446 Cache space allocated.
+4446 Struct created.
+4446 Able to send message to 4426.
+4446 Got spin_lock from 4426.
+4446 Message enqueued for 4426
+4446 Gave up spin_lock from 4426.
+4426 POINTED 0
+4446 Acquired my own mailbox_lock.
+4446 Group is dead, deleting mailbox.
+4446 Mailbox stopped.
+4446 MAILBOX STOPPED.
+4446 No processes in the mailbox.
+4446 Queue lock acquired.
+4446 No more messages in queue.
+4446 Queue lock released.
+Mailbox freed.
+4449 Trying to send a message to 4426.
+4449 Target 4426 found.
+4449 Got mailbox_lock from 4426.
+4426 POINTED 1
+4449 Cache space allocated.
+4449 Struct created.
+4449 Able to send message to 4426.
+4449 Got spin_lock from 4426.
+4449 Message enqueued for 4426
+4449 Gave up spin_lock from 4426.
+4426 POINTED 0
+4449 Acquired my own mailbox_lock.
+4449 Group is dead, deleting mailbox.
+4449 Mailbox stopped.
+4449 MAILBOX STOPPED.
+4449 No processes in the mailbox.
+4449 Queue lock acquired.
+4449 No more messages in queue.
+4449 Queue lock released.
+Mailbox freed.
+4451 Trying to send a message to 4426.
+4451 Target 4426 found.
+4451 Got mailbox_lock from 4426.
+4426 POINTED 1
+4451 Cache space allocated.
+4451 Struct created.
+4451 Able to send message to 4426.
+4451 Got spin_lock from 4426.
+4451 Message enqueued for 4426
+4451 Gave up spin_lock from 4426.
+4426 POINTED 0
+4451 Acquired my own mailbox_lock.
+4451 Group is dead, deleting mailbox.
+4451 Mailbox stopped.
+4451 MAILBOX STOPPED.
+4451 No processes in the mailbox.
+4451 Queue lock acquired.
+4451 No more messages in queue.
+4451 Queue lock released.
+Mailbox freed.
+4453 Able to retrieve message.
+4453 Got spin_lock.
+4453 Trying to retrieve a message.
+4453 Mailbox is not empty
+4453 Message dequeued
+4453 Gave up spin_lock.
+4453 Message info copied.
+4453 Message memory freed
+4453 Trying to send a message to 4426.
+4453 Target 4426 found.
+4453 Got mailbox_lock from 4426.
+4426 POINTED 1
+4453 Cache space allocated.
+4453 Struct created.
+4453 Able to send message to 4426.
+4453 Got spin_lock from 4426.
+4453 Message enqueued for 4426
+4453 Gave up spin_lock from 4426.
+4426 POINTED 0
+4453 Acquired my own mailbox_lock.
+4453 Group is dead, deleting mailbox.
+4453 Mailbox stopped.
+4453 MAILBOX STOPPED.
+4453 No processes in the mailbox.
+4453 Queue lock acquired.
+4453 No more messages in queue.
+4453 Queue lock released.
+Mailbox freed.
+4455 Able to retrieve message.
+4455 Got spin_lock.
+4455 Trying to retrieve a message.
+4455 Mailbox is not empty
+4455 Message dequeued
+4455 Gave up spin_lock.
+4455 Message info copied.
+4455 Message memory freed
+4455 Trying to send a message to 4426.
+4455 Target 4426 found.
+4455 Got mailbox_lock from 4426.
+4426 POINTED 1
+4455 Cache space allocated.
+4455 Struct created.
+4455 Able to send message to 4426.
+4455 Got spin_lock from 4426.
+4455 Message enqueued for 4426
+4455 Gave up spin_lock from 4426.
+4426 POINTED 0
+4455 Acquired my own mailbox_lock.
+4455 Group is dead, deleting mailbox.
+4455 Mailbox stopped.
+4455 MAILBOX STOPPED.
+4455 No processes in the mailbox.
+4455 Queue lock acquired.
+4455 No more messages in queue.
+4455 Queue lock released.
+Mailbox freed.
+4447 Able to retrieve message.
+4447 Got spin_lock.
+4447 Trying to retrieve a message.
+4447 Mailbox is not empty
+4447 Message dequeued
+4447 Gave up spin_lock.
+4447 Message info copied.
+4447 Message memory freed
+4447 Trying to send a message to 4426.
+4447 Target 4426 found.
+4447 Got mailbox_lock from 4426.
+4426 POINTED 1
+4447 Cache space allocated.
+4447 Struct created.
+4447 Able to send message to 4426.
+4447 Got spin_lock from 4426.
+4447 Message enqueued for 4426
+4447 Gave up spin_lock from 4426.
+4426 POINTED 0
+4447 Acquired my own mailbox_lock.
+4447 Group is dead, deleting mailbox.
+4447 Mailbox stopped.
+4447 MAILBOX STOPPED.
+4447 No processes in the mailbox.
+4447 Queue lock acquired.
+4447 No more messages in queue.
+4447 Queue lock released.
+Mailbox freed.
+4457 Able to retrieve message.
+4457 Got spin_lock.
+4457 Trying to retrieve a message.
+4457 Mailbox is not empty
+4457 Message dequeued
+4457 Gave up spin_lock.
+4457 Message info copied.
+4457 Message memory freed
+4457 Trying to send a message to 4426.
+4457 Target 4426 found.
+4457 Got mailbox_lock from 4426.
+4426 POINTED 1
+4457 Cache space allocated.
+4457 Struct created.
+4459 Able to retrieve message.
+4459 Got spin_lock.
+4459 Trying to retrieve a message.
+4459 Mailbox is not empty
+4459 Message dequeued
+4459 Gave up spin_lock.
+4459 Message info copied.
+4459 Message memory freed
+4459 Trying to send a message to 4426.
+4459 Target 4426 found.
+4459 Got mailbox_lock from 4426.
+4426 POINTED 2
+4459 Cache space allocated.
+4459 Struct created.
+Creating not a kernel thread.
+It's a new process.
+Mailbox allocated for 4461.
+4426 Trying to send a message to 4461.
+4426 Target 4461 found.
+4426 Got mailbox_lock from 4461.
+4461 POINTED 1
+4426 Cache space allocated.
+4426 Struct created.
+4426 Mailbox 4461 is NOT full.
+4426 Got spin_lock from 4461.
+4426 Message enqueued for 4461
+4426 Gave up spin_lock from 4461.
+4461 POINTED 0
+4461 Able to retrieve message.
+4461 Got spin_lock.
+4461 Trying to retrieve a message.
+4461 Mailbox is not empty
+4461 Message dequeued
+4461 Gave up spin_lock.
+4461 Message info copied.
+4461 Message memory freed
+Creating not a kernel thread.
+It's a new process.
+Mailbox allocated for 4462.
+4426 Trying to send a message to 4462.
+4426 Target 4462 found.
+4426 Got mailbox_lock from 4462.
+4462 POINTED 1
+4426 Cache space allocated.
+4426 Struct created.
+4426 Mailbox 4462 is NOT full.
+4426 Got spin_lock from 4462.
+4426 Message enqueued for 4462
+4426 Gave up spin_lock from 4462.
+4462 POINTED 0
+4461 Trying to send a message to 4426.
+4461 Target 4426 found.
+4461 Got mailbox_lock from 4426.
+4426 POINTED 3
+4461 Cache space allocated.
+4461 Struct created.
+4462 Able to retrieve message.
+4462 Got spin_lock.
+4462 Trying to retrieve a message.
+4462 Mailbox is not empty
+4462 Message dequeued
+4462 Gave up spin_lock.
+4462 Message info copied.
+4462 Message memory freed
+4462 Trying to send a message to 4426.
+4462 Target 4426 found.
+4462 Got mailbox_lock from 4426.
+4426 POINTED 4
+4462 Cache space allocated.
+4462 Struct created.
+Creating not a kernel thread.
+It's a new process.
+Mailbox allocated for 4463.
+4426 Trying to send a message to 4463.
+4426 Target 4463 found.
+4426 Got mailbox_lock from 4463.
+4463 POINTED 1
+4426 Cache space allocated.
+4426 Struct created.
+4426 Mailbox 4463 is NOT full.
+4426 Got spin_lock from 4463.
+4426 Message enqueued for 4463
+4426 Gave up spin_lock from 4463.
+4463 POINTED 0
+Creating not a kernel thread.
+It's a new process.
+Mailbox allocated for 4464.
+4426 Trying to send a message to 4464.
+4426 Target 4464 found.
+4426 Got mailbox_lock from 4464.
+4464 POINTED 1
+4426 Cache space allocated.
+4426 Struct created.
+4426 Mailbox 4464 is NOT full.
+4426 Got spin_lock from 4464.
+4426 Message enqueued for 4464
+4426 Gave up spin_lock from 4464.
+4464 POINTED 0
+Creating not a kernel thread.
+It's a new process.
+Mailbox allocated for 4465.
+4426 Trying to send a message to 4465.
+4426 Target 4465 found.
+4426 Got mailbox_lock from 4465.
+4465 POINTED 1
+4426 Cache space allocated.
+4426 Struct created.
+4426 Mailbox 4465 is NOT full.
+4426 Got spin_lock from 4465.
+4426 Message enqueued for 4465
+4426 Gave up spin_lock from 4465.
+4465 POINTED 0
+Creating not a kernel thread.
+It's a new process.
+Mailbox allocated for 4466.
+4426 Trying to send a message to 4466.
+4426 Target 4466 found.
+4426 Got mailbox_lock from 4466.
+4466 POINTED 1
+4426 Cache space allocated.
+4426 Struct created.
+4426 Mailbox 4466 is NOT full.
+4426 Got spin_lock from 4466.
+4426 Message enqueued for 4466
+4426 Gave up spin_lock from 4466.
+4466 POINTED 0
+Creating not a kernel thread.
+It's a new process.
+Mailbox allocated for 4467.
+4426 Trying to send a message to 4467.
+4426 Target 4467 found.
+4426 Got mailbox_lock from 4467.
+4467 POINTED 1
+4426 Cache space allocated.
+4426 Struct created.
+4426 Mailbox 4467 is NOT full.
+4426 Got spin_lock from 4467.
+4426 Message enqueued for 4467
+4426 Gave up spin_lock from 4467.
+4467 POINTED 0
+Creating not a kernel thread.
+It's a new process.
+Mailbox allocated for 4468.
+4426 Trying to send a message to 4468.
+4426 Target 4468 found.
+4426 Got mailbox_lock from 4468.
+4468 POINTED 1
+4426 Cache space allocated.
+4426 Struct created.
+4426 Mailbox 4468 is NOT full.
+4426 Got spin_lock from 4468.
+4426 Message enqueued for 4468
+4426 Gave up spin_lock from 4468.
+4468 POINTED 0
+Creating not a kernel thread.
+It's a new process.
+Mailbox allocated for 4469.
+4426 Trying to send a message to 4469.
+4426 Target 4469 found.
+4426 Got mailbox_lock from 4469.
+4469 POINTED 1
+4426 Cache space allocated.
+4426 Struct created.
+4426 Mailbox 4469 is NOT full.
+4426 Got spin_lock from 4469.
+4426 Message enqueued for 4469
+4426 Gave up spin_lock from 4469.
+4469 POINTED 0
+Creating not a kernel thread.
+It's a new process.
+Mailbox allocated for 4470.
+4426 Trying to send a message to 4470.
+4426 Target 4470 found.
+4426 Got mailbox_lock from 4470.
+4470 POINTED 1
+4426 Cache space allocated.
+4426 Struct created.
+4426 Mailbox 4470 is NOT full.
+4426 Got spin_lock from 4470.
+4426 Message enqueued for 4470
+4426 Gave up spin_lock from 4470.
+4470 POINTED 0
+Creating not a kernel thread.
+It's a new process.
+Mailbox allocated for 4471.
+4426 Trying to send a message to 4471.
+4426 Target 4471 found.
+4426 Got mailbox_lock from 4471.
+4471 POINTED 1
+4426 Cache space allocated.
+4426 Struct created.
+4426 Mailbox 4471 is NOT full.
+4426 Got spin_lock from 4471.
+4426 Message enqueued for 4471
+4426 Gave up spin_lock from 4471.
+4471 POINTED 0
+Creating not a kernel thread.
+It's a new process.
+Mailbox allocated for 4472.
+4426 Trying to send a message to 4472.
+4426 Target 4472 found.
+4426 Got mailbox_lock from 4472.
+4472 POINTED 1
+4426 Cache space allocated.
+4426 Struct created.
+4426 Mailbox 4472 is NOT full.
+4426 Got spin_lock from 4472.
+4426 Message enqueued for 4472
+4426 Gave up spin_lock from 4472.
+4472 POINTED 0
+Creating not a kernel thread.
+It's a new process.
+Mailbox allocated for 4473.
+4426 Trying to send a message to 4473.
+4426 Target 4473 found.
+4426 Got mailbox_lock from 4473.
+4473 POINTED 1
+4426 Cache space allocated.
+4426 Struct created.
+4426 Mailbox 4473 is NOT full.
+4426 Got spin_lock from 4473.
+4426 Message enqueued for 4473
+4426 Gave up spin_lock from 4473.
+4473 POINTED 0
+Creating not a kernel thread.
+It's a new process.
+Mailbox allocated for 4474.
+4426 Trying to send a message to 4474.
+4426 Target 4474 found.
+4426 Got mailbox_lock from 4474.
+4474 POINTED 1
+4426 Cache space allocated.
+4426 Struct created.
+4426 Mailbox 4474 is NOT full.
+4426 Got spin_lock from 4474.
+4426 Message enqueued for 4474
+4426 Gave up spin_lock from 4474.
+4474 POINTED 0
+Creating not a kernel thread.
+It's a new process.
+Mailbox allocated for 4475.
+4468 Able to retrieve message.
+4468 Got spin_lock.
+4468 Trying to retrieve a message.
+4468 Mailbox is not empty
+4468 Message dequeued
+4468 Gave up spin_lock.
+4468 Message info copied.
+4468 Message memory freed
+4426 Trying to send a message to 4475.
+4426 Target 4475 found.
+4426 Got mailbox_lock from 4475.
+4475 POINTED 1
+4426 Cache space allocated.
+4426 Struct created.
+4426 Mailbox 4475 is NOT full.
+4426 Got spin_lock from 4475.
+4426 Message enqueued for 4475
+4426 Gave up spin_lock from 4475.
+4475 POINTED 0
+4468 Trying to send a message to 4426.
+4468 Target 4426 found.
+4468 Got mailbox_lock from 4426.
+4426 POINTED 5
+4468 Cache space allocated.
+4468 Struct created.
+Creating not a kernel thread.
+It's a new process.
+Mailbox allocated for 4476.
+4426 Trying to send a message to 4476.
+4426 Target 4476 found.
+4426 Got mailbox_lock from 4476.
+4466 Able to retrieve message.
+4466 Got spin_lock.
+4466 Trying to retrieve a message.
+4466 Mailbox is not empty
+4466 Message dequeued
+4476 POINTED 1
+4426 Cache space allocated.
+4426 Struct created.
+4426 Mailbox 4476 is NOT full.
+4426 Got spin_lock from 4476.
+4426 Message enqueued for 4476
+4426 Gave up spin_lock from 4476.
+4476 POINTED 0
+4466 Gave up spin_lock.
+4466 Message info copied.
+4466 Message memory freed
+4469 Able to retrieve message.
+4469 Got spin_lock.
+4469 Trying to retrieve a message.
+4469 Mailbox is not empty
+4469 Message dequeued
+4469 Gave up spin_lock.
+4469 Message info copied.
+4469 Message memory freed
+4466 Trying to send a message to 4426.
+4466 Target 4426 found.
+4466 Got mailbox_lock from 4426.
+4426 POINTED 6
+4466 Cache space allocated.
+4466 Struct created.
+4469 Trying to send a message to 4426.
+4469 Target 4426 found.
+4469 Got mailbox_lock from 4426.
+4426 POINTED 7
+4469 Cache space allocated.
+4470 Able to retrieve message.
+4470 Got spin_lock.
+4470 Trying to retrieve a message.
+4470 Mailbox is not empty
+4470 Message dequeued
+4470 Gave up spin_lock.
+4469 Struct created.
+4470 Message info copied.
+4470 Message memory freed
+4467 Able to retrieve message.
+4467 Got spin_lock.
+4467 Trying to retrieve a message.
+4467 Mailbox is not empty
+4467 Message dequeued
+4467 Gave up spin_lock.
+4467 Message info copied.
+4467 Message memory freed
+4470 Trying to send a message to 4426.
+4470 Target 4426 found.
+4470 Got mailbox_lock from 4426.
+4426 POINTED 8
+4470 Cache space allocated.
+4470 Struct created.
+4467 Trying to send a message to 4426.
+4467 Target 4426 found.
+4467 Got mailbox_lock from 4426.
+4426 POINTED 9
+4467 Cache space allocated.
+4467 Struct created.
+4463 Able to retrieve message.
+4463 Got spin_lock.
+4463 Trying to retrieve a message.
+4463 Mailbox is not empty
+4463 Message dequeued
+4463 Gave up spin_lock.
+4463 Message info copied.
+4463 Message memory freed
+4463 Trying to send a message to 4426.
+4463 Target 4426 found.
+4463 Got mailbox_lock from 4426.
+4426 POINTED 10
+4463 Cache space allocated.
+4463 Struct created.
+4471 Able to retrieve message.
+4471 Got spin_lock.
+4471 Trying to retrieve a message.
+4471 Mailbox is not empty
+4471 Message dequeued
+4471 Gave up spin_lock.
+4471 Message info copied.
+4471 Message memory freed
+4471 Trying to send a message to 4426.
+4471 Target 4426 found.
+4471 Got mailbox_lock from 4426.
+4426 POINTED 11
+4471 Cache space allocated.
+4471 Struct created.
+4465 Able to retrieve message.
+4465 Got spin_lock.
+4465 Trying to retrieve a message.
+4465 Mailbox is not empty
+4465 Message dequeued
+4465 Gave up spin_lock.
+4465 Message info copied.
+4465 Message memory freed
+4465 Trying to send a message to 4426.
+4465 Target 4426 found.
+4465 Got mailbox_lock from 4426.
+4426 POINTED 12
+4465 Cache space allocated.
+4465 Struct created.
+4464 Able to retrieve message.
+4464 Got spin_lock.
+4464 Trying to retrieve a message.
+4464 Mailbox is not empty
+4464 Message dequeued
+4464 Gave up spin_lock.
+4464 Message info copied.
+4464 Message memory freed
+4464 Trying to send a message to 4426.
+4464 Target 4426 found.
+4464 Got mailbox_lock from 4426.
+4426 POINTED 13
+4464 Cache space allocated.
+4464 Struct created.
+4472 Able to retrieve message.
+4472 Got spin_lock.
+4472 Trying to retrieve a message.
+4472 Mailbox is not empty
+4472 Message dequeued
+4472 Gave up spin_lock.
+4472 Message info copied.
+4472 Message memory freed
+4472 Trying to send a message to 4426.
+4472 Target 4426 found.
+4472 Got mailbox_lock from 4426.
+4426 POINTED 14
+4472 Cache space allocated.
+4472 Struct created.
+4475 Able to retrieve message.
+4475 Got spin_lock.
+4475 Trying to retrieve a message.
+4475 Mailbox is not empty
+4475 Message dequeued
+4475 Gave up spin_lock.
+4475 Message info copied.
+4475 Message memory freed
+4474 Able to retrieve message.
+4474 Got spin_lock.
+4474 Trying to retrieve a message.
+4474 Mailbox is not empty
+4474 Message dequeued
+4474 Gave up spin_lock.
+4474 Message info copied.
+4474 Message memory freed
+4475 Trying to send a message to 4426.
+4475 Target 4426 found.
+4475 Got mailbox_lock from 4426.
+4426 POINTED 15
+4475 Cache space allocated.
+4475 Struct created.
+4474 Trying to send a message to 4426.
+4474 Target 4426 found.
+4474 Got mailbox_lock from 4426.
+4426 POINTED 16
+4474 Cache space allocated.
+4474 Struct created.
+4476 Able to retrieve message.
+4476 Got spin_lock.
+4476 Trying to retrieve a message.
+4476 Mailbox is not empty
+4476 Message dequeued
+4476 Gave up spin_lock.
+4476 Message info copied.
+4476 Message memory freed
+4473 Able to retrieve message.
+4473 Got spin_lock.
+4473 Trying to retrieve a message.
+4473 Mailbox is not empty
+4473 Message dequeued
+4473 Gave up spin_lock.
+4473 Message info copied.
+4473 Message memory freed
+4476 Trying to send a message to 4426.
+4476 Target 4426 found.
+4476 Got mailbox_lock from 4426.
+4426 POINTED 17
+4476 Cache space allocated.
+4473 Trying to send a message to 4426.
+4476 Struct created.
+4473 Target 4426 found.
+4473 Got mailbox_lock from 4426.
+4426 POINTED 18
+4473 Cache space allocated.
+4473 Struct created.
+4426 Mailbox stopped. <--------------------------- Parent's mailbox stopped
+4426 Able to retrieve message.
+4426 Got spin_lock.
+4426 Trying to retrieve a message.
+4426 Mailbox is not empty
+4426 Message dequeued
+4426 Gave up spin_lock.
+4426 Message info copied.
+4426 Message memory freed
+4468 Able to send message to 4426.
+4468 Got spin_lock from 4426.
+4468 The target's mailbox 4426 is stopped. Unable to send message.
+4426 POINTED 17
+4426 Able to retrieve message.
+4426 Got spin_lock.
+4426 Trying to retrieve a message.
+4426 Mailbox is not empty
+4426 Message dequeued
+4426 Gave up spin_lock.
+4426 Message info copied.
+4426 Message memory freed
+4426 Able to retrieve message.
+4426 Got spin_lock.
+4426 Trying to retrieve a message.
+4426 Mailbox is not empty
+4426 Message dequeued
+4426 Gave up spin_lock.
+4426 Message info copied.
+4426 Message memory freed
+4426 Able to retrieve message.
+4426 Got spin_lock.
+4426 Trying to retrieve a message.
+4426 Mailbox is not empty
+4426 Message dequeued
+4426 Gave up spin_lock.
+4426 Message info copied.
+4426 Message memory freed
+4426 Able to retrieve message.
+4426 Got spin_lock.
+4426 Trying to retrieve a message.
+4426 Mailbox is not empty
+4426 Message dequeued
+4426 Gave up spin_lock.
+4426 Message info copied.
+4426 Message memory freed
+4426 Able to retrieve message.
+4426 Got spin_lock.
+4426 Trying to retrieve a message.
+4426 Mailbox is not empty
+4426 Message dequeued
+4426 Gave up spin_lock.
+4426 Message info copied.
+4426 Message memory freed
+4426 Able to retrieve message.
+4426 Got spin_lock.
+4426 Trying to retrieve a message.
+4426 Mailbox is not empty
+4426 Message dequeued
+4426 Gave up spin_lock.
+4426 Message info copied.
+4426 Message memory freed
+4426 Able to retrieve message.
+4426 Got spin_lock.
+4426 Trying to retrieve a message.
+4426 Mailbox is not empty
+4426 Message dequeued
+4426 Gave up spin_lock.
+4426 Message info copied.
+4426 Message memory freed
+4426 Able to retrieve message.
+4426 Got spin_lock.
+4426 Trying to retrieve a message.
+4426 Mailbox is not empty
+4426 Message dequeued
+4426 Gave up spin_lock.
+4426 Message info copied.
+4468 Acquired my own mailbox_lock.
+4468 Group is dead, deleting mailbox.
+4468 Mailbox stopped.
+4426 Message memory freed
+4468 MAILBOX STOPPED.
+4468 No processes in the mailbox.
+4468 Queue lock acquired.
+4426 Able to retrieve message.
+4468 No more messages in queue.
+4468 Queue lock released.
+4426 Got spin_lock.
+Mailbox freed.
+4426 Trying to retrieve a message.
+4426 Mailbox is not empty
+4426 Message dequeued
+4426 Gave up spin_lock.
+4426 Message info copied.
+4426 Message memory freed
+4426 Able to retrieve message.
+4426 Got spin_lock.
+4426 Trying to retrieve a message.
+4426 Mailbox is not empty
+4426 Message dequeued
+4426 Gave up spin_lock.
+4426 Message info copied.
+4426 Message memory freed
+4426 Able to retrieve message.
+4426 Got spin_lock.
+4426 Trying to retrieve a message.
+4426 Mailbox is not empty
+4426 Message dequeued
+4426 Gave up spin_lock.
+4426 Message info copied.
+4426 Message memory freed
+4426 Able to retrieve message.
+4426 Got spin_lock.
+4426 Trying to retrieve a message.
+4426 Mailbox is not empty
+4426 Message dequeued
+4426 Gave up spin_lock.
+4426 Message info copied.
+4426 Message memory freed
+4426 Able to retrieve message.
+4426 Got spin_lock.
+4426 Trying to retrieve a message.
+4426 Mailbox is not empty
+4426 Message dequeued
+4426 Gave up spin_lock.
+4426 Message info copied.
+4426 Message memory freed
+4426 Able to retrieve message.
+4426 Got spin_lock.
+4426 Trying to retrieve a message.
+4426 Mailbox is not empty
+4426 Message dequeued
+4426 Gave up spin_lock.
+4426 Message info copied.
+4426 Message memory freed
+4426 Able to retrieve message.
+4426 Got spin_lock.
+4426 Trying to retrieve a message.
+4426 Mailbox is not empty
+4426 Message dequeued
+4426 Gave up spin_lock.
+4426 Message info copied.
+4426 Message memory freed
+4426 Able to retrieve message.
+4426 Got spin_lock.
+4426 Trying to retrieve a message.
+4426 Mailbox is not empty
+4426 Message dequeued
+4426 Gave up spin_lock.
+4426 Message info copied.
+4426 Message memory freed
+4426 Able to retrieve message.
+4426 Got spin_lock.
+4426 Trying to retrieve a message.
+4426 Mailbox is not empty
+4426 Message dequeued
+4426 Gave up spin_lock.
+4426 Message info copied.
+4426 Message memory freed
+4426 Able to retrieve message.
+4426 Got spin_lock.
+4426 Trying to retrieve a message.
+4426 Mailbox is not empty
+4426 Message dequeued
+4426 Gave up spin_lock.
+4426 Message info copied.
+4426 Message memory freed
+4426 Able to retrieve message.
+4426 Got spin_lock.
+4426 Trying to retrieve a message.
+4426 Mailbox is not empty
+4426 Message dequeued
+4426 Gave up spin_lock.
+4426 Message info copied.
+4426 Message memory freed
+4426 Able to retrieve message.
+4426 Got spin_lock.
+4426 Trying to retrieve a message.
+4426 Mailbox is not empty
+4426 Message dequeued
+4426 Gave up spin_lock.
+4426 Message info copied.
+4426 Message memory freed
+4426 Able to retrieve message.
+4426 Got spin_lock.
+4426 Trying to retrieve a message.
+4426 Mailbox is not empty
+4426 Message dequeued
+4426 Gave up spin_lock.
+4426 Message info copied.
+4426 Message memory freed
+4426 Able to retrieve message.
+4426 Got spin_lock.
+4426 Trying to retrieve a message.
+4426 Mailbox is not empty
+4426 Message dequeued
+4426 Gave up spin_lock.
+4426 Message info copied.
+4426 Message memory freed
+4426 Able to retrieve message.
+4426 Got spin_lock.
+4426 Trying to retrieve a message.
+4426 Mailbox is not empty
+4426 Message dequeued
+4426 Gave up spin_lock.
+4426 Message info copied.
+4426 Message memory freed
+4426 Able to retrieve message.
+4426 Got spin_lock.
+4426 Trying to retrieve a message.
+4426 Mailbox is not empty
+4426 Message dequeued
+4426 Gave up spin_lock.
+4426 Message info copied.
+4426 Message memory freed
+4426 Able to retrieve message.
+4426 Got spin_lock.
+4426 Trying to retrieve a message.
+4426 Mailbox is not empty
+4426 Message dequeued
+4426 Gave up spin_lock.
+4426 Message info copied.
+4426 Message memory freed
+4426 Able to retrieve message.
+4426 Got spin_lock.
+4426 Trying to retrieve a message.
+4426 Mailbox is not empty
+4426 Message dequeued
+4426 Gave up spin_lock.
+4426 Message info copied.
+4426 Message memory freed
+4426 Able to retrieve message.
+4426 Got spin_lock.
+4426 Trying to retrieve a message.
+4426 Mailbox is not empty
+4426 Message dequeued
+4426 Gave up spin_lock.
+4426 Message info copied.
+4426 Message memory freed
+4426 Able to retrieve message.
+4426 Got spin_lock.
+4426 Trying to retrieve a message.
+4426 Mailbox is not empty
+4426 Message dequeued
+4426 Gave up spin_lock.
+4426 Message info copied.
+4426 Message memory freed
+4426 Able to retrieve message.
+4426 Got spin_lock.
+4426 Trying to retrieve a message.
+4426 Mailbox is not empty
+4426 Message dequeued
+4426 Gave up spin_lock.
+4426 Message info copied.
+4426 Message memory freed
+4426 Able to retrieve message.
+4426 Got spin_lock.
+4426 Trying to retrieve a message.
+4426 Mailbox is not empty
+4426 Message dequeued
+4426 Gave up spin_lock.
+4426 Message info copied.
+4426 Message memory freed
+4426 Able to retrieve message.
+4426 Got spin_lock.
+4426 Trying to retrieve a message.
+4426 Mailbox is not empty
+4426 Message dequeued
+4426 Gave up spin_lock.
+4426 Message info copied.
+4426 Message memory freed
+4426 Able to retrieve message.
+4426 Got spin_lock.
+4426 mailbox was stopped and I was waiting to receive. <--- parent tries to retrieve
+							a message from an empty and
+							stopped mailbox
+4466 Able to send message to 4426.
+4466 Got spin_lock from 4426.
+4466 The target's mailbox 4426 is stopped. Unable to send message.
+4426 POINTED 16 <-------------------------------- 16 tasks still inside
+4466 Acquired my own mailbox_lock.
+4466 Group is dead, deleting mailbox.
+4466 Mailbox stopped.
+4466 MAILBOX STOPPED.
+4466 No processes in the mailbox.
+4466 Queue lock acquired.
+4466 No more messages in queue.
+4466 Queue lock released.
+Mailbox freed.
+4457 Able to send message to 4426.
+4457 Got spin_lock from 4426.
+4457 The target's mailbox 4426 is stopped. Unable to send message.
+4426 POINTED 15
+4457 Acquired my own mailbox_lock.
+4457 Group is dead, deleting mailbox.
+4457 Mailbox stopped.
+4457 MAILBOX STOPPED.
+4457 No processes in the mailbox.
+4457 Queue lock acquired.
+4457 No more messages in queue.
+4457 Queue lock released.
+Mailbox freed.
+4470 Able to send message to 4426.
+4470 Got spin_lock from 4426.
+4470 The target's mailbox 4426 is stopped. Unable to send message.
+4426 POINTED 14
+4470 Acquired my own mailbox_lock.
+4470 Group is dead, deleting mailbox.
+4470 Mailbox stopped.
+4470 MAILBOX STOPPED.
+4470 No processes in the mailbox.
+4470 Queue lock acquired.
+4470 No more messages in queue.
+4470 Queue lock released.
+Mailbox freed.
+4459 Able to send message to 4426.
+4459 Got spin_lock from 4426.
+4459 The target's mailbox 4426 is stopped. Unable to send message.
+4426 POINTED 13
+4459 Acquired my own mailbox_lock.
+4459 Group is dead, deleting mailbox.
+4459 Mailbox stopped.
+4459 MAILBOX STOPPED.
+4459 No processes in the mailbox.
+4459 Queue lock acquired.
+4459 No more messages in queue.
+4459 Queue lock released.
+Mailbox freed.
+4464 Able to send message to 4426.
+4464 Got spin_lock from 4426.
+4464 The target's mailbox 4426 is stopped. Unable to send message.
+4426 POINTED 12
+4464 Acquired my own mailbox_lock.
+4464 Group is dead, deleting mailbox.
+4464 Mailbox stopped.
+4464 MAILBOX STOPPED.
+4464 No processes in the mailbox.
+4464 Queue lock acquired.
+4464 No more messages in queue.
+4464 Queue lock released.
+Mailbox freed.
+4461 Able to send message to 4426.
+4461 Got spin_lock from 4426.
+4461 The target's mailbox 4426 is stopped. Unable to send message.
+4426 POINTED 11
+4461 Acquired my own mailbox_lock.
+4461 Group is dead, deleting mailbox.
+4461 Mailbox stopped.
+4461 MAILBOX STOPPED.
+4461 No processes in the mailbox.
+4461 Queue lock acquired.
+4461 No more messages in queue.
+4461 Queue lock released.
+Mailbox freed.
+4472 Able to send message to 4426.
+4472 Got spin_lock from 4426.
+4472 The target's mailbox 4426 is stopped. Unable to send message.
+4426 POINTED 10
+4472 Acquired my own mailbox_lock.
+4472 Group is dead, deleting mailbox.
+4472 Mailbox stopped.
+4472 MAILBOX STOPPED.
+4472 No processes in the mailbox.
+4472 Queue lock acquired.
+4472 No more messages in queue.
+4472 Queue lock released.
+Mailbox freed.
+4462 Able to send message to 4426.
+4462 Got spin_lock from 4426.
+4462 The target's mailbox 4426 is stopped. Unable to send message.
+4426 POINTED 9
+4462 Acquired my own mailbox_lock.
+4462 Group is dead, deleting mailbox.
+4462 Mailbox stopped.
+4462 MAILBOX STOPPED.
+4462 No processes in the mailbox.
+4462 Queue lock acquired.
+4462 No more messages in queue.
+4462 Queue lock released.
+Mailbox freed.
+4475 Able to send message to 4426.
+4475 Got spin_lock from 4426.
+4475 The target's mailbox 4426 is stopped. Unable to send message.
+4426 POINTED 8
+4475 Acquired my own mailbox_lock.
+4475 Group is dead, deleting mailbox.
+4475 Mailbox stopped.
+4475 MAILBOX STOPPED.
+4475 No processes in the mailbox.
+4475 Queue lock acquired.
+4475 No more messages in queue.
+4475 Queue lock released.
+Mailbox freed.
+4469 Able to send message to 4426.
+4469 Got spin_lock from 4426.
+4469 The target's mailbox 4426 is stopped. Unable to send message.
+4426 POINTED 7
+4469 Acquired my own mailbox_lock.
+4469 Group is dead, deleting mailbox.
+4469 Mailbox stopped.
+4469 MAILBOX STOPPED.
+4469 No processes in the mailbox.
+4469 Queue lock acquired.
+4469 No more messages in queue.
+4469 Queue lock released.
+Mailbox freed.
+4476 Able to send message to 4426.
+4476 Got spin_lock from 4426.
+4476 The target's mailbox 4426 is stopped. Unable to send message.
+4426 POINTED 6
+4476 Acquired my own mailbox_lock.
+4476 Group is dead, deleting mailbox.
+4476 Mailbox stopped.
+4476 MAILBOX STOPPED.
+4476 No processes in the mailbox.
+4476 Queue lock acquired.
+4476 No more messages in queue.
+4476 Queue lock released.
+Mailbox freed.
+4467 Able to send message to 4426.
+4467 Got spin_lock from 4426.
+4467 The target's mailbox 4426 is stopped. Unable to send message.
+4426 POINTED 5
+4467 Acquired my own mailbox_lock.
+4467 Group is dead, deleting mailbox.
+4467 Mailbox stopped.
+4467 MAILBOX STOPPED.
+4467 No processes in the mailbox.
+4467 Queue lock acquired.
+4467 No more messages in queue.
+4467 Queue lock released.
+Mailbox freed.
+4463 Able to send message to 4426.
+4463 Got spin_lock from 4426.
+4463 The target's mailbox 4426 is stopped. Unable to send message.
+4426 POINTED 4
+4463 Acquired my own mailbox_lock.
+4463 Group is dead, deleting mailbox.
+4463 Mailbox stopped.
+4463 MAILBOX STOPPED.
+4463 No processes in the mailbox.
+4463 Queue lock acquired.
+4463 No more messages in queue.
+4463 Queue lock released.
+Mailbox freed.
+4471 Able to send message to 4426.
+4471 Got spin_lock from 4426.
+4471 The target's mailbox 4426 is stopped. Unable to send message.
+4426 POINTED 3
+4471 Acquired my own mailbox_lock.
+4471 Group is dead, deleting mailbox.
+4471 Mailbox stopped.
+4471 MAILBOX STOPPED.
+4471 No processes in the mailbox.
+4471 Queue lock acquired.
+4471 No more messages in queue.
+4471 Queue lock released.
+Mailbox freed.
+4465 Able to send message to 4426.
+4465 Got spin_lock from 4426.
+4465 The target's mailbox 4426 is stopped. Unable to send message.
+4426 POINTED 2
+4465 Acquired my own mailbox_lock.
+4465 Group is dead, deleting mailbox.
+4465 Mailbox stopped.
+4465 MAILBOX STOPPED.
+4465 No processes in the mailbox.
+4465 Queue lock acquired.
+4465 No more messages in queue.
+4465 Queue lock released.
+Mailbox freed.
+4474 Able to send message to 4426.
+4474 Got spin_lock from 4426.
+4474 The target's mailbox 4426 is stopped. Unable to send message.
+4426 POINTED 1
+4474 Acquired my own mailbox_lock.
+4474 Group is dead, deleting mailbox.
+4474 Mailbox stopped.
+4474 MAILBOX STOPPED.
+4474 No processes in the mailbox.
+4474 Queue lock acquired.
+4474 No more messages in queue.
+4474 Queue lock released.
+Mailbox freed.
+4473 Able to send message to 4426.
+4473 Got spin_lock from 4426.
+4473 The target's mailbox 4426 is stopped. Unable to send message.
+4426 POINTED 0 <---------------------------- no one else inside the mailbox
+4473 Acquired my own mailbox_lock.
+4473 Group is dead, deleting mailbox.
+4473 Mailbox stopped.
+4473 MAILBOX STOPPED.
+4473 No processes in the mailbox.
+4473 Queue lock acquired.
+4473 No more messages in queue.
+4473 Queue lock released.
+Mailbox freed.
+Creating not a kernel thread.
+It's a new process.
+Mailbox allocated for 4477.
+4426 Trying to send a message to 4477.
+4426 Target 4477 found.
+4426 Got mailbox_lock from 4477.
+4477 POINTED 1
+4426 Cache space allocated.
+4426 Struct created.
+4426 Mailbox 4477 is NOT full.
+4426 Got spin_lock from 4477.
+4426 Message enqueued for 4477
+4426 Gave up spin_lock from 4477.
+4477 POINTED 0
+4426 Acquired my own mailbox_lock.
+4426 Group is dead, deleting mailbox.
+4426 Mailbox stopped.
+4426 MAILBOX STOPPED.
+4426 No processes in the mailbox.
+4426 Queue lock acquired.
+4426 No more messages in queue.
+4426 Queue lock released.
+Mailbox freed.
+4477 Able to retrieve message.
+4477 Got spin_lock.
+4477 Trying to retrieve a message.
+4477 Mailbox is not empty
+4477 Message dequeued
+4477 Gave up spin_lock.
+4477 Message info copied.
+4477 Message memory freed
+4477 Trying to send a message to 4426.
+Target 4426 not found. <----------------- Parent is dead already!
+4477 Acquired my own mailbox_lock.
+4477 Group is dead, deleting mailbox.
+4477 Mailbox stopped.
+4477 MAILBOX STOPPED.
+4477 No processes in the mailbox.
+4477 Queue lock acquired.
+4477 No more messages in queue.
+4477 Queue lock released.
+Mailbox freed.

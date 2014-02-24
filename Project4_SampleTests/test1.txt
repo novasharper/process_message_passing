@@ -1,0 +1,53 @@
+Alfredo Porras
+July 12th, 2011
+CS 3013
+Project 4 - Output from testmailbox1
+
+PID 4351 is the parent.
+PID 4352 is the child.
+
+-------------------------------------------
+Creating not a kernel thread.
+It's a new process.
+Mailbox allocated for 4351.
+Creating not a kernel thread.
+It's a new process.
+Mailbox allocated for 4352.
+4351 Trying to send a message to 4352.
+4351 Target 4352 found.
+4351 Got mailbox_lock from 4352.
+4352 POINTED 1
+4351 Cache space allocated.
+4351 Struct created.
+4351 Mailbox 4352 is NOT full.
+4351 Got spin_lock from 4352.
+4351 Message enqueued for 4352 <------------ Message sent
+4351 Gave up spin_lock from 4352.
+4352 POINTED 0
+4352 Able to retrieve message.
+4352 Got spin_lock.
+4352 Trying to retrieve a message.
+4352 Mailbox is not empty
+4352 Message dequeued <--------------------- Message received
+4352 Gave up spin_lock.
+4352 Message info copied.
+4352 Message memory freed
+4352 Acquired my own mailbox_lock.
+4352 Group is dead, deleting mailbox.
+4352 Mailbox stopped.
+4352 MAILBOX STOPPED.
+4352 No processes in the mailbox.
+4352 Queue lock acquired.
+4352 No more messages in queue.
+4352 Queue lock released.
+Mailbox freed.
+4351 Acquired my own mailbox_lock.
+4351 Group is dead, deleting mailbox.
+4351 Mailbox stopped.
+4351 MAILBOX STOPPED.
+4351 No processes in the mailbox.
+4351 Queue lock acquired.
+4351 No more messages in queue.
+4351 Queue lock released.
+Mailbox freed.
+

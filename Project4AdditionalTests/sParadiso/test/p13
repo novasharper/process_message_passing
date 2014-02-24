@@ -1,0 +1,9 @@
+
+
+ -- Susan Paradiso --
+
+TEST: verify send-to-pid-1 (expect mailbox-invalid) 
+SendMsg, expected and got err MAILBOX_INVALID (1004) 
+
+TEST PASSED
+

@@ -1,0 +1,64 @@
+
+
+ -- Susan Paradiso --
+
+TEST: verify basic good msgs between child and parent
+(parent) pid 6473 rcv'ed msg from 6474
+child 6474 -> parent 6473 msg #0
+(child) pid 6474 rcv'ed msg from 6473
+parent 6473 -> child 6474 msg #0
+
+(parent) pid 6473 rcv'ed msg from 6474
+child 6474 -> parent 6473 msg #2
+(child) pid 6474 rcv'ed msg from 6473
+parent 6473 -> child 6474 msg #1
+(child) pid 6474 rcv'ed msg from 6473
+parent 6473 -> child 6474 msg #2
+(child) pid 6474 rcv'ed msg from 6473
+parent 6473 -> child 6474 msg #3
+(child) pid 6474 rcv'ed msg from 6473
+parent 6473 -> child 6474 msg #4
+(child) pid 6474 rcv'ed msg from 6473
+parent 6473 -> child 6474 msg #5
+(child) pid 6474 rcv'ed msg from 6473
+parent 6473 -> child 6474 msg #6
+(child) pid 6474 rcv'ed msg from 6473
+parent 6473 -> child 6474 msg #7
+(child) pid 6474 rcv'ed msg from 6473
+parent 6473 -> child 6474 msg #8
+(child) pid 6474 rcv'ed msg from 6473
+parent 6473 -> child 6474 msg #9
+(child) pid 6474 rcv'ed msg from 6473
+parent 6473 -> child 6474 msg #10
+(child) pid 6474 rcv'ed msg from 6473
+parent 6473 -> child 6474 msg #11
+(child) pid 6474 rcv'ed msg from 6473
+parent 6473 -> child 6474 msg #12
+(child) pid 6474 rcv'ed msg from 6473
+parent 6473 -> child 6474 msg #13
+(child) pid 6474 rcv'ed msg from 6473
+parent 6473 -> child 6474 msg #14
+(child) pid 6474 rcv'ed msg from 6473
+parent 6473 -> child 6474 msg #15
+(child) pid 6474 rcv'ed msg from 6473
+parent 6473 -> child 6474 msg #16
+(child) pid 6474 rcv'ed msg from 6473
+parent 6473 -> child 6474 msg #17
+(child) pid 6474 rcv'ed msg from 6473
+parent 6473 -> child 6474 msg #18
+(child) pid 6474 rcv'ed msg from 6473
+parent 6473 -> child 6474 msg #19
+(child) pid 6474 rcv'ed msg from 6473
+parent 6473 -> child 6474 msg #20
+(child) pid 6474 rcv'ed msg from 6473
+parent 6473 -> child 6474 msg #21
+(child) pid 6474 rcv'ed msg from 6473
+parent 6473 -> child 6474 msg #22
+(child) pid 6474 rcv'ed msg from 6473
+parent 6473 -> child 6474 msg #23
+(child) pid 6474 rcv'ed msg from 6473
+parent 6473 -> child 6474 msg #24
+kids completed
+
+TEST PASSED
+

@@ -1,0 +1,2231 @@
+Alfredo Porras
+July 12th, 2011
+CS 3013
+Project 4 - Output from running testmailbox7 succesfully
+
+PID of the parent is 4612.
+PIDs of the children range from 4613 to 4662.
+
+-------------------------------------------------------
+Creating not a kernel thread.
+It's a new process.
+Mailbox allocated for 4612.
+Creating not a kernel thread.
+It's a new process.
+Mailbox allocated for 4613.
+4612 Trying to send a message to 4613.
+4612 Target 4613 found.
+4612 Got mailbox_lock from 4613.
+4613 POINTED 1
+4612 Cache space allocated.
+4612 Struct created.
+4612 Mailbox 4613 is NOT full.
+4612 Got spin_lock from 4613.
+4612 Message enqueued for 4613
+4612 Gave up spin_lock from 4613.
+4613 POINTED 0
+4613 Able to retrieve message.
+4613 Got spin_lock.
+4613 Trying to retrieve a message.
+4613 Mailbox is not empty
+4613 Message dequeued
+4613 Gave up spin_lock.
+4613 Message info copied.
+4613 Message memory freed
+Creating not a kernel thread.
+It's a new process.
+Mailbox allocated for 4614.
+4612 Trying to send a message to 4614.
+4612 Target 4614 found.
+4612 Got mailbox_lock from 4614.
+4614 POINTED 1
+4612 Cache space allocated.
+4612 Struct created.
+4612 Mailbox 4614 is NOT full.
+4612 Got spin_lock from 4614.
+4612 Message enqueued for 4614
+4612 Gave up spin_lock from 4614.
+4614 POINTED 0
+4613 Trying to send a message to 4612.
+4613 Target 4612 found.
+4613 Got mailbox_lock from 4612.
+4612 POINTED 1
+4613 Cache space allocated.
+4613 Struct created.
+4613 Able to send message to 4612.
+4613 Got spin_lock from 4612.
+4613 Message enqueued for 4612
+4613 Gave up spin_lock from 4612.
+4612 POINTED 0
+4613 Acquired my own mailbox_lock.
+4613 Group is dead, deleting mailbox.
+4613 Mailbox stopped.
+4613 MAILBOX STOPPED.
+4613 No processes in the mailbox.
+4613 Queue lock acquired.
+4613 No more messages in queue.
+4613 Queue lock released.
+Mailbox freed.
+Creating not a kernel thread.
+It's a new process.
+Mailbox allocated for 4615.
+4612 Trying to send a message to 4615.
+4612 Target 4615 found.
+4612 Got mailbox_lock from 4615.
+4615 POINTED 1
+4612 Cache space allocated.
+4612 Struct created.
+4612 Mailbox 4615 is NOT full.
+4612 Got spin_lock from 4615.
+4612 Message enqueued for 4615
+4612 Gave up spin_lock from 4615.
+4615 POINTED 0
+Creating not a kernel thread.
+It's a new process.
+Mailbox allocated for 4616.
+4612 Trying to send a message to 4616.
+4612 Target 4616 found.
+4612 Got mailbox_lock from 4616.
+4616 POINTED 1
+4612 Cache space allocated.
+4612 Struct created.
+4612 Mailbox 4616 is NOT full.
+4612 Got spin_lock from 4616.
+4612 Message enqueued for 4616
+4612 Gave up spin_lock from 4616.
+4616 POINTED 0
+Creating not a kernel thread.
+It's a new process.
+Mailbox allocated for 4617.
+4615 Able to retrieve message.
+4615 Got spin_lock.
+4615 Trying to retrieve a message.
+4615 Mailbox is not empty
+4615 Message dequeued
+4615 Gave up spin_lock.
+4615 Message info copied.
+4615 Message memory freed
+4615 Trying to send a message to 4612.
+4615 Target 4612 found.
+4615 Got mailbox_lock from 4612.
+4612 POINTED 1
+4615 Cache space allocated.
+4615 Struct created.
+4615 Able to send message to 4612.
+4615 Got spin_lock from 4612.
+4615 Message enqueued for 4612
+4615 Gave up spin_lock from 4612.
+4612 POINTED 0
+4615 Acquired my own mailbox_lock.
+4615 Group is dead, deleting mailbox.
+4615 Mailbox stopped.
+4615 MAILBOX STOPPED.
+4615 No processes in the mailbox.
+4615 Queue lock acquired.
+4615 No more messages in queue.
+4615 Queue lock released.
+Mailbox freed.
+4616 Able to retrieve message.
+4616 Got spin_lock.
+4616 Trying to retrieve a message.
+4616 Mailbox is not empty
+4616 Message dequeued
+4616 Gave up spin_lock.
+4616 Message info copied.
+4616 Message memory freed
+4616 Trying to send a message to 4612.
+4616 Target 4612 found.
+4616 Got mailbox_lock from 4612.
+4612 POINTED 1
+4616 Cache space allocated.
+4616 Struct created.
+4616 Able to send message to 4612.
+4616 Got spin_lock from 4612.
+4616 Message enqueued for 4612
+4616 Gave up spin_lock from 4612.
+4612 POINTED 0
+4616 Acquired my own mailbox_lock.
+4616 Group is dead, deleting mailbox.
+4616 Mailbox stopped.
+4616 MAILBOX STOPPED.
+4616 No processes in the mailbox.
+4616 Queue lock acquired.
+4616 No more messages in queue.
+4616 Queue lock released.
+Mailbox freed.
+4614 Able to retrieve message.
+4614 Got spin_lock.
+4614 Trying to retrieve a message.
+4614 Mailbox is not empty
+4614 Message dequeued
+4614 Gave up spin_lock.
+4614 Message info copied.
+4614 Message memory freed
+4614 Trying to send a message to 4612.
+4614 Target 4612 found.
+4614 Got mailbox_lock from 4612.
+4612 POINTED 1
+4614 Cache space allocated.
+4614 Struct created.
+4614 Able to send message to 4612.
+4614 Got spin_lock from 4612.
+4614 Message enqueued for 4612
+4614 Gave up spin_lock from 4612.
+4612 POINTED 0
+4614 Acquired my own mailbox_lock.
+4614 Group is dead, deleting mailbox.
+4614 Mailbox stopped.
+4614 MAILBOX STOPPED.
+4614 No processes in the mailbox.
+4614 Queue lock acquired.
+4614 No more messages in queue.
+4614 Queue lock released.
+Mailbox freed.
+4612 Trying to send a message to 4617.
+4612 Target 4617 found.
+4612 Got mailbox_lock from 4617.
+4617 POINTED 1
+4612 Cache space allocated.
+4612 Struct created.
+4612 Mailbox 4617 is NOT full.
+4612 Got spin_lock from 4617.
+4612 Message enqueued for 4617
+4612 Gave up spin_lock from 4617.
+4617 POINTED 0
+4617 Able to retrieve message.
+4617 Got spin_lock.
+4617 Trying to retrieve a message.
+4617 Mailbox is not empty
+4617 Message dequeued
+4617 Gave up spin_lock.
+4617 Message info copied.
+4617 Message memory freed
+4617 Trying to send a message to 4612.
+4617 Target 4612 found.
+4617 Got mailbox_lock from 4612.
+4612 POINTED 1
+4617 Cache space allocated.
+4617 Struct created.
+4617 Able to send message to 4612.
+4617 Got spin_lock from 4612.
+4617 Message enqueued for 4612
+4617 Gave up spin_lock from 4612.
+4612 POINTED 0
+4617 Acquired my own mailbox_lock.
+4617 Group is dead, deleting mailbox.
+4617 Mailbox stopped.
+4617 MAILBOX STOPPED.
+4617 No processes in the mailbox.
+4617 Queue lock acquired.
+4617 No more messages in queue.
+4617 Queue lock released.
+Mailbox freed.
+Creating not a kernel thread.
+It's a new process.
+Mailbox allocated for 4618.
+4612 Trying to send a message to 4618.
+4612 Target 4618 found.
+4612 Got mailbox_lock from 4618.
+4618 POINTED 1
+4612 Cache space allocated.
+4612 Struct created.
+4612 Mailbox 4618 is NOT full.
+4612 Got spin_lock from 4618.
+4612 Message enqueued for 4618
+4612 Gave up spin_lock from 4618.
+4618 POINTED 0
+Creating not a kernel thread.
+It's a new process.
+Mailbox allocated for 4619.
+4612 Trying to send a message to 4619.
+4612 Target 4619 found.
+4612 Got mailbox_lock from 4619.
+4619 POINTED 1
+4612 Cache space allocated.
+4612 Struct created.
+4612 Mailbox 4619 is NOT full.
+4612 Got spin_lock from 4619.
+4612 Message enqueued for 4619
+4612 Gave up spin_lock from 4619.
+4619 POINTED 0
+Creating not a kernel thread.
+It's a new process.
+Mailbox allocated for 4620.
+4612 Trying to send a message to 4620.
+4612 Target 4620 found.
+4612 Got mailbox_lock from 4620.
+4620 POINTED 1
+4612 Cache space allocated.
+4612 Struct created.
+4612 Mailbox 4620 is NOT full.
+4612 Got spin_lock from 4620.
+4612 Message enqueued for 4620
+4612 Gave up spin_lock from 4620.
+4620 POINTED 0
+Creating not a kernel thread.
+It's a new process.
+Mailbox allocated for 4621.
+4612 Trying to send a message to 4621.
+4612 Target 4621 found.
+4612 Got mailbox_lock from 4621.
+4621 POINTED 1
+4612 Cache space allocated.
+4612 Struct created.
+4612 Mailbox 4621 is NOT full.
+4612 Got spin_lock from 4621.
+4612 Message enqueued for 4621
+4612 Gave up spin_lock from 4621.
+4621 POINTED 0
+Creating not a kernel thread.
+It's a new process.
+Mailbox allocated for 4622.
+4612 Trying to send a message to 4622.
+4612 Target 4622 found.
+4612 Got mailbox_lock from 4622.
+4622 POINTED 1
+4612 Cache space allocated.
+4612 Struct created.
+4612 Mailbox 4622 is NOT full.
+4612 Got spin_lock from 4622.
+4612 Message enqueued for 4622
+4612 Gave up spin_lock from 4622.
+4622 POINTED 0
+Creating not a kernel thread.
+It's a new process.
+Mailbox allocated for 4623.
+4612 Trying to send a message to 4623.
+4612 Target 4623 found.
+4612 Got mailbox_lock from 4623.
+4623 POINTED 1
+4612 Cache space allocated.
+4612 Struct created.
+4612 Mailbox 4623 is NOT full.
+4612 Got spin_lock from 4623.
+4612 Message enqueued for 4623
+4612 Gave up spin_lock from 4623.
+4623 POINTED 0
+Creating not a kernel thread.
+It's a new process.
+Mailbox allocated for 4624.
+4621 Able to retrieve message.
+4621 Got spin_lock.
+4621 Trying to retrieve a message.
+4621 Mailbox is not empty
+4621 Message dequeued
+4621 Gave up spin_lock.
+4621 Message info copied.
+4621 Message memory freed
+4621 Trying to send a message to 4612.
+4621 Target 4612 found.
+4621 Got mailbox_lock from 4612.
+4612 POINTED 1
+4621 Cache space allocated.
+4612 Trying to send a message to 4624.
+4612 Target 4624 found.
+4612 Got mailbox_lock from 4624.
+4624 POINTED 1
+4612 Cache space allocated.
+4621 Struct created.
+4621 Able to send message to 4612.
+4621 Got spin_lock from 4612.
+4621 Message enqueued for 4612
+4612 Struct created.
+4612 Mailbox 4624 is NOT full.
+4612 Got spin_lock from 4624.
+4612 Message enqueued for 4624
+4621 Gave up spin_lock from 4612.
+4612 POINTED 0
+4612 Gave up spin_lock from 4624.
+4624 POINTED 0
+4621 Acquired my own mailbox_lock.
+4621 Group is dead, deleting mailbox.
+4621 Mailbox stopped.
+4621 MAILBOX STOPPED.
+4621 No processes in the mailbox.
+4621 Queue lock acquired.
+4621 No more messages in queue.
+4621 Queue lock released.
+Mailbox freed.
+Creating not a kernel thread.
+It's a new process.
+Mailbox allocated for 4625.
+4612 Trying to send a message to 4625.
+4612 Target 4625 found.
+4612 Got mailbox_lock from 4625.
+4625 POINTED 1
+4612 Cache space allocated.
+4612 Struct created.
+4612 Mailbox 4625 is NOT full.
+4612 Got spin_lock from 4625.
+4612 Message enqueued for 4625
+4612 Gave up spin_lock from 4625.
+4625 POINTED 0
+Creating not a kernel thread.
+It's a new process.
+Mailbox allocated for 4626.
+4612 Trying to send a message to 4626.
+4612 Target 4626 found.
+4612 Got mailbox_lock from 4626.
+4626 POINTED 1
+4612 Cache space allocated.
+4612 Struct created.
+4612 Mailbox 4626 is NOT full.
+4612 Got spin_lock from 4626.
+4612 Message enqueued for 4626
+4612 Gave up spin_lock from 4626.
+4626 POINTED 0
+Creating not a kernel thread.
+It's a new process.
+Mailbox allocated for 4627.
+4612 Trying to send a message to 4627.
+4612 Target 4627 found.
+4612 Got mailbox_lock from 4627.
+4627 POINTED 1
+4612 Cache space allocated.
+4612 Struct created.
+4612 Mailbox 4627 is NOT full.
+4612 Got spin_lock from 4627.
+4612 Message enqueued for 4627
+4612 Gave up spin_lock from 4627.
+4627 POINTED 0
+Creating not a kernel thread.
+It's a new process.
+Mailbox allocated for 4628.
+4619 Able to retrieve message.
+4619 Got spin_lock.
+4619 Trying to retrieve a message.
+4619 Mailbox is not empty
+4619 Message dequeued
+4619 Gave up spin_lock.
+4619 Message info copied.
+4619 Message memory freed
+4619 Trying to send a message to 4612.
+4619 Target 4612 found.
+4619 Got mailbox_lock from 4612.
+4612 POINTED 1
+4619 Cache space allocated.
+4619 Struct created.
+4619 Able to send message to 4612.
+4619 Got spin_lock from 4612.
+4619 Message enqueued for 4612
+4619 Gave up spin_lock from 4612.
+4612 POINTED 0
+4622 Able to retrieve message.
+4622 Got spin_lock.
+4622 Trying to retrieve a message.
+4622 Mailbox is not empty
+4622 Message dequeued
+4622 Gave up spin_lock.
+4622 Message info copied.
+4622 Message memory freed
+4619 Acquired my own mailbox_lock.
+4619 Group is dead, deleting mailbox.
+4619 Mailbox stopped.
+4619 MAILBOX STOPPED.
+4619 No processes in the mailbox.
+4619 Queue lock acquired.
+4619 No more messages in queue.
+4619 Queue lock released.
+Mailbox freed.
+4622 Trying to send a message to 4612.
+4622 Target 4612 found.
+4622 Got mailbox_lock from 4612.
+4612 POINTED 1
+4622 Cache space allocated.
+4622 Struct created.
+4622 Able to send message to 4612.
+4622 Got spin_lock from 4612.
+4622 Message enqueued for 4612
+4622 Gave up spin_lock from 4612.
+4612 POINTED 0
+4622 Acquired my own mailbox_lock.
+4622 Group is dead, deleting mailbox.
+4622 Mailbox stopped.
+4622 MAILBOX STOPPED.
+4622 No processes in the mailbox.
+4622 Queue lock acquired.
+4622 No more messages in queue.
+4622 Queue lock released.
+Mailbox freed.
+4623 Able to retrieve message.
+4623 Got spin_lock.
+4623 Trying to retrieve a message.
+4623 Mailbox is not empty
+4623 Message dequeued
+4623 Gave up spin_lock.
+4623 Message info copied.
+4623 Message memory freed
+4623 Trying to send a message to 4612.
+4623 Target 4612 found.
+4623 Got mailbox_lock from 4612.
+4612 POINTED 1
+4623 Cache space allocated.
+4623 Struct created.
+4623 Able to send message to 4612.
+4623 Got spin_lock from 4612.
+4623 Message enqueued for 4612
+4623 Gave up spin_lock from 4612.
+4612 POINTED 0
+4624 Able to retrieve message.
+4624 Got spin_lock.
+4624 Trying to retrieve a message.
+4624 Mailbox is not empty
+4624 Message dequeued
+4624 Gave up spin_lock.
+4624 Message info copied.
+4624 Message memory freed
+4623 Acquired my own mailbox_lock.
+4623 Group is dead, deleting mailbox.
+4623 Mailbox stopped.
+4623 MAILBOX STOPPED.
+4623 No processes in the mailbox.
+4623 Queue lock acquired.
+4623 No more messages in queue.
+4623 Queue lock released.
+Mailbox freed.
+4624 Trying to send a message to 4612.
+4624 Target 4612 found.
+4624 Got mailbox_lock from 4612.
+4612 POINTED 1
+4624 Cache space allocated.
+4624 Struct created.
+4624 Able to send message to 4612.
+4624 Got spin_lock from 4612.
+4624 Message enqueued for 4612
+4624 Gave up spin_lock from 4612.
+4612 POINTED 0
+4624 Acquired my own mailbox_lock.
+4624 Group is dead, deleting mailbox.
+4624 Mailbox stopped.
+4624 MAILBOX STOPPED.
+4624 No processes in the mailbox.
+4624 Queue lock acquired.
+4624 No more messages in queue.
+4624 Queue lock released.
+Mailbox freed.
+4625 Able to retrieve message.
+4625 Got spin_lock.
+4625 Trying to retrieve a message.
+4625 Mailbox is not empty
+4625 Message dequeued
+4625 Gave up spin_lock.
+4625 Message info copied.
+4625 Message memory freed
+4625 Trying to send a message to 4612.
+4625 Target 4612 found.
+4625 Got mailbox_lock from 4612.
+4612 POINTED 1
+4625 Cache space allocated.
+4625 Struct created.
+4625 Able to send message to 4612.
+4625 Got spin_lock from 4612.
+4625 Message enqueued for 4612
+4625 Gave up spin_lock from 4612.
+4612 POINTED 0
+4620 Able to retrieve message.
+4620 Got spin_lock.
+4620 Trying to retrieve a message.
+4620 Mailbox is not empty
+4620 Message dequeued
+4620 Gave up spin_lock.
+4620 Message info copied.
+4620 Message memory freed
+4625 Acquired my own mailbox_lock.
+4625 Group is dead, deleting mailbox.
+4625 Mailbox stopped.
+4625 MAILBOX STOPPED.
+4625 No processes in the mailbox.
+4625 Queue lock acquired.
+4625 No more messages in queue.
+4625 Queue lock released.
+Mailbox freed.
+4620 Trying to send a message to 4612.
+4620 Target 4612 found.
+4620 Got mailbox_lock from 4612.
+4612 POINTED 1
+4620 Cache space allocated.
+4620 Struct created.
+4620 Able to send message to 4612.
+4620 Got spin_lock from 4612.
+4620 Message enqueued for 4612
+4620 Gave up spin_lock from 4612.
+4612 POINTED 0
+4620 Acquired my own mailbox_lock.
+4620 Group is dead, deleting mailbox.
+4620 Mailbox stopped.
+4620 MAILBOX STOPPED.
+4620 No processes in the mailbox.
+4620 Queue lock acquired.
+4620 No more messages in queue.
+4620 Queue lock released.
+Mailbox freed.
+4612 Trying to send a message to 4628.
+4612 Target 4628 found.
+4612 Got mailbox_lock from 4628.
+4628 POINTED 1
+4612 Cache space allocated.
+4612 Struct created.
+4612 Mailbox 4628 is NOT full.
+4612 Got spin_lock from 4628.
+4612 Message enqueued for 4628
+4612 Gave up spin_lock from 4628.
+4628 POINTED 0
+Creating not a kernel thread.
+It's a new process.
+Mailbox allocated for 4629.
+4626 Able to retrieve message.
+4626 Got spin_lock.
+4626 Trying to retrieve a message.
+4626 Mailbox is not empty
+4626 Message dequeued
+4626 Gave up spin_lock.
+4626 Message info copied.
+4626 Message memory freed
+4612 Trying to send a message to 4629.
+4612 Target 4629 found.
+4612 Got mailbox_lock from 4629.
+4629 POINTED 1
+4612 Cache space allocated.
+4612 Struct created.
+4612 Mailbox 4629 is NOT full.
+4612 Got spin_lock from 4629.
+4612 Message enqueued for 4629
+4612 Gave up spin_lock from 4629.
+4629 POINTED 0
+Creating not a kernel thread.
+It's a new process.
+Mailbox allocated for 4630.
+4626 Trying to send a message to 4612.
+4626 Target 4612 found.
+4626 Got mailbox_lock from 4612.
+4612 POINTED 1
+4626 Cache space allocated.
+4626 Struct created.
+4626 Able to send message to 4612.
+4626 Got spin_lock from 4612.
+4626 Message enqueued for 4612
+4626 Gave up spin_lock from 4612.
+4612 POINTED 0
+4612 Trying to send a message to 4630.
+4612 Target 4630 found.
+4612 Got mailbox_lock from 4630.
+4630 POINTED 1
+4612 Cache space allocated.
+4612 Struct created.
+4612 Mailbox 4630 is NOT full.
+4612 Got spin_lock from 4630.
+4612 Message enqueued for 4630
+4612 Gave up spin_lock from 4630.
+4630 POINTED 0
+4626 Acquired my own mailbox_lock.
+4626 Group is dead, deleting mailbox.
+4626 Mailbox stopped.
+4626 MAILBOX STOPPED.
+4626 No processes in the mailbox.
+4626 Queue lock acquired.
+4626 No more messages in queue.
+4626 Queue lock released.
+Mailbox freed.
+Creating not a kernel thread.
+It's a new process.
+Mailbox allocated for 4631.
+4612 Trying to send a message to 4631.
+4612 Target 4631 found.
+4612 Got mailbox_lock from 4631.
+4631 POINTED 1
+4612 Cache space allocated.
+4612 Struct created.
+4612 Mailbox 4631 is NOT full.
+4612 Got spin_lock from 4631.
+4612 Message enqueued for 4631
+4612 Gave up spin_lock from 4631.
+4631 POINTED 0
+Creating not a kernel thread.
+It's a new process.
+Mailbox allocated for 4632.
+4628 Able to retrieve message.
+4628 Got spin_lock.
+4628 Trying to retrieve a message.
+4628 Mailbox is not empty
+4628 Message dequeued
+4628 Gave up spin_lock.
+4628 Message info copied.
+4628 Message memory freed
+4612 Trying to send a message to 4632.
+4612 Target 4632 found.
+4612 Got mailbox_lock from 4632.
+4632 POINTED 1
+4612 Cache space allocated.
+4612 Struct created.
+4612 Mailbox 4632 is NOT full.
+4612 Got spin_lock from 4632.
+4612 Message enqueued for 4632
+4612 Gave up spin_lock from 4632.
+4632 POINTED 0
+4628 Trying to send a message to 4612.
+4628 Target 4612 found.
+4628 Got mailbox_lock from 4612.
+4612 POINTED 1
+4628 Cache space allocated.
+4628 Struct created.
+4628 Able to send message to 4612.
+4628 Got spin_lock from 4612.
+4628 Message enqueued for 4612
+4628 Gave up spin_lock from 4612.
+4612 POINTED 0
+4628 Acquired my own mailbox_lock.
+4628 Group is dead, deleting mailbox.
+4628 Mailbox stopped.
+4628 MAILBOX STOPPED.
+4628 No processes in the mailbox.
+4628 Queue lock acquired.
+4628 No more messages in queue.
+4628 Queue lock released.
+Mailbox freed.
+Creating not a kernel thread.
+It's a new process.
+Mailbox allocated for 4633.
+4612 Trying to send a message to 4633.
+4612 Target 4633 found.
+4612 Got mailbox_lock from 4633.
+4633 POINTED 1
+4612 Cache space allocated.
+4612 Struct created.
+4612 Mailbox 4633 is NOT full.
+4612 Got spin_lock from 4633.
+4612 Message enqueued for 4633
+4612 Gave up spin_lock from 4633.
+4633 POINTED 0
+Creating not a kernel thread.
+It's a new process.
+Mailbox allocated for 4634.
+4612 Trying to send a message to 4634.
+4612 Target 4634 found.
+4612 Got mailbox_lock from 4634.
+4634 POINTED 1
+4612 Cache space allocated.
+4612 Struct created.
+4612 Mailbox 4634 is NOT full.
+4612 Got spin_lock from 4634.
+4612 Message enqueued for 4634
+4612 Gave up spin_lock from 4634.
+4634 POINTED 0
+4632 Able to retrieve message.
+4632 Got spin_lock.
+4632 Trying to retrieve a message.
+4632 Mailbox is not empty
+4632 Message dequeued
+4632 Gave up spin_lock.
+4632 Message info copied.
+4632 Message memory freed
+Creating not a kernel thread.
+It's a new process.
+Mailbox allocated for 4635.
+4612 Trying to send a message to 4635.
+4612 Target 4635 found.
+4612 Got mailbox_lock from 4635.
+4635 POINTED 1
+4612 Cache space allocated.
+4612 Struct created.
+4612 Mailbox 4635 is NOT full.
+4612 Got spin_lock from 4635.
+4612 Message enqueued for 4635
+4612 Gave up spin_lock from 4635.
+4635 POINTED 0
+4632 Trying to send a message to 4612.
+4632 Target 4612 found.
+4632 Got mailbox_lock from 4612.
+4612 POINTED 1
+4632 Cache space allocated.
+4632 Struct created.
+4632 Able to send message to 4612.
+4632 Got spin_lock from 4612.
+4632 Message enqueued for 4612
+4632 Gave up spin_lock from 4612.
+4612 POINTED 0
+Creating not a kernel thread.
+It's a new process.
+Mailbox allocated for 4636.
+4632 Acquired my own mailbox_lock.
+4632 Group is dead, deleting mailbox.
+4632 Mailbox stopped.
+4632 MAILBOX STOPPED.
+4632 No processes in the mailbox.
+4632 Queue lock acquired.
+4632 No more messages in queue.
+4632 Queue lock released.
+Mailbox freed.
+4612 Trying to send a message to 4636.
+4612 Target 4636 found.
+4612 Got mailbox_lock from 4636.
+4636 POINTED 1
+4612 Cache space allocated.
+4612 Struct created.
+4612 Mailbox 4636 is NOT full.
+4612 Got spin_lock from 4636.
+4612 Message enqueued for 4636
+4612 Gave up spin_lock from 4636.
+4636 POINTED 0
+Creating not a kernel thread.
+It's a new process.
+Mailbox allocated for 4637.
+4612 Trying to send a message to 4637.
+4612 Target 4637 found.
+4612 Got mailbox_lock from 4637.
+4637 POINTED 1
+4612 Cache space allocated.
+4612 Struct created.
+4612 Mailbox 4637 is NOT full.
+4612 Got spin_lock from 4637.
+4612 Message enqueued for 4637
+4612 Gave up spin_lock from 4637.
+4637 POINTED 0
+Creating not a kernel thread.
+It's a new process.
+Mailbox allocated for 4638.
+4612 Trying to send a message to 4638.
+4612 Target 4638 found.
+4612 Got mailbox_lock from 4638.
+4638 POINTED 1
+4612 Cache space allocated.
+4612 Struct created.
+4612 Mailbox 4638 is NOT full.
+4612 Got spin_lock from 4638.
+4612 Message enqueued for 4638
+4612 Gave up spin_lock from 4638.
+4638 POINTED 0
+Creating not a kernel thread.
+It's a new process.
+Mailbox allocated for 4639.
+4612 Trying to send a message to 4639.
+4612 Target 4639 found.
+4612 Got mailbox_lock from 4639.
+4639 POINTED 1
+4612 Cache space allocated.
+4612 Struct created.
+4612 Mailbox 4639 is NOT full.
+4612 Got spin_lock from 4639.
+4612 Message enqueued for 4639
+4612 Gave up spin_lock from 4639.
+4639 POINTED 0
+Creating not a kernel thread.
+It's a new process.
+Mailbox allocated for 4640.
+4612 Trying to send a message to 4640.
+4612 Target 4640 found.
+4612 Got mailbox_lock from 4640.
+4640 POINTED 1
+4612 Cache space allocated.
+4612 Struct created.
+4612 Mailbox 4640 is NOT full.
+4612 Got spin_lock from 4640.
+4612 Message enqueued for 4640
+4612 Gave up spin_lock from 4640.
+4640 POINTED 0
+Creating not a kernel thread.
+It's a new process.
+Mailbox allocated for 4641.
+4612 Trying to send a message to 4641.
+4612 Target 4641 found.
+4612 Got mailbox_lock from 4641.
+4641 POINTED 1
+4612 Cache space allocated.
+4612 Struct created.
+4612 Mailbox 4641 is NOT full.
+4612 Got spin_lock from 4641.
+4612 Message enqueued for 4641
+4612 Gave up spin_lock from 4641.
+4641 POINTED 0
+Creating not a kernel thread.
+It's a new process.
+Mailbox allocated for 4642.
+4612 Trying to send a message to 4642.
+4612 Target 4642 found.
+4612 Got mailbox_lock from 4642.
+4642 POINTED 1
+4612 Cache space allocated.
+4612 Struct created.
+4612 Mailbox 4642 is NOT full.
+4612 Got spin_lock from 4642.
+4612 Message enqueued for 4642
+4612 Gave up spin_lock from 4642.
+4642 POINTED 0
+Creating not a kernel thread.
+It's a new process.
+Mailbox allocated for 4643.
+4627 Able to retrieve message.
+4627 Got spin_lock.
+4627 Trying to retrieve a message.
+4627 Mailbox is not empty
+4627 Message dequeued
+4627 Gave up spin_lock.
+4627 Message info copied.
+4627 Message memory freed
+4627 Trying to send a message to 4612.
+4627 Target 4612 found.
+4627 Got mailbox_lock from 4612.
+4612 POINTED 1
+4627 Cache space allocated.
+4627 Struct created.
+4627 Able to send message to 4612.
+4627 Got spin_lock from 4612.
+4627 Message enqueued for 4612
+4627 Gave up spin_lock from 4612.
+4612 POINTED 0
+4627 Acquired my own mailbox_lock.
+4627 Group is dead, deleting mailbox.
+4627 Mailbox stopped.
+4627 MAILBOX STOPPED.
+4627 No processes in the mailbox.
+4627 Queue lock acquired.
+4627 No more messages in queue.
+4627 Queue lock released.
+Mailbox freed.
+4618 Able to retrieve message.
+4618 Got spin_lock.
+4618 Trying to retrieve a message.
+4618 Mailbox is not empty
+4618 Message dequeued
+4618 Gave up spin_lock.
+4618 Message info copied.
+4618 Message memory freed
+4618 Trying to send a message to 4612.
+4618 Target 4612 found.
+4618 Got mailbox_lock from 4612.
+4612 POINTED 1
+4618 Cache space allocated.
+4618 Struct created.
+4618 Able to send message to 4612.
+4618 Got spin_lock from 4612.
+4618 Message enqueued for 4612
+4618 Gave up spin_lock from 4612.
+4612 POINTED 0
+4618 Acquired my own mailbox_lock.
+4618 Group is dead, deleting mailbox.
+4618 Mailbox stopped.
+4618 MAILBOX STOPPED.
+4618 No processes in the mailbox.
+4618 Queue lock acquired.
+4618 No more messages in queue.
+4618 Queue lock released.
+Mailbox freed.
+4637 Able to retrieve message.
+4637 Got spin_lock.
+4637 Trying to retrieve a message.
+4637 Mailbox is not empty
+4637 Message dequeued
+4637 Gave up spin_lock.
+4637 Message info copied.
+4637 Message memory freed
+4637 Trying to send a message to 4612.
+4637 Target 4612 found.
+4637 Got mailbox_lock from 4612.
+4612 POINTED 1
+4637 Cache space allocated.
+4637 Struct created.
+4637 Able to send message to 4612.
+4637 Got spin_lock from 4612.
+4637 Message enqueued for 4612
+4637 Gave up spin_lock from 4612.
+4612 POINTED 0
+4637 Acquired my own mailbox_lock.
+4637 Group is dead, deleting mailbox.
+4637 Mailbox stopped.
+4637 MAILBOX STOPPED.
+4637 No processes in the mailbox.
+4637 Queue lock acquired.
+4637 No more messages in queue.
+4637 Queue lock released.
+Mailbox freed.
+4640 Able to retrieve message.
+4640 Got spin_lock.
+4640 Trying to retrieve a message.
+4640 Mailbox is not empty
+4640 Message dequeued
+4640 Gave up spin_lock.
+4640 Message info copied.
+4640 Message memory freed
+4640 Trying to send a message to 4612.
+4640 Target 4612 found.
+4640 Got mailbox_lock from 4612.
+4612 POINTED 1
+4640 Cache space allocated.
+4640 Struct created.
+4640 Able to send message to 4612.
+4640 Got spin_lock from 4612.
+4640 Message enqueued for 4612
+4640 Gave up spin_lock from 4612.
+4612 POINTED 0
+4635 Able to retrieve message.
+4635 Got spin_lock.
+4635 Trying to retrieve a message.
+4635 Mailbox is not empty
+4635 Message dequeued
+4635 Gave up spin_lock.
+4635 Message info copied.
+4635 Message memory freed
+4635 Trying to send a message to 4612.
+4635 Target 4612 found.
+4635 Got mailbox_lock from 4612.
+4612 POINTED 1
+4635 Cache space allocated.
+4635 Struct created.
+4635 Able to send message to 4612.
+4635 Got spin_lock from 4612.
+4635 Message enqueued for 4612
+4635 Gave up spin_lock from 4612.
+4612 POINTED 0
+4635 Acquired my own mailbox_lock.
+4635 Group is dead, deleting mailbox.
+4635 Mailbox stopped.
+4635 MAILBOX STOPPED.
+4635 No processes in the mailbox.
+4635 Queue lock acquired.
+4635 No more messages in queue.
+4635 Queue lock released.
+Mailbox freed.
+4631 Able to retrieve message.
+4631 Got spin_lock.
+4631 Trying to retrieve a message.
+4631 Mailbox is not empty
+4631 Message dequeued
+4631 Gave up spin_lock.
+4631 Message info copied.
+4631 Message memory freed
+4631 Trying to send a message to 4612.
+4631 Target 4612 found.
+4631 Got mailbox_lock from 4612.
+4612 POINTED 1
+4631 Cache space allocated.
+4631 Struct created.
+4631 Able to send message to 4612.
+4631 Got spin_lock from 4612.
+4631 Message enqueued for 4612
+4631 Gave up spin_lock from 4612.
+4612 POINTED 0
+4633 Able to retrieve message.
+4633 Got spin_lock.
+4633 Trying to retrieve a message.
+4633 Mailbox is not empty
+4633 Message dequeued
+4633 Gave up spin_lock.
+4633 Message info copied.
+4633 Message memory freed
+4633 Trying to send a message to 4612.
+4633 Target 4612 found.
+4633 Got mailbox_lock from 4612.
+4612 POINTED 1
+4633 Cache space allocated.
+4633 Struct created.
+4633 Able to send message to 4612.
+4633 Got spin_lock from 4612.
+4633 Message enqueued for 4612
+4633 Gave up spin_lock from 4612.
+4612 POINTED 0
+4633 Acquired my own mailbox_lock.
+4633 Group is dead, deleting mailbox.
+4633 Mailbox stopped.
+4633 MAILBOX STOPPED.
+4633 No processes in the mailbox.
+4633 Queue lock acquired.
+4633 No more messages in queue.
+4633 Queue lock released.
+Mailbox freed.
+4630 Able to retrieve message.
+4630 Got spin_lock.
+4630 Trying to retrieve a message.
+4630 Mailbox is not empty
+4630 Message dequeued
+4630 Gave up spin_lock.
+4630 Message info copied.
+4630 Message memory freed
+4630 Trying to send a message to 4612.
+4630 Target 4612 found.
+4630 Got mailbox_lock from 4612.
+4612 POINTED 1
+4630 Cache space allocated.
+4630 Struct created.
+4630 Able to send message to 4612.
+4630 Got spin_lock from 4612.
+4630 Message enqueued for 4612
+4630 Gave up spin_lock from 4612.
+4612 POINTED 0
+4630 Acquired my own mailbox_lock.
+4630 Group is dead, deleting mailbox.
+4630 Mailbox stopped.
+4630 MAILBOX STOPPED.
+4630 No processes in the mailbox.
+4630 Queue lock acquired.
+4630 No more messages in queue.
+4630 Queue lock released.
+Mailbox freed.
+4638 Able to retrieve message.
+4638 Got spin_lock.
+4638 Trying to retrieve a message.
+4638 Mailbox is not empty
+4638 Message dequeued
+4638 Gave up spin_lock.
+4638 Message info copied.
+4638 Message memory freed
+4638 Trying to send a message to 4612.
+4638 Target 4612 found.
+4638 Got mailbox_lock from 4612.
+4612 POINTED 1
+4638 Cache space allocated.
+4638 Struct created.
+4638 Able to send message to 4612.
+4638 Got spin_lock from 4612.
+4638 Message enqueued for 4612
+4638 Gave up spin_lock from 4612.
+4612 POINTED 0
+4638 Acquired my own mailbox_lock.
+4638 Group is dead, deleting mailbox.
+4638 Mailbox stopped.
+4638 MAILBOX STOPPED.
+4638 No processes in the mailbox.
+4638 Queue lock acquired.
+4638 No more messages in queue.
+4638 Queue lock released.
+Mailbox freed.
+4639 Able to retrieve message.
+4639 Got spin_lock.
+4639 Trying to retrieve a message.
+4639 Mailbox is not empty
+4639 Message dequeued
+4639 Gave up spin_lock.
+4639 Message info copied.
+4639 Message memory freed
+4639 Trying to send a message to 4612.
+4639 Target 4612 found.
+4639 Got mailbox_lock from 4612.
+4612 POINTED 1
+4639 Cache space allocated.
+4639 Struct created.
+4639 Able to send message to 4612.
+4639 Got spin_lock from 4612.
+4639 Message enqueued for 4612
+4639 Gave up spin_lock from 4612.
+4612 POINTED 0
+4639 Acquired my own mailbox_lock.
+4639 Group is dead, deleting mailbox.
+4639 Mailbox stopped.
+4639 MAILBOX STOPPED.
+4639 No processes in the mailbox.
+4639 Queue lock acquired.
+4639 No more messages in queue.
+4639 Queue lock released.
+Mailbox freed.
+4636 Able to retrieve message.
+4636 Got spin_lock.
+4636 Trying to retrieve a message.
+4636 Mailbox is not empty
+4636 Message dequeued
+4636 Gave up spin_lock.
+4636 Message info copied.
+4636 Message memory freed
+4636 Trying to send a message to 4612.
+4636 Target 4612 found.
+4636 Got mailbox_lock from 4612.
+4612 POINTED 1
+4636 Cache space allocated.
+4636 Struct created.
+4636 Able to send message to 4612.
+4636 Got spin_lock from 4612.
+4636 Message enqueued for 4612
+4636 Gave up spin_lock from 4612.
+4612 POINTED 0
+4636 Acquired my own mailbox_lock.
+4636 Group is dead, deleting mailbox.
+4636 Mailbox stopped.
+4636 MAILBOX STOPPED.
+4636 No processes in the mailbox.
+4636 Queue lock acquired.
+4636 No more messages in queue.
+4636 Queue lock released.
+Mailbox freed.
+4634 Able to retrieve message.
+4634 Got spin_lock.
+4634 Trying to retrieve a message.
+4634 Mailbox is not empty
+4634 Message dequeued
+4634 Gave up spin_lock.
+4634 Message info copied.
+4634 Message memory freed
+4634 Trying to send a message to 4612.
+4634 Target 4612 found.
+4634 Got mailbox_lock from 4612.
+4612 POINTED 1
+4634 Cache space allocated.
+4634 Struct created.
+4634 Able to send message to 4612.
+4634 Got spin_lock from 4612.
+4634 Message enqueued for 4612
+4634 Gave up spin_lock from 4612.
+4612 POINTED 0
+4634 Acquired my own mailbox_lock.
+4634 Group is dead, deleting mailbox.
+4634 Mailbox stopped.
+4634 MAILBOX STOPPED.
+4634 No processes in the mailbox.
+4634 Queue lock acquired.
+4634 No more messages in queue.
+4634 Queue lock released.
+Mailbox freed.
+4641 Able to retrieve message.
+4641 Got spin_lock.
+4641 Trying to retrieve a message.
+4641 Mailbox is not empty
+4641 Message dequeued
+4641 Gave up spin_lock.
+4641 Message info copied.
+4641 Message memory freed
+4641 Trying to send a message to 4612.
+4641 Target 4612 found.
+4641 Got mailbox_lock from 4612.
+4612 POINTED 1
+4641 Cache space allocated.
+4641 Struct created.
+4641 Able to send message to 4612.
+4641 Got spin_lock from 4612.
+4641 Message enqueued for 4612
+4641 Gave up spin_lock from 4612.
+4612 POINTED 0
+4641 Acquired my own mailbox_lock.
+4641 Group is dead, deleting mailbox.
+4641 Mailbox stopped.
+4641 MAILBOX STOPPED.
+4641 No processes in the mailbox.
+4641 Queue lock acquired.
+4641 No more messages in queue.
+4641 Queue lock released.
+Mailbox freed.
+4640 Acquired my own mailbox_lock.
+4640 Group is dead, deleting mailbox.
+4640 Mailbox stopped.
+4640 MAILBOX STOPPED.
+4640 No processes in the mailbox.
+4640 Queue lock acquired.
+4640 No more messages in queue.
+4640 Queue lock released.
+Mailbox freed.
+4629 Able to retrieve message.
+4629 Got spin_lock.
+4629 Trying to retrieve a message.
+4629 Mailbox is not empty
+4629 Message dequeued
+4629 Gave up spin_lock.
+4629 Message info copied.
+4629 Message memory freed
+4629 Trying to send a message to 4612.
+4629 Target 4612 found.
+4629 Got mailbox_lock from 4612.
+4612 POINTED 1
+4629 Cache space allocated.
+4629 Struct created.
+4629 Able to send message to 4612.
+4629 Got spin_lock from 4612.
+4629 Message enqueued for 4612
+4629 Gave up spin_lock from 4612.
+4612 POINTED 0
+4629 Acquired my own mailbox_lock.
+4629 Group is dead, deleting mailbox.
+4629 Mailbox stopped.
+4629 MAILBOX STOPPED.
+4629 No processes in the mailbox.
+4629 Queue lock acquired.
+4629 No more messages in queue.
+4629 Queue lock released.
+Mailbox freed.
+4642 Able to retrieve message.
+4642 Got spin_lock.
+4642 Trying to retrieve a message.
+4642 Mailbox is not empty
+4642 Message dequeued
+4642 Gave up spin_lock.
+4642 Message info copied.
+4642 Message memory freed
+4642 Trying to send a message to 4612.
+4642 Target 4612 found.
+4642 Got mailbox_lock from 4612.
+4612 POINTED 1
+4642 Cache space allocated.
+4642 Struct created.
+4642 Able to send message to 4612.
+4642 Got spin_lock from 4612.
+4642 Message enqueued for 4612
+4642 Gave up spin_lock from 4612.
+4612 POINTED 0
+4642 Acquired my own mailbox_lock.
+4642 Group is dead, deleting mailbox.
+4642 Mailbox stopped.
+4642 MAILBOX STOPPED.
+4642 No processes in the mailbox.
+4642 Queue lock acquired.
+4642 No more messages in queue.
+4642 Queue lock released.
+Mailbox freed.
+4631 Acquired my own mailbox_lock.
+4631 Group is dead, deleting mailbox.
+4631 Mailbox stopped.
+4631 MAILBOX STOPPED.
+4631 No processes in the mailbox.
+4631 Queue lock acquired.
+4631 No more messages in queue.
+4631 Queue lock released.
+Mailbox freed.
+4612 Trying to send a message to 4643.
+4612 Target 4643 found.
+4612 Got mailbox_lock from 4643.
+4643 POINTED 1
+4612 Cache space allocated.
+4612 Struct created.
+4612 Mailbox 4643 is NOT full.
+4612 Got spin_lock from 4643.
+4612 Message enqueued for 4643
+4612 Gave up spin_lock from 4643.
+4643 POINTED 0
+4643 Able to retrieve message.
+4643 Got spin_lock.
+4643 Trying to retrieve a message.
+4643 Mailbox is not empty
+4643 Message dequeued
+4643 Gave up spin_lock.
+4643 Message info copied.
+4643 Message memory freed
+Creating not a kernel thread.
+It's a new process.
+Mailbox allocated for 4644.
+4612 Trying to send a message to 4644.
+4612 Target 4644 found.
+4612 Got mailbox_lock from 4644.
+4644 POINTED 1
+4612 Cache space allocated.
+4612 Struct created.
+4612 Mailbox 4644 is NOT full.
+4612 Got spin_lock from 4644.
+4612 Message enqueued for 4644
+4612 Gave up spin_lock from 4644.
+4644 POINTED 0
+4643 Trying to send a message to 4612.
+4643 Target 4612 found.
+4643 Got mailbox_lock from 4612.
+4612 POINTED 1
+4643 Cache space allocated.
+4643 Struct created.
+4643 Able to send message to 4612.
+4643 Got spin_lock from 4612.
+4643 Message enqueued for 4612
+4643 Gave up spin_lock from 4612.
+4612 POINTED 0
+Creating not a kernel thread.
+It's a new process.
+Mailbox allocated for 4645.
+4612 Trying to send a message to 4645.
+4612 Target 4645 found.
+4612 Got mailbox_lock from 4645.
+4645 POINTED 1
+4612 Cache space allocated.
+4612 Struct created.
+4612 Mailbox 4645 is NOT full.
+4612 Got spin_lock from 4645.
+4612 Message enqueued for 4645
+4612 Gave up spin_lock from 4645.
+4645 POINTED 0
+4643 Acquired my own mailbox_lock.
+4643 Group is dead, deleting mailbox.
+4643 Mailbox stopped.
+4643 MAILBOX STOPPED.
+4643 No processes in the mailbox.
+4643 Queue lock acquired.
+4643 No more messages in queue.
+4643 Queue lock released.
+Mailbox freed.
+Creating not a kernel thread.
+It's a new process.
+Mailbox allocated for 4646.
+4612 Trying to send a message to 4646.
+4612 Target 4646 found.
+4612 Got mailbox_lock from 4646.
+4646 POINTED 1
+4612 Cache space allocated.
+4612 Struct created.
+4612 Mailbox 4646 is NOT full.
+4612 Got spin_lock from 4646.
+4612 Message enqueued for 4646
+4612 Gave up spin_lock from 4646.
+4646 POINTED 0
+Creating not a kernel thread.
+It's a new process.
+Mailbox allocated for 4647.
+4612 Trying to send a message to 4647.
+4612 Target 4647 found.
+4612 Got mailbox_lock from 4647.
+4647 POINTED 1
+4612 Cache space allocated.
+4612 Struct created.
+4612 Mailbox 4647 is NOT full.
+4612 Got spin_lock from 4647.
+4612 Message enqueued for 4647
+4612 Gave up spin_lock from 4647.
+4647 POINTED 0
+Creating not a kernel thread.
+It's a new process.
+Mailbox allocated for 4648.
+4612 Trying to send a message to 4648.
+4612 Target 4648 found.
+4612 Got mailbox_lock from 4648.
+4648 POINTED 1
+4612 Cache space allocated.
+4612 Struct created.
+4612 Mailbox 4648 is NOT full.
+4612 Got spin_lock from 4648.
+4612 Message enqueued for 4648
+4612 Gave up spin_lock from 4648.
+4648 POINTED 0
+Creating not a kernel thread.
+It's a new process.
+Mailbox allocated for 4649.
+4612 Trying to send a message to 4649.
+4612 Target 4649 found.
+4612 Got mailbox_lock from 4649.
+4649 POINTED 1
+4612 Cache space allocated.
+4612 Struct created.
+4612 Mailbox 4649 is NOT full.
+4612 Got spin_lock from 4649.
+4612 Message enqueued for 4649
+4612 Gave up spin_lock from 4649.
+4649 POINTED 0
+Creating not a kernel thread.
+It's a new process.
+Mailbox allocated for 4650.
+4612 Trying to send a message to 4650.
+4612 Target 4650 found.
+4612 Got mailbox_lock from 4650.
+4650 POINTED 1
+4612 Cache space allocated.
+4612 Struct created.
+4612 Mailbox 4650 is NOT full.
+4612 Got spin_lock from 4650.
+4612 Message enqueued for 4650
+4612 Gave up spin_lock from 4650.
+4650 POINTED 0
+Creating not a kernel thread.
+It's a new process.
+Mailbox allocated for 4651.
+4612 Trying to send a message to 4651.
+4612 Target 4651 found.
+4612 Got mailbox_lock from 4651.
+4651 POINTED 1
+4612 Cache space allocated.
+4612 Struct created.
+4612 Mailbox 4651 is NOT full.
+4612 Got spin_lock from 4651.
+4612 Message enqueued for 4651
+4612 Gave up spin_lock from 4651.
+4651 POINTED 0
+Creating not a kernel thread.
+It's a new process.
+Mailbox allocated for 4652.
+4612 Trying to send a message to 4652.
+4612 Target 4652 found.
+4612 Got mailbox_lock from 4652.
+4652 POINTED 1
+4612 Cache space allocated.
+4612 Struct created.
+4612 Mailbox 4652 is NOT full.
+4612 Got spin_lock from 4652.
+4612 Message enqueued for 4652
+4612 Gave up spin_lock from 4652.
+4652 POINTED 0
+Creating not a kernel thread.
+It's a new process.
+Mailbox allocated for 4653.
+4612 Trying to send a message to 4653.
+4612 Target 4653 found.
+4612 Got mailbox_lock from 4653.
+4653 POINTED 1
+4612 Cache space allocated.
+4612 Struct created.
+4612 Mailbox 4653 is NOT full.
+4612 Got spin_lock from 4653.
+4612 Message enqueued for 4653
+4612 Gave up spin_lock from 4653.
+4653 POINTED 0
+Creating not a kernel thread.
+It's a new process.
+Mailbox allocated for 4654.
+4612 Trying to send a message to 4654.
+4612 Target 4654 found.
+4612 Got mailbox_lock from 4654.
+4654 POINTED 1
+4612 Cache space allocated.
+4612 Struct created.
+4612 Mailbox 4654 is NOT full.
+4612 Got spin_lock from 4654.
+4612 Message enqueued for 4654
+4612 Gave up spin_lock from 4654.
+4654 POINTED 0
+Creating not a kernel thread.
+It's a new process.
+Mailbox allocated for 4655.
+4612 Trying to send a message to 4655.
+4612 Target 4655 found.
+4612 Got mailbox_lock from 4655.
+4655 POINTED 1
+4612 Cache space allocated.
+4647 Able to retrieve message.
+4647 Got spin_lock.
+4647 Trying to retrieve a message.
+4647 Mailbox is not empty
+4647 Message dequeued
+4612 Struct created.
+4612 Mailbox 4655 is NOT full.
+4612 Got spin_lock from 4655.
+4612 Message enqueued for 4655
+4647 Gave up spin_lock.
+4647 Message info copied.
+4612 Gave up spin_lock from 4655.
+4655 POINTED 0
+4647 Message memory freed
+Creating not a kernel thread.
+It's a new process.
+Mailbox allocated for 4656.
+4612 Trying to send a message to 4656.
+4612 Target 4656 found.
+4612 Got mailbox_lock from 4656.
+4656 POINTED 1
+4612 Cache space allocated.
+4612 Struct created.
+4612 Mailbox 4656 is NOT full.
+4612 Got spin_lock from 4656.
+4612 Message enqueued for 4656
+4612 Gave up spin_lock from 4656.
+4656 POINTED 0
+4647 Trying to send a message to 4612.
+4647 Target 4612 found.
+4647 Got mailbox_lock from 4612.
+4612 POINTED 1
+4647 Cache space allocated.
+4647 Struct created.
+4647 Able to send message to 4612.
+4647 Got spin_lock from 4612.
+4647 Message enqueued for 4612
+4647 Gave up spin_lock from 4612.
+4612 POINTED 0
+Creating not a kernel thread.
+It's a new process.
+Mailbox allocated for 4657.
+4647 Acquired my own mailbox_lock.
+4647 Group is dead, deleting mailbox.
+4647 Mailbox stopped.
+4647 MAILBOX STOPPED.
+4647 No processes in the mailbox.
+4647 Queue lock acquired.
+4647 No more messages in queue.
+4647 Queue lock released.
+Mailbox freed.
+4612 Trying to send a message to 4657.
+4612 Target 4657 found.
+4612 Got mailbox_lock from 4657.
+4657 POINTED 1
+4612 Cache space allocated.
+4612 Struct created.
+4612 Mailbox 4657 is NOT full.
+4612 Got spin_lock from 4657.
+4612 Message enqueued for 4657
+4612 Gave up spin_lock from 4657.
+4657 POINTED 0
+Creating not a kernel thread.
+It's a new process.
+Mailbox allocated for 4658.
+4612 Trying to send a message to 4658.
+4612 Target 4658 found.
+4612 Got mailbox_lock from 4658.
+4658 POINTED 1
+4612 Cache space allocated.
+4612 Struct created.
+4612 Mailbox 4658 is NOT full.
+4612 Got spin_lock from 4658.
+4612 Message enqueued for 4658
+4612 Gave up spin_lock from 4658.
+4658 POINTED 0
+Creating not a kernel thread.
+It's a new process.
+Mailbox allocated for 4659.
+4648 Able to retrieve message.
+4648 Got spin_lock.
+4648 Trying to retrieve a message.
+4648 Mailbox is not empty
+4612 Trying to send a message to 4659.
+4612 Target 4659 found.
+4612 Got mailbox_lock from 4659.
+4659 POINTED 1
+4612 Cache space allocated.
+4648 Message dequeued
+4648 Gave up spin_lock.
+4648 Message info copied.
+4612 Struct created.
+4612 Mailbox 4659 is NOT full.
+4612 Got spin_lock from 4659.
+4612 Message enqueued for 4659
+4612 Gave up spin_lock from 4659.
+4659 POINTED 0
+4648 Message memory freed
+Creating not a kernel thread.
+It's a new process.
+Mailbox allocated for 4660.
+4612 Trying to send a message to 4660.
+4612 Target 4660 found.
+4612 Got mailbox_lock from 4660.
+4660 POINTED 1
+4612 Cache space allocated.
+4612 Struct created.
+4612 Mailbox 4660 is NOT full.
+4612 Got spin_lock from 4660.
+4612 Message enqueued for 4660
+4612 Gave up spin_lock from 4660.
+4660 POINTED 0
+4648 Trying to send a message to 4612.
+4648 Target 4612 found.
+4648 Got mailbox_lock from 4612.
+4612 POINTED 1
+4648 Cache space allocated.
+4648 Struct created.
+Creating not a kernel thread.
+It's a new process.
+Mailbox allocated for 4661.
+4650 Able to retrieve message.
+4650 Got spin_lock.
+4650 Trying to retrieve a message.
+4650 Mailbox is not empty
+4612 Trying to send a message to 4661.
+4612 Target 4661 found.
+4612 Got mailbox_lock from 4661.
+4661 POINTED 1
+4612 Cache space allocated.
+4650 Message dequeued
+4650 Gave up spin_lock.
+4650 Message info copied.
+4612 Struct created.
+4612 Mailbox 4661 is NOT full.
+4612 Got spin_lock from 4661.
+4612 Message enqueued for 4661
+4612 Gave up spin_lock from 4661.
+4661 POINTED 0
+4650 Message memory freed
+Creating not a kernel thread.
+It's a new process.
+Mailbox allocated for 4662.
+4612 Trying to send a message to 4662.
+4612 Target 4662 found.
+4612 Got mailbox_lock from 4662.
+4662 POINTED 1
+4612 Cache space allocated.
+4612 Struct created.
+4612 Mailbox 4662 is NOT full.
+4612 Got spin_lock from 4662.
+4612 Message enqueued for 4662
+4612 Gave up spin_lock from 4662.
+4662 POINTED 0
+4650 Trying to send a message to 4612.
+4650 Target 4612 found.
+4650 Got mailbox_lock from 4612.
+4612 POINTED 2
+4650 Cache space allocated.
+4650 Struct created.
+4645 Able to retrieve message.
+4645 Got spin_lock.
+4645 Trying to retrieve a message.
+4645 Mailbox is not empty
+4645 Message dequeued
+4645 Gave up spin_lock.
+4645 Message info copied.
+4645 Message memory freed
+4645 Trying to send a message to 4612.
+4645 Target 4612 found.
+4645 Got mailbox_lock from 4612.
+4612 POINTED 3
+4645 Cache space allocated.
+4645 Struct created.
+4655 Able to retrieve message.
+4655 Got spin_lock.
+4655 Trying to retrieve a message.
+4655 Mailbox is not empty
+4655 Message dequeued
+4655 Gave up spin_lock.
+4655 Message info copied.
+4655 Message memory freed
+4649 Able to retrieve message.
+4649 Got spin_lock.
+4649 Trying to retrieve a message.
+4649 Mailbox is not empty
+4649 Message dequeued
+4649 Gave up spin_lock.
+4649 Message info copied.
+4649 Message memory freed
+4655 Trying to send a message to 4612.
+4655 Target 4612 found.
+4655 Got mailbox_lock from 4612.
+4612 POINTED 4
+4655 Cache space allocated.
+4655 Struct created.
+4649 Trying to send a message to 4612.
+4649 Target 4612 found.
+4649 Got mailbox_lock from 4612.
+4612 POINTED 5
+4649 Cache space allocated.
+4649 Struct created.
+4652 Able to retrieve message.
+4652 Got spin_lock.
+4652 Trying to retrieve a message.
+4652 Mailbox is not empty
+4652 Message dequeued
+4652 Gave up spin_lock.
+4652 Message info copied.
+4652 Message memory freed
+4654 Able to retrieve message.
+4654 Got spin_lock.
+4654 Trying to retrieve a message.
+4654 Mailbox is not empty
+4654 Message dequeued
+4654 Gave up spin_lock.
+4654 Message info copied.
+4654 Message memory freed
+4652 Trying to send a message to 4612.
+4652 Target 4612 found.
+4652 Got mailbox_lock from 4612.
+4612 POINTED 6
+4652 Cache space allocated.
+4652 Struct created.
+4654 Trying to send a message to 4612.
+4654 Target 4612 found.
+4654 Got mailbox_lock from 4612.
+4612 POINTED 7
+4654 Cache space allocated.
+4654 Struct created.
+4656 Able to retrieve message.
+4656 Got spin_lock.
+4656 Trying to retrieve a message.
+4656 Mailbox is not empty
+4656 Message dequeued
+4656 Gave up spin_lock.
+4656 Message info copied.
+4656 Message memory freed
+4646 Able to retrieve message.
+4646 Got spin_lock.
+4646 Trying to retrieve a message.
+4646 Mailbox is not empty
+4646 Message dequeued
+4646 Gave up spin_lock.
+4646 Message info copied.
+4646 Message memory freed
+4656 Trying to send a message to 4612.
+4656 Target 4612 found.
+4656 Got mailbox_lock from 4612.
+4612 POINTED 8
+4656 Cache space allocated.
+4656 Struct created.
+4646 Trying to send a message to 4612.
+4646 Target 4612 found.
+4646 Got mailbox_lock from 4612.
+4612 POINTED 9
+4646 Cache space allocated.
+4646 Struct created.
+4658 Able to retrieve message.
+4658 Got spin_lock.
+4658 Trying to retrieve a message.
+4658 Mailbox is not empty
+4658 Message dequeued
+4658 Gave up spin_lock.
+4658 Message info copied.
+4658 Message memory freed
+4653 Able to retrieve message.
+4653 Got spin_lock.
+4653 Trying to retrieve a message.
+4653 Mailbox is not empty
+4653 Message dequeued
+4653 Gave up spin_lock.
+4653 Message info copied.
+4653 Message memory freed
+4658 Trying to send a message to 4612.
+4658 Target 4612 found.
+4658 Got mailbox_lock from 4612.
+4612 POINTED 10
+4658 Cache space allocated.
+4658 Struct created.
+4653 Trying to send a message to 4612.
+4653 Target 4612 found.
+4653 Got mailbox_lock from 4612.
+4612 POINTED 11
+4653 Cache space allocated.
+4653 Struct created.
+4651 Able to retrieve message.
+4651 Got spin_lock.
+4651 Trying to retrieve a message.
+4651 Mailbox is not empty
+4651 Message dequeued
+4651 Gave up spin_lock.
+4651 Message info copied.
+4651 Message memory freed
+4651 Trying to send a message to 4612.
+4651 Target 4612 found.
+4651 Got mailbox_lock from 4612.
+4612 POINTED 12
+4651 Cache space allocated.
+4651 Struct created.
+4657 Able to retrieve message.
+4657 Got spin_lock.
+4657 Trying to retrieve a message.
+4657 Mailbox is not empty
+4657 Message dequeued
+4657 Gave up spin_lock.
+4657 Message info copied.
+4657 Message memory freed
+4657 Trying to send a message to 4612.
+4657 Target 4612 found.
+4657 Got mailbox_lock from 4612.
+4612 POINTED 13
+4657 Cache space allocated.
+4657 Struct created.
+4644 Able to retrieve message.
+4644 Got spin_lock.
+4644 Trying to retrieve a message.
+4644 Mailbox is not empty
+4644 Message dequeued
+4644 Gave up spin_lock.
+4644 Message info copied.
+4644 Message memory freed
+4644 Trying to send a message to 4612.
+4644 Target 4612 found.
+4644 Got mailbox_lock from 4612.
+4612 POINTED 14
+4644 Cache space allocated.
+4644 Struct created.
+4660 Able to retrieve message.
+4660 Got spin_lock.
+4660 Trying to retrieve a message.
+4660 Mailbox is not empty
+4660 Message dequeued
+4660 Gave up spin_lock.
+4660 Message info copied.
+4660 Message memory freed
+4659 Able to retrieve message.
+4659 Got spin_lock.
+4659 Trying to retrieve a message.
+4659 Mailbox is not empty
+4659 Message dequeued
+4659 Gave up spin_lock.
+4659 Message info copied.
+4659 Message memory freed
+4660 Trying to send a message to 4612.
+4660 Target 4612 found.
+4660 Got mailbox_lock from 4612.
+4612 POINTED 15
+4660 Cache space allocated.
+4660 Struct created.
+4659 Trying to send a message to 4612.
+4659 Target 4612 found.
+4659 Got mailbox_lock from 4612.
+4612 POINTED 16
+4659 Cache space allocated.
+4659 Struct created.
+4661 Able to retrieve message.
+4661 Got spin_lock.
+4661 Trying to retrieve a message.
+4661 Mailbox is not empty
+4661 Message dequeued
+4661 Gave up spin_lock.
+4661 Message info copied.
+4661 Message memory freed
+4662 Able to retrieve message.
+4662 Got spin_lock.
+4662 Trying to retrieve a message.
+4662 Mailbox is not empty
+4662 Message dequeued
+4662 Gave up spin_lock.
+4662 Message info copied.
+4662 Message memory freed
+4661 Trying to send a message to 4612.
+4661 Target 4612 found.
+4661 Got mailbox_lock from 4612.
+4612 POINTED 17
+4661 Cache space allocated.
+4661 Struct created.
+4662 Trying to send a message to 4612.
+4662 Target 4612 found.
+4662 Got mailbox_lock from 4612.
+4612 POINTED 18 <---------------------------------- 18 tasks inside mailbox
+4662 Cache space allocated.
+4662 Struct created.
+4612 Acquired my own mailbox_lock. <--------------- Parent is dying
+4612 Group is dead, deleting mailbox.
+4612 Mailbox stopped.
+4648 Able to send message to 4612.
+4648 Got spin_lock from 4612.
+4612 MAILBOX STOPPED.
+4648 The target's mailbox 4612 is stopped. Unable to send message.
+4612 POINTED 17
+4648 Acquired my own mailbox_lock.
+4648 Group is dead, deleting mailbox.
+4648 Mailbox stopped.
+4648 MAILBOX STOPPED.
+4648 No processes in the mailbox.
+4648 Queue lock acquired.
+4648 No more messages in queue.
+4648 Queue lock released.
+Mailbox freed.
+4650 Able to send message to 4612.
+4650 Got spin_lock from 4612.
+4650 The target's mailbox 4612 is stopped. Unable to send message.
+4612 POINTED 16
+4650 Acquired my own mailbox_lock.
+4650 Group is dead, deleting mailbox.
+4650 Mailbox stopped.
+4650 MAILBOX STOPPED.
+4650 No processes in the mailbox.
+4650 Queue lock acquired.
+4650 No more messages in queue.
+4650 Queue lock released.
+Mailbox freed.
+4652 Able to send message to 4612.
+4652 Got spin_lock from 4612.
+4652 The target's mailbox 4612 is stopped. Unable to send message.
+4612 POINTED 15
+4652 Acquired my own mailbox_lock.
+4652 Group is dead, deleting mailbox.
+4652 Mailbox stopped.
+4652 MAILBOX STOPPED.
+4652 No processes in the mailbox.
+4652 Queue lock acquired.
+4652 No more messages in queue.
+4652 Queue lock released.
+Mailbox freed.
+4655 Able to send message to 4612.
+4655 Got spin_lock from 4612.
+4655 The target's mailbox 4612 is stopped. Unable to send message.
+4612 POINTED 14
+4655 Acquired my own mailbox_lock.
+4655 Group is dead, deleting mailbox.
+4655 Mailbox stopped.
+4655 MAILBOX STOPPED.
+4655 No processes in the mailbox.
+4655 Queue lock acquired.
+4655 No more messages in queue.
+4655 Queue lock released.
+Mailbox freed.
+4656 Able to send message to 4612.
+4656 Got spin_lock from 4612.
+4656 The target's mailbox 4612 is stopped. Unable to send message.
+4612 POINTED 13
+4656 Acquired my own mailbox_lock.
+4656 Group is dead, deleting mailbox.
+4656 Mailbox stopped.
+4656 MAILBOX STOPPED.
+4656 No processes in the mailbox.
+4656 Queue lock acquired.
+4656 No more messages in queue.
+4656 Queue lock released.
+Mailbox freed.
+4658 Able to send message to 4612.
+4658 Got spin_lock from 4612.
+4658 The target's mailbox 4612 is stopped. Unable to send message.
+4612 POINTED 12
+4658 Acquired my own mailbox_lock.
+4658 Group is dead, deleting mailbox.
+4658 Mailbox stopped.
+4658 MAILBOX STOPPED.
+4658 No processes in the mailbox.
+4658 Queue lock acquired.
+4658 No more messages in queue.
+4658 Queue lock released.
+Mailbox freed.
+4659 Able to send message to 4612.
+4659 Got spin_lock from 4612.
+4659 The target's mailbox 4612 is stopped. Unable to send message.
+4612 POINTED 11
+4659 Acquired my own mailbox_lock.
+4659 Group is dead, deleting mailbox.
+4659 Mailbox stopped.
+4659 MAILBOX STOPPED.
+4659 No processes in the mailbox.
+4659 Queue lock acquired.
+4659 No more messages in queue.
+4659 Queue lock released.
+Mailbox freed.
+4661 Able to send message to 4612.
+4661 Got spin_lock from 4612.
+4661 The target's mailbox 4612 is stopped. Unable to send message.
+4612 POINTED 10
+4661 Acquired my own mailbox_lock.
+4661 Group is dead, deleting mailbox.
+4661 Mailbox stopped.
+4661 MAILBOX STOPPED.
+4661 No processes in the mailbox.
+4661 Queue lock acquired.
+4661 No more messages in queue.
+4661 Queue lock released.
+Mailbox freed.
+4660 Able to send message to 4612.
+4660 Got spin_lock from 4612.
+4660 The target's mailbox 4612 is stopped. Unable to send message.
+4612 POINTED 9
+4660 Acquired my own mailbox_lock.
+4660 Group is dead, deleting mailbox.
+4660 Mailbox stopped.
+4660 MAILBOX STOPPED.
+4660 No processes in the mailbox.
+4660 Queue lock acquired.
+4660 No more messages in queue.
+4660 Queue lock released.
+Mailbox freed.
+4644 Able to send message to 4612.
+4644 Got spin_lock from 4612.
+4644 The target's mailbox 4612 is stopped. Unable to send message.
+4612 POINTED 8
+4644 Acquired my own mailbox_lock.
+4644 Group is dead, deleting mailbox.
+4644 Mailbox stopped.
+4644 MAILBOX STOPPED.
+4644 No processes in the mailbox.
+4644 Queue lock acquired.
+4644 No more messages in queue.
+4644 Queue lock released.
+Mailbox freed.
+4657 Able to send message to 4612.
+4657 Got spin_lock from 4612.
+4657 The target's mailbox 4612 is stopped. Unable to send message.
+4612 POINTED 7
+4657 Acquired my own mailbox_lock.
+4657 Group is dead, deleting mailbox.
+4657 Mailbox stopped.
+4657 MAILBOX STOPPED.
+4657 No processes in the mailbox.
+4657 Queue lock acquired.
+4657 No more messages in queue.
+4657 Queue lock released.
+Mailbox freed.
+4651 Able to send message to 4612.
+4651 Got spin_lock from 4612.
+4651 The target's mailbox 4612 is stopped. Unable to send message.
+4612 POINTED 6
+4651 Acquired my own mailbox_lock.
+4651 Group is dead, deleting mailbox.
+4651 Mailbox stopped.
+4651 MAILBOX STOPPED.
+4651 No processes in the mailbox.
+4651 Queue lock acquired.
+4651 No more messages in queue.
+4651 Queue lock released.
+Mailbox freed.
+4653 Able to send message to 4612.
+4653 Got spin_lock from 4612.
+4653 The target's mailbox 4612 is stopped. Unable to send message.
+4612 POINTED 5
+4653 Acquired my own mailbox_lock.
+4653 Group is dead, deleting mailbox.
+4653 Mailbox stopped.
+4653 MAILBOX STOPPED.
+4653 No processes in the mailbox.
+4653 Queue lock acquired.
+4653 No more messages in queue.
+4653 Queue lock released.
+Mailbox freed.
+4645 Able to send message to 4612.
+4645 Got spin_lock from 4612.
+4645 The target's mailbox 4612 is stopped. Unable to send message.
+4612 POINTED 4
+4645 Acquired my own mailbox_lock.
+4645 Group is dead, deleting mailbox.
+4645 Mailbox stopped.
+4645 MAILBOX STOPPED.
+4645 No processes in the mailbox.
+4645 Queue lock acquired.
+4645 No more messages in queue.
+4645 Queue lock released.
+Mailbox freed.
+4649 Able to send message to 4612.
+4649 Got spin_lock from 4612.
+4649 The target's mailbox 4612 is stopped. Unable to send message.
+4612 POINTED 3
+4649 Acquired my own mailbox_lock.
+4649 Group is dead, deleting mailbox.
+4649 Mailbox stopped.
+4649 MAILBOX STOPPED.
+4649 No processes in the mailbox.
+4649 Queue lock acquired.
+4649 No more messages in queue.
+4649 Queue lock released.
+Mailbox freed.
+4654 Able to send message to 4612.
+4654 Got spin_lock from 4612.
+4654 The target's mailbox 4612 is stopped. Unable to send message.
+4612 POINTED 2
+4654 Acquired my own mailbox_lock.
+4654 Group is dead, deleting mailbox.
+4654 Mailbox stopped.
+4654 MAILBOX STOPPED.
+4654 No processes in the mailbox.
+4654 Queue lock acquired.
+4654 No more messages in queue.
+4654 Queue lock released.
+Mailbox freed.
+4646 Able to send message to 4612.
+4646 Got spin_lock from 4612.
+4646 The target's mailbox 4612 is stopped. Unable to send message.
+4612 POINTED 1
+4646 Acquired my own mailbox_lock.
+4646 Group is dead, deleting mailbox.
+4646 Mailbox stopped.
+4646 MAILBOX STOPPED.
+4646 No processes in the mailbox.
+4646 Queue lock acquired.
+4646 No more messages in queue.
+4646 Queue lock released.
+Mailbox freed.
+4662 Able to send message to 4612.
+4612 No processes in the mailbox.
+4612 Queue lock acquired.
+4612 Message in queue.
+4612 deletingMessage = currentMessage;
+4612 About to free message space.
+4612 Message flushed.
+4612 Message in queue.
+4612 deletingMessage = currentMessage;
+4612 About to free message space.
+4612 Message flushed.
+4612 Message in queue.
+4612 deletingMessage = currentMessage;
+4612 About to free message space.
+4612 Message flushed.
+4612 Message in queue.
+4612 deletingMessage = currentMessage;
+4612 About to free message space.
+4612 Message flushed.
+4612 Message in queue.
+4612 deletingMessage = currentMessage;
+4612 About to free message space.
+4612 Message flushed.
+4612 Message in queue.
+4612 deletingMessage = currentMessage;
+4612 About to free message space.
+4612 Message flushed.
+4612 Message in queue.
+4612 deletingMessage = currentMessage;
+4612 About to free message space.
+4612 Message flushed.
+4612 Message in queue.
+4612 deletingMessage = currentMessage;
+4612 About to free message space.
+4612 Message flushed.
+4612 Message in queue.
+4612 deletingMessage = currentMessage;
+4612 About to free message space.
+4612 Message flushed.
+4612 Message in queue.
+4612 deletingMessage = currentMessage;
+4612 About to free message space.
+4612 Message flushed.
+4612 Message in queue.
+4612 deletingMessage = currentMessage;
+4612 About to free message space.
+4612 Message flushed.
+4612 Message in queue.
+4612 deletingMessage = currentMessage;
+4612 About to free message space.
+4612 Message flushed.
+4612 Message in queue.
+4612 deletingMessage = currentMessage;
+4612 About to free message space.
+4612 Message flushed.
+4612 Message in queue.
+4612 deletingMessage = currentMessage;
+4612 About to free message space.
+4612 Message flushed.
+4612 Message in queue.
+4612 deletingMessage = currentMessage;
+4612 About to free message space.
+4612 Message flushed.
+4612 Message in queue.
+4612 deletingMessage = currentMessage;
+4612 About to free message space.
+4612 Message flushed.
+4612 Message in queue.
+4612 deletingMessage = currentMessage;
+4612 About to free message space.
+4612 Message flushed.
+4612 Message in queue.
+4612 deletingMessage = currentMessage;
+4612 About to free message space.
+4612 Message flushed.
+4612 Message in queue.
+4612 deletingMessage = currentMessage;
+4612 About to free message space.
+4612 Message flushed.
+4612 Message in queue.
+4612 deletingMessage = currentMessage;
+4612 About to free message space.
+4612 Message flushed.
+4612 Message in queue.
+4612 deletingMessage = currentMessage;
+4612 About to free message space.
+4612 Message flushed.
+4612 Message in queue.
+4612 deletingMessage = currentMessage;
+4612 About to free message space.
+4612 Message flushed.
+4612 Message in queue.
+4612 deletingMessage = currentMessage;
+4612 About to free message space.
+4612 Message flushed.
+4612 Message in queue.
+4612 deletingMessage = currentMessage;
+4612 About to free message space.
+4612 Message flushed.
+4612 Message in queue.
+4612 deletingMessage = currentMessage;
+4612 About to free message space.
+4612 Message flushed.
+4612 Message in queue.
+4612 deletingMessage = currentMessage;
+4612 About to free message space.
+4612 Message flushed.
+4612 Message in queue.
+4612 deletingMessage = currentMessage;
+4612 About to free message space.
+4612 Message flushed.
+4612 Message in queue.
+4612 deletingMessage = currentMessage;
+4612 About to free message space.
+4612 Message flushed.
+4612 Message in queue.
+4612 deletingMessage = currentMessage;
+4612 About to free message space.
+4612 Message flushed.
+4612 Message in queue.
+4612 deletingMessage = currentMessage;
+4612 About to free message space.
+4612 Message flushed.
+4612 Message in queue.
+4612 deletingMessage = currentMessage;
+4612 About to free message space.
+4612 Message flushed.
+4612 Message in queue.
+4612 deletingMessage = currentMessage;
+4612 About to free message space.
+4612 Message flushed.
+4612 No more messages in queue.
+4612 Queue lock released.
+4662 Got spin_lock from 4612.
+4662 The target's mailbox 4612 is stopped. Unable to send message.
+4612 POINTED 0
+Mailbox freed. <----------------------------------- Mailbox deleted
+4662 Acquired my own mailbox_lock.
+4662 Group is dead, deleting mailbox.
+4662 Mailbox stopped.
+4662 MAILBOX STOPPED.
+4662 No processes in the mailbox.
+4662 Queue lock acquired.
+4662 No more messages in queue.
+4662 Queue lock released.
+Mailbox freed.

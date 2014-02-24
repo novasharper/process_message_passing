@@ -1,0 +1,9 @@
+
+
+ -- Susan Paradiso --
+
+TEST: verify bad-manage-arg (num_msgs ptr is 0) 
+ManageMailbox correctly got MSG_ARG_ERROR 
+
+TEST PASSED
+

@@ -1,0 +1,11 @@
+
+
+ -- Susan Paradiso --
+
+TEST: verify RcvMsg-blocking of a stopped and empty mailbox
+stop the empty mailbox
+RcvMsg, expected and got err MAILBOX_EMPTY (1002)
+RcvMsg-blking from a stopped empty worked
+
+TEST PASSED
+

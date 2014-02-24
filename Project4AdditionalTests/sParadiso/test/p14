@@ -1,0 +1,12 @@
+
+
+ -- Susan Paradiso --
+
+TEST: verify threads share parent's mailbox 
+(thread msg)pid 6536 rcv'ed msg from 6536
+thread_msg
+(thread msg)pid 6536 rcv'ed msg from 6536
+parent_msg
+
+TEST PASSED
+

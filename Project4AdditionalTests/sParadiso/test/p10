@@ -1,0 +1,15 @@
+
+
+ -- Susan Paradiso --
+
+TEST: verify bad-send-arg (src msg ptr is 0) 
+SendMsg, expected and got err MSG_ARG_ERROR (1006) 
+waiting for kids level 0
+pid 6497 rcv'ed msg from 6496
+msg #1
+pid 6497 rcv'ed msg from 6496
+msg #3
+kids completed
+
+TEST PASSED
+

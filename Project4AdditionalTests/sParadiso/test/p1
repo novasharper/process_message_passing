@@ -1,0 +1,73 @@
+
+
+ -- Susan Paradiso --
+
+TEST: verify too-long msg
+send good message
+send too-long random/50x
+SendMsg, expected and got err MSG_TOO_LONG (1005) 
+SendMsg, expected and got err MSG_TOO_LONG (1005) 
+SendMsg, expected and got err MSG_TOO_LONG (1005) 
+SendMsg, expected and got err MSG_TOO_LONG (1005) 
+SendMsg, expected and got err MSG_TOO_LONG (1005) 
+SendMsg, expected and got err MSG_TOO_LONG (1005) 
+SendMsg, expected and got err MSG_TOO_LONG (1005) 
+SendMsg, expected and got err MSG_TOO_LONG (1005) 
+SendMsg, expected and got err MSG_TOO_LONG (1005) 
+SendMsg, expected and got err MSG_TOO_LONG (1005) 
+SendMsg, expected and got err MSG_TOO_LONG (1005) 
+SendMsg, expected and got err MSG_TOO_LONG (1005) 
+SendMsg, expected and got err MSG_TOO_LONG (1005) 
+SendMsg, expected and got err MSG_TOO_LONG (1005) 
+SendMsg, expected and got err MSG_TOO_LONG (1005) 
+SendMsg, expected and got err MSG_TOO_LONG (1005) 
+SendMsg, expected and got err MSG_TOO_LONG (1005) 
+SendMsg, expected and got err MSG_TOO_LONG (1005) 
+SendMsg, expected and got err MSG_TOO_LONG (1005) 
+SendMsg, expected and got err MSG_TOO_LONG (1005) 
+SendMsg, expected and got err MSG_TOO_LONG (1005) 
+SendMsg, expected and got err MSG_TOO_LONG (1005) 
+SendMsg, expected and got err MSG_TOO_LONG (1005) 
+SendMsg, expected and got err MSG_TOO_LONG (1005) 
+SendMsg, expected and got err MSG_TOO_LONG (1005) 
+SendMsg, expected and got err MSG_TOO_LONG (1005) 
+SendMsg, expected and got err MSG_TOO_LONG (1005) 
+SendMsg, expected and got err MSG_TOO_LONG (1005) 
+SendMsg, expected and got err MSG_TOO_LONG (1005) 
+SendMsg, expected and got err MSG_TOO_LONG (1005) 
+SendMsg, expected and got err MSG_TOO_LONG (1005) 
+SendMsg, expected and got err MSG_TOO_LONG (1005) 
+SendMsg, expected and got err MSG_TOO_LONG (1005) 
+SendMsg, expected and got err MSG_TOO_LONG (1005) 
+SendMsg, expected and got err MSG_TOO_LONG (1005) 
+SendMsg, expected and got err MSG_TOO_LONG (1005) 
+SendMsg, expected and got err MSG_TOO_LONG (1005) 
+SendMsg, expected and got err MSG_TOO_LONG (1005) 
+SendMsg, expected and got err MSG_TOO_LONG (1005) 
+SendMsg, expected and got err MSG_TOO_LONG (1005) 
+SendMsg, expected and got err MSG_TOO_LONG (1005) 
+SendMsg, expected and got err MSG_TOO_LONG (1005) 
+send good message
+send too-long max+1
+SendMsg, expected and got err MSG_TOO_LONG (1005) 
+message length is 128
+send good, length==max
+send too-long negative length
+SendMsg, expected and got err MSG_TOO_LONG (1005) 
+send good message
+pid 6341 rcv'ed msg from 6341
+good message1
+pid 6341 rcv'ed msg from 6341
+good message2
+pid 6341 rcv'ed msg from 6341
+0123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456
+pid 6341 rcv'ed msg from 6341
+good message4
+RcvMsg, expected and got err MAILBOX_EMPTY (1002)
+
+
+-------> SendMsg SLOW MODE ENABLED <-------
+
+
+TEST PASSED
+

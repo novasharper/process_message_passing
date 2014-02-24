@@ -1,0 +1,1618 @@
+
+
+ -- Susan Paradiso --
+
+TEST: verify mailbox-stop-destroy while senders active 
+starting rx pid 6747, num_msgs 10
+starting rx pid 6745, num_msgs 10
+starting rx pid 6749, num_msgs 10
+starting rx pid 6750, num_msgs 10
+starting rx pid 6751, num_msgs 10
+starting rx pid 6756, num_msgs 10
+starting rx pid 6759, num_msgs 10
+starting rx pid 6757, num_msgs 10
+starting rx pid 6753, num_msgs 10
+starting rx pid 6754, num_msgs 10
+starting rx pid 6763, num_msgs 10
+starting rx pid 6764, num_msgs 10
+starting rx pid 6760, num_msgs 10
+starting rx pid 6761, num_msgs 10
+starting rx pid 6766, num_msgs 10
+starting rx pid 6767, num_msgs 10
+starting rx pid 6769, num_msgs 10
+starting rx pid 6770, num_msgs 10
+starting rx pid 6771, num_msgs 10
+starting rx pid 6774, num_msgs 10
+starting rx pid 6775, num_msgs 10
+starting rx pid 6776, num_msgs 10
+starting rx pid 6778, num_msgs 10
+starting rx pid 6758, num_msgs 10
+starting rx pid 6779, num_msgs 10
+starting rx pid 6755, num_msgs 10
+starting rx pid 6781, num_msgs 10
+starting rx pid 6762, num_msgs 10
+starting rx pid 6782, num_msgs 10
+starting rx pid 6752, num_msgs 10
+starting rx pid 6784, num_msgs 10
+starting rx pid 6765, num_msgs 10
+starting rx pid 6785, num_msgs 10
+starting rx pid 6768, num_msgs 10
+starting rx pid 6786, num_msgs 10
+starting rx pid 6748, num_msgs 10
+starting rx pid 6788, num_msgs 10
+starting rx pid 6772, num_msgs 10
+starting rx pid 6789, num_msgs 10
+starting rx pid 6773, num_msgs 10
+starting rx pid 6791, num_msgs 10
+starting rx pid 6777, num_msgs 10
+starting rx pid 6792, num_msgs 10
+starting rx pid 6793, num_msgs 10
+starting rx pid 6780, num_msgs 10
+starting rx pid 6795, num_msgs 10
+starting rx pid 6783, num_msgs 10
+starting rx pid 6796, num_msgs 10
+starting rx pid 6787, num_msgs 10
+starting rx pid 6798, num_msgs 10
+starting rx pid 6790, num_msgs 10
+starting rx pid 6799, num_msgs 10
+starting rx pid 6794, num_msgs 10
+starting rx pid 6800, num_msgs 10
+starting rx pid 6746, num_msgs 10
+starting rx pid 6802, num_msgs 10
+starting rx pid 6797, num_msgs 10
+starting rx pid 6801, num_msgs 10
+starting rx pid 6804, num_msgs 10
+starting rx pid 6805, num_msgs 10
+starting rx pid 6807, num_msgs 10
+starting rx pid 6810, num_msgs 10
+starting rx pid 6808, num_msgs 10
+starting rx pid 6814, num_msgs 10
+starting rx pid 6815, num_msgs 10
+starting rx pid 6817, num_msgs 10
+starting rx pid 6811, num_msgs 10
+starting rx pid 6812, num_msgs 10
+starting rx pid 6820, num_msgs 10
+starting rx pid 6821, num_msgs 10
+starting rx pid 6822, num_msgs 10
+starting rx pid 6818, num_msgs 10
+starting rx pid 6824, num_msgs 10
+starting rx pid 6825, num_msgs 10
+starting rx pid 6827, num_msgs 10
+starting rx pid 6803, num_msgs 10
+starting rx pid 6816, num_msgs 10
+starting rx pid 6819, num_msgs 10
+starting rx pid 6813, num_msgs 10
+starting rx pid 6809, num_msgs 10
+starting rx pid 6823, num_msgs 10
+starting rx pid 6826, num_msgs 10
+starting rx pid 6830, num_msgs 10
+starting rx pid 6832, num_msgs 10
+starting rx pid 6835, num_msgs 10
+starting rx pid 6839, num_msgs 10
+starting rx pid 6806, num_msgs 10
+starting rx pid 6842, num_msgs 10
+starting tx pid 6845
+pid 6756 rcv'ed msg from 6845
+msg src: 6845,  dest: 6756
+starting rx pid 6828, num_msgs 10
+starting rx pid 6829, num_msgs 10
+starting rx pid 6831, num_msgs 10
+starting rx pid 6833, num_msgs 10
+starting rx pid 6834, num_msgs 10
+starting rx pid 6836, num_msgs 10
+starting rx pid 6837, num_msgs 10
+pid 6758 rcv'ed msg from 6845
+msg src: 6845,  dest: 6758
+pid 6768 rcv'ed msg from 6845
+msg src: 6845,  dest: 6768
+pid 6779 rcv'ed msg from 6845
+msg src: 6845,  dest: 6779
+pid 6815 rcv'ed msg from 6845
+msg src: 6845,  dest: 6815
+pid 6796 rcv'ed msg from 6845
+msg src: 6845,  dest: 6796
+pid 6748 rcv'ed msg from 6845
+msg src: 6845,  dest: 6748
+pid 6807 rcv'ed msg from 6845
+msg src: 6845,  dest: 6807
+pid 6814 rcv'ed msg from 6845
+msg src: 6845,  dest: 6814
+pid 6796 rcv'ed msg from 6845
+msg src: 6845,  dest: 6796
+pid 6762 rcv'ed msg from 6845
+msg src: 6845,  dest: 6762
+pid 6802 rcv'ed msg from 6845
+msg src: 6845,  dest: 6802
+pid 6752 rcv'ed msg from 6845
+msg src: 6845,  dest: 6752
+pid 6762 rcv'ed msg from 6845
+msg src: 6845,  dest: 6762
+pid 6805 rcv'ed msg from 6845
+msg src: 6845,  dest: 6805
+pid 6789 rcv'ed msg from 6845
+msg src: 6845,  dest: 6789
+pid 6779 rcv'ed msg from 6845
+msg src: 6845,  dest: 6779
+pid 6756 rcv'ed msg from 6845
+msg src: 6845,  dest: 6756
+pid 6749 rcv'ed msg from 6845
+msg src: 6845,  dest: 6749
+pid 6759 rcv'ed msg from 6845
+msg src: 6845,  dest: 6759
+pid 6776 rcv'ed msg from 6845
+msg src: 6845,  dest: 6776
+pid 6791 rcv'ed msg from 6845
+msg src: 6845,  dest: 6791
+pid 6770 rcv'ed msg from 6845
+msg src: 6845,  dest: 6770
+pid 6788 rcv'ed msg from 6845
+msg src: 6845,  dest: 6788
+pid 6755 rcv'ed msg from 6845
+msg src: 6845,  dest: 6755
+pid 6745 rcv'ed msg from 6845
+msg src: 6845,  dest: 6745
+pid 6752 rcv'ed msg from 6845
+msg src: 6845,  dest: 6752
+pid 6796 rcv'ed msg from 6845
+msg src: 6845,  dest: 6796
+pid 6794 rcv'ed msg from 6845
+msg src: 6845,  dest: 6794
+pid 6772 rcv'ed msg from 6845
+msg src: 6845,  dest: 6772
+pid 6751 rcv'ed msg from 6845
+msg src: 6845,  dest: 6751
+pid 6781 rcv'ed msg from 6845
+msg src: 6845,  dest: 6781
+pid 6822 rcv'ed msg from 6845
+msg src: 6845,  dest: 6822
+pid 6788 rcv'ed msg from 6845
+msg src: 6845,  dest: 6788
+pid 6786 rcv'ed msg from 6845
+msg src: 6845,  dest: 6786
+pid 6750 rcv'ed msg from 6845
+msg src: 6845,  dest: 6750
+pid 6745 rcv'ed msg from 6845
+msg src: 6845,  dest: 6745
+pid 6813 rcv'ed msg from 6845
+msg src: 6845,  dest: 6813
+pid 6811 rcv'ed msg from 6845
+msg src: 6845,  dest: 6811
+pid 6752 rcv'ed msg from 6845
+msg src: 6845,  dest: 6752
+pid 6758 rcv'ed msg from 6845
+msg src: 6845,  dest: 6758
+pid 6793 rcv'ed msg from 6845
+msg src: 6845,  dest: 6793
+pid 6816 rcv'ed msg from 6845
+msg src: 6845,  dest: 6816
+pid 6758 rcv'ed msg from 6845
+msg src: 6845,  dest: 6758
+pid 6779 rcv'ed msg from 6845
+msg src: 6845,  dest: 6779
+pid 6750 rcv'ed msg from 6845
+msg src: 6845,  dest: 6750
+pid 6800 rcv'ed msg from 6845
+msg src: 6845,  dest: 6800
+pid 6773 rcv'ed msg from 6845
+msg src: 6845,  dest: 6773
+pid 6788 rcv'ed msg from 6845
+msg src: 6845,  dest: 6788
+pid 6823 rcv'ed msg from 6845
+msg src: 6845,  dest: 6823
+pid 6791 rcv'ed msg from 6845
+msg src: 6845,  dest: 6791
+pid 6793 rcv'ed msg from 6845
+msg src: 6845,  dest: 6793
+pid 6764 rcv'ed msg from 6845
+msg src: 6845,  dest: 6764
+pid 6819 rcv'ed msg from 6845
+msg src: 6845,  dest: 6819
+pid 6794 rcv'ed msg from 6845
+msg src: 6845,  dest: 6794
+pid 6788 rcv'ed msg from 6845
+msg src: 6845,  dest: 6788
+pid 6761 rcv'ed msg from 6845
+msg src: 6845,  dest: 6761
+pid 6817 rcv'ed msg from 6845
+msg src: 6845,  dest: 6817
+pid 6824 rcv'ed msg from 6845
+msg src: 6845,  dest: 6824
+pid 6794 rcv'ed msg from 6845
+msg src: 6845,  dest: 6794
+pid 6771 rcv'ed msg from 6845
+msg src: 6845,  dest: 6771
+pid 6784 rcv'ed msg from 6845
+msg src: 6845,  dest: 6784
+pid 6751 rcv'ed msg from 6845
+msg src: 6845,  dest: 6751
+pid 6807 rcv'ed msg from 6845
+msg src: 6845,  dest: 6807
+pid 6816 rcv'ed msg from 6845
+msg src: 6845,  dest: 6816
+pid 6763 rcv'ed msg from 6845
+msg src: 6845,  dest: 6763
+pid 6805 rcv'ed msg from 6845
+msg src: 6845,  dest: 6805
+pid 6780 rcv'ed msg from 6845
+msg src: 6845,  dest: 6780
+pid 6763 rcv'ed msg from 6845
+msg src: 6845,  dest: 6763
+pid 6800 rcv'ed msg from 6845
+msg src: 6845,  dest: 6800
+pid 6782 rcv'ed msg from 6845
+msg src: 6845,  dest: 6782
+pid 6835 rcv'ed msg from 6845
+msg src: 6845,  dest: 6835
+pid 6835 rcv'ed msg from 6845
+msg src: 6845,  dest: 6835
+pid 6827 rcv'ed msg from 6845
+msg src: 6845,  dest: 6827
+pid 6806 rcv'ed msg from 6845
+msg src: 6845,  dest: 6806
+pid 6806 rcv'ed msg from 6845
+msg src: 6845,  dest: 6806
+pid 6806 rcv'ed msg from 6845
+msg src: 6845,  dest: 6806
+pid 6773 rcv'ed msg from 6845
+msg src: 6845,  dest: 6773
+pid 6829 rcv'ed msg from 6845
+msg src: 6845,  dest: 6829
+pid 6839 rcv'ed msg from 6845
+msg src: 6845,  dest: 6839
+pid 6839 rcv'ed msg from 6845
+msg src: 6845,  dest: 6839
+pid 6833 rcv'ed msg from 6845
+msg src: 6845,  dest: 6833
+pid 6833 rcv'ed msg from 6845
+msg src: 6845,  dest: 6833
+pid 6833 rcv'ed msg from 6845
+msg src: 6845,  dest: 6833
+pid 6746 rcv'ed msg from 6845
+msg src: 6845,  dest: 6746
+pid 6837 rcv'ed msg from 6845
+msg src: 6845,  dest: 6837
+pid 6797 rcv'ed msg from 6845
+msg src: 6845,  dest: 6797
+pid 6758 rcv'ed msg from 6845
+msg src: 6845,  dest: 6758
+pid 6791 rcv'ed msg from 6845
+msg src: 6845,  dest: 6791
+pid 6775 rcv'ed msg from 6845
+msg src: 6845,  dest: 6775
+pid 6824 rcv'ed msg from 6845
+msg src: 6845,  dest: 6824
+pid 6796 rcv'ed msg from 6845
+msg src: 6845,  dest: 6796
+pid 6788 rcv'ed msg from 6845
+msg src: 6845,  dest: 6788
+pid 6768 rcv'ed msg from 6845
+msg src: 6845,  dest: 6768
+pid 6786 rcv'ed msg from 6845
+msg src: 6845,  dest: 6786
+pid 6806 rcv'ed msg from 6845
+msg src: 6845,  dest: 6806
+pid 6803 rcv'ed msg from 6845
+msg src: 6845,  dest: 6803
+pid 6824 rcv'ed msg from 6845
+msg src: 6845,  dest: 6824
+starting rx pid 6838, num_msgs 10
+pid 6815 rcv'ed msg from 6845
+msg src: 6845,  dest: 6815
+pid 6776 rcv'ed msg from 6845
+msg src: 6845,  dest: 6776
+pid 6811 rcv'ed msg from 6845
+msg src: 6845,  dest: 6811
+pid 6817 rcv'ed msg from 6845
+msg src: 6845,  dest: 6817
+pid 6842 rcv'ed msg from 6845
+msg src: 6845,  dest: 6842
+pid 6838 rcv'ed msg from 6845
+msg src: 6845,  dest: 6838
+pid 6756 rcv'ed msg from 6845
+msg src: 6845,  dest: 6756
+pid 6828 rcv'ed msg from 6845
+msg src: 6845,  dest: 6828
+pid 6768 rcv'ed msg from 6845
+msg src: 6845,  dest: 6768
+pid 6775 rcv'ed msg from 6845
+msg src: 6845,  dest: 6775
+pid 6775 rcv'ed msg from 6845
+msg src: 6845,  dest: 6775
+pid 6793 rcv'ed msg from 6845
+msg src: 6845,  dest: 6793
+pid 6808 rcv'ed msg from 6845
+msg src: 6845,  dest: 6808
+pid 6805 rcv'ed msg from 6845
+msg src: 6845,  dest: 6805
+pid 6811 rcv'ed msg from 6845
+msg src: 6845,  dest: 6811
+pid 6777 rcv'ed msg from 6845
+msg src: 6845,  dest: 6777
+pid 6825 rcv'ed msg from 6845
+msg src: 6845,  dest: 6825
+pid 6828 rcv'ed msg from 6845
+msg src: 6845,  dest: 6828
+pid 6810 rcv'ed msg from 6845
+msg src: 6845,  dest: 6810
+pid 6836 rcv'ed msg from 6845
+msg src: 6845,  dest: 6836
+pid 6836 rcv'ed msg from 6845
+msg src: 6845,  dest: 6836
+pid 6836 rcv'ed msg from 6845
+msg src: 6845,  dest: 6836
+pid 6831 rcv'ed msg from 6845
+msg src: 6845,  dest: 6831
+pid 6830 rcv'ed msg from 6845
+msg src: 6845,  dest: 6830
+pid 6824 rcv'ed msg from 6845
+msg src: 6845,  dest: 6824
+starting rx pid 6841, num_msgs 10
+pid 6802 rcv'ed msg from 6845
+msg src: 6845,  dest: 6802
+pid 6778 rcv'ed msg from 6845
+msg src: 6845,  dest: 6778
+pid 6752 rcv'ed msg from 6845
+msg src: 6845,  dest: 6752
+pid 6775 rcv'ed msg from 6845
+msg src: 6845,  dest: 6775
+pid 6822 rcv'ed msg from 6845
+msg src: 6845,  dest: 6822
+pid 6769 rcv'ed msg from 6845
+msg src: 6845,  dest: 6769
+pid 6762 rcv'ed msg from 6845
+msg src: 6845,  dest: 6762
+pid 6757 rcv'ed msg from 6845
+msg src: 6845,  dest: 6757
+pid 6823 rcv'ed msg from 6845
+msg src: 6845,  dest: 6823
+pid 6818 rcv'ed msg from 6845
+msg src: 6845,  dest: 6818
+pid 6792 rcv'ed msg from 6845
+msg src: 6845,  dest: 6792
+pid 6748 rcv'ed msg from 6845
+msg src: 6845,  dest: 6748
+pid 6778 rcv'ed msg from 6845
+msg src: 6845,  dest: 6778
+pid 6808 rcv'ed msg from 6845
+msg src: 6845,  dest: 6808
+pid 6802 rcv'ed msg from 6845
+msg src: 6845,  dest: 6802
+pid 6789 rcv'ed msg from 6845
+msg src: 6845,  dest: 6789
+pid 6839 rcv'ed msg from 6845
+msg src: 6845,  dest: 6839
+pid 6765 rcv'ed msg from 6845
+msg src: 6845,  dest: 6765
+pid 6762 rcv'ed msg from 6845
+msg src: 6845,  dest: 6762
+pid 6832 rcv'ed msg from 6845
+msg src: 6845,  dest: 6832
+pid 6830 rcv'ed msg from 6845
+msg src: 6845,  dest: 6830
+pid 6799 rcv'ed msg from 6845
+msg src: 6845,  dest: 6799
+pid 6776 rcv'ed msg from 6845
+msg src: 6845,  dest: 6776
+pid 6820 rcv'ed msg from 6845
+msg src: 6845,  dest: 6820
+pid 6747 rcv'ed msg from 6845
+msg src: 6845,  dest: 6747
+pid 6769 rcv'ed msg from 6845
+msg src: 6845,  dest: 6769
+pid 6811 rcv'ed msg from 6845
+msg src: 6845,  dest: 6811
+pid 6809 rcv'ed msg from 6845
+msg src: 6845,  dest: 6809
+pid 6806 rcv'ed msg from 6845
+msg src: 6845,  dest: 6806
+pid 6785 rcv'ed msg from 6845
+msg src: 6845,  dest: 6785
+pid 6807 rcv'ed msg from 6845
+msg src: 6845,  dest: 6807
+pid 6823 rcv'ed msg from 6845
+msg src: 6845,  dest: 6823
+pid 6801 rcv'ed msg from 6845
+msg src: 6845,  dest: 6801
+pid 6764 rcv'ed msg from 6845
+msg src: 6845,  dest: 6764
+pid 6786 rcv'ed msg from 6845
+msg src: 6845,  dest: 6786
+pid 6831 rcv'ed msg from 6845
+msg src: 6845,  dest: 6831
+pid 6748 rcv'ed msg from 6845
+msg src: 6845,  dest: 6748
+pid 6793 rcv'ed msg from 6845
+msg src: 6845,  dest: 6793
+pid 6827 rcv'ed msg from 6845
+msg src: 6845,  dest: 6827
+pid 6810 rcv'ed msg from 6845
+msg src: 6845,  dest: 6810
+pid 6836 rcv'ed msg from 6845
+msg src: 6845,  dest: 6836
+pid 6814 rcv'ed msg from 6845
+msg src: 6845,  dest: 6814
+pid 6807 rcv'ed msg from 6845
+msg src: 6845,  dest: 6807
+pid 6803 rcv'ed msg from 6845
+msg src: 6845,  dest: 6803
+pid 6793 rcv'ed msg from 6845
+msg src: 6845,  dest: 6793
+pid 6757 rcv'ed msg from 6845
+msg src: 6845,  dest: 6757
+pid 6788 rcv'ed msg from 6845
+msg src: 6845,  dest: 6788
+pid 6746 rcv'ed msg from 6845
+msg src: 6845,  dest: 6746
+pid 6763 rcv'ed msg from 6845
+msg src: 6845,  dest: 6763
+pid 6823 rcv'ed msg from 6845
+msg src: 6845,  dest: 6823
+pid 6822 rcv'ed msg from 6845
+msg src: 6845,  dest: 6822
+pid 6839 rcv'ed msg from 6845
+msg src: 6845,  dest: 6839
+pid 6752 rcv'ed msg from 6845
+msg src: 6845,  dest: 6752
+pid 6830 rcv'ed msg from 6845
+msg src: 6845,  dest: 6830
+pid 6809 rcv'ed msg from 6845
+msg src: 6845,  dest: 6809
+pid 6815 rcv'ed msg from 6845
+msg src: 6845,  dest: 6815
+starting rx pid 6843, num_msgs 10
+pid 6763 rcv'ed msg from 6845
+msg src: 6845,  dest: 6763
+pid 6790 rcv'ed msg from 6845
+msg src: 6845,  dest: 6790
+pid 6843 rcv'ed msg from 6845
+msg src: 6845,  dest: 6843
+pid 6815 rcv'ed msg from 6845
+msg src: 6845,  dest: 6815
+pid 6843 rcv'ed msg from 6845
+msg src: 6845,  dest: 6843
+pid 6774 rcv'ed msg from 6845
+msg src: 6845,  dest: 6774
+pid 6821 rcv'ed msg from 6845
+msg src: 6845,  dest: 6821
+pid 6804 rcv'ed msg from 6845
+msg src: 6845,  dest: 6804
+pid 6803 rcv'ed msg from 6845
+msg src: 6845,  dest: 6803
+pid 6767 rcv'ed msg from 6845
+msg src: 6845,  dest: 6767
+pid 6791 rcv'ed msg from 6845
+msg src: 6845,  dest: 6791
+pid 6821 rcv'ed msg from 6845
+msg src: 6845,  dest: 6821
+pid 6818 rcv'ed msg from 6845
+msg src: 6845,  dest: 6818
+pid 6765 rcv'ed msg from 6845
+msg src: 6845,  dest: 6765
+pid 6837 rcv'ed msg from 6845
+msg src: 6845,  dest: 6837
+pid 6832 rcv'ed msg from 6845
+msg src: 6845,  dest: 6832
+pid 6840 rcv'ed msg from 6845
+msg src: 6845,  dest: 6840
+pid 6812 rcv'ed msg from 6845
+msg src: 6845,  dest: 6812
+pid 6796 rcv'ed msg from 6845
+msg src: 6845,  dest: 6796
+pid 6791 rcv'ed msg from 6845
+msg src: 6845,  dest: 6791
+pid 6785 rcv'ed msg from 6845
+msg src: 6845,  dest: 6785
+pid 6816 rcv'ed msg from 6845
+msg src: 6845,  dest: 6816
+pid 6810 rcv'ed msg from 6845
+msg src: 6845,  dest: 6810
+starting rx pid 6844, num_msgs 10
+pid 6844 rcv'ed msg from 6845
+msg src: 6845,  dest: 6844
+pid 6844 rcv'ed msg from 6845
+msg src: 6845,  dest: 6844
+pid 6756 rcv'ed msg from 6852
+msg src: 6852,  dest: 6756
+pid 6788 rcv'ed msg from 6852
+msg src: 6852,  dest: 6788
+pid 6814 rcv'ed msg from 6852
+msg src: 6852,  dest: 6814
+pid 6814 rcv'ed msg from 6852
+msg src: 6852,  dest: 6814
+pid 6833 rcv'ed msg from 6852
+msg src: 6852,  dest: 6833
+pid 6840 rcv'ed msg from 6852
+msg src: 6852,  dest: 6840
+pid 6779 rcv'ed msg from 6852
+msg src: 6852,  dest: 6779
+pid 6768 rcv'ed msg from 6852
+msg src: 6852,  dest: 6768
+pid 6796 rcv'ed msg from 6852
+msg src: 6852,  dest: 6796
+starting tx pid 6863
+pid 6824 rcv'ed msg from 6852
+msg src: 6852,  dest: 6824
+pid 6756 rcv'ed msg from 6863
+msg src: 6863,  dest: 6756
+pid 6758 rcv'ed msg from 6863
+msg src: 6863,  dest: 6758
+pid 6814 rcv'ed msg from 6863
+msg src: 6863,  dest: 6814
+pid 6814 rcv'ed msg from 6863
+msg src: 6863,  dest: 6814
+pid 6788 rcv'ed msg from 6863
+msg src: 6863,  dest: 6788
+pid 6807 rcv'ed msg from 6852
+msg src: 6852,  dest: 6807
+pid 6815 rcv'ed msg from 6852
+msg src: 6852,  dest: 6815
+pid 6748 rcv'ed msg from 6852
+msg src: 6852,  dest: 6748
+pid 6772 rcv'ed msg from 6852
+msg src: 6852,  dest: 6772
+pid 6779 rcv'ed msg from 6852
+msg src: 6852,  dest: 6779
+pid 6796 rcv'ed msg from 6852
+msg src: 6852,  dest: 6796
+pid 6779 rcv'ed msg from 6863
+msg src: 6863,  dest: 6779
+pid 6768 rcv'ed msg from 6863
+msg src: 6863,  dest: 6768
+pid 6796 rcv'ed msg from 6863
+msg src: 6863,  dest: 6796
+pid 6762 rcv'ed msg from 6852
+msg src: 6852,  dest: 6762
+pid 6807 rcv'ed msg from 6863
+msg src: 6863,  dest: 6807
+pid 6752 rcv'ed msg from 6852
+msg src: 6852,  dest: 6752
+pid 6815 rcv'ed msg from 6863
+msg src: 6863,  dest: 6815
+pid 6762 rcv'ed msg from 6852
+msg src: 6852,  dest: 6762
+pid 6748 rcv'ed msg from 6863
+msg src: 6863,  dest: 6748
+pid 6772 rcv'ed msg from 6863
+msg src: 6863,  dest: 6772
+pid 6779 rcv'ed msg from 6863
+msg src: 6863,  dest: 6779
+pid 6796 rcv'ed msg from 6863
+msg src: 6863,  dest: 6796
+pid 6789 rcv'ed msg from 6852
+msg src: 6852,  dest: 6789
+pid 6805 rcv'ed msg from 6852
+msg src: 6852,  dest: 6805
+pid 6822 rcv'ed msg from 6852
+msg src: 6852,  dest: 6822
+pid 6759 rcv'ed msg from 6852
+msg src: 6852,  dest: 6759
+pid 6756 rcv'ed msg from 6852
+msg src: 6852,  dest: 6756
+pid 6791 rcv'ed msg from 6852
+msg src: 6852,  dest: 6791
+pid 6745 rcv'ed msg from 6852
+msg src: 6852,  dest: 6745
+pid 6755 rcv'ed msg from 6852
+msg src: 6852,  dest: 6755
+pid 6752 rcv'ed msg from 6852
+msg src: 6852,  dest: 6752
+pid 6794 rcv'ed msg from 6852
+msg src: 6852,  dest: 6794
+pid 6770 rcv'ed msg from 6852
+msg src: 6852,  dest: 6770
+pid 6779 rcv'ed msg from 6852
+msg src: 6852,  dest: 6779
+pid 6811 rcv'ed msg from 6852
+msg src: 6852,  dest: 6811
+pid 6810 rcv'ed msg from 6852
+msg src: 6852,  dest: 6810
+pid 6811 rcv'ed msg from 6852
+msg src: 6852,  dest: 6811
+pid 6820 rcv'ed msg from 6852
+msg src: 6852,  dest: 6820
+pid 6763 rcv'ed msg from 6863
+msg src: 6863,  dest: 6763
+pid 6823 rcv'ed msg from 6852
+msg src: 6852,  dest: 6823
+pid 6751 rcv'ed msg from 6852
+msg src: 6852,  dest: 6751
+pid 6752 rcv'ed msg from 6863
+msg src: 6863,  dest: 6752
+pid 6831 rcv'ed msg from 6852
+msg src: 6852,  dest: 6831
+pid 6831 rcv'ed msg from 6863
+msg src: 6863,  dest: 6831
+pid 6759 rcv'ed msg from 6863
+msg src: 6863,  dest: 6759
+pid 6806 rcv'ed msg from 6863
+msg src: 6863,  dest: 6806
+pid 6838 rcv'ed msg from 6852
+msg src: 6852,  dest: 6838
+pid 6789 rcv'ed msg from 6863
+msg src: 6863,  dest: 6789
+pid 6779 rcv'ed msg from 6863
+msg src: 6863,  dest: 6779
+starting tx pid 6853
+pid 6776 rcv'ed msg from 6863
+msg src: 6863,  dest: 6776
+pid 6758 rcv'ed msg from 6853
+msg src: 6853,  dest: 6758
+pid 6807 rcv'ed msg from 6853
+msg src: 6853,  dest: 6807
+pid 6815 rcv'ed msg from 6853
+msg src: 6853,  dest: 6815
+pid 6748 rcv'ed msg from 6853
+msg src: 6853,  dest: 6748
+pid 6772 rcv'ed msg from 6853
+msg src: 6853,  dest: 6772
+pid 6780 rcv'ed msg from 6853
+msg src: 6853,  dest: 6780
+pid 6768 rcv'ed msg from 6853
+msg src: 6853,  dest: 6768
+pid 6797 rcv'ed msg from 6853
+msg src: 6853,  dest: 6797
+pid 6814 rcv'ed msg from 6853
+msg src: 6853,  dest: 6814
+pid 6814 rcv'ed msg from 6853
+msg src: 6853,  dest: 6814
+pid 6802 rcv'ed msg from 6853
+msg src: 6853,  dest: 6802
+pid 6763 rcv'ed msg from 6853
+msg src: 6853,  dest: 6763
+pid 6763 rcv'ed msg from 6853
+msg src: 6853,  dest: 6763
+pid 6759 rcv'ed msg from 6853
+msg src: 6853,  dest: 6759
+pid 6789 rcv'ed msg from 6853
+msg src: 6853,  dest: 6789
+pid 6805 rcv'ed msg from 6853
+msg src: 6853,  dest: 6805
+pid 6749 rcv'ed msg from 6853
+msg src: 6853,  dest: 6749
+pid 6752 rcv'ed msg from 6853
+msg src: 6853,  dest: 6752
+pid 6757 rcv'ed msg from 6853
+msg src: 6853,  dest: 6757
+pid 6798 rcv'ed msg from 6853
+msg src: 6853,  dest: 6798
+pid 6761 rcv'ed msg from 6853
+msg src: 6853,  dest: 6761
+pid 6825 rcv'ed msg from 6853
+msg src: 6853,  dest: 6825
+pid 6834 rcv'ed msg from 6852
+msg src: 6852,  dest: 6834
+pid 6834 rcv'ed msg from 6863
+msg src: 6863,  dest: 6834
+pid 6834 rcv'ed msg from 6853
+msg src: 6853,  dest: 6834
+pid 6837 rcv'ed msg from 6852
+msg src: 6852,  dest: 6837
+pid 6837 rcv'ed msg from 6863
+msg src: 6863,  dest: 6837
+pid 6837 rcv'ed msg from 6853
+msg src: 6853,  dest: 6837
+pid 6833 rcv'ed msg from 6863
+msg src: 6863,  dest: 6833
+pid 6833 rcv'ed msg from 6853
+msg src: 6853,  dest: 6833
+pid 6840 rcv'ed msg from 6863
+msg src: 6863,  dest: 6840
+pid 6791 rcv'ed msg from 6853
+msg src: 6853,  dest: 6791
+pid 6770 rcv'ed msg from 6853
+msg src: 6853,  dest: 6770
+pid 6794 rcv'ed msg from 6853
+msg src: 6853,  dest: 6794
+pid 6752 rcv'ed msg from 6853
+msg src: 6853,  dest: 6752
+pid 6808 rcv'ed msg from 6853
+msg src: 6853,  dest: 6808
+pid 6811 rcv'ed msg from 6853
+msg src: 6853,  dest: 6811
+pid 6811 rcv'ed msg from 6853
+msg src: 6853,  dest: 6811
+pid 6840 rcv'ed msg from 6853
+msg src: 6853,  dest: 6840
+pid 6823 rcv'ed msg from 6853
+msg src: 6853,  dest: 6823
+pid 6751 rcv'ed msg from 6853
+msg src: 6853,  dest: 6751
+pid 6823 rcv'ed msg from 6853
+msg src: 6853,  dest: 6823
+pid 6843 rcv'ed msg from 6852
+msg src: 6852,  dest: 6843
+pid 6781 rcv'ed msg from 6853
+msg src: 6853,  dest: 6781
+pid 6825 rcv'ed msg from 6853
+msg src: 6853,  dest: 6825
+pid 6822 rcv'ed msg from 6853
+msg src: 6853,  dest: 6822
+pid 6786 rcv'ed msg from 6853
+msg src: 6853,  dest: 6786
+pid 6839 rcv'ed msg from 6853
+msg src: 6853,  dest: 6839
+pid 6750 rcv'ed msg from 6853
+msg src: 6853,  dest: 6750
+pid 6813 rcv'ed msg from 6853
+msg src: 6853,  dest: 6813
+pid 6793 rcv'ed msg from 6853
+msg src: 6853,  dest: 6793
+starting tx pid 6846
+pid 6759 rcv'ed msg from 6853
+msg src: 6853,  dest: 6759
+pid 6800 rcv'ed msg from 6853
+msg src: 6853,  dest: 6800
+pid 6750 rcv'ed msg from 6853
+msg src: 6853,  dest: 6750
+pid 6816 rcv'ed msg from 6853
+msg src: 6853,  dest: 6816
+pid 6810 rcv'ed msg from 6863
+msg src: 6863,  dest: 6810
+pid 6791 rcv'ed msg from 6863
+msg src: 6863,  dest: 6791
+pid 6836 rcv'ed msg from 6853
+msg src: 6853,  dest: 6836
+pid 6836 rcv'ed msg from 6853
+msg src: 6853,  dest: 6836
+pid 6745 rcv'ed msg from 6863
+msg src: 6863,  dest: 6745
+pid 6755 rcv'ed msg from 6863
+msg src: 6863,  dest: 6755
+pid 6825 rcv'ed msg from 6853
+msg src: 6853,  dest: 6825
+pid 6794 rcv'ed msg from 6863
+msg src: 6863,  dest: 6794
+pid 6808 rcv'ed msg from 6863
+msg src: 6863,  dest: 6808
+pid 6812 rcv'ed msg from 6863
+msg src: 6863,  dest: 6812
+pid 6751 rcv'ed msg from 6863
+msg src: 6863,  dest: 6751
+pid 6806 rcv'ed msg from 6853
+msg src: 6853,  dest: 6806
+pid 6806 rcv'ed msg from 6853
+msg src: 6853,  dest: 6806
+pid 6781 rcv'ed msg from 6863
+msg src: 6863,  dest: 6781
+pid 6772 rcv'ed msg from 6863
+msg src: 6863,  dest: 6772
+pid 6789 rcv'ed msg from 6863
+msg src: 6863,  dest: 6789
+pid 6838 rcv'ed msg from 6853
+msg src: 6853,  dest: 6838
+pid 6838 rcv'ed msg from 6863
+msg src: 6863,  dest: 6838
+pid 6825 rcv'ed msg from 6863
+msg src: 6863,  dest: 6825
+pid 6822 rcv'ed msg from 6863
+msg src: 6863,  dest: 6822
+starting tx pid 6854
+pid 6786 rcv'ed msg from 6863
+msg src: 6863,  dest: 6786
+pid 6745 rcv'ed msg from 6863
+msg src: 6863,  dest: 6745
+pid 6750 rcv'ed msg from 6863
+msg src: 6863,  dest: 6750
+pid 6768 rcv'ed msg from 6854
+msg src: 6854,  dest: 6768
+pid 6780 rcv'ed msg from 6854
+msg src: 6854,  dest: 6780
+pid 6805 rcv'ed msg from 6854
+msg src: 6854,  dest: 6805
+pid 6825 rcv'ed msg from 6854
+msg src: 6854,  dest: 6825
+pid 6759 rcv'ed msg from 6854
+msg src: 6854,  dest: 6759
+pid 6802 rcv'ed msg from 6854
+msg src: 6854,  dest: 6802
+pid 6763 rcv'ed msg from 6854
+msg src: 6854,  dest: 6763
+pid 6763 rcv'ed msg from 6854
+msg src: 6854,  dest: 6763
+pid 6780 rcv'ed msg from 6854
+msg src: 6854,  dest: 6780
+pid 6798 rcv'ed msg from 6854
+msg src: 6854,  dest: 6798
+pid 6761 rcv'ed msg from 6854
+msg src: 6854,  dest: 6761
+pid 6797 rcv'ed msg from 6854
+msg src: 6854,  dest: 6797
+pid 6791 rcv'ed msg from 6854
+msg src: 6854,  dest: 6791
+pid 6749 rcv'ed msg from 6854
+msg src: 6854,  dest: 6749
+pid 6749 rcv'ed msg from 6854
+msg src: 6854,  dest: 6749
+pid 6757 rcv'ed msg from 6854
+msg src: 6854,  dest: 6757
+pid 6776 rcv'ed msg from 6854
+msg src: 6854,  dest: 6776
+pid 6772 rcv'ed msg from 6854
+msg src: 6854,  dest: 6772
+pid 6814 rcv'ed msg from 6854
+msg src: 6854,  dest: 6814
+pid 6810 rcv'ed msg from 6854
+msg src: 6854,  dest: 6810
+pid 6794 rcv'ed msg from 6854
+msg src: 6854,  dest: 6794
+pid 6753 rcv'ed msg from 6854
+msg src: 6854,  dest: 6753
+pid 6751 rcv'ed msg from 6854
+msg src: 6854,  dest: 6751
+pid 6825 rcv'ed msg from 6854
+msg src: 6854,  dest: 6825
+pid 6745 rcv'ed msg from 6854
+msg src: 6854,  dest: 6745
+pid 6790 rcv'ed msg from 6854
+msg src: 6854,  dest: 6790
+pid 6772 rcv'ed msg from 6854
+msg src: 6854,  dest: 6772
+pid 6825 rcv'ed msg from 6854
+msg src: 6854,  dest: 6825
+pid 6816 rcv'ed msg from 6854
+msg src: 6854,  dest: 6816
+pid 6839 rcv'ed msg from 6854
+msg src: 6854,  dest: 6839
+pid 6745 rcv'ed msg from 6854
+msg src: 6854,  dest: 6745
+pid 6813 rcv'ed msg from 6854
+msg src: 6854,  dest: 6813
+pid 6793 rcv'ed msg from 6854
+msg src: 6854,  dest: 6793
+pid 6759 rcv'ed msg from 6854
+msg src: 6854,  dest: 6759
+pid 6816 rcv'ed msg from 6854
+msg src: 6854,  dest: 6816
+pid 6759 rcv'ed msg from 6854
+msg src: 6854,  dest: 6759
+pid 6780 rcv'ed msg from 6854
+msg src: 6854,  dest: 6780
+pid 6800 rcv'ed msg from 6854
+msg src: 6854,  dest: 6800
+pid 6750 rcv'ed msg from 6854
+msg src: 6854,  dest: 6750
+pid 6773 rcv'ed msg from 6854
+msg src: 6854,  dest: 6773
+pid 6790 rcv'ed msg from 6854
+msg src: 6854,  dest: 6790
+pid 6826 rcv'ed msg from 6854
+msg src: 6854,  dest: 6826
+pid 6799 rcv'ed msg from 6854
+msg src: 6854,  dest: 6799
+pid 6808 rcv'ed msg from 6854
+msg src: 6854,  dest: 6808
+pid 6793 rcv'ed msg from 6854
+msg src: 6854,  dest: 6793
+pid 6764 rcv'ed msg from 6854
+msg src: 6854,  dest: 6764
+pid 6819 rcv'ed msg from 6854
+msg src: 6854,  dest: 6819
+pid 6794 rcv'ed msg from 6854
+msg src: 6854,  dest: 6794
+pid 6790 rcv'ed msg from 6854
+msg src: 6854,  dest: 6790
+pid 6761 rcv'ed msg from 6854
+msg src: 6854,  dest: 6761
+pid 6817 rcv'ed msg from 6854
+msg src: 6854,  dest: 6817
+pid 6835 rcv'ed msg from 6854
+msg src: 6854,  dest: 6835
+pid 6812 rcv'ed msg from 6854
+msg src: 6854,  dest: 6812
+pid 6829 rcv'ed msg from 6854
+msg src: 6854,  dest: 6829
+pid 6820 rcv'ed msg from 6863
+msg src: 6863,  dest: 6820
+pid 6820 rcv'ed msg from 6854
+msg src: 6854,  dest: 6820
+pid 6817 rcv'ed msg from 6854
+msg src: 6854,  dest: 6817
+pid 6826 rcv'ed msg from 6854
+msg src: 6854,  dest: 6826
+pid 6837 rcv'ed msg from 6854
+msg src: 6854,  dest: 6837
+pid 6771 rcv'ed msg from 6854
+msg src: 6854,  dest: 6771
+pid 6833 rcv'ed msg from 6854
+msg src: 6854,  dest: 6833
+pid 6837 rcv'ed msg from 6855
+msg src: 6855,  dest: 6837
+pid 6837 rcv'ed msg from 6866
+msg src: 6866,  dest: 6837
+pid 6826 rcv'ed msg from 6855
+msg src: 6855,  dest: 6826
+pid 6746 rcv'ed msg from 6855
+msg src: 6855,  dest: 6746
+pid 6841 rcv'ed msg from 6855
+msg src: 6855,  dest: 6841
+pid 6797 rcv'ed msg from 6855
+msg src: 6855,  dest: 6797
+c: 6855,  dest: 6816
+pid 6780 rcv'ed msg from 6866
+msg src: 6866,  dest: 6780
+pid 6797 rcv'ed msg from 6855
+msg src: 6855,  dest: 6797
+pid 6797 rcv'ed msg from 6866
+msg src: 6866,  dest: 6797
+pid 6802 rcv'ed msg from 6866
+msg src: 6866,  dest: 6802
+pid 6802 rcv'ed msg from 6855
+msg src: 6855,  dest: 6802
+pid 6764 rcv'ed msg from 6855
+msg src: 6855,  dest: 6764
+pid 6805 rcv'ed msg from 6855
+msg src: 6855,  dest: 6805
+pid 6759 rcv'ed msg from 6855
+msg src: 6855,  dest: 6759
+pid 6790 rcv'ed msg from 6855
+msg src: 6855,  dest: 6790
+pid 6798 rcv'ed msg from 6855
+msg src: 6855,  dest: 6798
+pid 6776 rcv'ed msg from 6855
+msg src: 6855,  dest: 6776
+pid 6757 rcv'ed msg from 6855
+msg src: 6855,  dest: 6757
+pid 6749 rcv'ed msg from 6855
+msg src: 6855,  dest: 6749
+pid 6781 rcv'ed msg from 6855
+msg src: 6855,  dest: 6781
+pid 6764 rcv'ed msg from 6866
+msg src: 6866,  dest: 6764
+pid 6805 rcv'ed msg from 6866
+msg src: 6866,  dest: 6805
+pid 6797 rcv'ed msg from 6855
+msg src: 6855,  dest: 6797
+pid 6794 rcv'ed msg from 6855
+msg src: 6855,  dest: 6794
+pid 6770 rcv'ed msg from 6855
+msg src: 6855,  dest: 6770
+pid 6755 rcv'ed msg from 6855
+msg src: 6855,  dest: 6755
+pid 6749 rcv'ed msg from 6855
+msg src: 6855,  dest: 6749
+pid 6753 rcv'ed msg from 6855
+msg src: 6855,  dest: 6753
+pid 6810 rcv'ed msg from 6855
+msg src: 6855,  dest: 6810
+pid 6826 rcv'ed msg from 6855
+msg src: 6855,  dest: 6826
+pid 6773 rcv'ed msg from 6855
+msg src: 6855,  dest: 6773
+pid 6790 rcv'ed msg from 6855
+msg src: 6855,  dest: 6790
+pid 6751 rcv'ed msg from 6855
+msg src: 6855,  dest: 6751
+pid 6826 rcv'ed msg from 6855
+msg src: 6855,  dest: 6826
+pid 6826 rcv'ed msg from 6855
+msg src: 6855,  dest: 6826
+pid 6746 rcv'ed msg from 6855
+msg src: 6855,  dest: 6746
+pid 6839 rcv'ed msg from 6855
+msg src: 6855,  dest: 6839
+pid 6813 rcv'ed msg from 6855
+msg src: 6855,  dest: 6813
+pid 6753 rcv'ed msg from 6855
+msg src: 6855,  dest: 6753
+pid 6759 rcv'ed msg from 6855
+msg src: 6855,  dest: 6759
+pid 6786 rcv'ed msg from 6855
+msg src: 6855,  dest: 6786
+pid 6812 rcv'ed msg from 6855
+msg src: 6855,  dest: 6812
+pid 6749 rcv'ed msg from 6866
+msg src: 6866,  dest: 6749
+pid 6809 rcv'ed msg from 6855
+msg src: 6855,  dest: 6809
+pid 6800 rcv'ed msg from 6855
+msg src: 6855,  dest: 6800
+pid 6781 rcv'ed msg from 6855
+msg src: 6855,  dest: 6781
+pid 6773 rcv'ed msg from 6855
+msg src: 6855,  dest: 6773
+pid 6809 rcv'ed msg from 6855
+msg src: 6855,  dest: 6809
+pid 6790 rcv'ed msg from 6855
+msg src: 6855,  dest: 6790
+pid 6826 rcv'ed msg from 6855
+msg src: 6855,  dest: 6826
+pid 6793 rcv'ed msg from 6855
+msg src: 6855,  dest: 6793
+pid 6799 rcv'ed msg from 6855
+msg src: 6855,  dest: 6799
+pid 6764 rcv'ed msg from 6855
+msg src: 6855,  dest: 6764
+pid 6817 rcv'ed msg from 6855
+msg src: 6855,  dest: 6817
+pid 6817 rcv'ed msg from 6855
+msg src: 6855,  dest: 6817
+pid 6817 rcv'ed msg from 6855
+msg src: 6855,  dest: 6817
+pid 6790 rcv'ed msg from 6866
+msg src: 6866,  dest: 6790
+pid 6819 rcv'ed msg from 6855
+msg src: 6855,  dest: 6819
+pid 6835 rcv'ed msg from 6855
+msg src: 6855,  dest: 6835
+pid 6839 rcv'ed msg from 6855
+msg src: 6855,  dest: 6839
+pid 6792 rcv'ed msg from 6855
+msg src: 6855,  dest: 6792
+pid 6809 rcv'ed msg from 6855
+msg src: 6855,  dest: 6809
+pid 6817 rcv'ed msg from 6855
+msg src: 6855,  dest: 6817
+pid 6826 rcv'ed msg from 6855
+msg src: 6855,  dest: 6826
+pid 6835 rcv'ed msg from 6855
+msg src: 6855,  dest: 6835
+pid 6795 rcv'ed msg from 6855
+msg src: 6855,  dest: 6795
+pid 6784 rcv'ed msg from 6855
+msg src: 6855,  dest: 6784
+pid 6781 rcv'ed msg from 6855
+msg src: 6855,  dest: 6781
+pid 6792 rcv'ed msg from 6855
+msg src: 6855,  dest: 6792
+pid 6764 rcv'ed msg from 6855
+msg src: 6855,  dest: 6764
+pid 6812 rcv'ed msg from 6855
+msg src: 6855,  dest: 6812
+pid 6829 rcv'ed msg from 6855
+msg src: 6855,  dest: 6829
+pid 6820 rcv'ed msg from 6855
+msg src: 6855,  dest: 6820
+pid 6786 rcv'ed msg from 6855
+msg src: 6855,  dest: 6786
+pid 6782 rcv'ed msg from 6855
+msg src: 6855,  dest: 6782
+pid 6769 rcv'ed msg from 6855
+msg src: 6855,  dest: 6769
+pid 6792 rcv'ed msg from 6855
+msg src: 6855,  dest: 6792
+pid 6792 rcv'ed msg from 6855
+msg src: 6855,  dest: 6792
+pid 6809 rcv'ed msg from 6855
+msg src: 6855,  dest: 6809
+pid 6786 rcv'ed msg from 6855
+msg src: 6855,  dest: 6786
+pid 6803 rcv'ed msg from 6855
+msg src: 6855,  dest: 6803
+pid 6826 rcv'ed msg from 6855
+msg src: 6855,  dest: 6826
+pid 6833 rcv'ed msg from 6854
+msg src: 6854,  dest: 6833
+pid 6833 rcv'ed msg from 6855
+msg src: 6855,  dest: 6833
+pid 6776 rcv'ed msg from 6855
+msg src: 6855,  dest: 6776
+pid 6769 rcv'ed msg from 6855
+msg src: 6855,  dest: 6769
+pid 6769 rcv'ed msg from 6855
+msg src: 6855,  dest: 6769
+pid 6809 rcv'ed msg from 6855
+msg src: 6855,  dest: 6809
+pid 6809 rcv'ed msg from 6855
+msg src: 6855,  dest: 6809
+pid 6746 rcv'ed msg from 6855
+msg src: 6855,  dest: 6746
+pid 6777 rcv'ed msg from 6855
+msg src: 6855,  dest: 6777
+pid 6782 rcv'ed msg from 6855
+msg src: 6855,  dest: 6782
+pid 6775 rcv'ed msg from 6855
+msg src: 6855,  dest: 6775
+pid 6775 rcv'ed msg from 6855
+msg src: 6855,  dest: 6775
+pid 6760 rcv'ed msg from 6855
+msg src: 6855,  dest: 6760
+pid 6760 rcv'ed msg from 6855
+msg src: 6855,  dest: 6760
+pid 6792 rcv'ed msg from 6855
+msg src: 6855,  dest: 6792
+pid 6792 rcv'ed msg from 6855
+msg src: 6855,  dest: 6792
+pid 6812 rcv'ed msg from 6855
+msg src: 6855,  dest: 6812
+pid 6812 rcv'ed msg from 6855
+msg src: 6855,  dest: 6812
+pid 6830 rcv'ed msg from 6855
+msg src: 6855,  dest: 6830
+pid 6842 rcv'ed msg from 6855
+msg src: 6855,  dest: 6842
+pid 6842 rcv'ed msg from 6855
+msg src: 6855,  dest: 6842
+pid 6818 rcv'ed msg from 6855
+msg src: 6855,  dest: 6818
+pid 6830 rcv'ed msg from 6855
+msg src: 6855,  dest: 6830
+pid 6770 rcv'ed msg from 6855
+msg src: 6855,  dest: 6770
+pid 6830 rcv'ed msg from 6855
+msg src: 6855,  dest: 6830
+pid 6818 rcv'ed msg from 6855
+msg src: 6855,  dest: 6818
+pid 6827 rcv'ed msg from 6855
+msg src: 6855,  dest: 6827
+pid 6827 rcv'ed msg from 6855
+msg src: 6855,  dest: 6827
+pid 6828 rcv'ed msg from 6855
+msg src: 6855,  dest: 6828
+pid 6827 rcv'ed msg from 6855
+msg src: 6855,  dest: 6827
+pid 6828 rcv'ed msg from 6855
+msg src: 6855,  dest: 6828
+pid 6753 rcv'ed msg from 6855
+msg src: 6855,  dest: 6753
+pid 6818 rcv'ed msg from 6855
+msg src: 6855,  dest: 6818
+pid 6841 rcv'ed msg from 6855
+msg src: 6855,  dest: 6841
+pid 6843 rcv'ed msg from 6855
+msg src: 6855,  dest: 6843
+pid 6843 rcv'ed msg from 6866
+msg src: 6866,  dest: 6843
+pid 6785 rcv'ed msg from 6855
+msg src: 6855,  dest: 6785
+pid 6842 rcv'ed msg from 6855
+msg src: 6855,  dest: 6842
+pid 6769 rcv'ed msg from 6855
+msg src: 6855,  dest: 6769
+pid 6792 rcv'ed msg from 6855
+msg src: 6855,  dest: 6792
+pid 6792 rcv'ed msg from 6855
+msg src: 6855,  dest: 6792
+pid 6801 rcv'ed msg from 6855
+msg src: 6855,  dest: 6801
+pid 6832 rcv'ed msg from 6855
+msg src: 6855,  dest: 6832
+pid 6765 rcv'ed msg from 6855
+msg src: 6855,  dest: 6765
+pid 6828 rcv'ed msg from 6855
+msg src: 6855,  dest: 6828
+pid 6760 rcv'ed msg from 6855
+msg src: 6855,  dest: 6760
+pid 6765 rcv'ed msg from 6855
+msg src: 6855,  dest: 6765
+pid 6792 rcv'ed msg from 6855
+msg src: 6855,  dest: 6792
+pid 6818 rcv'ed msg from 6855
+msg src: 6855,  dest: 6818
+pid 6774 rcv'ed msg from 6855
+msg src: 6855,  dest: 6774
+pid 6753 rcv'ed msg from 6855
+msg src: 6855,  dest: 6753
+pid 6819 rcv'ed msg from 6855
+msg src: 6855,  dest: 6819
+pid 6766 rcv'ed msg from 6855
+msg src: 6855,  dest: 6766
+pid 6753 rcv'ed msg from 6855
+msg src: 6855,  dest: 6753
+pid 6774 rcv'ed msg from 6855
+msg src: 6855,  dest: 6774
+pid 6747 rcv'ed msg from 6855
+msg src: 6855,  dest: 6747
+pid 6819 rcv'ed msg from 6855
+msg src: 6855,  dest: 6819
+pid 6795 rcv'ed msg from 6855
+msg src: 6855,  dest: 6795
+pid 6804 rcv'ed msg from 6855
+msg src: 6855,  dest: 6804
+pid 6767 rcv'ed msg from 6855
+msg src: 6855,  dest: 6767
+pid 6766 rcv'ed msg from 6855
+msg src: 6855,  dest: 6766
+pid 6755 rcv'ed msg from 6855
+msg src: 6855,  dest: 6755
+pid 6819 rcv'ed msg from 6855
+msg src: 6855,  dest: 6819
+pid 6787 rcv'ed msg from 6855
+msg src: 6855,  dest: 6787
+pid 6771 rcv'ed msg from 6855
+msg src: 6855,  dest: 6771
+pid 6799 rcv'ed msg from 6855
+msg src: 6855,  dest: 6799
+pid 6753 rcv'ed msg from 6855
+msg src: 6855,  dest: 6753
+pid 6771 rcv'ed msg from 6855
+msg src: 6855,  dest: 6771
+pid 6804 rcv'ed msg from 6855
+msg src: 6855,  dest: 6804
+pid 6771 rcv'ed msg from 6855
+msg src: 6855,  dest: 6771
+pid 6766 rcv'ed msg from 6855
+msg src: 6855,  dest: 6766
+pid 6774 rcv'ed msg from 6855
+msg src: 6855,  dest: 6774
+pid 6798 rcv'ed msg from 6855
+msg src: 6855,  dest: 6798
+pid 6795 rcv'ed msg from 6855
+msg src: 6855,  dest: 6795
+pid 6785 rcv'ed msg from 6855
+msg src: 6855,  dest: 6785
+pid 6819 rcv'ed msg from 6855
+msg src: 6855,  dest: 6819
+pid 6819 rcv'ed msg from 6855
+msg src: 6855,  dest: 6819
+pid 6803 rcv'ed msg from 6855
+msg src: 6855,  dest: 6803
+pid 6803 rcv'ed msg from 6855
+msg src: 6855,  dest: 6803
+pid 6821 rcv'ed msg from 6855
+msg src: 6855,  dest: 6821
+pid 6821 rcv'ed msg from 6855
+msg src: 6855,  dest: 6821
+pid 6842 rcv'ed msg from 6855
+msg src: 6855,  dest: 6842
+pid 6832 rcv'ed msg from 6855
+msg src: 6855,  dest: 6832
+pid 6832 rcv'ed msg from 6855
+msg src: 6855,  dest: 6832
+pid 6828 rcv'ed msg from 6855
+msg src: 6855,  dest: 6828
+pid 6828 rcv'ed msg from 6855
+msg src: 6855,  dest: 6828
+pid 6828 rcv'ed msg from 6855
+msg src: 6855,  dest: 6828
+pid 6766 rcv'ed msg from 6855
+msg src: 6855,  dest: 6766
+pid 6798 rcv'ed msg from 6855
+msg src: 6855,  dest: 6798
+pid 6832 rcv'ed msg from 6855
+msg src: 6855,  dest: 6832
+pid 6841 rcv'ed msg from 6855
+msg src: 6855,  dest: 6841
+pid 6841 rcv'ed msg from 6855
+msg src: 6855,  dest: 6841
+pid 6841 rcv'ed msg from 6855
+msg src: 6855,  dest: 6841
+pid 6801 rcv'ed msg from 6855
+msg src: 6855,  dest: 6801
+pid 6844 rcv'ed msg from 6855
+msg src: 6855,  dest: 6844
+pid 6771 rcv'ed msg from 6855
+msg src: 6855,  dest: 6771
+pid 6766 rcv'ed msg from 6855
+msg src: 6855,  dest: 6766
+pid 6766 rcv'ed msg from 6855
+msg src: 6855,  dest: 6766
+pid 6804 rcv'ed msg from 6855
+msg src: 6855,  dest: 6804
+pid 6821 rcv'ed msg from 6855
+msg src: 6855,  dest: 6821
+pid 6821 rcv'ed msg from 6855
+msg src: 6855,  dest: 6821
+pid 6766 rcv'ed msg from 6855
+msg src: 6855,  dest: 6766
+pid 6832 rcv'ed msg from 6855
+msg src: 6855,  dest: 6832
+pid 6787 rcv'ed msg from 6855
+msg src: 6855,  dest: 6787
+pid 6841 rcv'ed msg from 6855
+msg src: 6855,  dest: 6841
+pid 6841 rcv'ed msg from 6855
+msg src: 6855,  dest: 6841
+pid 6746 rcv'ed msg from 6855
+msg src: 6855,  dest: 6746
+pid 6795 rcv'ed msg from 6855
+msg src: 6855,  dest: 6795
+pid 6821 rcv'ed msg from 6855
+msg src: 6855,  dest: 6821
+pid 6834 rcv'ed msg from 6855
+msg src: 6855,  dest: 6834
+pid 6834 rcv'ed msg from 6866
+msg src: 6866,  dest: 6834
+pid 6834 rcv'ed msg from 6855
+msg src: 6855,  dest: 6834
+pid 6755 rcv'ed msg from 6846
+msg src: 6846,  dest: 6755
+pid 6782 rcv'ed msg from 6846
+msg src: 6846,  dest: 6782
+pid 6821 rcv'ed msg from 6855
+msg src: 6855,  dest: 6821
+pid 6766 rcv'ed msg from 6855
+msg src: 6855,  dest: 6766
+pid 6746 rcv'ed msg from 6846
+msg src: 6846,  dest: 6746
+pid 6795 rcv'ed msg from 6855
+msg src: 6855,  dest: 6795
+pid 6754 rcv'ed msg from 6855
+msg src: 6855,  dest: 6754
+pid 6766 rcv'ed msg from 6855
+msg src: 6855,  dest: 6766
+pid 6782 rcv'ed msg from 6855
+msg src: 6855,  dest: 6782
+pid 6821 rcv'ed msg from 6855
+msg src: 6855,  dest: 6821
+pid 6754 rcv'ed msg from 6855
+msg src: 6855,  dest: 6754
+pid 6771 rcv'ed msg from 6855
+msg src: 6855,  dest: 6771
+pid 6747 rcv'ed msg from 6855
+msg src: 6855,  dest: 6747
+pid 6795 rcv'ed msg from 6855
+msg src: 6855,  dest: 6795
+pid 6829 rcv'ed msg from 6855
+msg src: 6855,  dest: 6829
+pid 6841 rcv'ed msg from 6846
+msg src: 6846,  dest: 6841
+pid 6829 rcv'ed msg from 6855
+msg src: 6855,  dest: 6829
+pid 6829 rcv'ed msg from 6855
+msg src: 6855,  dest: 6829
+pid 6835 rcv'ed msg from 6855
+msg src: 6855,  dest: 6835
+pid 6754 rcv'ed msg from 6846
+msg src: 6846,  dest: 6754
+pid 6777 rcv'ed msg from 6855
+msg src: 6855,  dest: 6777
+pid 6767 rcv'ed msg from 6855
+msg src: 6855,  dest: 6767
+pid 6754 rcv'ed msg from 6855
+msg src: 6855,  dest: 6754
+pid 6801 rcv'ed msg from 6855
+msg src: 6855,  dest: 6801
+pid 6782 rcv'ed msg from 6855
+msg src: 6855,  dest: 6782
+pid 6767 rcv'ed msg from 6855
+msg src: 6855,  dest: 6767
+pid 6778 rcv'ed msg from 6855
+msg src: 6855,  dest: 6778
+pid 6754 rcv'ed msg from 6855
+msg src: 6855,  dest: 6754
+pid 6782 rcv'ed msg from 6855
+msg src: 6855,  dest: 6782
+pid 6767 rcv'ed msg from 6855
+msg src: 6855,  dest: 6767
+pid 6767 rcv'ed msg from 6855
+msg src: 6855,  dest: 6767
+pid 6767 rcv'ed msg from 6855
+msg src: 6855,  dest: 6767
+pid 6800 rcv'ed msg from 6855
+msg src: 6855,  dest: 6800
+pid 6800 rcv'ed msg from 6855
+msg src: 6855,  dest: 6800
+pid 6771 rcv'ed msg from 6855
+msg src: 6855,  dest: 6771
+pid 6747 rcv'ed msg from 6855
+msg src: 6855,  dest: 6747
+pid 6747 rcv'ed msg from 6855
+msg src: 6855,  dest: 6747
+pid 6754 rcv'ed msg from 6855
+msg src: 6855,  dest: 6754
+pid 6754 rcv'ed msg from 6855
+msg src: 6855,  dest: 6754
+pid 6754 rcv'ed msg from 6855
+msg src: 6855,  dest: 6754
+pid 6801 rcv'ed msg from 6855
+msg src: 6855,  dest: 6801
+pid 6767 rcv'ed msg from 6855
+msg src: 6855,  dest: 6767
+pid 6832 rcv'ed msg from 6855
+msg src: 6855,  dest: 6832
+pid 6787 rcv'ed msg from 6855
+msg src: 6855,  dest: 6787
+pid 6835 rcv'ed msg from 6855
+msg src: 6855,  dest: 6835
+pid 6803 rcv'ed msg from 6855
+msg src: 6855,  dest: 6803
+pid 6842 rcv'ed msg from 6855
+msg src: 6855,  dest: 6842
+pid 6783 rcv'ed msg from 6855
+msg src: 6855,  dest: 6783
+pid 6803 rcv'ed msg from 6855
+msg src: 6855,  dest: 6803
+pid 6755 rcv'ed msg from 6855
+msg src: 6855,  dest: 6755
+pid 6804 rcv'ed msg from 6855
+msg src: 6855,  dest: 6804
+pid 6774 rcv'ed msg from 6855
+msg src: 6855,  dest: 6774
+pid 6787 rcv'ed msg from 6855
+msg src: 6855,  dest: 6787
+pid 6785 rcv'ed msg from 6855
+msg src: 6855,  dest: 6785
+pid 6800 rcv'ed msg from 6855
+msg src: 6855,  dest: 6800
+pid 6777 rcv'ed msg from 6855
+msg src: 6855,  dest: 6777
+pid 6774 rcv'ed msg from 6855
+msg src: 6855,  dest: 6774
+pid 6785 rcv'ed msg from 6855
+msg src: 6855,  dest: 6785
+pid 6782 rcv'ed msg from 6855
+msg src: 6855,  dest: 6782
+pid 6782 rcv'ed msg from 6855
+msg src: 6855,  dest: 6782
+pid 6774 rcv'ed msg from 6855
+msg src: 6855,  dest: 6774
+pid 6747 rcv'ed msg from 6855
+msg src: 6855,  dest: 6747
+pid 6747 rcv'ed msg from 6855
+msg src: 6855,  dest: 6747
+pid 6747 rcv'ed msg from 6855
+msg src: 6855,  dest: 6747
+pid 6801 rcv'ed msg from 6855
+msg src: 6855,  dest: 6801
+pid 6804 rcv'ed msg from 6855
+msg src: 6855,  dest: 6804
+pid 6801 rcv'ed msg from 6855
+msg src: 6855,  dest: 6801
+pid 6777 rcv'ed msg from 6855
+msg src: 6855,  dest: 6777
+pid 6777 rcv'ed msg from 6855
+msg src: 6855,  dest: 6777
+pid 6801 rcv'ed msg from 6855
+msg src: 6855,  dest: 6801
+pid 6778 rcv'ed msg from 6855
+msg src: 6855,  dest: 6778
+pid 6777 rcv'ed msg from 6855
+msg src: 6855,  dest: 6777
+pid 6777 rcv'ed msg from 6855
+msg src: 6855,  dest: 6777
+pid 6842 rcv'ed msg from 6855
+msg src: 6855,  dest: 6842
+pid 6838 rcv'ed msg from 6855
+msg src: 6855,  dest: 6838
+pid 6838 rcv'ed msg from 6855
+msg src: 6855,  dest: 6838
+pid 6829 rcv'ed msg from 6855
+msg src: 6855,  dest: 6829
+pid 6829 rcv'ed msg from 6855
+msg src: 6855,  dest: 6829
+pid 6829 rcv'ed msg from 6855
+msg src: 6855,  dest: 6829
+pid 6829 rcv'ed msg from 6855
+msg src: 6855,  dest: 6829
+pid 6844 rcv'ed msg from 6855
+msg src: 6855,  dest: 6844
+pid 6844 rcv'ed msg from 6855
+msg src: 6855,  dest: 6844
+pid 6804 rcv'ed msg from 6846
+msg src: 6846,  dest: 6804
+pid 6804 rcv'ed msg from 6846
+msg src: 6846,  dest: 6804
+pid 6804 rcv'ed msg from 6846
+msg src: 6846,  dest: 6804
+starting tx pid 6856
+pid 6783 rcv'ed msg from 6846
+msg src: 6846,  dest: 6783
+pid 6784 rcv'ed msg from 6846
+msg src: 6846,  dest: 6784
+pid 6783 rcv'ed msg from 6846
+msg src: 6846,  dest: 6783
+pid 6787 rcv'ed msg from 6846
+msg src: 6846,  dest: 6787
+pid 6778 rcv'ed msg from 6846
+msg src: 6846,  dest: 6778
+pid 6783 rcv'ed msg from 6856
+msg src: 6856,  dest: 6783
+pid 6778 rcv'ed msg from 6846
+msg src: 6846,  dest: 6778
+pid 6783 rcv'ed msg from 6856
+msg src: 6856,  dest: 6783
+pid 6784 rcv'ed msg from 6856
+msg src: 6856,  dest: 6784
+pid 6778 rcv'ed msg from 6856
+msg src: 6856,  dest: 6778
+pid 6783 rcv'ed msg from 6856
+msg src: 6856,  dest: 6783
+pid 6784 rcv'ed msg from 6856
+msg src: 6856,  dest: 6784
+pid 6784 rcv'ed msg from 6856
+msg src: 6856,  dest: 6784
+pid 6784 rcv'ed msg from 6856
+msg src: 6856,  dest: 6784
+pid 6784 rcv'ed msg from 6856
+msg src: 6856,  dest: 6784
+pid 6784 rcv'ed msg from 6856
+msg src: 6856,  dest: 6784
+pid 6784 rcv'ed msg from 6856
+msg src: 6856,  dest: 6784
+pid 6787 rcv'ed msg from 6856
+msg src: 6856,  dest: 6787
+pid 6787 rcv'ed msg from 6856
+msg src: 6856,  dest: 6787
+pid 6787 rcv'ed msg from 6856
+msg src: 6856,  dest: 6787
+starting tx pid 6857
+pid 6844 rcv'ed msg from 6856
+msg src: 6856,  dest: 6844
+pid 6844 rcv'ed msg from 6856
+msg src: 6856,  dest: 6844
+pid 6844 rcv'ed msg from 6856
+msg src: 6856,  dest: 6844
+pid 6844 rcv'ed msg from 6856
+msg src: 6856,  dest: 6844
+starting tx pid 6858
+starting tx pid 6859
+starting tx pid 6860
+starting tx pid 6868
+starting tx pid 6861
+starting tx pid 6862
+starting tx pid 6851
+starting tx pid 6864
+starting tx pid 6872
+starting tx pid 6850
+starting tx pid 6874
+starting tx pid 6876
+starting tx pid 6865
+starting tx pid 6878
+starting tx pid 6880
+starting tx pid 6881
+starting tx pid 6847
+starting tx pid 6882
+starting tx pid 6867
+starting tx pid 6883
+starting tx pid 6849
+starting tx pid 6884
+starting tx pid 6869
+starting tx pid 6886
+starting tx pid 6871
+starting tx pid 6888
+starting tx pid 6873
+starting tx pid 6889
+starting tx pid 6891
+starting tx pid 6875
+starting tx pid 6892
+starting tx pid 6877
+starting tx pid 6893
+starting tx pid 6895
+starting tx pid 6879
+starting tx pid 6896
+starting tx pid 6885
+starting tx pid 6887
+starting tx pid 6890
+starting tx pid 6894
+starting tx pid 6897
+starting tx pid 6899
+starting tx pid 6900
+starting tx pid 6901
+starting tx pid 6902
+starting tx pid 6903
+starting tx pid 6904
+starting tx pid 6905
+starting tx pid 6906
+starting tx pid 6907
+waiting for kids level 0
+starting tx pid 6909
+starting tx pid 6908
+starting tx pid 6911
+starting tx pid 6910
+starting tx pid 6912
+starting tx pid 6914
+starting tx pid 6915
+starting tx pid 6916
+starting tx pid 6918
+starting tx pid 6917
+starting tx pid 6920
+starting tx pid 6919
+starting tx pid 6922
+starting tx pid 6923
+starting tx pid 6925
+starting tx pid 6924
+starting tx pid 6927
+starting tx pid 6921
+starting tx pid 6929
+starting tx pid 6926
+starting tx pid 6931
+starting tx pid 6928
+starting tx pid 6934
+starting tx pid 6930
+starting tx pid 6936
+starting tx pid 6935
+starting tx pid 6944
+starting tx pid 6932
+starting tx pid 6939
+starting tx pid 6933
+starting tx pid 6941
+starting tx pid 6937
+starting tx pid 6942
+starting tx pid 6943
+starting tx pid 6940
+starting tx pid 6938
+starting tx pid 6898
+kids completed
+
+TEST PASSED
+

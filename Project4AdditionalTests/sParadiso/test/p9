@@ -1,0 +1,12 @@
+
+
+ -- Susan Paradiso --
+
+TEST: verify zero-length msg works 
+Parent sent zero length msg
+waiting for kids level 0
+pid 6492 rcv'ed 0 length msg 
+kids completed
+
+TEST PASSED
+

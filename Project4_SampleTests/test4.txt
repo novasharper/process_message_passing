@@ -1,0 +1,63 @@
+Alfredo Porras
+July 12th, 2011
+CS 3013
+Project 4 - Output from testmailbox4
+
+PID of the parent is 4489.
+PID of the child is 4490.
+
+-------------------------------------------------
+Creating not a kernel thread.
+It's a new process.
+Mailbox allocated for 4489.
+Creating not a kernel thread.
+It's a new process.
+Mailbox allocated for 4490.
+4489 Trying to send a message to 4490.
+4489 Target 4490 found.
+4489 Got mailbox_lock from 4490.
+4490 POINTED 1
+4489 Cache space allocated.
+4489 Struct created.
+4489 Mailbox 4490 is NOT full.
+4489 Got spin_lock from 4490.
+4489 Message enqueued for 4490 <----------------------- Message sent
+4489 Gave up spin_lock from 4490.
+4490 POINTED 0
+4489 Trying to send a message to 4490.
+4489 Target 4490 found.
+4489 Got mailbox_lock from 4490.
+4490 POINTED 1
+4489 Cache space allocated.
+4489 Struct created.
+4489 Mailbox 4490 is NOT full.
+4489 Got spin_lock from 4490.
+4489 Message enqueued for 4490 <----------------------- Message sent
+4489 Gave up spin_lock from 4490.
+4490 POINTED 0
+4490 Acquired my own mailbox_lock.
+4490 Group is dead, deleting mailbox.
+4490 Mailbox stopped.
+4490 MAILBOX STOPPED.
+4490 No processes in the mailbox.
+4490 Queue lock acquired.
+4490 Message in queue.
+4490 deletingMessage = currentMessage;
+4490 About to free message space.
+4490 Message flushed.<--------------------------------- Message flushed
+4490 Message in queue.
+4490 deletingMessage = currentMessage;
+4490 About to free message space.
+4490 Message flushed. <-------------------------------- Message flushed
+4490 No more messages in queue.
+4490 Queue lock released.
+Mailbox freed.
+4489 Acquired my own mailbox_lock.
+4489 Group is dead, deleting mailbox.
+4489 Mailbox stopped.
+4489 MAILBOX STOPPED.
+4489 No processes in the mailbox.
+4489 Queue lock acquired.
+4489 No more messages in queue.
+4489 Queue lock released.
+Mailbox freed.

@@ -1,0 +1,76 @@
+
+
+ -- Susan Paradiso --
+
+TEST: verify send-full, receive-empty 
+RcvMsg, expected and got err MAILBOX_EMPTY (1002)
+SendMsg, expected and got err MAILBOX_FULL (1001) 
+Filled mbox 32
+pid 6482 rcv'ed msg from 6482
+self-msg #0
+pid 6482 rcv'ed msg from 6482
+self-msg #1
+pid 6482 rcv'ed msg from 6482
+self-msg #2
+pid 6482 rcv'ed msg from 6482
+self-msg #3
+pid 6482 rcv'ed msg from 6482
+self-msg #4
+pid 6482 rcv'ed msg from 6482
+self-msg #5
+pid 6482 rcv'ed msg from 6482
+self-msg #6
+pid 6482 rcv'ed msg from 6482
+self-msg #7
+pid 6482 rcv'ed msg from 6482
+self-msg #8
+pid 6482 rcv'ed msg from 6482
+self-msg #9
+pid 6482 rcv'ed msg from 6482
+self-msg #10
+pid 6482 rcv'ed msg from 6482
+self-msg #11
+pid 6482 rcv'ed msg from 6482
+self-msg #12
+pid 6482 rcv'ed msg from 6482
+self-msg #13
+pid 6482 rcv'ed msg from 6482
+self-msg #14
+pid 6482 rcv'ed msg from 6482
+self-msg #15
+pid 6482 rcv'ed msg from 6482
+self-msg #16
+pid 6482 rcv'ed msg from 6482
+self-msg #17
+pid 6482 rcv'ed msg from 6482
+self-msg #18
+pid 6482 rcv'ed msg from 6482
+self-msg #19
+pid 6482 rcv'ed msg from 6482
+self-msg #20
+pid 6482 rcv'ed msg from 6482
+self-msg #21
+pid 6482 rcv'ed msg from 6482
+self-msg #22
+pid 6482 rcv'ed msg from 6482
+self-msg #23
+pid 6482 rcv'ed msg from 6482
+self-msg #24
+pid 6482 rcv'ed msg from 6482
+self-msg #25
+pid 6482 rcv'ed msg from 6482
+self-msg #26
+pid 6482 rcv'ed msg from 6482
+self-msg #27
+pid 6482 rcv'ed msg from 6482
+self-msg #28
+pid 6482 rcv'ed msg from 6482
+self-msg #29
+pid 6482 rcv'ed msg from 6482
+self-msg #30
+pid 6482 rcv'ed msg from 6482
+self-msg #31
+RcvMsg, expected and got err MAILBOX_EMPTY (1002)
+
+TEST PASSED
+

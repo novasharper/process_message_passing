@@ -1,0 +1,14 @@
+
+
+ -- Susan Paradiso --
+
+TEST: verify send-full with child 
+Mailbox full 
+pid 6486 rcv'ed msg from 6487
+child->parent msg 0
+waiting for kids level 0
+SendMsg, expected and got err MAILBOX_FULL (1001) 
+kids completed
+
+TEST PASSED
+

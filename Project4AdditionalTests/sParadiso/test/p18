@@ -1,0 +1,174 @@
+
+
+ -- Susan Paradiso --
+
+TEST: verify multiple ManageMailbox(stop)
+Issued ManageMailbox(stop)
+Issued ManageMailbox(stop)
+Issued ManageMailbox(stop)
+Issued ManageMailbox(stop)
+Issued ManageMailbox(stop)
+Issued ManageMailbox(stop)
+Issued ManageMailbox(stop)
+Issued ManageMailbox(stop)
+Issued ManageMailbox(stop)
+Issued ManageMailbox(stop)
+Issued ManageMailbox(stop)
+Issued ManageMailbox(stop)
+Issued ManageMailbox(stop)
+Issued ManageMailbox(stop)
+Issued ManageMailbox(stop)
+Issued ManageMailbox(stop)
+Issued ManageMailbox(stop)
+Issued ManageMailbox(stop)
+Issued ManageMailbox(stop)
+Issued ManageMailbox(stop)
+Issued ManageMailbox(stop)
+Issued ManageMailbox(stop)
+Issued ManageMailbox(stop)
+Issued ManageMailbox(stop)
+Issued ManageMailbox(stop)
+Issued ManageMailbox(stop)
+Issued ManageMailbox(stop)
+Issued ManageMailbox(stop)
+Issued ManageMailbox(stop)
+Issued ManageMailbox(stop)
+Issued ManageMailbox(stop)
+Issued ManageMailbox(stop)
+Issued ManageMailbox(stop)
+Issued ManageMailbox(stop)
+Issued ManageMailbox(stop)
+Issued ManageMailbox(stop)
+Issued ManageMailbox(stop)
+Issued ManageMailbox(stop)
+Issued ManageMailbox(stop)
+Issued ManageMailbox(stop)
+Issued ManageMailbox(stop)
+Issued ManageMailbox(stop)
+waiting for kids level 0
+Issued ManageMailbox(stop)
+pid 7371 rcv'ed msg from 7273
+message
+pid 7371 rcv'ed msg from 7273
+message
+Issued ManageMailbox(stop)
+pid 7456 rcv'ed msg from 7273
+message
+pid 7456 rcv'ed msg from 7273
+message
+Issued ManageMailbox(stop)
+pid 7457 rcv'ed msg from 7273
+message
+pid 7457 rcv'ed msg from 7273
+message
+Issued ManageMailbox(stop)
+pid 7458 rcv'ed msg from 7273
+message
+pid 7458 rcv'ed msg from 7273
+message
+Issued ManageMailbox(stop)
+pid 7459 rcv'ed msg from 7273
+message
+pid 7459 rcv'ed msg from 7273
+message
+Issued ManageMailbox(stop)
+pid 7460 rcv'ed msg from 7273
+message
+pid 7460 rcv'ed msg from 7273
+message
+Issued ManageMailbox(stop)
+pid 7461 rcv'ed msg from 7273
+message
+pid 7461 rcv'ed msg from 7273
+message
+Issued ManageMailbox(stop)
+pid 7462 rcv'ed msg from 7273
+message
+pid 7462 rcv'ed msg from 7273
+message
+Issued ManageMailbox(stop)
+pid 7463 rcv'ed msg from 7273
+message
+pid 7463 rcv'ed msg from 7273
+message
+Issued ManageMailbox(stop)
+pid 7464 rcv'ed msg from 7273
+message
+pid 7464 rcv'ed msg from 7273
+message
+Issued ManageMailbox(stop)
+pid 7465 rcv'ed msg from 7273
+message
+pid 7465 rcv'ed msg from 7273
+message
+Issued ManageMailbox(stop)
+pid 7466 rcv'ed msg from 7273
+message
+pid 7466 rcv'ed msg from 7273
+message
+Issued ManageMailbox(stop)
+pid 7467 rcv'ed msg from 7273
+message
+pid 7467 rcv'ed msg from 7273
+message
+Issued ManageMailbox(stop)
+pid 7468 rcv'ed msg from 7273
+message
+pid 7468 rcv'ed msg from 7273
+message
+Issued ManageMailbox(stop)
+pid 7455 rcv'ed msg from 7273
+message
+pid 7455 rcv'ed msg from 7273
+message
+Issued ManageMailbox(stop)
+pid 7469 rcv'ed msg from 7273
+message
+pid 7469 rcv'ed msg from 7273
+message
+Issued ManageMailbox(stop)
+Issued ManageMailbox(stop)
+Issued ManageMailbox(stop)
+Issued ManageMailbox(stop)
+Issued ManageMailbox(stop)
+Issued ManageMailbox(stop)
+Issued ManageMailbox(stop)
+Issued ManageMailbox(stop)
+Issued ManageMailbox(stop)
+Issued ManageMailbox(stop)
+Issued ManageMailbox(stop)
+Issued ManageMailbox(stop)
+Issued ManageMailbox(stop)
+Issued ManageMailbox(stop)
+Issued ManageMailbox(stop)
+Issued ManageMailbox(stop)
+Issued ManageMailbox(stop)
+Issued ManageMailbox(stop)
+Issued ManageMailbox(stop)
+Issued ManageMailbox(stop)
+Issued ManageMailbox(stop)
+Issued ManageMailbox(stop)
+Issued ManageMailbox(stop)
+Issued ManageMailbox(stop)
+Issued ManageMailbox(stop)
+Issued ManageMailbox(stop)
+Issued ManageMailbox(stop)
+Issued ManageMailbox(stop)
+Issued ManageMailbox(stop)
+Issued ManageMailbox(stop)
+Issued ManageMailbox(stop)
+Issued ManageMailbox(stop)
+Issued ManageMailbox(stop)
+Issued ManageMailbox(stop)
+Issued ManageMailbox(stop)
+Issued ManageMailbox(stop)
+Issued ManageMailbox(stop)
+Issued ManageMailbox(stop)
+Issued ManageMailbox(stop)
+Issued ManageMailbox(stop)
+Issued ManageMailbox(stop)
+Issued ManageMailbox(stop)
+kids completed
+
+TEST PASSED
+
