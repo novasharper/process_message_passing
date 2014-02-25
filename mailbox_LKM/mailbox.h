@@ -11,7 +11,6 @@
 #include <stdbool.h>
 #include <linux/types.h>
 #include "uthash.h"
-#include <pthread.h>
 
 #define NO_BLOCK 0
 #define BLOCK   1

@@ -22,10 +22,62 @@ void create_mailbox(pid_t proc_id) {
 Message *create_message(pid_t proc_id) {
 	Mailbox *mailbox = get_mailbox(proc_id);
 	Message *new_message = (Message *) kmem_cache_alloc(mailbox->mem_cache, GFP_KERNEL);
+	new_message->next = NULL;
 	return new_message;
 }
 
-void destoroy_message(pid_t proc_id, Message *to_delete) {
+void append_message(pid_t proc_id, Message *message) {
+	Mailbox *mailbox = get_mailbox(proc_id);
+	
+	wait_queue_t wait;
+
+	init_waitqueue_entry(&wait, current);
+	current->state = TASK_INTERRUPTIBLE;
+
+	add_wait_queue(mailbox->write_queue, &wait);
+	
+	if(mailbox->tail == NULL) {
+		message->dirty = TRUE;
+		mailbox->head = message;
+		mailbox->tail = message;
+		message->dirty = FALSE;
+	}
+	else {
+		mailbox->tail->dirty = TRUE;
+		mailbox->tail->next = message;
+		mailbox->tail->dirty = FALSE;
+	}
+
+	remove_wait_queue(mailbox->write_queue, &wait);
+}
+
+Message *get_message(pid_t proc_id) {
+	Mailbox *mailbox = get_mailbox(proc_id);
+	
+	wait_queue_t wait;
+
+	init_waitqueue_entry(&wait, current);
+	current->state = TASK_INTERRUPTIBLE;
+
+	add_wait_queue(mailbox->read_queue, &wait);
+	
+	// Wait until there are messages
+	while(mailbox->head == NULL) usleep(1);
+
+	Message *message = mailbox->head;
+	Message *next = head->next;
+	// Wait to make sure that the current node is not being modified
+	usleep(1);
+	while(message->dirty) usleep(1);
+	// Remove node from queue
+	message->next = NULL;
+	mailbox->start = next;
+	if(mailbox->start == NULL) mailbox->tail = NULL;
+	remove_wait_queue(mailbox->read_queue, &wait);
+	return message;
+}
+
+void destroy_message(pid_t proc_id, Message *to_delete) {
 	Mailbox *mailbox = get_mailbox(proc_id);
 	kmem_cache_free(mailbox->mem_cache, to_delete);
 }
