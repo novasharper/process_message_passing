@@ -6,7 +6,7 @@
 // int kmem_cache_destroy(kmem_cache_t* cachep)
 
 void init_mailboxes(void) {
-	// Create hash table
+	mailboxes = ht_init(32, NULL);
 }
 
 void create_mailbox(pid_t proc_id) {
@@ -15,7 +15,8 @@ void create_mailbox(pid_t proc_id) {
 	// Create message chache
 	mailbox->mem_cache = kmem_cache_create("mailbox_messages", 12 + MAX_MSG_SIZE, 0, 0, NULL);
 	// Add to hash table
-	//...
+	/** TODO: Synchronization crap **/
+	ht_insert(mailboxes, &proc_id, sizeof(pid_t), mailbox, sizeof(Mailbox));
 }
 
 Message *create_message(pid_t proc_id) {
@@ -34,6 +35,8 @@ void destroy_mailbox(pid_t proc_id) {
 	Mailbox *to_delete = get_mailbox(proc_id);
 	// Safe to delete
 	if(to_delete->stopped && to_delete->message_count == 0) {
+		// Remove mailbox from hash table
+		ht_remove(mailboxes, &proc_id, sizeof(pid_t));
 		// Clear slab
 		kmem_cache_destroy(to_delete->mem_cache);
 		// Free memory space
@@ -43,5 +46,7 @@ void destroy_mailbox(pid_t proc_id) {
 
 // Get mailbox by process ID
 Mailbox *get_mailbox(pid_t proc_id) {
-	return (Mailbox *) 0;
+	Mailbox *mailbox = (Mailbox *) ht_search(mailboxes, &proc_id, sizeof(pid_t));
+	if(mailbox != NULL && !mailbox->stopped) return mailbox;
+	return NULL;
 }

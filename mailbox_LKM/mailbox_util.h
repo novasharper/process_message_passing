@@ -1,6 +1,7 @@
 #ifndef _MAILBOX_UTIL__H
 #define _MAILBOX_UTIL__H
 
+#include "hashtab.h"
 #include "mailbox.h"
 
 pthread_rwlock_t lock;
@@ -21,7 +22,7 @@ typedef struct Mailbox {
 	int message_count;
 } Mailbox;
 
-Mailbox *mailboxes = NULL;
+hashtab_t *mailboxes;
 
 void init_mailboxes(void);
 void create_mailbox(pid_t proc_id);

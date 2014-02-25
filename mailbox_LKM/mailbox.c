@@ -7,6 +7,7 @@
  */
 
 #include "mailbox.h"
+#include "mailbox_util.h"
 
 // We need to define __KERNEL__ and MODULE to be in Kernel space
 // If they are defined, undefined them and define them again:
