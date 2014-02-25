@@ -11,7 +11,7 @@ typedef struct Message {
 	int len;
 	bool dirty;
 	struct Message *next;
-	void *msg;
+	char msg[MAX_MESSAGE_SIZE]; // Message data
 } Message;
 
 typedef struct Mailbox {
@@ -23,18 +23,21 @@ typedef struct Mailbox {
 	int message_count;
 	wait_queue_head_t *read_queue;
 	wait_queue_head_t *write_queue;
+	// No messages wait event ...
 } Mailbox;
 
 hashtab_t *mailboxes;
 
+int TRIGGER = 0;
+
 void init_mailboxes(void);
-void create_mailbox(pid_t proc_id);
-Message *create_message(pid_t proc_id);
-void append_message(pid_t proc_id, Message *message);
-Message *get_message(pid_t proc_id);
+Mailbox *create_mailbox(pid_t proc_id);
+long create_message(pid_t proc_id, Message *new_message);
+long append_message(pid_t proc_id, Message *message);
+long get_message(pid_t proc_id, Message *message);
 void destroy_message(pid_t proc_id, Message *to_delete);
 void destroy_mailbox(pid_t proc_id);
 // Get mailbox by process ID
-Mailbox *get_mailbox(pid_t proc_id);
+long get_mailbox(pid_t proc_id, Mailbox *mailbox);
 
 #endif

@@ -33,6 +33,8 @@ int mailbox_cleanup_finished = 0;
 asmlinkage long SendMsg(pid_t dest, void *msg, int len, bool block);
 	void *k_msg;
 	copy_from_user(k_msg, msg, len); 
+	// Create message
+	// Append message to mailbox
 }
 
 // Recieve message from mailbox with its sender

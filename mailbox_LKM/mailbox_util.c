@@ -6,28 +6,32 @@
 // int kmem_cache_destroy(kmem_cache_t* cachep)
 
 void init_mailboxes(void) {
-	mailboxes = ht_init(32, NULL);
+	mailboxes = ht_init(128, NULL);
+	init_waitqueue_head(&stop_event);
 }
 
-void create_mailbox(pid_t proc_id) {
+Mailbox *create_mailbox(pid_t proc_id) {
 	// Create mailbox
 	Mailbox *mailbox = (Mailbox *) kmalloc(sizeof(Mailbox), GFP_KERNEL)
 	// Create message chache
-	mailbox->mem_cache = kmem_cache_create("mailbox_messages", 12 + MAX_MSG_SIZE, 0, 0, NULL);
+	mailbox->mem_cache = kmem_cache_create("mailbox_messages", sieof(Message), 0, 0, NULL);
 	// Add to hash table
 	/** TODO: Synchronization crap **/
 	ht_insert(mailboxes, &proc_id, sizeof(pid_t), mailbox, sizeof(Mailbox));
+
+	return mailbox;
 }
 
-Message *create_message(pid_t proc_id) {
-	Mailbox *mailbox = get_mailbox(proc_id);
-	Message *new_message = (Message *) kmem_cache_alloc(mailbox->mem_cache, GFP_KERNEL);
+long create_message(pid_t proc_id, Message *new_message) {
+	Mailbox *mailbox;
+	if(get_mailbox(proc_id, mailbox) == MAILBOX_STOPPED) return MAILBOX_STOPPED;
+	new_message = (Message *) kmem_cache_alloc(mailbox->mem_cache, GFP_KERNEL);
 	new_message->next = NULL;
-	return new_message;
 }
 
-void append_message(pid_t proc_id, Message *message) {
-	Mailbox *mailbox = get_mailbox(proc_id);
+long append_message(pid_t proc_id, Message *message) {
+	Mailbox *mailbox;
+	get_mailbox(proc_id, mailbox);
 	
 	wait_queue_t wait;
 
@@ -36,11 +40,14 @@ void append_message(pid_t proc_id, Message *message) {
 
 	add_wait_queue(mailbox->write_queue, &wait);
 	
+	if (TRIGGER) return <error code>;
+
 	if(mailbox->tail == NULL) {
 		message->dirty = TRUE;
 		mailbox->head = message;
 		mailbox->tail = message;
 		message->dirty = FALSE;
+		// -- SIGNAL THREADS THAT LIST IS NO LONGER EMPTY -- //
 	}
 	else {
 		mailbox->tail->dirty = TRUE;
@@ -49,20 +56,25 @@ void append_message(pid_t proc_id, Message *message) {
 	}
 
 	remove_wait_queue(mailbox->write_queue, &wait);
+	return <all clear>;
 }
 
-Message *get_message(pid_t proc_id) {
-	Mailbox *mailbox = get_mailbox(proc_id);
+long get_message(pid_t proc_id, Message *message) {
+	Mailbox *mailbox;
+	get_mailbox(proc_id, mailbox);
 	
 	wait_queue_t wait;
 
 	init_waitqueue_entry(&wait, current);
 	current->state = TASK_INTERRUPTIBLE;
 
-	add_wait_queue(mailbox->read_queue, &wait);
-	
 	// Wait until there are messages
-	while(mailbox->head == NULL) usleep(1);
+	while(mailbox->head == NULL) {
+		if (TRIGGER) return <error code>;
+		usleep(1);
+	}
+
+	add_wait_queue(mailbox->read_queue, &wait);
 
 	Message *message = mailbox->head;
 	Message *next = head->next;
@@ -74,7 +86,7 @@ Message *get_message(pid_t proc_id) {
 	mailbox->start = next;
 	if(mailbox->start == NULL) mailbox->tail = NULL;
 	remove_wait_queue(mailbox->read_queue, &wait);
-	return message;
+	return <all clear>;
 }
 
 void destroy_message(pid_t proc_id, Message *to_delete) {
@@ -97,8 +109,9 @@ void destroy_mailbox(pid_t proc_id) {
 }
 
 // Get mailbox by process ID
-Mailbox *get_mailbox(pid_t proc_id) {
-	Mailbox *mailbox = (Mailbox *) ht_search(mailboxes, &proc_id, sizeof(pid_t));
-	if(mailbox != NULL && !mailbox->stopped) return mailbox;
-	return NULL;
+long get_mailbox(pid_t proc_id, Mailbox *mailbox) {
+	mailbox = (Mailbox *) ht_search(mailboxes, &proc_id, sizeof(pid_t));
+	if(mailbox != NULL && mailbox->stopped) return MAILBOX_STOPPED;
+	if(mailbox == NULL) mailbox = create_mailbox(proc_id);
+	return 0;
 }

@@ -9,7 +9,7 @@
  * Wrapper for system calls
  */
 
-#include "../mailbox.h"
+#include "mailbox.h"
 
 #define __NR_mailbox_send	341
 #define __NR_mailbox_rcv	342
