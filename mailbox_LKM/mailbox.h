@@ -10,6 +10,7 @@
 
 #include <stdbool.h>
 #include <linux/types.h>
+#include <linux/sched.h>
 #include "uthash.h"
 
 #define NO_BLOCK 0

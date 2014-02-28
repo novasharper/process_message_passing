@@ -54,7 +54,8 @@ asmlinkage long ManageMailbox(bool stop, int *count);
 	get_mailbox(current->pid, mailbox);
 	if(stop) {
 		mailbox->stopped = TRUE;
-		// Signal
+		wake_up_all(mailbox->read_queue);
+		wake_up_all(mailbox->write_queue);
 	}
 	copy_to_user(&(mailbox->message_count), count, sizeof(int));
 	return 0;

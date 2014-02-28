@@ -69,7 +69,10 @@ long get_message(pid_t proc_id, Message *message) {
 	}
 
 	add_wait_queue(mailbox->read_queue, &wait);
-	if(mailbox->stopped) return MAILBOX_STOPPED;
+	if(mailbox->stopped) {
+		remove_wait_queue(mailbox->read_queue, &wait);
+		return MAILBOX_STOPPED;
+	}
 
 	Message *next = list_next_entry(&(mailbox->head), list);
 	Message *message = &(mailbox->head);
