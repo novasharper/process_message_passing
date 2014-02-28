@@ -31,18 +31,32 @@ int mailbox_cleanup_finished = 0;
 
 // Send message to destination process with given message and whether or not to block until sent
 asmlinkage long SendMsg(pid_t dest, void *msg, int len, bool block);
+	Message *message;
+	create_message(current->pid, message);
 	void *k_msg;
-	copy_from_user(k_msg, msg, len); 
-	// Create message
-	// Append message to mailbox
+	copy_from_user(&(message->msg), msg, len);
+	message->len = len;
+	return append_message(dest, message);
 }
 
 // Recieve message from mailbox with its sender
 asmlinkage long RcvMsg(pid_t *sender, void *msg, int *len, bool block);
-	return 0;
+	Message *message;
+	int result = get_message(current->pid, message);
+	copy_to_user(&(message->sender), sender, sizeof(pid_t));
+	copy_to_user(&(message->len), len, sizeof(int));
+	copy_to_user(&(message->msg), msg, message->len);
+	return result;
 }
 
 asmlinkage long ManageMailbox(bool stop, int *count);
+	Mailbox *mailbox;
+	get_mailbox(current->pid, mailbox);
+	if(stop) {
+		mailbox->stopped = TRUE;
+		// Signal
+	}
+	copy_to_user(&(mailbox->message_count), count, sizeof(int));
 	return 0;
 }
 

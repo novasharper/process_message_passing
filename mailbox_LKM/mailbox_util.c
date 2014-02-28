@@ -15,6 +15,7 @@ Mailbox *create_mailbox(pid_t proc_id) {
 	Mailbox *mailbox = (Mailbox *) kmalloc(sizeof(Mailbox), GFP_KERNEL)
 	// Create message chache
 	mailbox->mem_cache = kmem_cache_create("mailbox_messages", sieof(Message), 0, 0, NULL);
+	INIT_LIST_HEAD(&(mailbox->message_list.list));
 	// Add to hash table
 	/** TODO: Synchronization crap **/
 	ht_insert(mailboxes, &proc_id, sizeof(pid_t), mailbox, sizeof(Mailbox));
@@ -40,23 +41,16 @@ long append_message(pid_t proc_id, Message *message) {
 
 	add_wait_queue(mailbox->write_queue, &wait);
 	
-	if (TRIGGER) return <error code>;
+	if (mailbox->stopped) {
+		remove_wait_queue(mailbox->write_queue, &wait);
+		return MAILBOX_STOPPED;
+	}
 
-	if(mailbox->tail == NULL) {
-		message->dirty = TRUE;
-		mailbox->head = message;
-		mailbox->tail = message;
-		message->dirty = FALSE;
-		// -- SIGNAL THREADS THAT LIST IS NO LONGER EMPTY -- //
-	}
-	else {
-		mailbox->tail->dirty = TRUE;
-		mailbox->tail->next = message;
-		mailbox->tail->dirty = FALSE;
-	}
+	list_add(&(message->list), &(mailbox->message_list.list));
+	message_count++;
 
 	remove_wait_queue(mailbox->write_queue, &wait);
-	return <all clear>;
+	return 0;
 }
 
 long get_message(pid_t proc_id, Message *message) {
@@ -69,24 +63,22 @@ long get_message(pid_t proc_id, Message *message) {
 	current->state = TASK_INTERRUPTIBLE;
 
 	// Wait until there are messages
-	while(mailbox->head == NULL) {
-		if (TRIGGER) return <error code>;
+	while(mailbox->message_count == 0) {
+		if (mailbox->stopped) return MAILBOX_STOPPED;
 		usleep(1);
 	}
 
 	add_wait_queue(mailbox->read_queue, &wait);
+	if(mailbox->stopped) return MAILBOX_STOPPED;
 
-	Message *message = mailbox->head;
-	Message *next = head->next;
-	// Wait to make sure that the current node is not being modified
-	usleep(1);
-	while(message->dirty) usleep(1);
-	// Remove node from queue
-	message->next = NULL;
-	mailbox->start = next;
-	if(mailbox->start == NULL) mailbox->tail = NULL;
+	Message *next = list_next_entry(&(mailbox->head), list);
+	Message *message = &(mailbox->head);
+	&(mailbox->head) = next;
+	list_del(message);
+	message_count--;
+
 	remove_wait_queue(mailbox->read_queue, &wait);
-	return <all clear>;
+	return 0;
 }
 
 void destroy_message(pid_t proc_id, Message *to_delete) {

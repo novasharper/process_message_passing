@@ -10,16 +10,15 @@ typedef struct Message {
 	int sender;
 	int len;
 	bool dirty;
-	struct Message *next;
 	char msg[MAX_MESSAGE_SIZE]; // Message data
+	struct list_head list;
 } Message;
 
 typedef struct Mailbox {
 	pid_t id;
 	bool stopped;
 	kmem_cache_t *mem_cache;
-	struct Message *start;
-	struct Message *tail;
+	struct Message message_list;
 	int message_count;
 	wait_queue_head_t *read_queue;
 	wait_queue_head_t *write_queue;
