@@ -25,6 +25,7 @@ typedef struct Mailbox {
 	// No messages wait event ...
 } Mailbox;
 
+wait_queue_head_t *mailboxes_ht_wq;
 hashtab_t *mailboxes;
 
 int TRIGGER = 0;

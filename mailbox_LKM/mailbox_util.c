@@ -7,7 +7,7 @@
 
 void init_mailboxes(void) {
 	mailboxes = ht_init(128, NULL);
-	init_waitqueue_head(&stop_event);
+	init_waitqueue_head(mailboxes_ht_wq);
 }
 
 Mailbox *create_mailbox(pid_t proc_id) {
@@ -17,8 +17,12 @@ Mailbox *create_mailbox(pid_t proc_id) {
 	mailbox->mem_cache = kmem_cache_create("mailbox_messages", sieof(Message), 0, 0, NULL);
 	INIT_LIST_HEAD(&(mailbox->message_list.list));
 	// Add to hash table
-	/** TODO: Synchronization crap **/
+	wait_queue_t wait;
+
+	init_waitqueue_entry(&wait, current);
+	add_wait_queue(mailboxes_ht_wq, &wait);
 	ht_insert(mailboxes, &proc_id, sizeof(pid_t), mailbox, sizeof(Mailbox));
+	remove_wait_queue(mailboxes_ht_wq, &wait);
 
 	return mailbox;
 }
