@@ -50,8 +50,13 @@ void mailbox_impl_exit(void);
 
 Mailbox * get_create_mailbox(pid_t owner);
 
-// FIXME
+
 void __init_message(Message** msg);
 void __destroy_message(Message** msg);
+
+// FIXME - all the _unsafe functions should be wrapped in thier own helpers, that way we don't have to handle sync code in the main mailbox.c
+void __mailbox_add_message_unsafe(Mailbox* mailbox, Message* message);
+void __mailbox_remove_message_unsafe(Mailbox* mailbox, Message* message);
+void __mailbox_stop_unsafe(Mailbox* mailbox);
 
 #endif

@@ -65,10 +65,14 @@ asmlinkage long __send_message(pid_t dest, void *msg, int len, bool block) {
 				} else {
 					message_s->len = len;
 					message_s->sender = current_pid;
-					// TODO - add message to the mailbox, if mailbox is full,
-					// check block, if true, wait, if false, return MAILBOX_FULL
+
+					// Get spin lock for mailbox modification
 					spin_lock_irqsave(&mailbox->send_recieve_message_queue.lock, spin_lock_flags);
+
+					// Check if mailbox is full
 					if (mailbox->message_count >= mailbox->message_max) {
+
+						// If the mailbox is full, either block and wait, or return error
 						if (block) {
 							// Wait until mailbox isn't full, or mailbox is stopped
 							wait_event_interruptible_exclusive_locked_irq(mailbox->send_recieve_message_queue, (mailbox->stopped || mailbox->message_count < mailbox->message_max));
@@ -81,6 +85,9 @@ asmlinkage long __send_message(pid_t dest, void *msg, int len, bool block) {
 							return MAILBOX_FULL;
 						}
 					}
+
+					// Mailbox isn't full, add the message
+					__mailbox_add_message_unsafe(mailbox, message_s);
 					spin_unlock_irqrestore(&mailbox->send_recieve_message_queue.lock, spin_lock_flags);
 				}
 			}
@@ -95,6 +102,42 @@ asmlinkage long __send_message(pid_t dest, void *msg, int len, bool block) {
 
 // Recieve message from mailbox with its sender
 asmlinkage long __recieve_message(pid_t *sender, void *msg, int *len, bool block) {
+	pid_t current_pid = current->pid;
+
+	// The process is def alive if it's calling a syscall, no need for validtation here.
+	Mailbox* mailbox = get_create_mailbox(current_pid);
+
+	unsigned long spin_lock_flags;
+
+	// Aquire lock, we're reading and writing
+	spin_lock_irqsave(&mailbox->send_recieve_message_queue.lock, spin_lock_flags);
+	// Do we not have messages?
+	if (mailbox->message_count == 0) {
+		// Are we stopped?
+		if (mailbox->stopped) {
+			// We ain't waiting for no stopped mailbox
+			spin_unlock_irqrestore(&mailbox->send_recieve_message_queue.lock, spin_lock_flags);
+			return MAILBOX_STOPPED;
+		} else {
+			// Oh, I guess it's not stopped, well are we waiting at least?
+			if (block) {
+				// Oh we're watching, and we're waiting
+				wait_event_interruptible_exclusive_locked_irq(mailbox->send_recieve_message_queue, ((mailbox->stopped && mailbox->message_count == 0) || mailbox->message_count > 0));
+				if (mailbox->stopped) {
+					// No more messages, and the mailbox stopped
+					spin_unlock_irqrestore(&mailbox->send_recieve_message_queue.lock, spin_lock_flags);
+					return MAILBOX_STOPPED;
+				} else {
+					// recieve message code here
+					
+				}
+			} else {
+				spin_unlock_irqrestore(&mailbox->send_recieve_message_queue.lock, spin_lock_flags);
+				return MAILBOX_EMPTY;
+			}
+		}
+	}
+	spin_unlock_irqrestore(&mailbox->send_recieve_message_queue.lock, spin_lock_flags);
 	return 0;
 }
 

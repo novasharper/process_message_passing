@@ -114,7 +114,7 @@ void destroy_mailbox(Mailbox* mailbox) {
 
 /** Mailbox modification functions, adding and removing messages, setting to stopped */
 
-static void __mailbox_add_message(Mailbox* mailbox, Message* message) {
+void __mailbox_add_message_unsafe(Mailbox* mailbox, Message* message) {
     spin_lock_irqsave(&mailbox->lock, mailbox->lock_irqsave);
     // Add the message to the end of the list
     list_add_tail(&message->list, &mailbox->messages);
@@ -122,14 +122,14 @@ static void __mailbox_add_message(Mailbox* mailbox, Message* message) {
     spin_unlock_irqrestore(&mailbox->lock, mailbox->lock_irqsave);
 }
 
-static void __mailbox_remove_message(Mailbox* mailbox, Message* message) {
+void __mailbox_remove_message_unsafe(Mailbox* mailbox, Message* message) {
     spin_lock_irqsave(&mailbox->lock, mailbox->lock_irqsave);
     list_del(&message->list);
     mailbox->message_count--;
     spin_unlock_irqrestore(&mailbox->lock, mailbox->lock_irqsave);
 }
 
-static void __mailbox_stop(Mailbox* mailbox) {
+void __mailbox_stop_unsafe(Mailbox* mailbox) {
     spin_lock_irqsave(&mailbox->lock, mailbox->lock_irqsave);
     mailbox->stopped = 1;
     spin_unlock_irqrestore(&mailbox->lock, mailbox->lock_irqsave);
