@@ -1,10 +1,10 @@
 all: userspace lkm;
 userspace:
-	$(MAKE) -c userspace
+	$(MAKE) -C userspace
 lkm:
-	$(MAKE) -c mailbox_LKM
+	$(MAKE) -C mailbox_LKM
 clean: clean_userspace clean_lkm;
 clean_userspace:
-	$(MAKE) -c userspace clean
+	$(MAKE) -C userspace clean
 clean_lkm:
-	$(MAKE) -c mailbox_LKM clean
+	$(MAKE) -C mailbox_LKM clean
