@@ -48,4 +48,8 @@ void mailbox_impl_exit(void);
 
 Mailbox * get_create_mailbox(pid_t owner);
 
+// FIXME
+void __init_message(Message** msg);
+void __destroy_message(Message** msg);
+
 #endif

@@ -143,23 +143,14 @@ static void __mailbox_stop(Mailbox* mailbox) {
  * @param  msg    Must be less than MAX_MSG_SIZE
  * @return        newly allocated Message
  */
-static long __create_message(Message** message, pid_t sender, int len, void* msg) {
-    if (len > MAX_MSG_SIZE) {
-        return MSG_LENGTH_ERROR;
-    }
-
+void __init_message(Message** message) {
     *message = kmem_cache_alloc(message_cache, 0);
-    (*message)->sender = sender;
-    (*message)->len = len;
-    memcpy(&(*message)->msg, msg, len);
     INIT_LIST_HEAD(&(*message)->list);
-
-    return 0;
 }
 
-static long __destroy_message(Message* message) {
+void __destroy_message(Message** message) {
     kmem_cache_free(message_cache, message);
-    return 0;
+    *message = NULL;
 }
 
 /**

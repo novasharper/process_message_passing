@@ -33,7 +33,35 @@ int mailbox_cleanup_finished = 0;
 // Send message to destination process with given message and whether or not to block until sent
 asmlinkage long __send_message(pid_t dest, void *msg, int len, bool block) {
 	pid_t current_pid = current->pid;
+	Message* message_s;
 
+	// FIXME - I don't know what the logic for process validity should be
+	if (true /* add check for process id validity */) {
+		Mailbox* mailbox = get_create_mailbox(dest);
+		if (mailbox->stopped) {
+			return MAILBOX_STOPPED;
+		} else {
+			// Got mailbox successfully, now do checking for message
+			if (len > MAX_MSG_SIZE) {
+				return MSG_LENGTH_ERROR;
+			} else {
+				__init_message(&message_s);
+				if (copy_from_user(&message_s->msg, msg, len)) {
+					// Failed to create message, destroy it.
+					__destroy_message(&message_s);
+					return MSG_ARG_ERROR;
+				} else {
+					message_s->len = len;
+					message_s->sender = current_pid;
+					// TODO - add message to the mailbox, if mailbox is full,
+					// check block, if true, wait, if false, return MAILBOX_FULL
+				}
+			}
+		}
+	} else {
+		// Process is not valid
+		return MAILBOX_INVALID;
+	}
 
 	return 0;
 }
