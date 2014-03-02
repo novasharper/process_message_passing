@@ -3,7 +3,8 @@
 
 #include <linux/wait.h>
 #include <linux/sched.h>
-#include "hashtab.h"
+// #include "hashtab.h"
+#include "uthash.h"
 #include "mailbox.h"
 
 typedef struct Message {
@@ -20,13 +21,15 @@ typedef struct Mailbox {
 	kmem_cache_t *mem_cache;
 	struct Message message_list;
 	int message_count;
+	UT_hash_handle hh;
 	wait_queue_head_t *read_queue;
 	wait_queue_head_t *write_queue;
 	// No messages wait event ...
 } Mailbox;
 
 wait_queue_head_t *mailboxes_ht_wq;
-hashtab_t *mailboxes;
+//hashtab_t *mailboxes;
+Mailbox *mailboxes = NULL;
 
 int TRIGGER = 0;
 

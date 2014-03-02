@@ -21,7 +21,7 @@ Mailbox *create_mailbox(pid_t proc_id) {
 
 	init_waitqueue_entry(&wait, current);
 	add_wait_queue(mailboxes_ht_wq, &wait);
-	ht_insert(mailboxes, &proc_id, sizeof(pid_t), mailbox, sizeof(Mailbox));
+	HASH_ADD_INT(mailboxes, id, mailbox);
 	remove_wait_queue(mailboxes_ht_wq, &wait);
 
 	return mailbox;
@@ -99,7 +99,7 @@ void destroy_mailbox(pid_t proc_id) {
 	// Safe to delete
 	if(to_delete->stopped && to_delete->message_count == 0) {
 		// Remove mailbox from hash table
-		ht_remove(mailboxes, &proc_id, sizeof(pid_t));
+		HASH_DEL(mailboxes, to_delete);
 		// Clear slab
 		kmem_cache_destroy(to_delete->mem_cache);
 		// Free memory space
@@ -109,7 +109,7 @@ void destroy_mailbox(pid_t proc_id) {
 
 // Get mailbox by process ID
 long get_mailbox(pid_t proc_id, Mailbox *mailbox) {
-	mailbox = (Mailbox *) ht_search(mailboxes, &proc_id, sizeof(pid_t));
+	mailbox = (Mailbox *) HASH_FIND_INT(mailboxes, &proc_id, mailbox);
 	if(mailbox != NULL && mailbox->stopped) return MAILBOX_STOPPED;
 	if(mailbox == NULL) mailbox = create_mailbox(proc_id);
 	return 0;
