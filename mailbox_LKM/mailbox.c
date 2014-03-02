@@ -17,6 +17,7 @@
 #include <linux/kernel.h>
 #include <linux/module.h>
 #include <linux/syscalls.h>
+#include <linux/sched.h>
 
 #include "mailbox_impl.h"
 
@@ -30,14 +31,24 @@ asmlinkage long (*ref_sys_exit_group)(int status);
 int mailbox_cleanup_proc = -1;
 int mailbox_cleanup_finished = 0;
 
+static int __process_is_valid(pid_t process) {
+	struct task_struct* task = pid_task(find_get_pid(process), PIDTYPE_PID);
+	// Task exists
+	if (task) {
+		// Task isn't exiting or unrunnable
+		if (!task->state) {
+			return 1;
+		}
+	}
+	return 0;
+}
 // Send message to destination process with given message and whether or not to block until sent
 asmlinkage long __send_message(pid_t dest, void *msg, int len, bool block) {
 	pid_t current_pid = current->pid;
 	Message* message_s;
 	unsigned long spin_lock_flags;
 
-	// FIXME - I don't know what the logic for process validity should be
-	if (true /* add check for process id validity */) {
+	if (__process_is_valid(dest)) {
 		Mailbox* mailbox = get_create_mailbox(dest);
 		if (mailbox->stopped) {
 			return MAILBOX_STOPPED;
@@ -57,7 +68,6 @@ asmlinkage long __send_message(pid_t dest, void *msg, int len, bool block) {
 					// TODO - add message to the mailbox, if mailbox is full,
 					// check block, if true, wait, if false, return MAILBOX_FULL
 					spin_lock_irqsave(&mailbox->send_recieve_message_queue.lock, spin_lock_flags);
-
 					if (mailbox->message_count >= mailbox->message_max) {
 						if (block) {
 							// Wait until mailbox isn't full, or mailbox is stopped
