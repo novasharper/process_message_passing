@@ -127,9 +127,6 @@ asmlinkage long __recieve_message(pid_t *sender, void *msg, int *len, bool block
 					// No more messages, and the mailbox stopped
 					spin_unlock_irqrestore(&mailbox->send_recieve_message_queue.lock, spin_lock_flags);
 					return MAILBOX_STOPPED;
-				} else {
-					// recieve message code here
-					
 				}
 			} else {
 				spin_unlock_irqrestore(&mailbox->send_recieve_message_queue.lock, spin_lock_flags);
@@ -137,11 +134,25 @@ asmlinkage long __recieve_message(pid_t *sender, void *msg, int *len, bool block
 			}
 		}
 	}
+	// Get message code
+	Message *message = &(mailbox->head);
+	// Copy 
+	copy_to_user(&(message->sender), sender, sizeof(pid_t));
+	copy_to_user(&(message->len), len, sizeof(int));
+	copy_to_user(&(message->msg), msg, message->len);
+	__mailbox_remove_message_unsafe(mailbox, message);
+	__destroy_message(&message);
 	spin_unlock_irqrestore(&mailbox->send_recieve_message_queue.lock, spin_lock_flags);
 	return 0;
 }
 
 asmlinkage long __manage_mailbox(bool stop, int *count) {
+	pid_t current_pid = current->pid;
+
+	// The process is def alive if it's calling a syscall, no need for validtation here.
+	Mailbox* mailbox = get_create_mailbox(current_pid);
+	if(stop) __mailbox_stop_unsafe(mailbox);
+	copy_to_user(&(mailbox->message_count), count, sizeof(int));
 	return 0;
 }
 
@@ -151,7 +162,11 @@ asmlinkage long __new_sys_exit(int status) {
 }
 
 asmlinkage long __new_sys_exit_group(int status) {
-	// Delete the mailbox, bro
+	pid_t current_pid = current->pid;
+
+	// The process is def alive if it's calling a syscall, no need for validtation here.
+	Mailbox* mailbox = get_create_mailbox(current_pid);
+	destroy_mailbox(mailbox);
 	return ref_sys_exit_group(status);
 }
 

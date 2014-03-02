@@ -109,6 +109,9 @@ void destroy_mailbox(Mailbox* mailbox) {
 
     // Free memory
     kmem_cache_free(mailbox_cache, mailbox);
+
+    // Free all messages
+    // ...
 }
 
 
