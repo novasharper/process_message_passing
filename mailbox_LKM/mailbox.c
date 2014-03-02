@@ -34,6 +34,7 @@ int mailbox_cleanup_finished = 0;
 asmlinkage long __send_message(pid_t dest, void *msg, int len, bool block) {
 	pid_t current_pid = current->pid;
 	Message* message_s;
+	unsigned long spin_lock_flags;
 
 	// FIXME - I don't know what the logic for process validity should be
 	if (true /* add check for process id validity */) {
@@ -55,13 +56,12 @@ asmlinkage long __send_message(pid_t dest, void *msg, int len, bool block) {
 					message_s->sender = current_pid;
 					// TODO - add message to the mailbox, if mailbox is full,
 					// check block, if true, wait, if false, return MAILBOX_FULL
-					unsigned long spin_lock_flags;
 					spin_lock_irqsave(&mailbox->send_recieve_message_queue.lock, spin_lock_flags);
 
 					if (mailbox->message_count >= mailbox->message_max) {
 						if (block) {
 							// Wait until mailbox isn't full, or mailbox is stopped
-							wait_event_interruptible_exclusive_locked_irq(mailbox->send_recieve_message_queue, (mailbox->stopped));
+							wait_event_interruptible_exclusive_locked_irq(mailbox->send_recieve_message_queue, (mailbox->stopped || mailbox->message_count < mailbox->message_max));
 							if (mailbox->stopped) {
 								spin_unlock_irqrestore(&mailbox->send_recieve_message_queue.lock, spin_lock_flags);
 								return MAILBOX_STOPPED;
