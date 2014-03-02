@@ -34,10 +34,13 @@ typedef struct Message {
 
 typedef struct Mailbox {
     pid_t owner;                // Owner of this mailbox
-    struct list_head messages;  // Linked list of messages
     int message_count;          // Not greater than MAILBOX_SIZE
-    int stopped;               // Is this mailbox stopped?
-    struct hlist_node list;
+    int stopped;                // Is this mailbox stopped?
+    struct list_head messages;  // Linked list of messages
+    struct hlist_node list;     // I'm in a hash table
+    spinlock_t lock;            // Modification/usage lock
+    unsigned long lock_irqsave  // irqsave
+    // TODO  - locks per mailbox
 } Mailbox;
 
 void mailbox_impl_init(void);

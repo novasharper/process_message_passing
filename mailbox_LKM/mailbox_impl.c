@@ -85,9 +85,11 @@ Mailbox * get_create_mailbox(pid_t owner) {
         mailbox->owner = owner;
         mailbox->message_count = 0;
         mailbox->stopped = 0;
+        spin_lock_init(&mailbox->lock);
         INIT_LIST_HEAD(&mailbox->messages);
         INIT_HLIST_NODE(&mailbox->list);
 
+        // Put it in the table
         hashtable_put(mailbox, owner);
     }
 
@@ -109,12 +111,28 @@ void destroy_mailbox(Mailbox* mailbox) {
     kmem_cache_free(mailbox_cache, mailbox);
 }
 
-void mailbox_add_message(Mailbox* mailbox, Message* message) {
 
+/** Mailbox modification functions, adding and removing messages, setting to stopped */
+
+static void __mailbox_add_message(Mailbox* mailbox, Message* message) {
+    spin_lock_irqsave(&mailbox->lock, mailbox->lock_irqsave);
+    // Add the message to the end of the list
+    list_add_tail(&message->list, &mailbox->messages);
+    mailbox->message_count++;
+    spin_lock_irqrestore(&mailbox->lock, mailbox->lock_irqsave);
 }
 
-void mailbox_remove_message(Mailbox* mailbox, Message* message) {
+static void __mailbox_remove_message(Mailbox* mailbox, Message* message) {
+    spin_lock_irqsave(&mailbox->lock, mailbox->lock_irqsave);
+    list_del(&message->list);
+    mailbox->message_count--;
+    spin_unlock_irqrestore(&mailbox->lock, mailbox->lock_irqsave);
+}
 
+static void __mailbox_stop(Mailbox* mailbox) {
+    spin_lock_irqsave(&mailbox->lock, mailbox->lock_irqsave);
+    mailbox->stopped = 1;
+    spin_unlock_irqrestore(&mailbox->lock, mailbox->lock_irqsave);
 }
 
 /**
