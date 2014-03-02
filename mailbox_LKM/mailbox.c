@@ -36,6 +36,8 @@ void __run_tests() {
 	}
 	test_mailbox = create_mailbox(23);
 
+	Mailbox* mail2 = create_mailbox(23+4096);
+
 	if (test_mailbox) {
 		printk(KERN_INFO "created mailbox successfully");
 	}
@@ -43,6 +45,24 @@ void __run_tests() {
 	test_mailbox = get_mailbox(23);
 	if (test_mailbox) {
 		printk(KERN_INFO "got mailbox successfully after creating");
+	}
+	mail2 = get_mailbox(23+4096);
+
+	if (mail2 != test_mailbox) {
+		printk(KERN_INFO "totes mcgotes collision handled properly");
+	}
+
+	destroy_mailbox(test_mailbox->owner);
+
+	mail2 = get_mailbox(23+4096);
+
+	if (mail2->owner == 23+4096) {
+		printk(KERN_INFO " I don't suck");
+	}
+
+	test_mailbox = get_mailbox(23);
+	if (test_mailbox == NULL) {
+		printk(KERN_INFO " hahahaha");
 	}
 }
 
