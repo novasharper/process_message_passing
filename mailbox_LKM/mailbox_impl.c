@@ -87,6 +87,7 @@ Mailbox * get_create_mailbox(pid_t owner) {
         mailbox->message_count = 0;
         mailbox->stopped = 0;
         spin_lock_init(&mailbox->lock);
+        init_waitqueue_head(&mailbox->send_recieve_message_queue);
         INIT_LIST_HEAD(&mailbox->messages);
         INIT_HLIST_NODE(&mailbox->list);
 

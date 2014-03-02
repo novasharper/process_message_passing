@@ -3,6 +3,7 @@
 
 
 #include <linux/list.h>
+#include <linux/wait.h>
 
 /** Error codes that must match userspace mailbox.h */
 #define NO_BLOCK 0
@@ -35,12 +36,13 @@ typedef struct Message {
 typedef struct Mailbox {
     pid_t owner;                // Owner of this mailbox
     int message_count;          // Not greater than MAILBOX_SIZE
+    int message_max;            // Mailbox max size;
     int stopped;                // Is this mailbox stopped?
     struct list_head messages;  // Linked list of messages
     struct hlist_node list;     // I'm in a hash table
     spinlock_t lock;            // Modification/usage lock
     unsigned long lock_irqsave; // irqsave
-    // TODO  - locks per mailbox
+    wait_queue_head_t send_recieve_message_queue; // Only send/recieve one message at a time, can't send and recieve.
 } Mailbox;
 
 void mailbox_impl_init(void);
