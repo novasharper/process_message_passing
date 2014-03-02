@@ -135,7 +135,7 @@ asmlinkage long __recieve_message(pid_t *sender, void *msg, int *len, bool block
 		}
 	}
 	// Get message code
-	Message *message = list_entry(&mailbox->messages, struct Message, list);
+	Message *message = list_entry(&mailbox->messages, Message, list);
 	// Copy 
 	copy_to_user(&(message->sender), sender, sizeof(pid_t));
 	copy_to_user(&(message->len), len, sizeof(int));
