@@ -1,7 +1,7 @@
 # Khazhismel Kumykov
 # cs3013
 obj-m := the_module.o
-the_module-objs := test_lkm.o mailbox_hashtable.o
+the_module-objs := mailbox.o mailbox_impl.o
 KDIR := /lib/modules/$(shell uname -r)/build
 PWD := $(shell pwd)
 

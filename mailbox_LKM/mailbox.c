@@ -6,9 +6,6 @@
  * Manage mailboxes and sending/recieving messages
  */
 
-#include "mailbox.h"
-#include "mailbox_util.h"
-
 // We need to define __KERNEL__ and MODULE to be in Kernel space
 // If they are defined, undefined them and define them again:
 #undef __KERNEL__
@@ -21,6 +18,8 @@
 #include <linux/module.h>
 #include <linux/syscalls.h>
 
+#include "mailbox_impl.h"
+
 unsigned long **sys_call_table;
 
 asmlinkage long (*ref_sys_cs3013_syscall1)(void);
@@ -28,36 +27,36 @@ asmlinkage long (*ref_sys_cs3013_syscall2)(void);
 asmlinkage long (*ref_sys_cs3013_syscall3)(void);
 int mailbox_cleanup_proc = -1;
 int mailbox_cleanup_finished = 0;
+void __run_tests(void);
+
+void __run_tests() {
+	Mailbox* test_mailbox = get_mailbox(23);
+	if (test_mailbox == NULL) {
+		printk(KERN_INFO "success");
+	}
+	test_mailbox = create_mailbox(23);
+
+	if (test_mailbox) {
+		printk(KERN_INFO "created mailbox successfully");
+	}
+
+	test_mailbox = get_mailbox(23);
+	if (test_mailbox) {
+		printk(KERN_INFO "got mailbox successfully after creating");
+	}
+}
 
 // Send message to destination process with given message and whether or not to block until sent
-asmlinkage long SendMsg(pid_t dest, void *msg, int len, bool block);
-	Message *message;
-	create_message(current->pid, message);
-	void *k_msg;
-	copy_from_user(&(message->msg), msg, len);
-	message->len = len;
-	return append_message(dest, message);
+asmlinkage long __send_message(pid_t dest, void *msg, int len, bool block) {
+	return 0;
 }
 
 // Recieve message from mailbox with its sender
-asmlinkage long RcvMsg(pid_t *sender, void *msg, int *len, bool block);
-	Message *message;
-	int result = get_message(current->pid, message);
-	copy_to_user(&(message->sender), sender, sizeof(pid_t));
-	copy_to_user(&(message->len), len, sizeof(int));
-	copy_to_user(&(message->msg), msg, message->len);
-	return result;
+asmlinkage long __recieve_message(pid_t *sender, void *msg, int *len, bool block) {
+	return 0;
 }
 
-asmlinkage long ManageMailbox(bool stop, int *count);
-	Mailbox *mailbox;
-	get_mailbox(current->pid, mailbox);
-	if(stop) {
-		mailbox->stopped = TRUE;
-		wake_up_all(mailbox->read_queue);
-		wake_up_all(mailbox->write_queue);
-	}
-	copy_to_user(&(mailbox->message_count), count, sizeof(int));
+asmlinkage long __manage_mailbox(bool stop, int *count) {
 	return 0;
 }
 
@@ -119,6 +118,10 @@ static int __init interceptor_start(void) {
 		return -1;
 	}
 
+	// Initialize the mailbox implementation
+	mailbox_impl_init();
+
+	__run_tests();
 
 	/* Store a copy of all the existing functions */
 	ref_sys_cs3013_syscall1 = (void *)sys_call_table[__NR_cs3013_syscall1];
@@ -128,9 +131,9 @@ static int __init interceptor_start(void) {
 	/* Replace the existing system calls */
 	disable_page_protection();
 
-	sys_call_table[__NR_cs3013_syscall1] = (unsigned long *)SendMsg;
-	sys_call_table[__NR_cs3013_syscall2] = (unsigned long *)RcvMsg;
-	sys_call_table[__NR_cs3013_syscall3] = (unsigned long *)ManageMailbox;
+	sys_call_table[__NR_cs3013_syscall1] = (unsigned long *)__send_message;
+	sys_call_table[__NR_cs3013_syscall2] = (unsigned long *)__recieve_message;
+	sys_call_table[__NR_cs3013_syscall3] = (unsigned long *)__manage_mailbox;
 
 	enable_page_protection();
 
@@ -152,6 +155,8 @@ static void __exit interceptor_end(void) {
 	sys_call_table[__NR_cs3013_syscall2] = (unsigned long *)ref_sys_cs3013_syscall2;
 	sys_call_table[__NR_cs3013_syscall3] = (unsigned long *)ref_sys_cs3013_syscall3;
 	enable_page_protection();
+
+	mailbox_impl_exit();
 
 	printk(KERN_INFO "Unloaded interceptor!");
 }	// static void __exit interceptor_end(void)

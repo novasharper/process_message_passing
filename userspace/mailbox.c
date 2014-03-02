@@ -19,11 +19,11 @@
  * Functions for msgs
  * 
  * */
-int SendMsg(pid_t dest, void *msg, int len, bool block) {
+long SendMsg(pid_t dest, void *msg, int len, bool block) {
   return syscall(__NR_mailbox_send, dest, msg, len, block);
 } 	// int SendMsg
 
-int RcvMsg(pid_t *sender, void *msg, int *len, bool block){
+long RcvMsg(pid_t *sender, void *msg, int *len, bool block){
   return syscall(__NR_mailbox_rcv, sender, msg, len, block);
 }	// int RcvMsg
 
@@ -31,7 +31,7 @@ int RcvMsg(pid_t *sender, void *msg, int *len, bool block){
  * functions for maintaining mailboxes
  * 
  * */
-int ManageMailbox(bool stop, int *count){
+long ManageMailbox(bool stop, int *count){
   return syscall(__NR_mailbox_manage, stop, count);
 }	// int ManageMailbox
 

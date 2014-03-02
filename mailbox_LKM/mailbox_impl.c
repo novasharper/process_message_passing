@@ -5,44 +5,58 @@
  * @author Pat Long
  */
 
-/* To go in the header */
-
-#define MAILBOX_HASHTABLE_SIZE 4096
-
-typedef struct Message {
-    pid_t sender;               // Record the sender in the message
-    int len;                    // The length of the message, cannot exceed MAX_MESSAGE_SIZE
-    char msg[MAX_MESSAGE_SIZE]; // The message itself
-    struct list_head list;      // Linked list
-} Message;
-
-typedef struct Mailbox {
-    pid_t owner;                // Owner of this mailbox
-    struct list_head messages;  // Linked list of messages
-    int message_count;          // Not greater than MAILBOX_SIZE
-    int stopped;               // Is this mailbox stopped?
-    struct hlist_node list;
-} Mailbox;
-
-/* End Header shiz */
-
+#include <linux/slab.h>
 #include <linux/list.h>
+
 #include "mailbox_impl.h"
 
-kmem_cache_t* mailbox_cache;
-kmem_cache_t* message_cache;
+struct kmem_cache* mailbox_cache;
+struct kmem_cache* message_cache;
+
+static struct hlist_head mailbox_hash_table[MAILBOX_HASHTABLE_SIZE];
 
 /**
  * Initalizes the mailbox implementation
  * Sets up the mem caches, and the hashmap, and the hashmaps and stuff
  */
 void mailbox_impl_init() {
+    int i;
     // Initialize our caches
     mailbox_cache = kmem_cache_create("mailbox", sizeof(Mailbox), 0, 0, NULL);
     message_cache = kmem_cache_create("message", sizeof(Message), 0, 0, NULL);
 
-    // Initialize our hashmaps
-    assert(false); // Implement me!
+    // Initialize our hash table
+    for (i = 0; i < MAILBOX_HASHTABLE_SIZE; i++) {
+        INIT_HLIST_HEAD(&mailbox_hash_table[i]);
+    }
+}
+
+/**
+ * Cleans up
+ */
+void mailbox_impl_exit() {
+    kmem_cache_destroy(mailbox_cache);
+    kmem_cache_destroy(message_cache);
+}
+
+unsigned long mailbox_hash(pid_t owner) {
+    // FIXME - this is a shitty hash function
+    return owner % MAILBOX_HASHTABLE_SIZE;
+}
+
+Mailbox* get_mailbox(pid_t owner) {
+    struct hlist_head head = mailbox_hash_table[mailbox_hash(owner)];
+
+    struct hlist_node * current_node;
+    Mailbox * m_current;
+
+    hlist_for_each_entry(m_current, current_node, &head, list) {
+        if (m_current->owner == owner) {
+            return m_current;
+        }
+    }
+
+    return NULL;
 }
 
 /**
@@ -51,11 +65,40 @@ void mailbox_impl_init() {
  * @param  owner   pid of owner
  * @return         0
  */
-int create_mailbox(Mailbox** mailbox, pid_t owner) {
-    mailbox* = kmem_cache_alloc(&mailbox_cache, 0);
-    mailbox*->owner = owner;
-    mailbox*->message_count = 0;
-    mailbox*->stopped = 0;
+Mailbox * create_mailbox(pid_t owner) {
+    Mailbox * mailbox;
+
+    if(get_mailbox(owner) != NULL) {
+        return NULL;
+    }
+
+    mailbox = kmem_cache_alloc(mailbox_cache, 0);
+    mailbox->owner = owner;
+    mailbox->message_count = 0;
+    mailbox->stopped = 0;
+    INIT_LIST_HEAD(&mailbox->messages);
+    INIT_HLIST_NODE(&mailbox->list);
+
+    // Assume it's not already created
+    hlist_add_head(&mailbox->list, &mailbox_hash_table[mailbox_hash(owner)]);
+
+    return mailbox;
 }
 
-int create_message(Message** message, pid_t sender, void)
+void destroy_mailbox(pid_t owner) {
+    Mailbox * mailbox;
+
+    mailbox = get_mailbox(owner);
+
+    if (!mailbox) {
+        return;
+    }
+
+    // Remove it from the hashtable
+    hlist_del(&mailbox->list);
+
+    // Free memory
+    kmem_cache_free(mailbox_cache, mailbox);
+
+
+}
