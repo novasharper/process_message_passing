@@ -119,7 +119,7 @@ static void __mailbox_add_message(Mailbox* mailbox, Message* message) {
     // Add the message to the end of the list
     list_add_tail(&message->list, &mailbox->messages);
     mailbox->message_count++;
-    spin_lock_irqrestore(&mailbox->lock, mailbox->lock_irqsave);
+    spin_unlock_irqrestore(&mailbox->lock, mailbox->lock_irqsave);
 }
 
 static void __mailbox_remove_message(Mailbox* mailbox, Message* message) {

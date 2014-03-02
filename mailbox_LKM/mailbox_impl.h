@@ -39,7 +39,7 @@ typedef struct Mailbox {
     struct list_head messages;  // Linked list of messages
     struct hlist_node list;     // I'm in a hash table
     spinlock_t lock;            // Modification/usage lock
-    unsigned long lock_irqsave  // irqsave
+    unsigned long lock_irqsave; // irqsave
     // TODO  - locks per mailbox
 } Mailbox;
 

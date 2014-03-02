@@ -25,11 +25,17 @@ unsigned long **sys_call_table;
 asmlinkage long (*ref_sys_cs3013_syscall1)(void);
 asmlinkage long (*ref_sys_cs3013_syscall2)(void);
 asmlinkage long (*ref_sys_cs3013_syscall3)(void);
+asmlinkage long (*ref_sys_exit)(int status);
+asmlinkage long (*ref_sys_exit_group)(int status);
 int mailbox_cleanup_proc = -1;
 int mailbox_cleanup_finished = 0;
 
 // Send message to destination process with given message and whether or not to block until sent
 asmlinkage long __send_message(pid_t dest, void *msg, int len, bool block) {
+	/**
+	 * first, 
+	 */
+
 	return 0;
 }
 
@@ -40,6 +46,16 @@ asmlinkage long __recieve_message(pid_t *sender, void *msg, int *len, bool block
 
 asmlinkage long __manage_mailbox(bool stop, int *count) {
 	return 0;
+}
+
+asmlinkage long __new_sys_exit(int status) {
+	// Must check if thread group is dead, if so, delete mailbox
+	return ref_sys_exit(status);
+}
+
+asmlinkage long __new_sys_exit_group(int status) {
+	// Delete the mailbox, bro
+	return ref_sys_exit_group(status);
 }
 
 static unsigned long **find_sys_call_table(void) {
@@ -59,7 +75,6 @@ static unsigned long **find_sys_call_table(void) {
 
 	return NULL;
 }	// static unsigned long **find_sys_call_table(void)
-
 
 static void disable_page_protection(void) {
 	/*
@@ -107,6 +122,8 @@ static int __init interceptor_start(void) {
 	ref_sys_cs3013_syscall1 = (void *)sys_call_table[__NR_cs3013_syscall1];
 	ref_sys_cs3013_syscall2 = (void *)sys_call_table[__NR_cs3013_syscall2];
 	ref_sys_cs3013_syscall3 = (void *)sys_call_table[__NR_cs3013_syscall3];
+	ref_sys_exit = (void *)sys_call_table[__NR_exit];
+	ref_sys_exit_group = (void *)sys_call_table[__NR_exit_group];
 
 	/* Replace the existing system calls */
 	disable_page_protection();
@@ -114,6 +131,8 @@ static int __init interceptor_start(void) {
 	sys_call_table[__NR_cs3013_syscall1] = (unsigned long *)__send_message;
 	sys_call_table[__NR_cs3013_syscall2] = (unsigned long *)__recieve_message;
 	sys_call_table[__NR_cs3013_syscall3] = (unsigned long *)__manage_mailbox;
+	sys_call_table[__NR_exit] = (unsigned long *)__new_sys_exit;
+	sys_call_table[__NR_exit_group] = (unsigned long *)__new_sys_exit_group;
 
 	enable_page_protection();
 
@@ -134,8 +153,11 @@ static void __exit interceptor_end(void) {
 	sys_call_table[__NR_cs3013_syscall1] = (unsigned long *)ref_sys_cs3013_syscall1;
 	sys_call_table[__NR_cs3013_syscall2] = (unsigned long *)ref_sys_cs3013_syscall2;
 	sys_call_table[__NR_cs3013_syscall3] = (unsigned long *)ref_sys_cs3013_syscall3;
+	sys_call_table[__NR_exit] = (unsigned long *)ref_sys_exit;
+	sys_call_table[__NR_exit_group] = (unsigned long *)ref_sys_exit_group;
 	enable_page_protection();
 
+	// Clean up our mailbox
 	mailbox_impl_exit();
 
 	printk(KERN_INFO "Unloaded interceptor!");
