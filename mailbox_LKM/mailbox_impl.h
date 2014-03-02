@@ -42,8 +42,5 @@ typedef struct Mailbox {
 
 void mailbox_impl_init(void);
 void mailbox_impl_exit(void);
-Mailbox* get_mailbox(pid_t owner);
-Mailbox* create_mailbox(pid_t owner);
-void destroy_mailbox(pid_t owner);
 
 #endif

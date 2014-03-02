@@ -27,44 +27,6 @@ asmlinkage long (*ref_sys_cs3013_syscall2)(void);
 asmlinkage long (*ref_sys_cs3013_syscall3)(void);
 int mailbox_cleanup_proc = -1;
 int mailbox_cleanup_finished = 0;
-void __run_tests(void);
-
-void __run_tests() {
-	Mailbox* test_mailbox = get_mailbox(23);
-	if (test_mailbox == NULL) {
-		printk(KERN_INFO "success");
-	}
-	test_mailbox = create_mailbox(23);
-
-	Mailbox* mail2 = create_mailbox(23+4096);
-
-	if (test_mailbox) {
-		printk(KERN_INFO "created mailbox successfully");
-	}
-
-	test_mailbox = get_mailbox(23);
-	if (test_mailbox) {
-		printk(KERN_INFO "got mailbox successfully after creating");
-	}
-	mail2 = get_mailbox(23+4096);
-
-	if (mail2 != test_mailbox) {
-		printk(KERN_INFO "totes mcgotes collision handled properly");
-	}
-
-	destroy_mailbox(test_mailbox->owner);
-
-	mail2 = get_mailbox(23+4096);
-
-	if (mail2->owner == 23+4096) {
-		printk(KERN_INFO " I don't suck");
-	}
-
-	test_mailbox = get_mailbox(23);
-	if (test_mailbox == NULL) {
-		printk(KERN_INFO " hahahaha");
-	}
-}
 
 // Send message to destination process with given message and whether or not to block until sent
 asmlinkage long __send_message(pid_t dest, void *msg, int len, bool block) {
@@ -140,8 +102,6 @@ static int __init interceptor_start(void) {
 
 	// Initialize the mailbox implementation
 	mailbox_impl_init();
-
-	__run_tests();
 
 	/* Store a copy of all the existing functions */
 	ref_sys_cs3013_syscall1 = (void *)sys_call_table[__NR_cs3013_syscall1];
