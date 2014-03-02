@@ -78,6 +78,7 @@ static void hashtable_put(Mailbox* mailbox, pid_t key) {
  * @return       [description]
  */
 Mailbox * get_create_mailbox(pid_t owner) {
+    // need to add syncronization here incase two processes try to get/create at the same time
     Mailbox * mailbox = hashtable_get(owner);
 
     if (!mailbox) {
@@ -104,8 +105,6 @@ Mailbox * get_create_mailbox(pid_t owner) {
 void destroy_mailbox(Mailbox* mailbox) {
     // Remove it from the hashtable
     hashtable_remove(mailbox->owner);
-
-    // TODO - clean up messages
 
     // Free memory
     kmem_cache_free(mailbox_cache, mailbox);
@@ -144,7 +143,7 @@ static void __mailbox_stop(Mailbox* mailbox) {
  * @param  msg    Must be less than MAX_MSG_SIZE
  * @return        newly allocated Message
  */
-long create_message(Message** message, pid_t sender, int len, void* msg) {
+static long __create_message(Message** message, pid_t sender, int len, void* msg) {
     if (len > MAX_MSG_SIZE) {
         return MSG_LENGTH_ERROR;
     }
@@ -158,20 +157,8 @@ long create_message(Message** message, pid_t sender, int len, void* msg) {
     return 0;
 }
 
-long destroy_message(Message* message) {
+static long __destroy_message(Message* message) {
     kmem_cache_free(message_cache, message);
-    return 0;
-}
-
-
-long send_message_to_mailbox(pid_t reciever, pid_t sender, int len, void* msg) {
-    Mailbox* mailbox = hashtable_get(reciever);
-
-    // Mailbox not found, must be invalid
-    if (mailbox == NULL) {
-        return MAILBOX_INVALID;
-    }
-
     return 0;
 }
 

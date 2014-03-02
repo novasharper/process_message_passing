@@ -32,9 +32,8 @@ int mailbox_cleanup_finished = 0;
 
 // Send message to destination process with given message and whether or not to block until sent
 asmlinkage long __send_message(pid_t dest, void *msg, int len, bool block) {
-	/**
-	 * first, 
-	 */
+	pid_t current_pid = current->pid;
+
 
 	return 0;
 }
