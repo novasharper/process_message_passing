@@ -127,35 +127,39 @@ void destroy_mailbox_unsafe(Mailbox* mailbox) {
 void __mailbox_add_message_unsafe(Mailbox* mailbox, Message* message) {
     printk(KERN_INFO "Adding message to mailbox for %d, message from %d", mailbox->owner, message->sender);
     Message* msg2;
-    printk(KERN_INFO "Getting spin lock");
+    printk(KERN_INFO "Getting spin lock for mailbox lowlevel");
     spin_lock_irqsave(&mailbox->lock, mailbox->lock_irqsave);
-    printk(KERN_INFO "Got spin lock");
+    printk(KERN_INFO "Got spin lock for mailbox lowlevel");
     // Add the message to the end of the list
     list_add_tail(&message->list, &mailbox->messages);
     mailbox->message_count++;
-    printk(KERN_INFO "Releasing spin lock");
+    printk(KERN_INFO "Releasing spin lock for mailbox lowlevel");
     spin_unlock_irqrestore(&mailbox->lock, mailbox->lock_irqsave);
-    printk(KERN_INFO "Released spin lock");
+    printk(KERN_INFO "Released spin lock for mailbox lowlevel");
 }
 
 void __mailbox_remove_message_unsafe(Mailbox* mailbox, Message* message) {
-    printk(KERN_INFO "Getting spin lock");
+    printk(KERN_INFO "Getting spin lock for mailbox lowlevel");
     spin_lock_irqsave(&mailbox->lock, mailbox->lock_irqsave);
-    printk(KERN_INFO "Got spin lock");
+    printk(KERN_INFO "Got spin lock for mailbox lowlevel");
     // Can't remove list head
     if(&message->list != &mailbox->messages) {
         list_del(&message->list);
         mailbox->message_count--;
     }
-    printk(KERN_INFO "Releasing spin lock");
+    printk(KERN_INFO "Releasing spin lock for mailbox lowlevel");
     spin_unlock_irqrestore(&mailbox->lock, mailbox->lock_irqsave);
-    printk(KERN_INFO "Released spin lock");
+    printk(KERN_INFO "Released spin lock for mailbox lowlevel");
 }
 
 void __mailbox_stop_unsafe(Mailbox* mailbox) {
+    printk(KERN_INFO "Getting spin lock for mailbox lowlevel");
     spin_lock_irqsave(&mailbox->lock, mailbox->lock_irqsave);
+    printk(KERN_INFO "Got spin lock for mailbox lowlevel");
     mailbox->stopped = 1;
+    printk(KERN_INFO "Releasing spin lock for mailbox lowlevel");
     spin_unlock_irqrestore(&mailbox->lock, mailbox->lock_irqsave);
+    printk(KERN_INFO "Released spin lock for mailbox lowlevel");
 }
 
 /**
