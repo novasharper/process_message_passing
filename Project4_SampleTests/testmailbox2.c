@@ -31,18 +31,22 @@ int main() {
       RcvMsg(&sender,msg,&len,block);
     
       
-      printf("Message: %s\n", (char *)msg);
+      printf("Message recieved by child: %s\n", (char *)msg);
       char myMesg[] = "I am your child";
-      if(SendMsg(sender, myMesg, 16, block)) {
-	printf("Child send failed.\n");
+      int error = SendMsg(sender, myMesg, 16, block);
+      if(error) {
+	printf("Child send failed.%d\n", error);
       }
       
+      printf("child exiting\n");
       return 0;
     }
     else{
       char mesg[] = "I am your father";
       if (SendMsg(childPID, mesg, 17, false)){
 	printf("Send failed\n");
+      } else {
+        printf("Send succeeded\n");
       }
     }
   }
@@ -57,5 +61,6 @@ int main() {
     RcvMsg(&aSender,reply,&mLen,mBlock);
     printf("Child %d, enqueued # %d Message: %s\n", aSender, msgCounter, (char *)reply);
   }
+  printf("\nparent exiting\n\n");
   return 0;
 }
