@@ -47,22 +47,30 @@ asmlinkage long __send_message(pid_t dest, void *msg, int len, bool block) {
 	pid_t current_pid = current->pid;
 	Message* message_s;
 	unsigned long spin_lock_flags;
+	Mailbox* mailbox;
 
 
 	printk(KERN_INFO "[%d] Checking if destination valid, %d", current_pid, dest);
 	if (__process_is_valid(dest)) {
 		printk(KERN_INFO "[%d] Getting mailbox for %d", current_pid, dest);
-		Mailbox* mailbox = get_create_mailbox(dest);
+		mailbox = get_create_mailbox(dest);
+		printk(KERN_INFO "[%d] Checking if mailbox for %d is stopped", current_pid, dest);
 		if (mailbox->stopped) {
+			printk(KERN_INFO "[%d] Mailbox for %d is stopped", current_pid, dest);
 			return MAILBOX_STOPPED;
 		} else {
 			// Got mailbox successfully, now do checking for message
+			printk(KERN_INFO "[%d] Checking if msg is the proper size", current_pid);
 			if (len > MAX_MSG_SIZE) {
+				printk(KERN_INFO "[%d] msg is not the proper size", current_pid);
 				return MSG_LENGTH_ERROR;
 			} else {
+				printk(KERN_INFO "[%d] Initalizing message", current_pid);
 				__init_message(&message_s);
+				printk(KERN_INFO "[%d] copying message from user", current_pid);
 				if (copy_from_user(&message_s->msg, msg, len)) {
 					// Failed to create message, destroy it.
+					printk(KERN_INFO "[%d] copy failed, destroy message", current_pid);
 					__destroy_message(&message_s);
 					return MSG_ARG_ERROR;
 				} else {
@@ -70,29 +78,38 @@ asmlinkage long __send_message(pid_t dest, void *msg, int len, bool block) {
 					message_s->sender = current_pid;
 
 					// Get spin lock for mailbox modification
+					printk(KERN_INFO "[%d] get spin lock for mailbox %d", current_pid, dest);
 					spin_lock_irqsave(&mailbox->send_recieve_message_queue.lock, spin_lock_flags);
+					printk(KERN_INFO "[%d] got spin lock for mailbox %d", current_pid, dest);
 
-					printk(KERN_INFO "Message sent: %s, message copied: %s", (char*) msg, (char*) message_s->msg);
+					printk(KERN_INFO "[%d] sending message to %d: %s", current_pid, dest, (char*)msg);
 					// Check if mailbox is full
-					printk(KERN_INFO "Mailbox %d Status: %d/%d messages",mailbox->owner,mailbox->message_count,mailbox->message_max);
+					printk(KERN_INFO "[%d] checking if mailbox for %d is full", current_pid, dest);
 					if (mailbox->message_count >= mailbox->message_max) {
 
 						// If the mailbox is full, either block and wait, or return error
+						printk(KERN_INFO "[%d] mailbox for %d is full", current_pid, dest);
 						if (block) {
 							// Wait until mailbox isn't full, or mailbox is stopped
+							printk(KERN_INFO "[%d] mailbox for %d is full, waiting", current_pid, dest);
 							wait_event_interruptible_exclusive_locked_irq(mailbox->send_recieve_message_queue, (mailbox->stopped || mailbox->message_count < mailbox->message_max));
+							printk(KERN_INFO "[%d] mailbox for %d is full, waiting over, not full anymore, or stopped?", current_pid, dest);
 							if (mailbox->stopped) {
+								printk(KERN_INFO "[%d] mailbox for %d is now stopped, we can't send, releasing spin lock", current_pid, dest);
 								spin_unlock_irqrestore(&mailbox->send_recieve_message_queue.lock, spin_lock_flags);
 								return MAILBOX_STOPPED;
 							}
 						} else {
+							printk(KERN_INFO "[%d] mailbox for %d is full, not waiting, releasing spin lock", current_pid, dest);
 							spin_unlock_irqrestore(&mailbox->send_recieve_message_queue.lock, spin_lock_flags);
 							return MAILBOX_FULL;
 						}
 					}
 
+					printk(KERN_INFO "[%d] sending message to %d ,%s", current_pid, dest, (char*) message_s->msg);
 					// Mailbox isn't full, add the message
 					__mailbox_add_message_unsafe(mailbox, message_s);
+					printk(KERN_INFO "[%d] releasing spinlock", current_pid);
 					spin_unlock_irqrestore(&mailbox->send_recieve_message_queue.lock, spin_lock_flags);
 				}
 			}
@@ -145,7 +162,6 @@ asmlinkage long __recieve_message(pid_t *sender, void *msg, int *len, bool block
 	// Get message code
 	message = list_entry(mailbox->messages.next, Message, list);
 
-	printk(KERN_INFO "Message has msg %s", (char*)message->msg);
 	// Copy 
 	if (copy_to_user(sender, &(message->sender), sizeof(pid_t)) || copy_to_user(len, &(message->len), sizeof(int)) || copy_to_user(msg, &(message->msg), message->len)) {
 		spin_unlock_irqrestore(&mailbox->send_recieve_message_queue.lock, spin_lock_flags);

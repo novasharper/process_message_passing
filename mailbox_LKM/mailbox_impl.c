@@ -37,7 +37,7 @@ static Mailbox* __hashtable_get_unsafe(pid_t key) {
     struct hlist_node * current_node;
     Mailbox * m_current_node;
 
-    hlist_for_each_entry(m_current_node, current_node, &mailbox_hash_table[mailbox_hash(key)], list) {
+    hlist_for_each_entry(m_current_node, current_node, &mailbox_hash_table[mailbox_hash(key)], hash_table_entry) {
         if (m_current_node->owner == key) {
             return m_current_node;
         }
@@ -55,9 +55,9 @@ static Mailbox* hashtable_get(pid_t key) {
 
 /** Unsafe helper method, only use inside rwlock */
 static void __hashtable_remove_unsafe(pid_t key) {
-    Mailbox* msg = __hashtable_get_unsafe(key);
-    if (msg) {
-        hlist_del(&msg->list);
+    Mailbox* mailbox = __hashtable_get_unsafe(key);
+    if (mailbox) {
+        hlist_del(&mailbox->hash_table_entry);
     }
 }
 
@@ -73,7 +73,7 @@ static void hashtable_put(Mailbox* mailbox, pid_t key) {
     __hashtable_remove_unsafe(key);
 
     // Add new entry
-    hlist_add_head(&mailbox->list, &mailbox_hash_table[mailbox_hash(key)]);
+    hlist_add_head(&mailbox->hash_table_entry, &mailbox_hash_table[mailbox_hash(key)]);
 
     write_unlock_irqrestore(&mailbox_hash_table_rwlock, flags);
 }
@@ -84,9 +84,10 @@ static void hashtable_put(Mailbox* mailbox, pid_t key) {
  * @return       [description]
  */
 Mailbox * get_create_mailbox(pid_t owner) {
-    printk(KERN_INFO "Trying to get mailbox for %d", owner);
     // need to add syncronization here incase two processes try to get/create at the same time
     Mailbox * mailbox = hashtable_get(owner);
+
+    printk(KERN_INFO "Trying to get mailbox for %d", owner);
 
     if (!mailbox) {
         printk(KERN_INFO "Mailbox doesn't exist, creating one for %d", owner);
@@ -98,7 +99,7 @@ Mailbox * get_create_mailbox(pid_t owner) {
         spin_lock_init(&mailbox->lock);
         init_waitqueue_head(&mailbox->send_recieve_message_queue);
         INIT_LIST_HEAD(&mailbox->messages);
-        INIT_HLIST_NODE(&mailbox->list);
+        INIT_HLIST_NODE(&mailbox->hash_table_entry);
 
         // Put it in the table
         hashtable_put(mailbox, owner);
@@ -126,40 +127,27 @@ void destroy_mailbox_unsafe(Mailbox* mailbox) {
 
 void __mailbox_add_message_unsafe(Mailbox* mailbox, Message* message) {
     printk(KERN_INFO "Adding message to mailbox for %d, message from %d", mailbox->owner, message->sender);
-    Message* msg2;
-    printk(KERN_INFO "Getting spin lock for mailbox lowlevel");
     spin_lock_irqsave(&mailbox->lock, mailbox->lock_irqsave);
-    printk(KERN_INFO "Got spin lock for mailbox lowlevel");
     // Add the message to the end of the list
     list_add_tail(&message->list, &mailbox->messages);
     mailbox->message_count++;
-    printk(KERN_INFO "Releasing spin lock for mailbox lowlevel");
     spin_unlock_irqrestore(&mailbox->lock, mailbox->lock_irqsave);
-    printk(KERN_INFO "Released spin lock for mailbox lowlevel");
 }
 
 void __mailbox_remove_message_unsafe(Mailbox* mailbox, Message* message) {
-    printk(KERN_INFO "Getting spin lock for mailbox lowlevel");
     spin_lock_irqsave(&mailbox->lock, mailbox->lock_irqsave);
-    printk(KERN_INFO "Got spin lock for mailbox lowlevel");
     // Can't remove list head
     if(&message->list != &mailbox->messages) {
         list_del(&message->list);
         mailbox->message_count--;
     }
-    printk(KERN_INFO "Releasing spin lock for mailbox lowlevel");
     spin_unlock_irqrestore(&mailbox->lock, mailbox->lock_irqsave);
-    printk(KERN_INFO "Released spin lock for mailbox lowlevel");
 }
 
 void __mailbox_stop_unsafe(Mailbox* mailbox) {
-    printk(KERN_INFO "Getting spin lock for mailbox lowlevel");
     spin_lock_irqsave(&mailbox->lock, mailbox->lock_irqsave);
-    printk(KERN_INFO "Got spin lock for mailbox lowlevel");
     mailbox->stopped = 1;
-    printk(KERN_INFO "Releasing spin lock for mailbox lowlevel");
     spin_unlock_irqrestore(&mailbox->lock, mailbox->lock_irqsave);
-    printk(KERN_INFO "Released spin lock for mailbox lowlevel");
 }
 
 /**

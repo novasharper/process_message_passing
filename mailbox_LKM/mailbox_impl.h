@@ -39,7 +39,7 @@ typedef struct Mailbox {
     int message_max;            // Mailbox max size;
     int stopped;                // Is this mailbox stopped?
     struct list_head messages;  // Linked list of messages
-    struct hlist_node list;     // I'm in a hash table
+    struct hlist_node hash_table_entry;     // I'm in a hash table
     spinlock_t lock;            // Modification/usage lock
     unsigned long lock_irqsave; // irqsave
     wait_queue_head_t send_recieve_message_queue; // Only send/recieve one message at a time, can't send and recieve.
