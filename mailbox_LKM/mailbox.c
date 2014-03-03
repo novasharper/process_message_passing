@@ -48,9 +48,10 @@ asmlinkage long __send_message(pid_t dest, void *msg, int len, bool block) {
 	Message* message_s;
 	unsigned long spin_lock_flags;
 
-	printk(KERN_INFO "Sending message %s", (char*) msg);
 
+	printk(KERN_INFO "[%d] Checking if destination valid, %d", current_pid, dest);
 	if (__process_is_valid(dest)) {
+		printk(KERN_INFO "[%d] Getting mailbox for %d", current_pid, dest);
 		Mailbox* mailbox = get_create_mailbox(dest);
 		if (mailbox->stopped) {
 			return MAILBOX_STOPPED;

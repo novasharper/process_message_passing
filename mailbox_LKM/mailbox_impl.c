@@ -84,10 +84,12 @@ static void hashtable_put(Mailbox* mailbox, pid_t key) {
  * @return       [description]
  */
 Mailbox * get_create_mailbox(pid_t owner) {
+    printk(KERN_INFO "Trying to get mailbox for %d", owner);
     // need to add syncronization here incase two processes try to get/create at the same time
     Mailbox * mailbox = hashtable_get(owner);
 
     if (!mailbox) {
+        printk(KERN_INFO "Mailbox doesn't exist, creating one for %d", owner);
         mailbox = kmem_cache_alloc(mailbox_cache, 0);
         mailbox->owner = owner;
         mailbox->message_count = 0;
@@ -123,34 +125,28 @@ void destroy_mailbox_unsafe(Mailbox* mailbox) {
 /** Mailbox modification functions, adding and removing messages, setting to stopped */
 
 void __mailbox_add_message_unsafe(Mailbox* mailbox, Message* message) {
+    printk(KERN_INFO "Adding message to mailbox for %d, message from %d", mailbox->owner, message->sender);
     Message* msg2;
+    printk(KERN_INFO "Getting spin lock");
     spin_lock_irqsave(&mailbox->lock, mailbox->lock_irqsave);
+    printk(KERN_INFO "Got spin lock");
     // Add the message to the end of the list
     list_add_tail(&message->list, &mailbox->messages);
-    printk(KERN_INFO "Adding message to mailbox");
-    printk(KERN_INFO "Message has msg %s", message->msg);
-
-    printk(KERN_INFO "message addr %p, mailbox messages %p", &message->list, mailbox->messages.next);
-
-    list_for_each_entry(msg2, &mailbox->messages, list) {
-        printk(KERN_INFO "msg1 is pid %d, msg2 is pid %d", message->sender, msg2->sender);
-        printk(KERN_INFO "msg2 has msg %s", msg2->msg);
-    }
-    msg2 = list_entry(mailbox->messages.next, Message, list);
-    printk(KERN_INFO "msg1 is pid %d, msg2 is pid %d", message->sender, msg2->sender);
-
-    printk(KERN_INFO "msg2 has msg %s", msg2->msg);
     mailbox->message_count++;
+    printk(KERN_INFO "Releasing spin lock");
     spin_unlock_irqrestore(&mailbox->lock, mailbox->lock_irqsave);
+    printk(KERN_INFO "Released spin lock");
 }
 
 void __mailbox_remove_message_unsafe(Mailbox* mailbox, Message* message) {
+    printk(KERN_INFO "Getting spin lock");
     spin_lock_irqsave(&mailbox->lock, mailbox->lock_irqsave);
+    printk(KERN_INFO "Got spin lock");
     list_del(&message->list);
-    printk(KERN_INFO "Removing message from mailbox");
     mailbox->message_count--;
-    printk(KERN_INFO "Removing message from mailbox ?");
+    printk(KERN_INFO "Releasing spin lock");
     spin_unlock_irqrestore(&mailbox->lock, mailbox->lock_irqsave);
+    printk(KERN_INFO "Released spin lock");
 }
 
 void __mailbox_stop_unsafe(Mailbox* mailbox) {
@@ -174,7 +170,7 @@ void __init_message(Message** message) {
 }
 
 void __destroy_message(Message** message) {
-    kmem_cache_free(message_cache, message);
+    kmem_cache_free(message_cache, *message);
     *message = NULL;
 }
 
