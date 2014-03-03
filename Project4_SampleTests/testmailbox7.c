@@ -56,9 +56,5 @@ int main() {
   // before trying to kill its own process.
   usleep(1000);
   printf("Parent dies.\n");
-
-  signal(SIGQUIT, SIG_IGN);
-  kill(-getpid(), SIGQUIT);
-
   return 0;
 }
