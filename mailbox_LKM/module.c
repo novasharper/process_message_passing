@@ -114,6 +114,7 @@ asmlinkage long __new_sys_exit(int status) {
 
 	int group_dead = atomic_dec_and_test(&current->signal->live);
 	if(group_dead) {
+		mailbox_stop_for_pid(mailbox);
 		remove_mailbox_for_pid(current->pid);
 	}
 
@@ -122,6 +123,8 @@ asmlinkage long __new_sys_exit(int status) {
 
 asmlinkage long __new_sys_exit_group(int status) {
 	printk(KERN_INFO "Exiting group, destroying mailbox for %d", current->pid);
+	
+	mailbox_stop_for_pid(mailbox);
 	remove_mailbox_for_pid(current->pid);
 
 	return ref_sys_exit_group(status);

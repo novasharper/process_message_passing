@@ -19,6 +19,7 @@ int main() {
     int status = RcvMsg(&sender,msg,&len,block);
     printf("Message received. %d\n",status);
     printf("Message: %s\n", (char *) msg);
+    exit(0);
   }
   else{
     char mesg[] = "I am your father";
@@ -28,5 +29,7 @@ int main() {
       printf("Send failed, %d\n", a);
     }
   }
+  signal(SIGQUIT, SIG_IGN);
+  kill(-getpid(), SIGQUIT);
   return 0;
 }

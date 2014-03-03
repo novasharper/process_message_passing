@@ -51,6 +51,9 @@ int main() {
   // to its mailbox
   // before trying to kill its own process.
   usleep(100000);
+
+  signal(SIGQUIT, SIG_IGN);
+  kill(-getpid(), SIGQUIT);
   
   return 0;
 }

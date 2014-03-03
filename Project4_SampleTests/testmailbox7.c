@@ -39,6 +39,7 @@ int main() {
 	printf("Child send failed. %d\n", error);
       }
       
+      exit(0);
       return 0;
     }
     else{
@@ -55,5 +56,9 @@ int main() {
   // before trying to kill its own process.
   usleep(1000);
   printf("Parent dies.\n");
+
+  signal(SIGQUIT, SIG_IGN);
+  kill(-getpid(), SIGQUIT);
+
   return 0;
 }
