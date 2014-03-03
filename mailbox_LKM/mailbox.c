@@ -30,7 +30,7 @@ void mailbox_exit() {
 Mailbox* mailbox_create(pid_t owner) {
     Mailbox* mailbox = NULL;
 
-    if(current->mm) {
+    if(is_process_valid(owner)) {
         printk(KERN_INFO "Creating new mailbox for %d", owner);
 
         // Allocate it
