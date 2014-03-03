@@ -12,6 +12,7 @@
 #include <stdbool.h>
 #include <unistd.h>
 #include <linux/types.h>
+#include <signal.h>
 
 #define NO_BLOCK 0
 #define BLOCK   1

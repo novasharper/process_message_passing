@@ -113,19 +113,6 @@ long get_mailbox_for_pid(Mailbox** mailbox, pid_t pid) {
     }
 }
 
-long mailbox_stop_for_pid(pid_t pid) {
-    Mailbox* mailbox;
-
-    mailbox = hashtable_get(pid)  ;
-
-    if(mailbox) {
-        mailbox_stop(mailbox);
-        return 0;
-    } else {
-        return MAILBOX_INVALID;
-    }
-}
-
 long remove_mailbox_for_pid(pid_t pid) {
     Mailbox* mailbox;
 

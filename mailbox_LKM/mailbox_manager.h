@@ -9,7 +9,6 @@
 void mailbox_manager_init(void);
 
 long get_mailbox_for_pid(Mailbox** mailbox, pid_t pid);
-long mailbox_stop_for_pid(pid_t pid);
 long remove_mailbox_for_pid(pid_t pid);
 
 #endif
