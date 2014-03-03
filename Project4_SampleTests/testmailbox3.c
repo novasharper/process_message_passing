@@ -28,16 +28,18 @@ int main() {
       
       printf("Message: %s\n", (char *)msg);
       char myMesg[] = "I am your child";
-      if(SendMsg(sender, myMesg, 16, block)) {
-	printf("Child send failed.\n");
+      long error = SendMsg(sender, myMesg, 16, block);
+      if(error) {
+	printf("Child send failed. %ld\n", error);
       }
       
       return 0;
     }
     else{
       char mesg[] = "I am your father";
-      if (SendMsg(childPID, mesg, 17, false)){
-	printf("Send failed\n");
+      long error = SendMsg(childPID, mesg, 17, false);
+      if (error){
+	printf("Send failed %ld\n", error);
       }
     }
   }
