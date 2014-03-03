@@ -48,6 +48,8 @@ asmlinkage long __send_message(pid_t dest, void *msg, int len, bool block) {
 	Message* message_s;
 	unsigned long spin_lock_flags;
 
+	printk(KERN_INFO "Sending message %s", (char*) msg);
+
 	if (__process_is_valid(dest)) {
 		Mailbox* mailbox = get_create_mailbox(dest);
 		if (mailbox->stopped) {
@@ -69,7 +71,9 @@ asmlinkage long __send_message(pid_t dest, void *msg, int len, bool block) {
 					// Get spin lock for mailbox modification
 					spin_lock_irqsave(&mailbox->send_recieve_message_queue.lock, spin_lock_flags);
 
+					printk(KERN_INFO "Message sent: %s, message copied: %s", (char*) msg, (char*) message_s->msg);
 					// Check if mailbox is full
+					printk(KERN_INFO "Mailbox %d Status: %d/%d messages",mailbox->owner,mailbox->message_count,mailbox->message_max);
 					if (mailbox->message_count >= mailbox->message_max) {
 
 						// If the mailbox is full, either block and wait, or return error
@@ -138,11 +142,14 @@ asmlinkage long __recieve_message(pid_t *sender, void *msg, int *len, bool block
 
 	// At this point, we have messages, or waited until we have messages
 	// Get message code
-	message = list_entry(&mailbox->messages, Message, list);
+	message = list_entry(mailbox->messages.next, Message, list);
+
+	printk(KERN_INFO "Message has msg %s", (char*)message->msg);
 	// Copy 
-	copy_to_user(&(message->sender), sender, sizeof(pid_t));
-	copy_to_user(&(message->len), len, sizeof(int));
-	copy_to_user(&(message->msg), msg, message->len);
+	if (copy_to_user(sender, &(message->sender), sizeof(pid_t)) || copy_to_user(len, &(message->len), sizeof(int)) || copy_to_user(msg, &(message->msg), message->len)) {
+		spin_unlock_irqrestore(&mailbox->send_recieve_message_queue.lock, spin_lock_flags);
+		return MAILBOX_ERROR;
+	}
 	__mailbox_remove_message_unsafe(mailbox, message);
 	__destroy_message(&message);
 	spin_unlock_irqrestore(&mailbox->send_recieve_message_queue.lock, spin_lock_flags);
@@ -175,6 +182,7 @@ asmlinkage long __new_sys_exit(int status) {
 }
 
 asmlinkage long __new_sys_exit_group(int status) {
+	/*
 	pid_t current_pid = current->pid;
 	unsigned long flags;
 	// The process is def alive if it's calling a syscall, no need for validtation here.
@@ -195,7 +203,7 @@ asmlinkage long __new_sys_exit_group(int status) {
 
 	// outside of the spin lock as the lock gets destroyed when we destroy the mailbox.
 	destroy_mailbox_unsafe(mailbox);
-
+*/
 	return ref_sys_exit_group(status);
 }
 

@@ -4,6 +4,12 @@
  * @author Khazhismel Kumykov
  */
 
+#undef __KERNEL__
+#undef MODULE
+
+#define __KERNEL__ 
+#define MODULE
+
 #include <linux/slab.h>
 #include <linux/list.h>
 #include <linux/sched.h>
@@ -85,6 +91,7 @@ Mailbox * get_create_mailbox(pid_t owner) {
         mailbox = kmem_cache_alloc(mailbox_cache, 0);
         mailbox->owner = owner;
         mailbox->message_count = 0;
+        mailbox->message_max = 64;
         mailbox->stopped = 0;
         spin_lock_init(&mailbox->lock);
         init_waitqueue_head(&mailbox->send_recieve_message_queue);
@@ -116,9 +123,23 @@ void destroy_mailbox_unsafe(Mailbox* mailbox) {
 /** Mailbox modification functions, adding and removing messages, setting to stopped */
 
 void __mailbox_add_message_unsafe(Mailbox* mailbox, Message* message) {
+    Message* msg2;
     spin_lock_irqsave(&mailbox->lock, mailbox->lock_irqsave);
     // Add the message to the end of the list
     list_add_tail(&message->list, &mailbox->messages);
+    printk(KERN_INFO "Adding message to mailbox");
+    printk(KERN_INFO "Message has msg %s", message->msg);
+
+    printk(KERN_INFO "message addr %p, mailbox messages %p", &message->list, mailbox->messages.next);
+
+    list_for_each_entry(msg2, &mailbox->messages, list) {
+        printk(KERN_INFO "msg1 is pid %d, msg2 is pid %d", message->sender, msg2->sender);
+        printk(KERN_INFO "msg2 has msg %s", msg2->msg);
+    }
+    msg2 = list_entry(mailbox->messages.next, Message, list);
+    printk(KERN_INFO "msg1 is pid %d, msg2 is pid %d", message->sender, msg2->sender);
+
+    printk(KERN_INFO "msg2 has msg %s", msg2->msg);
     mailbox->message_count++;
     spin_unlock_irqrestore(&mailbox->lock, mailbox->lock_irqsave);
 }
@@ -127,6 +148,7 @@ void __mailbox_remove_message_unsafe(Mailbox* mailbox, Message* message) {
     spin_lock_irqsave(&mailbox->lock, mailbox->lock_irqsave);
     if(&message->list == &mailbox->messages) mailbox->messages = *mailbox->messages.next;
     list_del(&message->list);
+    printk(KERN_INFO "Removing message from mailbox");
     mailbox->message_count--;
     spin_unlock_irqrestore(&mailbox->lock, mailbox->lock_irqsave);
 }
