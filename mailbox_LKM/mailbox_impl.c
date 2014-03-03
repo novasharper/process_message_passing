@@ -144,7 +144,6 @@ void __mailbox_remove_message_unsafe(Mailbox* mailbox, Message* message) {
     printk(KERN_INFO "Got spin lock");
     if(&message->list != &mailbox->messages) {
         list_del(&message->list);
-        printk(KERN_INFO "Removing message from mailbox");
         mailbox->message_count--;
     }
     printk(KERN_INFO "Releasing spin lock");
