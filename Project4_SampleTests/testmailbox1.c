@@ -16,8 +16,8 @@ int main() {
     void *msg[128];
     int len;
     bool block = true;
-    RcvMsg(&sender,msg,&len,block);
-    printf("Message received.\n");
+    int status = RcvMsg(&sender,msg,&len,block);
+    printf("Message received. %d\n",status);
     printf("Message: %s\n", (char *) msg);
   }
   else{

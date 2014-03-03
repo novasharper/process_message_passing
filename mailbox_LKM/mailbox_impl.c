@@ -146,10 +146,10 @@ void __mailbox_add_message_unsafe(Mailbox* mailbox, Message* message) {
 
 void __mailbox_remove_message_unsafe(Mailbox* mailbox, Message* message) {
     spin_lock_irqsave(&mailbox->lock, mailbox->lock_irqsave);
-    if(&message->list == &mailbox->messages) mailbox->messages = *mailbox->messages.next;
     list_del(&message->list);
     printk(KERN_INFO "Removing message from mailbox");
     mailbox->message_count--;
+    printk(KERN_INFO "Removing message from mailbox ?");
     spin_unlock_irqrestore(&mailbox->lock, mailbox->lock_irqsave);
 }
 
