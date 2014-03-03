@@ -111,7 +111,7 @@ asmlinkage long __recieve_message(pid_t *sender, void *msg, int *len, bool block
 
 	// Aquire lock, we're reading and writing
 	spin_lock_irqsave(&mailbox->send_recieve_message_queue.lock, spin_lock_flags);
-	// Do we not have messages?
+	// Do we not have messages? - either wait or return
 	if (mailbox->message_count == 0) {
 		// Are we stopped?
 		if (mailbox->stopped) {
@@ -134,6 +134,8 @@ asmlinkage long __recieve_message(pid_t *sender, void *msg, int *len, bool block
 			}
 		}
 	}
+
+	// At this point, we have messages, or waited until we have messages
 	// Get message code
 	Message *message = list_entry(&mailbox->messages, Message, list);
 	// Copy 
@@ -148,10 +150,15 @@ asmlinkage long __recieve_message(pid_t *sender, void *msg, int *len, bool block
 
 asmlinkage long __manage_mailbox(bool stop, int *count) {
 	pid_t current_pid = current->pid;
+	unsigned long flags;
 
 	// The process is def alive if it's calling a syscall, no need for validtation here.
 	Mailbox* mailbox = get_create_mailbox(current_pid);
-	if(stop) __mailbox_stop_unsafe(mailbox);
+	if(stop) {
+		spin_lock_irqsave(&mailbox->send_recieve_message_queue.lock, flags);
+		__mailbox_stop_unsafe(mailbox);
+		spin_unlock_irqrestore(&mailbox->send_recieve_message_queue.lock, flags);
+	}
 	copy_to_user(&(mailbox->message_count), count, sizeof(int));
 	return 0;
 }
