@@ -17,7 +17,7 @@
 #include "mailbox.h"
 #include "message.h"
 
-struct kmem_cache* mailbox_cache;
+static struct kmem_cache* mailbox_cache;
 
 void mailbox_init() {
     mailbox_cache = kmem_cache_create("mailbox", sizeof(Mailbox), 0, 0, NULL);
@@ -52,16 +52,16 @@ Mailbox* mailbox_create(pid_t owner) {
     return mailbox;
 }
 
-int mailbox_full(Mailbox* mailbox) {
+static int mailbox_full(Mailbox* mailbox) {
     return (mailbox->message_count >= mailbox->message_max);
 }
 
-void mailbox_lock(Mailbox* mailbox, unsigned long* flags) {
+static void mailbox_lock(Mailbox* mailbox, unsigned long* flags) {
     spin_lock_irqsave(&mailbox->modify_queue.lock, *flags);
     printk(KERN_INFO "Mailbox %d: Spin locked", mailbox->owner);
 }
 
-void mailbox_unlock(Mailbox* mailbox, unsigned long* flags) {
+static void mailbox_unlock(Mailbox* mailbox, unsigned long* flags) {
     spin_unlock_irqrestore(&mailbox->modify_queue.lock, *flags);
     printk(KERN_INFO "Mailbox %d: Spin released", mailbox->owner);
 }

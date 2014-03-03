@@ -14,7 +14,7 @@
 
 #include "message.h"
 
-struct kmem_cache* message_cache;
+static struct kmem_cache* message_cache;
 
 void message_init() {
     message_cache = kmem_cache_create("message", sizeof(Message), 0, 0, NULL);

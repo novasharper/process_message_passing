@@ -61,7 +61,7 @@ static void __hashtable_put(pid_t key, Mailbox* mailbox) {
 }
 
 
-Mailbox* hashtable_get(pid_t key) {
+static Mailbox* hashtable_get(pid_t key) {
     Mailbox* search;
     unsigned long flags;
     read_lock_irqsave(&mailbox_hash_table_rwlock, flags);
@@ -70,14 +70,14 @@ Mailbox* hashtable_get(pid_t key) {
     return search;
 }
 
-void hashtable_put(pid_t key, Mailbox* mailbox) {
+static void hashtable_put(pid_t key, Mailbox* mailbox) {
     unsigned long flags;
     write_lock_irqsave(&mailbox_hash_table_rwlock, flags);
     __hashtable_put(key, mailbox);
     write_unlock_irqrestore(&mailbox_hash_table_rwlock, flags);
 }
 
-void hashtable_remove(pid_t key) {
+static void hashtable_remove(pid_t key) {
     write_lock_irqsave(&mailbox_hash_table_rwlock, flags);
     __hashtable_remove(key);
     write_unlock_irqrestore(&mailbox_hash_table_rwlock, flags);
