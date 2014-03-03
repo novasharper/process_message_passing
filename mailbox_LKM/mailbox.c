@@ -56,12 +56,12 @@ int mailbox_full(Mailbox* mailbox) {
 }
 
 void mailbox_lock(Mailbox* mailbox, unsigned long* flags) {
-    spin_lock(&mailbox->modify_queue.lock/*, *flags*/);
+    spin_lock_irqsave(&mailbox->modify_queue.lock, *flags);
     printk(KERN_INFO "Mailbox %d: Spin locked", mailbox->owner);
 }
 
 void mailbox_unlock(Mailbox* mailbox, unsigned long* flags) {
-    spin_unlock(&mailbox->modify_queue.lock/*, *flags*/);
+    spin_unlock_irqrestore(&mailbox->modify_queue.lock, *flags);
     printk(KERN_INFO "Mailbox %d: Spin released", mailbox->owner);
 }
 
@@ -101,6 +101,7 @@ long mailbox_add_message(Mailbox* mailbox, Message* message, int block) {
         // Add to the end of the list
         list_add_tail(&message->list, &mailbox->messages);
         mailbox->message_count++;
+        wake_up_locked(&mailbox->modify_queue);
 
         printk(KERN_INFO "Mailbox %d: Message from %d added successfully", mailbox->owner, message->sender);
 
@@ -150,6 +151,7 @@ long mailbox_remove_message(Mailbox* mailbox, Message** message, int block) {
         // Remove it from the list
         list_del(&(*message)->list);
         mailbox->message_count--;
+        wake_up_locked(&mailbox->modify_queue);
 
         printk(KERN_INFO "Mailbox %d: Successfully got message from %d", mailbox->owner, (*message)->sender);
 
@@ -165,7 +167,8 @@ long mailbox_stop(Mailbox* mailbox) {
 
     mailbox->stopped = 1;
 
-    wake_up_all(&mailbox->modify_queue);
+    printk(KERN_INFO "Mailbox %d: Waking up everything", mailbox->owner);
+    wake_up_locked(&mailbox->modify_queue);
 
     printk(KERN_INFO "Mailbox %d: Mailbox Stopped", mailbox->owner);
 
@@ -175,14 +178,16 @@ long mailbox_stop(Mailbox* mailbox) {
 
 long mailbox_destroy(Mailbox* mailbox) {
     Message *msg, *next_msg;
-    DEFINE_SPINLOCK(delete_lock);
     unsigned long flags;
 
     printk(KERN_INFO "Mailbox %d: Destroying, stopping", mailbox->owner);
+    printk(KERN_INFO "Mailbox %d: Stopping mailbox with %d left waiting", mailbox->owner, mailbox->waiting);
     mailbox_stop(mailbox);
 
-    spin_lock(&mailbox->modify_queue.lock);
-    printk(KERN_INFO "Mailbox %d: Spin locked", mailbox->owner);
+    printk(KERN_INFO "Mailbox %d: Trying to get mailbox lock", mailbox->owner);
+    
+    /*
+    mailbox_lock(mailbox, &flags);
 
     printk(KERN_INFO "Mailbox %d: Waiting until other processes finish with this mailbox", mailbox->owner);
     wait_event_interruptible_locked_irq(mailbox->modify_queue, mailbox->waiting == 0);
@@ -196,10 +201,8 @@ long mailbox_destroy(Mailbox* mailbox) {
 
     printk(KERN_INFO "Mailbox %d: No more messages, destroying mailbox", mailbox->owner);
 
-    spin_lock_irqsave(&delete_lock, flags);
-    spin_unlock(&mailbox->modify_queue.lock);
+    mailbox_unlock(mailbox, &flags);
     kmem_cache_free(mailbox_cache, mailbox);
-    spin_unlock_irqrestore(&delete_lock, flags);
-
+    */
     return 0;
 }
