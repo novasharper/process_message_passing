@@ -122,10 +122,12 @@ long remove_mailbox_for_pid(pid_t pid) {
     mailbox = hashtable_get(pid);
 
     if (mailbox) {
+        printk(KERN_INFO "Destroying Mailbox for %d", pid);
         hashtable_remove(pid);
         mailbox_destroy(mailbox);
         return 0;
     } else {
+        printk(KERN_INFO "Tried to destroy non-existant mailbox %d", pid);
         return MAILBOX_INVALID;
     }
 }

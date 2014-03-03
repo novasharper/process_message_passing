@@ -7,6 +7,7 @@
 
 #include "mailbox.h"
 #include <stdio.h>
+#include <stdlib.h>
 
 int main() {
   int childPID = fork();
@@ -29,7 +30,5 @@ int main() {
       printf("Send failed, %d\n", a);
     }
   }
-  signal(SIGQUIT, SIG_IGN);
-  kill(-getpid(), SIGQUIT);
   return 0;
 }

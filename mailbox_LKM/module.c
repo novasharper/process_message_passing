@@ -77,6 +77,8 @@ asmlinkage long __recieve_message(pid_t *sender, void *msg, int *len, bool block
 		copy_to_user(len, &message->len, sizeof(int)) ||
 		copy_to_user(msg, &message->msg, message->len)) {
 		printk(KERN_INFO "Failed to copy message, putting it back in the queue");
+
+		// FIXME - we might need to re-init the message before adding back to list
 		mailbox_add_message(mailbox, message, true);
 		return MSG_ARG_ERROR;
 	}
@@ -106,12 +108,10 @@ asmlinkage long __manage_mailbox(bool stop, int *count) {
 }
 
 asmlinkage long __new_sys_exit(int status) {
+	
 	printk(KERN_INFO "Exiting task, destroying mailbox for %d", current->pid);
 
-	int group_dead = atomic_dec_and_test(&current->signal->live);
-	if(group_dead) {
-		remove_mailbox_for_pid(current->pid);
-	}
+	remove_mailbox_for_pid(current->pid);
 
 	return ref_sys_exit(status);
 }
