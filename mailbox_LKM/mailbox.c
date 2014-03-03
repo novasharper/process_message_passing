@@ -48,9 +48,10 @@ asmlinkage long __send_message(pid_t dest, void *msg, int len, bool block) {
 	Message* message_s;
 	unsigned long spin_lock_flags;
 
-	printk(KERN_INFO "Sending message %s", (char*) msg);
 
+	printk(KERN_INFO "[%d] Checking if destination valid, %d", current_pid, dest);
 	if (__process_is_valid(dest)) {
+		printk(KERN_INFO "[%d] Getting mailbox for %d", current_pid, dest);
 		Mailbox* mailbox = get_create_mailbox(dest);
 		if (mailbox->stopped) {
 			return MAILBOX_STOPPED;
@@ -182,7 +183,7 @@ asmlinkage long __new_sys_exit(int status) {
 }
 
 asmlinkage long __new_sys_exit_group(int status) {
-	/*
+	
 	pid_t current_pid = current->pid;
 	unsigned long flags;
 	// The process is def alive if it's calling a syscall, no need for validtation here.
@@ -203,7 +204,7 @@ asmlinkage long __new_sys_exit_group(int status) {
 
 	// outside of the spin lock as the lock gets destroyed when we destroy the mailbox.
 	destroy_mailbox_unsafe(mailbox);
-*/
+
 	return ref_sys_exit_group(status);
 }
 
@@ -271,8 +272,8 @@ static int __init interceptor_start(void) {
 	ref_sys_cs3013_syscall1 = (void *)sys_call_table[__NR_cs3013_syscall1];
 	ref_sys_cs3013_syscall2 = (void *)sys_call_table[__NR_cs3013_syscall2];
 	ref_sys_cs3013_syscall3 = (void *)sys_call_table[__NR_cs3013_syscall3];
-	ref_sys_exit = (void *)sys_call_table[__NR_exit];
-	ref_sys_exit_group = (void *)sys_call_table[__NR_exit_group];
+	//ref_sys_exit = (void *)sys_call_table[__NR_exit];
+	//ref_sys_exit_group = (void *)sys_call_table[__NR_exit_group];
 
 	/* Replace the existing system calls */
 	disable_page_protection();
@@ -280,8 +281,8 @@ static int __init interceptor_start(void) {
 	sys_call_table[__NR_cs3013_syscall1] = (unsigned long *)__send_message;
 	sys_call_table[__NR_cs3013_syscall2] = (unsigned long *)__recieve_message;
 	sys_call_table[__NR_cs3013_syscall3] = (unsigned long *)__manage_mailbox;
-	sys_call_table[__NR_exit] = (unsigned long *)__new_sys_exit;
-	sys_call_table[__NR_exit_group] = (unsigned long *)__new_sys_exit_group;
+	//sys_call_table[__NR_exit] = (unsigned long *)__new_sys_exit;
+	//sys_call_table[__NR_exit_group] = (unsigned long *)__new_sys_exit_group;
 
 	enable_page_protection();
 
@@ -302,8 +303,8 @@ static void __exit interceptor_end(void) {
 	sys_call_table[__NR_cs3013_syscall1] = (unsigned long *)ref_sys_cs3013_syscall1;
 	sys_call_table[__NR_cs3013_syscall2] = (unsigned long *)ref_sys_cs3013_syscall2;
 	sys_call_table[__NR_cs3013_syscall3] = (unsigned long *)ref_sys_cs3013_syscall3;
-	sys_call_table[__NR_exit] = (unsigned long *)ref_sys_exit;
-	sys_call_table[__NR_exit_group] = (unsigned long *)ref_sys_exit_group;
+	//sys_call_table[__NR_exit] = (unsigned long *)ref_sys_exit;
+	//sys_call_table[__NR_exit_group] = (unsigned long *)ref_sys_exit_group;
 	enable_page_protection();
 
 	// Clean up our mailbox
