@@ -30,26 +30,24 @@ void mailbox_exit() {
 Mailbox* mailbox_create(pid_t owner) {
     Mailbox* mailbox = NULL;
 
-    if(is_process_valid(owner)) {
-        printk(KERN_INFO "Creating new mailbox for %d", owner);
+    printk(KERN_INFO "Creating new mailbox for %d", owner);
 
-        // Allocate it
-        mailbox = kmem_cache_alloc(mailbox_cache, 0);
+    // Allocate it
+    mailbox = kmem_cache_alloc(mailbox_cache, 0);
 
-        // Initialize info
-        mailbox->owner = owner;
-        mailbox->message_count = 0;
-        mailbox->message_max = 32; // Magic constant
-        mailbox->stopped = 0;
-        atomic_set(&mailbox->waiting, 0);
+    // Initialize info
+    mailbox->owner = owner;
+    mailbox->message_count = 0;
+    mailbox->message_max = 32; // Magic constant
+    mailbox->stopped = 0;
+    atomic_set(&mailbox->waiting, 0);
 
-        // Initialize lists
-        INIT_LIST_HEAD(&mailbox->messages);
-        INIT_HLIST_NODE(&mailbox->hash_table_entry);
+    // Initialize lists
+    INIT_LIST_HEAD(&mailbox->messages);
+    INIT_HLIST_NODE(&mailbox->hash_table_entry);
 
-        // Initialize the wait queue
-        init_waitqueue_head(&mailbox->modify_queue);
-    }
+    // Initialize the wait queue
+    init_waitqueue_head(&mailbox->modify_queue);
 
     return mailbox;
 }

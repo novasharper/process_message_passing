@@ -83,7 +83,7 @@ void hashtable_remove(pid_t key) {
     write_unlock_irqrestore(&mailbox_hash_table_rwlock, flags);
 }
 
-int is_process_valid(pid_t process) {
+static int is_process_valid(pid_t process) {
     struct task_struct* task = pid_task(find_get_pid(process), PIDTYPE_PID);
 
     if (task) {

@@ -6,8 +6,6 @@
 
 #include "mailbox.h"
 
-int is_process_valid(pid_t process);
-
 void mailbox_manager_init(void);
 
 long get_mailbox_for_pid(Mailbox** mailbox, pid_t pid);
