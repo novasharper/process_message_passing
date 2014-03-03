@@ -112,7 +112,7 @@ asmlinkage long __manage_mailbox(bool stop, int *count) {
 asmlinkage long __new_sys_exit(int status) {
 	printk(KERN_INFO "Exiting task, destroying mailbox for %d", current->pid);
 
-	group_dead = atomic_dec_and_test(&current->signal->live);
+	int group_dead = atomic_dec_and_test(&current->signal->live);
 	if(group_dead) {
 		remove_mailbox_for_pid(current->pid);
 	}
