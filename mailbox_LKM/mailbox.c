@@ -56,12 +56,12 @@ int mailbox_full(Mailbox* mailbox) {
 }
 
 void mailbox_lock(Mailbox* mailbox, unsigned long* flags) {
-    spin_lock_irqsave(&mailbox->modify_queue.lock, *flags);
+    spin_lock(&mailbox->modify_queue.lock/*, *flags*/);
     printk(KERN_INFO "Mailbox %d: Spin locked", mailbox->owner);
 }
 
 void mailbox_unlock(Mailbox* mailbox, unsigned long* flags) {
-    spin_unlock_irqrestore(&mailbox->modify_queue.lock, *flags);
+    spin_unlock(&mailbox->modify_queue.lock/*, *flags*/);
     printk(KERN_INFO "Mailbox %d: Spin released", mailbox->owner);
 }
 
@@ -175,6 +175,8 @@ long mailbox_stop(Mailbox* mailbox) {
 
 long mailbox_destroy(Mailbox* mailbox) {
     Message *msg, *next_msg;
+    DEFINE_SPINLOCK(delete_lock);
+    unsigned long flags;
 
     printk(KERN_INFO "Mailbox %d: Destroying, stopping", mailbox->owner);
     mailbox_stop(mailbox);
@@ -194,8 +196,10 @@ long mailbox_destroy(Mailbox* mailbox) {
 
     printk(KERN_INFO "Mailbox %d: No more messages, destroying mailbox", mailbox->owner);
 
+    spin_lock_irqsave(&delete_lock, flags);
     spin_unlock(&mailbox->modify_queue.lock);
     kmem_cache_free(mailbox_cache, mailbox);
+    spin_unlock_irqrestore(&delete_lock, flags);
 
     return 0;
 }
