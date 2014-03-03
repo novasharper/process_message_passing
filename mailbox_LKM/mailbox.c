@@ -103,11 +103,12 @@ asmlinkage long __send_message(pid_t dest, void *msg, int len, bool block) {
 // Recieve message from mailbox with its sender
 asmlinkage long __recieve_message(pid_t *sender, void *msg, int *len, bool block) {
 	pid_t current_pid = current->pid;
+	unsigned long spin_lock_flags;
 
 	// The process is def alive if it's calling a syscall, no need for validtation here.
 	Mailbox* mailbox = get_create_mailbox(current_pid);
+	Message* message;
 
-	unsigned long spin_lock_flags;
 
 	// Aquire lock, we're reading and writing
 	spin_lock_irqsave(&mailbox->send_recieve_message_queue.lock, spin_lock_flags);
@@ -137,7 +138,7 @@ asmlinkage long __recieve_message(pid_t *sender, void *msg, int *len, bool block
 
 	// At this point, we have messages, or waited until we have messages
 	// Get message code
-	Message *message = list_entry(&mailbox->messages, Message, list);
+	message = list_entry(&mailbox->messages, Message, list);
 	// Copy 
 	copy_to_user(&(message->sender), sender, sizeof(pid_t));
 	copy_to_user(&(message->len), len, sizeof(int));
@@ -155,8 +156,13 @@ asmlinkage long __manage_mailbox(bool stop, int *count) {
 	// The process is def alive if it's calling a syscall, no need for validtation here.
 	Mailbox* mailbox = get_create_mailbox(current_pid);
 	if(stop) {
+		// Grab the message queue spin lock, so we don't stop in the middle of a sendmessage attempt
+		// (prevents race condition of stopping mailbox after send_msg has already checked mailbox->stopped)
+		// 
+		// After we stop the mailbox we must wake up everything in the queue
 		spin_lock_irqsave(&mailbox->send_recieve_message_queue.lock, flags);
 		__mailbox_stop_unsafe(mailbox);
+		wake_up_locked(&mailbox->send_recieve_message_queue);
 		spin_unlock_irqrestore(&mailbox->send_recieve_message_queue.lock, flags);
 	}
 	copy_to_user(&(mailbox->message_count), count, sizeof(int));
@@ -170,10 +176,26 @@ asmlinkage long __new_sys_exit(int status) {
 
 asmlinkage long __new_sys_exit_group(int status) {
 	pid_t current_pid = current->pid;
-
+	unsigned long flags;
 	// The process is def alive if it's calling a syscall, no need for validtation here.
 	Mailbox* mailbox = get_create_mailbox(current_pid);
-	destroy_mailbox(mailbox);
+
+	// Stop the mailbox
+	spin_lock_irqsave(&mailbox->send_recieve_message_queue.lock, flags);
+	__mailbox_stop_unsafe(mailbox);
+
+	// This will wake up everything, since everything that waits will continue if stopped is true
+	wake_up_locked(&mailbox->send_recieve_message_queue);
+
+	// Wait until all messages are gone
+	wait_event_interruptible_exclusive_locked_irq(mailbox->send_recieve_message_queue, mailbox->message_count == 0);
+
+
+	spin_unlock_irqrestore(&mailbox->send_recieve_message_queue.lock, flags);
+
+	// outside of the spin lock as the lock gets destroyed when we destroy the mailbox.
+	destroy_mailbox_unsafe(mailbox);
+
 	return ref_sys_exit_group(status);
 }
 

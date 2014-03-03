@@ -49,7 +49,7 @@ void mailbox_impl_init(void);
 void mailbox_impl_exit(void);
 
 Mailbox * get_create_mailbox(pid_t owner);
-void destroy_mailbox(Mailbox* mailbox);
+void destroy_mailbox_unsafe(Mailbox* mailbox);
 
 
 void __init_message(Message** msg);

@@ -101,17 +101,15 @@ Mailbox * get_create_mailbox(pid_t owner) {
 
 /**
  * Destroys the mailbox and removes it from the hash table
+ * DO NOT RUN THIS UNLESS ALL MESSAGES HAVE BEEN READ
  * @param owner [description]
  */
-void destroy_mailbox(Mailbox* mailbox) {
+void destroy_mailbox_unsafe(Mailbox* mailbox) {
     // Remove it from the hashtable
     hashtable_remove(mailbox->owner);
 
     // Free memory
     kmem_cache_free(mailbox_cache, mailbox);
-
-    // Free all messages
-    // ...
 }
 
 
