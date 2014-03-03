@@ -38,7 +38,7 @@ Mailbox* mailbox_create(pid_t owner) {
     // Initialize info
     mailbox->owner = owner;
     mailbox->message_count = 0;
-    mailbox->message_max = 64; // Magic constant
+    mailbox->message_max = 32; // Magic constant
     mailbox->stopped = 0;
     atomic_set(&mailbox->waiting, 0);
 

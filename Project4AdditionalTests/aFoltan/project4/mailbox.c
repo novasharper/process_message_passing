@@ -14,9 +14,9 @@
 #include <stdio.h>
 #include <errno.h>
 
-#define __NR_mailbox_send	341
-#define __NR_mailbox_rcv	342
-#define __NR_mailbox_manage	343
+#define __NR_mailbox_send	349
+#define __NR_mailbox_rcv	350
+#define __NR_mailbox_manage	351
 
 /*
  *  SendMsg
