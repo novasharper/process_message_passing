@@ -23,9 +23,9 @@
 #include "mailbox.h"
 #include "message.h"
 
-#define __NR_mailbox_send	349
-#define __NR_mailbox_rcv	350
-#define __NR_mailbox_manage	351
+#define __NR_cs3013_syscall1	349
+#define __NR_cs3013_syscall2	350
+#define __NR_cs3013_syscall3	351
 
 unsigned long **sys_call_table;
 
