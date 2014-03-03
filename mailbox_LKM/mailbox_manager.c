@@ -86,12 +86,12 @@ static void hashtable_remove(pid_t key) {
 static int is_process_valid(pid_t process) {
     struct task_struct* task = pid_task(find_get_pid(process), PIDTYPE_PID);
 
-    if (task && task->mm) {
+    if (task) {
         if (task->state == TASK_STOPPED) {
             printk(KERN_INFO "Task %d is invalid because it's state is %ld", process, task->state);
             return 0;
-        } else if(task->cred->uid < 1000) {
-            printk(KERN_INFO "Task %d is invalid because it's a kernel task, uid %d", process, task->cred->uid);
+        } else if(!task->mm) {
+            printk(KERN_INFO "Task %d is invalid because it's a kernel task (no vertual memory), uid %d", process, task->cred->uid);
             return 0;
         } else {
             printk(KERN_INFO "Task %d is valid because it's state is %ld", process, task->state);
