@@ -12,8 +12,10 @@
 #include <linux/slab.h>
 #include <linux/wait.h>
 #include <linux/sched.h>
+#include <linux/list.h>
 
 #include "mailbox.h"
+#include "message.h"
 
 struct kmem_cache* mailbox_cache;
 
@@ -172,8 +174,7 @@ long mailbox_stop(Mailbox* mailbox) {
 }
 
 long mailbox_destroy(Mailbox* mailbox) {
-    unsigned long flags;
-    Message* msg, next_msg;
+    Message *msg, *next_msg;
 
     printk(KERN_INFO "Mailbox %d: Destroying, stopping", mailbox->owner);
     mailbox_stop(mailbox);
@@ -187,12 +188,13 @@ long mailbox_destroy(Mailbox* mailbox) {
     printk(KERN_INFO "Mailbox %d: Flushing messages", mailbox->owner);
 
     list_for_each_entry_safe(msg, next_msg, &mailbox->messages, list) {
-        list_del(&msg->list)
-        message_destroy(msg);
+        list_del(&msg->list);
+        message_destroy(&msg);
     }
 
     printk(KERN_INFO "Mailbox %d: No more messages, destroying mailbox", mailbox->owner);
 
+    spin_unlock(&mailbox->modify_queue.lock);
     kmem_cache_free(mailbox_cache, mailbox);
 
     return 0;
