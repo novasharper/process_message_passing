@@ -26,7 +26,7 @@ void message_exit() {
 
 
 long message_create(Message** message, pid_t sender, void* msg, int len) {
-    if (len > MAX_MSG_SIZE) {
+    if (len > MAX_MSG_SIZE || len < 0) {
         return MSG_LENGTH_ERROR;
     }
 
