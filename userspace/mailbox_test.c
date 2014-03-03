@@ -111,8 +111,64 @@ void test4(void) {
 	}
 }
 
-int main(void) {
-	test1( );
+// CRASH TEST
+// Cleaned up version of sample 7
+// WILL CRASH KERNEL UNLESS PROPERLY HANDLED
+void test5(void) {
+	int childCounter;
+	
+	// fork enough children so that they can all send a message
+	// to the parent and hold a pointer to it's mailbox
+	for(childCounter = 0; childCounter < CHILD_NUM; childCounter++) {
+		int childPID = fork();
+		
+		if(childPID == 0){
+			pid_t sender;
+			void *msg[128];
+			int len;
+			bool block = true;
+			
+			RcvMsg(&sender,msg,&len,block);
+		
+			
+			printf("Message: %s\n", (char *)msg);
+			char myMesg[] = "I am your child";
+			int error = SendMsg(sender, myMesg, 16, block);
+			if(error) {
+				printf("Child send failed. %d\n", error);
+			}
+		}
+		else{
+			char mesg[] = "I am your father";
+			if (SendMsg(childPID, mesg, 17, false)){
+				printf("Send failed\n");
+			}
+		}
+	}
+	
+	// the parent sleeps for a little time
+	// waiting for some of it's children to get a pointer
+	// to its mailbox
+	// before trying to kill its own process.
+	usleep(1000);
+	printf("Parent dies.\n");
+}
+
+int main(int argc, char **argv) {
+	if(argc != 2) {
+		printf("Usage: ./mailbox_test [test case number]\n");
+		return;
+	}
+	int test_num = atoi(argv[1]);
+	switch(test_num) {
+		case 1: test1( );
+		case 2: test2( );
+		case 3: test3( );
+		case 4: test4( );
+		case 5: test5( );
+		default:
+			printf("Invalid test case. Test case numbers are between 1-5.\n");
+	}
 	int status;
 	int res = waitpid(-1, &status, 0);
 }
