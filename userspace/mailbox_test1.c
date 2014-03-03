@@ -5,6 +5,8 @@
  * Project 4 - Test Program
  * test1 - Test if messages can be sent and recieved
  * test2 - Tests if programs that chose to wait until able to send a message behave properly
+ * test3 - Tests sending message to stopped mailbox
+ * test4 - Tests getting message from empty mailbox
  */
 
 #include "mailbox.h"
@@ -69,8 +71,48 @@ void test2(void) {
 	else printf("PASSED");
 }
 
+void test3(void) {
+	int childPID = fork();
+
+	if(childPID == 0) {
+		// Variables to hold message data
+		pid_t sender;
+		void *msg[MAX_MSG_SIZE];
+		int len;
+		// Try to get message
+		int status_c = RcvMsg(&sender, msg, &len, true);
+		usleep(1000);
+		int error = SendMsg(sender, msg, len, false);
+		if(error == MAILBOX_STOPPED) {
+			printf("PASSED\n");
+		} else {
+			printf("FAILED\n");
+		}
+	} else {
+		int num_mesg;
+		char mesg[] = "I am your father";
+		int status_p = SendMsg(childPID, mesg, 17, false);
+		ManageMailbox(true, &num_mesg);
+	}
+}
+
+void test4(void) {
+	// Variables to hold message data
+	pid_t sender;
+	void *msg[MAX_MSG_SIZE];
+	int len;
+	
+	int error = RcvMsg(&sender, msg, &len, false);
+
+	if(error == MAILBOX_EMPTY) {
+		printf("PASSED\n");
+	} else {
+		printf("FAILED\n");
+	}
+}
+
 int main(void) {
 	test1( );
 	int status;
-	int res = waitpid(childPID, &status, 0);
+	int res = waitpid(-1, &status, 0);
 }
