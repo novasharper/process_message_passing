@@ -41,9 +41,9 @@ void test1(void) {
 
 void test2(void) {
 	int childCounter;
-	
+	int childPID;
 	for(childCounter = 0; childCounter < CHILD_NUM; childCounter++) {
-		int childPID = fork();
+		childPID = fork();
 		
 		if(childPID == 0){
 			pid_t sender;
@@ -64,20 +64,26 @@ void test2(void) {
 	int failed = 0;
 	int msgCounter;
 	int num_mesg;
+	printf("[%d] Managing my mailbox\n", childPID);
 	ManageMailbox(false, &num_mesg);
+	printf("[%d] Done with my mailbox\n", childPID);
 	for(msgCounter = 0; msgCounter < CHILD_NUM; msgCounter++) {
 		pid_t aSender;
-		void *reply[MAX_MSG_SIZE];
+		char *reply[MAX_MSG_SIZE];
 		int mLen;
 		
-		if(RcvMsg(&aSender, reply, &mLen, false)) {
+		if(RcvMsg(&aSender, reply, &mLen, true)) {
 			failed++;
+			printf("Message failed\n");
 		} else {
-			printf("Message recieved: %s\n", reply);
+			printf("Message recieved: %s\n", (char*)reply);
 		}
 	}
-	if(failed) printf("FAILED: %d %d\n", failed, CHILD_NUM - num_mesg);
-	else printf("PASSED\n");
+	if(failed) {
+		printf("[%d]FAILED: %d %d\n", childPID, failed, CHILD_NUM - num_mesg);
+	} else {
+		printf("[%d]PASSED\n", childPID);
+	}
 }
 
 void test3(void) {

@@ -168,7 +168,7 @@ long mailbox_remove_message(Mailbox* mailbox, Message** message, int block) {
         // Get the message
         *message = list_entry(mailbox->messages.next, Message, list);
         // Remove it from the list
-        list_del(&(*message)->list);
+        list_del_init(&(*message)->list);
         mailbox->message_count--;
         wake_up_locked(&mailbox->modify_queue);
 
