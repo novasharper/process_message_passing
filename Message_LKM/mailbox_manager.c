@@ -17,6 +17,9 @@
 
 #include <linux/list.h>
 #include <linux/sched.h>
+#include <linux/kthread.h>
+#include <linux/kernel.h>
+#include <linux/slab.h>
 
 #include "mailbox_manager.h"
 #include "mailbox.h"
@@ -26,15 +29,20 @@ static struct hlist_head mailbox_hash_table[MAILBOX_HASHTABLE_SIZE];
 DEFINE_RWLOCK(mailbox_hash_table_rwlock);
 unsigned long flags;
 
+static struct kmem_cache* pid_t_cache_for_destruction_thread;
+
 void mailbox_manager_init() {
     int i;
     // Initialize our hash table
     for (i = 0; i < MAILBOX_HASHTABLE_SIZE; i++) {
         INIT_HLIST_HEAD(&mailbox_hash_table[i]);
     }
+
+    pid_t_cache_for_destruction_thread = kmem_cache_create("pid_t_cache_for_destruction_thread", sizeof(pid_t), 0, 0, NULL);
 }
 
 void mailbox_manager_exit() {
+    kmem_cache_destroy(pid_t_cache_for_destruction_thread);
 }
 
 static unsigned long mailbox_hash(pid_t key) {
@@ -127,15 +135,48 @@ long get_mailbox_for_pid(Mailbox** mailbox, pid_t pid) {
     }
 }
 
+/**
+ * Runs under the principal that pids are not reused in short time
+ * Waits until the task we're waiting on exits, then delete's it's mailbox
+ * @param  arg [description]
+ * @return     [description]
+ */
+int mailbox_deletion_thread(void* arg) {
+    struct task_struct* task;
+    Mailbox* mailbox;
+    pid_t* pid = (pid_t*) arg;
+
+    while((task = pid_task(find_get_pid(*pid), PIDTYPE_PID)) != NULL) {
+        //printk(KERN_INFO "Task %d didn't exit yet, waiting", *pid);
+        schedule();
+    }
+    printk(KERN_INFO "Task %d exited, destroying mailbox", *pid);
+
+    mailbox = hashtable_get(*pid);
+    hashtable_remove(*pid);
+    mailbox_destroy(mailbox);
+
+    printk(KERN_INFO "Mailbox for %d destroyed", *pid);
+
+    kmem_cache_free(pid_t_cache_for_destruction_thread, pid);
+    do_exit(0);
+}
+
 long remove_mailbox_for_pid(pid_t pid) {
     Mailbox* mailbox;
+    pid_t* pidsend;
 
     mailbox = hashtable_get(pid);
 
     if (mailbox) {
-        hashtable_remove(pid);
-        printk(KERN_INFO "Destroying Mailbox for %d", pid);
-        mailbox_destroy(mailbox);
+        printk(KERN_INFO "Stopping mailbox %d to prevent new messages, in preperation for destruction", pid);
+        mailbox_stop(mailbox);
+
+
+        printk(KERN_INFO "Scheduling Mailbox %d for destruction", pid);
+        pidsend = kmem_cache_alloc(pid_t_cache_for_destruction_thread, 0);
+        *pidsend = pid;
+        kthread_run(&mailbox_deletion_thread, pidsend,"mailboxdestroy");
         return 0;
     } else {
         printk(KERN_INFO "Tried to destroy non-existant mailbox %d", pid);

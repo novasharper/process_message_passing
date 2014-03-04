@@ -5,7 +5,7 @@
 #############################################################################
 
 CC=gcc
-CFLAGS=-c -g -pthread -Wall -Werror
+CFLAGS=-c -g -pthread -Wall 
 LDFLAGS= -pthread
 SIM_SOURCES=p4utils.c p4test.c mailbox.c
 SIM_OBJECTS=$(SIM_SOURCES:.c=.o)
