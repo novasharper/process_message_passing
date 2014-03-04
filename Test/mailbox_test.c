@@ -136,13 +136,8 @@ void test5(void) {
 //			printf("Message: %s\n", (char *)msg);
 			char myMesg[] = "I am your child";
 			int error = SendMsg(sender, myMesg, 16, block);
-			if(childCounter + 1 == CHILD_NUM) {
-				if(error) {
-//					printf("Child send failed. %d\n", error);
-					printf("FAILED\n");
-				} else {
-					printf("PASSED\n");
-				}
+			if(error) {
+//				printf("Child send failed. %d\n", error
 			}
 			
 		}
@@ -159,6 +154,9 @@ void test5(void) {
 	// to its mailbox
 	// before trying to kill its own process.
 	usleep(1000);
+	int status;
+	int res = waitpid(-1, &status, 0);
+	printf("PASSED\n");
 //	printf("Parent dies.\n");
 }
 
