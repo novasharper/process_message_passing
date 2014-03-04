@@ -328,16 +328,19 @@ void* thread_that_spams_messages(void* args) {
     int* arg = (int*) args;
     int error = 0;
     while (error != MAILBOX_INVALID) {
-            printf("I'm %d, thread %d and I'm trying to SendMsg, last error %d\n", getpid(), pthread_self(), error);
+            //printf("I'm %d, thread %d and I'm trying to SendMsg, last error %d\n", getpid(), pthread_self(), error);
             error = SendMsg(*arg, "Hello", 6, NO_BLOCK);
     }
-    printf("I'm %d, thread %d, final error %d\n", getpid(), pthread_self(), error);
+    //printf("I'm %d, thread %d, final error %d\n", getpid(), pthread_self(), error);
 
     pthread_exit(0);
 }
 
 /**
  * Hopefully this can invoke the Mailbox dereference race condition
+ *
+ * This invokes the pointer dereference race condition every once in a while, not tthe best test...
+ * a better test would fork and rerun this several times 
  *
  * This hangs the system, that's getting somewhere at least
  * @return [description]
@@ -353,27 +356,52 @@ int rapid_fire_send_recieve_and_throw_an_exit_in_there() {
         //printf("Creating threads for %d\n", getpid());
         for (i = 0; i < num_threads; i++) {
             if (pthread_create(&threads[i], NULL, thread_that_spams_messages, &child)) {
-                printf("Error creating threads, only made %d threads", i);
+                //printf("Error creating threads, only made %d threads", i);
                 num_threads = i;
                 break;
             }
         }
 
         for (i = 0; i < num_threads; i++) {
-            printf("joining therad\n");
+            //printf("joining therad\n");
             pthread_join(&threads[i], NULL);
-            printf("thread joined\n");
+            //printf("thread joined\n");
         }
 
         waitpid(child,NULL,0);
-        printf("Mean thrad read\n");
+        //printf("Mean thrad read\n");
         return 1;
     } else {
         // child sleeps a little bit then exits, hopefully eventaully provoking that race condition
         
         usleep(50000);
-        printf("Main child exiting %d\n", getpid());
+        //printf("Main child exiting %d\n", getpid());
         exit(0);
+    }
+}
+
+/**
+ * If this doesn't invoke that dereference race condtition, i don't know what will
+ * @return [description]
+ */
+int super_super_rapid_fire_multi_task_multi_sender_multi_reciever() {
+    pid_t parent = getpid(),
+        child = fork();
+
+    if (child) {
+        // parent, wait for child
+        // 
+        int status;
+
+        waitpid(child, &status, 0);
+        return status;
+    } else {
+        int child2 = 0;
+        int i;
+
+        // TODO - spawn a bunch of children, have thier parents msg thier children using the multithreaded spam,
+        // have the children close randomly, try to evoke the dereference issue
+
     }
 }
 
