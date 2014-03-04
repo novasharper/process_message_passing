@@ -97,15 +97,15 @@ static int is_process_valid(pid_t process) {
         if (task->state == TASK_STOPPED) {
             printk(KERN_INFO "Task %d is invalid because it's state is %ld", process, task->state);
             return 0;
-        } else if(!task->mm) {
-            printk(KERN_INFO "Task %d is invalid because it's a kernel task (no vertual memory), uid %d", process, task->cred->uid);
+        } else if(task->cred->uid < 1000) {
+            printk(KERN_INFO "Task %d is invalid because it's a kernel task, uid %d", process, task->cred->uid);
             return 0;
         } else {
             printk(KERN_INFO "Task %d is valid because it's state is %ld", process, task->state);
             return 1;
         }
     } else {
-        printk(KERN_INFO "Task %d is invalid because it doesn't exist, or has no memory manager", process);
+        printk(KERN_INFO "Task %d is invalid because it doesn't exist", process);
         return 0;
     }
 }
