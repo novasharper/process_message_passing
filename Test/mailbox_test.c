@@ -7,6 +7,7 @@
  * test2 - Tests if programs that chose to wait until able to send a message behave properly
  * test3 - Tests sending message to stopped mailbox
  * test4 - Tests getting message from empty mailbox
+ * test5 - Crash test
  */
 
 #include "mailbox.h"
@@ -131,17 +132,23 @@ void test5(void) {
 			RcvMsg(&sender,msg,&len,block);
 		
 			
-			printf("Message: %s\n", (char *)msg);
+//			printf("Message: %s\n", (char *)msg);
 			char myMesg[] = "I am your child";
 			int error = SendMsg(sender, myMesg, 16, block);
-			if(error) {
-				printf("Child send failed. %d\n", error);
+			if(childCounter + 1 == CHILD_NUM) {
+				if(error) {
+//					printf("Child send failed. %d\n", error);
+					printf("FAILED\n");
+				} else {
+					printf("PASSED\n");
+				}
 			}
+			
 		}
 		else{
 			char mesg[] = "I am your father";
 			if (SendMsg(childPID, mesg, 17, false)){
-				printf("Send failed\n");
+//				printf("Send failed\n");
 			}
 		}
 	}
@@ -151,7 +158,7 @@ void test5(void) {
 	// to its mailbox
 	// before trying to kill its own process.
 	usleep(1000);
-	printf("Parent dies.\n");
+//	printf("Parent dies.\n");
 }
 
 int main(int argc, char **argv) {
