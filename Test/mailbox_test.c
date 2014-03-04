@@ -106,11 +106,7 @@ int test_message_overflow_wait(void) {
 			printf("Message recieved: %s\n", (char*)reply);
 		}
 	}
-	if(failed) {
-		return 0;
-	} else {
-		return 1;
-	}
+	return (failed == 0);
 }
 
 int test_send_stopped_mailbox(void) {
@@ -163,20 +159,16 @@ int crash_test(void) {
 			bool block = true;
 			
 			RcvMsg(&sender,msg,&len,block);
-		
-			
-//			printf("Message: %s\n", (char *)msg);
+
 			char myMesg[] = "I am your child";
 			int error = SendMsg(sender, myMesg, 16, block);
 			if(error) {
-//				printf("Child send failed. %d\n", error
 			}
-			return;
+			return IGNORE;
 		}
 		else{
 			char mesg[] = "I am your father";
-			if (SendMsg(childPID, mesg, 17, false)){
-//				printf("Send failed\n");
+			if (SendMsg(childPID, mesg, 17, false)) {
 			}
 		}
 	}
