@@ -342,10 +342,10 @@ void* thread_that_spams_messages(void* args) {
  * This invokes the pointer dereference race condition every once in a while, not tthe best test...
  * a better test would fork and rerun this several times 
  *
- * This hangs the system, that's getting somewhere at least
+ * If this test fails, you get a kernel oops
  * @return [description]
  */
-int rapid_fire_send_recieve_and_throw_an_exit_in_there() {
+int rapid_fire_send_and_throw_an_exit_in_there() {
     pid_t parent = getpid(),
           child = fork();
     int error, i;
@@ -434,7 +434,7 @@ int main(void) {
     do_test(recieve_messages_even_after_stopped);
     re_fork(); // stopped mailbox
     do_test(closing_thread_does_not_stop_or_destroy_mailbox);
-    do_test(rapid_fire_send_recieve_and_throw_an_exit_in_there);
+    do_test(rapid_fire_send_and_throw_an_exit_in_there);
 
 
     return 0;
