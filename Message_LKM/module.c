@@ -44,7 +44,7 @@ asmlinkage long __send_message(pid_t dest, void *msg, int len, bool block) {
 		return error;
 	}
 
-	error = message_create(&message, current->pid, msg, len);
+	error = message_create(&message, current->tgid, msg, len);
 	if (error) {
 		unclaim_mailbox(mailbox);
 		return error;
@@ -66,7 +66,7 @@ asmlinkage long __recieve_message(pid_t *sender, void *msg, int *len, bool block
 	Mailbox* mailbox;
 	long error;
 
-	error = get_mailbox_for_pid(&mailbox, current->pid);
+	error = get_mailbox_for_pid(&mailbox, current->tgid);
 	if (error) {
 		return error;
 	}
@@ -97,7 +97,7 @@ asmlinkage long __manage_mailbox(bool stop, int *count) {
 	Mailbox* mailbox;
 	long error;
 
-	error = get_mailbox_for_pid(&mailbox, current->pid);
+	error = get_mailbox_for_pid(&mailbox, current->tgid);
 	if (error) {
 		return error;
 	}
@@ -117,17 +117,21 @@ asmlinkage long __manage_mailbox(bool stop, int *count) {
 
 asmlinkage long __new_sys_exit(int status) {
 	// FIXME - need to check if we are the last task in the group
-	printk(KERN_INFO "Exiting task, destroying mailbox for %d", current->pid);
+	
+	if(get_nr_threads(current) == 1) {
+		printk(KERN_INFO "Exiting task, destroying mailbox for %d", current->tgid);
 
-	remove_mailbox_for_pid(current->pid);
-
+		remove_mailbox_for_pid(current->tgid);
+	} else {
+		printk(KERN_INFO "Exiting task, not destroying mailbox for %d", current->tgid);
+	}
 	return ref_sys_exit(status);
 }
 
 asmlinkage long __new_sys_exit_group(int status) {
-	printk(KERN_INFO "Exiting group, destroying mailbox for %d", current->pid);
+	printk(KERN_INFO "Exiting group, destroying mailbox for %d", current->tgid);
 
-	remove_mailbox_for_pid(current->pid);
+	remove_mailbox_for_pid(current->tgid);
 
 	return ref_sys_exit_group(status);
 }
