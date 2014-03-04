@@ -115,12 +115,11 @@ asmlinkage long __manage_mailbox(bool stop, int *count) {
 }
 
 asmlinkage long __new_sys_exit(int status) {
-	// FIXME - need to check if we are the last task in the group
-	
-	if(get_nr_threads(current) == 1) {
+	if(atomic_read(&current->signal->live)) {
 		printk(KERN_INFO "Exiting task, destroying mailbox for %d", current->tgid);
 
 		remove_mailbox_for_pid(current->tgid);
+		// race condition here
 	} else {
 		printk(KERN_INFO "Exiting task, not destroying mailbox for %d", current->tgid);
 	}
@@ -131,7 +130,7 @@ asmlinkage long __new_sys_exit_group(int status) {
 	printk(KERN_INFO "Exiting group, destroying mailbox for %d", current->tgid);
 
 	remove_mailbox_for_pid(current->tgid);
-
+	// race condition here
 	return ref_sys_exit_group(status);
 }
 

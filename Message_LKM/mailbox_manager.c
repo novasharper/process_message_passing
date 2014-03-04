@@ -94,11 +94,14 @@ static int is_process_valid(pid_t process) {
     struct task_struct* task = pid_task(find_get_pid(process), PIDTYPE_PID);
 
     if (task) {
-        if (task->state == TASK_STOPPED) {
-            printk(KERN_INFO "Task %d is invalid because it's state is %ld", process, task->state);
+        if (task->state == TASK_DEAD) {
+            printk(KERN_INFO "Task %d is invalid because it's state is %ld dead", process, task->state);
             return 0;
         } else if(task->cred->uid < 1000) {
             printk(KERN_INFO "Task %d is invalid because it's a kernel task, uid %d", process, task->cred->uid);
+            return 0;
+        } else if(task->flags & PF_EXITING) {
+            printk(KERN_INFO "Task %d is invalid because it's exiting", process);
             return 0;
         } else {
             printk(KERN_INFO "Task %d is valid because it's state is %ld", process, task->state);

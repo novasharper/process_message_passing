@@ -32,17 +32,16 @@ switch(name()) {\
     case IGNORE:\
         break;\
     case 0:\
-        printf("Test %s failed!\n",#name);\
-        return 1;\
-        break;\
+        printf("FAILED - Test %s\n",#name);\
+        exit(1);\
     default:\
-        printf("Test %s passed!\n",#name);\
+        printf("PASSED - Test %s\n",#name);\
     }
 
 #define expect_true(val) \
     if (!(val)) {\
         printf("Failed expect_true for %s\n", #val);\
-        return 1;\
+        return 0;\
     }
 
 int re_fork() {
@@ -283,8 +282,107 @@ int fifo_even_if_errors() {
         exit(0);
     }
 }
+int recieve_messages_even_after_stopped() {
+    pid_t me = getpid(), you;
+    int i = 15, j, k, len, error;
+
+    error = SendMsg(me, &i, sizeof(int), NO_BLOCK);
+    expect_true(error == 0);
+
+    error = ManageMailbox(true, &j);
+    expect_true(error == 0);
+    expect_true(j == 1);
+
+    error = RcvMsg(&you, &k, &len, NO_BLOCK);
+    expect_true(error == 0);
+    expect_true(k == i);
+    expect_true(len == sizeof(int));
+    expect_true(me == you);
+
+    error = RcvMsg(&you, &k, &len, NO_BLOCK);
+    expect_true(error == MAILBOX_STOPPED);
+
+    return true;
+}
+
+void* useless_thread(void* args) {
+    return args;
+}
+
+int closing_thread_does_not_stop_or_destroy_mailbox() {
+    pthread_t thread;
+    int error, count;
+
+    error = SendMsg(getpid(), "Hello", 6, NO_BLOCK);
+    expect_true(error == 0);
+    pthread_create(&thread, NULL, useless_thread, NULL);
+    pthread_join(thread, NULL);
+
+    ManageMailbox(false, &count);
+    expect_true(count == 1);
+
+    return true;
+}
+
+void* thread_that_spams_messages(void* args) {
+    int* arg = (int*) args;
+    int error = 0;
+    while (error != MAILBOX_INVALID) {
+            printf("I'm %d, thread %d and I'm trying to SendMsg, last error %d\n", getpid(), pthread_self(), error);
+            error = SendMsg(*arg, "Hello", 6, NO_BLOCK);
+    }
+    printf("I'm %d, thread %d, final error %d\n", getpid(), pthread_self(), error);
+
+    return 0;
+}
+
+/**
+ * Hopefully this can invoke the Mailbox dereference race condition
+ * @return [description]
+ */
+int rapid_fire_send_recieve_and_throw_an_exit_in_there() {
+    pid_t parent = getpid(),
+          child = fork();
+    int error, i;
+
+    if (child) {
+        pthread_t threads[100];
+        int num_threads = 50;
+        printf("Creating threads for %d\n", getpid());
+        for (i = 0; i < num_threads; i++) {
+            if (pthread_create(&threads[i], NULL, thread_that_spams_messages, &child)) {
+                printf("Error creating threads, only made %d threads", i);
+                num_threads = i;
+                break;
+            }
+        }
+
+        for (i = 0; i < num_threads; i++) {
+            pthread_join(&threads[i], NULL);
+        }
+        return 1;
+    } else {
+        // child sleeps a little bit then exits, hopefully eventaully provoking that race condition
+        
+        usleep(500000);
+        printf("Main child exiting %d\n", getpid());
+        exit(0);
+    }
+}
+
+int c_supports_bitwise_and_right() {
+    int flags1 = 0xff;
+    int flags2 = 0x04;
+    int flags3 = 0x40;
+
+    expect_true(flags1 & flags2);
+    expect_true(!(flags2 & flags3));
+
+    return 1;
+}
 
 int main(void) {
+    do_test(c_supports_bitwise_and_right);
     do_test(bad_process_id);
     do_test(mailbox_exited);
     do_test(mailbox_stopped);
@@ -298,6 +396,11 @@ int main(void) {
     re_fork(); // flush old mailbox
     do_test(msg_len_errors);
     do_test(fifo_even_if_errors);
+    do_test(recieve_messages_even_after_stopped);
+    re_fork(); // stopped mailbox
+    do_test(closing_thread_does_not_stop_or_destroy_mailbox);
+    do_test(rapid_fire_send_recieve_and_throw_an_exit_in_there);
 
-    return 0;
+
+    pthread_exit(0);
 }

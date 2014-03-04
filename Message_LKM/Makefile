@@ -10,3 +10,9 @@ all:
 
 clean:
 	$(MAKE) -C $(KDIR) M=$(PWD) clean
+
+unload:
+	sudo rmmod mailbox_LKM
+
+load:
+	sudo insmod mailbox_LKM.ko
