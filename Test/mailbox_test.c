@@ -11,7 +11,8 @@
  */
 
 #include "mailbox.h"
-#include <stdio.h>
+
+#define CHILD_NUM 50
 
 void test1(void) {
 	int childPID = fork();
