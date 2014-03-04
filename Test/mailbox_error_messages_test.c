@@ -1,5 +1,6 @@
 /**
  * Try to invoke all the possible ways to get an error
+ * @author Khazhismel Kumykov
  */
 /*
 long SendMsg(pid_t dest, void *msg, int len, bool block);

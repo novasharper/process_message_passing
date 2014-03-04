@@ -1,5 +1,7 @@
 /**
  * @file mailbox.c
+ *
+ * @brief this file handles syncronization for individual mailboxes, creation and destruction
  */
 
 // We're in kernel space
@@ -20,14 +22,25 @@
 
 static struct kmem_cache* mailbox_cache;
 
+/**
+ * Initializes our kmem cache
+ */
 void mailbox_init() {
     mailbox_cache = kmem_cache_create("mailbox", sizeof(Mailbox), 0, 0, NULL);
 }
 
+/**
+ * Destroys our kmem cache
+ */
 void mailbox_exit() {
     kmem_cache_destroy(mailbox_cache);
 }
 
+/**
+ * Creates a mailbox for given pid. (does not put it anywhere)
+ * @param  owner given pid
+ * @return       the mailbox
+ */
 Mailbox* mailbox_create(pid_t owner) {
     Mailbox* mailbox = NULL;
 
@@ -56,20 +69,43 @@ Mailbox* mailbox_create(pid_t owner) {
     return mailbox;
 }
 
+/**
+ * Util function if mailbox is full
+ * @param  mailbox [description]
+ * @return         [description]
+ */
 static int mailbox_full(Mailbox* mailbox) {
     return (mailbox->message_count >= mailbox->message_max);
 }
 
+/**
+ * Util function, lock mailbox, print message
+ * @param mailbox [description]
+ * @param flags   [description]
+ */
 static void mailbox_lock(Mailbox* mailbox, unsigned long* flags) {
     spin_lock_irqsave(&mailbox->modify_queue.lock, *flags);
     printk(KERN_INFO "Mailbox %d: Spin locked", mailbox->owner);
 }
 
+/**
+ * Util function, unlock mailbox, print message
+ * @param mailbox [description]
+ * @param flags   [description]
+ */
 static void mailbox_unlock(Mailbox* mailbox, unsigned long* flags) {
     spin_unlock_irqrestore(&mailbox->modify_queue.lock, *flags);
     printk(KERN_INFO "Mailbox %d: Spin released", mailbox->owner);
 }
 
+/**
+ * Adds a message to this mailbox safely
+ * @param  mailbox [description]
+ * @param  message message to add
+ * @param  block   [description]
+ * @param  head    boolean - true add to head of list, false add to end of list (default end, the head is used to re-add a message that was unsuccesfully copied to preserve FIFO)
+ * @return         error
+ */
 long mailbox_add_message(Mailbox* mailbox, Message* message, int block, int head) {
     unsigned long flags;
 
@@ -126,6 +162,13 @@ long mailbox_add_message(Mailbox* mailbox, Message* message, int block, int head
     }
 }
 
+/**
+ * Removes a message from this mailbox safely
+ * @param  mailbox [description]
+ * @param  message pointer for us to set
+ * @param  block   [description]
+ * @return         error
+ */
 long mailbox_remove_message(Mailbox* mailbox, Message** message, int block) {
     unsigned long flags;
 
@@ -183,6 +226,12 @@ long mailbox_remove_message(Mailbox* mailbox, Message** message, int block) {
     }
 }
 
+/**
+ * Util method to stop mailbox safely, sets flags
+ * @param  mailbox [description]
+ * @param  status  [description]
+ * @return         [description]
+ */
 static long __mailbox_stop(Mailbox* mailbox, int status) {
     unsigned long flags;
 
@@ -199,14 +248,29 @@ static long __mailbox_stop(Mailbox* mailbox, int status) {
     return 0;
 }
 
+/**
+ * Stop the mailbox normally
+ * @param  mailbox [description]
+ * @return         [description]
+ */
 long mailbox_stop(Mailbox* mailbox) {
     return __mailbox_stop(mailbox, STOPPED);
 }
 
+/**
+ * Stop the mailbox and mark the mailbox as about to be deleted
+ * @param  mailbox [description]
+ * @return         [description]
+ */
 long mailbox_exiting(Mailbox* mailbox) {
     return __mailbox_stop(mailbox, EXITING | STOPPED);
 }
 
+/**
+ * Destroy the mailbox. This stops, waits, flushes, waits for pointers to be unclaimed, then frees the mailbox
+ * @param  mailbox [description]
+ * @return         [description]
+ */
 long mailbox_destroy(Mailbox* mailbox) {
     Message *msg, *next_msg;
     unsigned long flags;

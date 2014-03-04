@@ -98,6 +98,18 @@ static void hashtable_remove(pid_t key) {
     write_unlock_irqrestore(&mailbox_hash_table_rwlock, flags);
 }
 
+/**
+ * A process is invalid if:
+ * it's task_struct doesn't exist
+ * it's cred uid is less than 1000 (kernel task)
+ *  NOTE: task->mm == NULL is not a good test for kernel task, because a task can be interrupted while it's being created,
+ *      and task->mm will be NULL, although it's a user task
+ * it's flagged with exiting
+ * it's dead
+ *
+ * @param  process [description]
+ * @return         [description]
+ */
 static int is_process_valid(pid_t process) {
     struct task_struct* task = pid_task(find_get_pid(process), PIDTYPE_PID);
 
