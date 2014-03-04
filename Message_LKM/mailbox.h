@@ -16,11 +16,14 @@
 
 #include "message.h"
 
+#define STOPPED 0x01
+#define EXITING 0x02    // exiting and stopped
+
 typedef struct __mailbox {
     pid_t owner;                                    // Owner of this mailbox
     int message_count;                              // Number of messages in this mailbox
     int message_max;                                // Mailbox max size;
-    int stopped;                                    // Is this mailbox stopped?
+    int stopped;                                    // Is this mailbox stopped? Also used for exiting
     struct list_head messages;                      // Linked list of messages (We are not in this list)
     struct hlist_node hash_table_entry;             // Hash Table Entry (for mailbox_manager)
     wait_queue_head_t modify_queue;                 // Lock for this mailbox, and a queue
@@ -37,6 +40,7 @@ Mailbox* mailbox_create(pid_t owner);
 long mailbox_add_message(Mailbox* mailbox, Message* message, int block, int head);
 long mailbox_remove_message(Mailbox* mailbox, Message** message, int block);
 long mailbox_stop(Mailbox* mailbox);
+long mailbox_exiting(Mailbox* mailbox);
 long mailbox_destroy(Mailbox* mailbox);
 
 #endif

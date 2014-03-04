@@ -183,12 +183,12 @@ long mailbox_remove_message(Mailbox* mailbox, Message** message, int block) {
     }
 }
 
-long mailbox_stop(Mailbox* mailbox) {
+static long __mailbox_stop(Mailbox* mailbox, int status) {
     unsigned long flags;
 
     mailbox_lock(mailbox, &flags);
 
-    mailbox->stopped = 1;
+    mailbox->stopped = status;
 
     printk(KERN_INFO "Mailbox %d: Waking up everything", mailbox->owner);
 
@@ -197,6 +197,14 @@ long mailbox_stop(Mailbox* mailbox) {
 
     printk(KERN_INFO "Mailbox %d: Mailbox Stopped", mailbox->owner);
     return 0;
+}
+
+long mailbox_stop(Mailbox* mailbox) {
+    return __mailbox_stop(mailbox, STOPPED);
+}
+
+long mailbox_exiting(Mailbox* mailbox) {
+    return __mailbox_stop(mailbox, EXITING | STOPPED);
 }
 
 long mailbox_destroy(Mailbox* mailbox) {

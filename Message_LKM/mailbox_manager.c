@@ -127,12 +127,21 @@ long get_mailbox_for_pid(Mailbox** mailbox, pid_t pid) {
         if (*mailbox == NULL) {
             *mailbox = mailbox_create(pid);
             hashtable_put(pid, *mailbox);
+            claim_mailbox(*mailbox);
+            return 0;
+        } else {
+            claim_mailbox(*mailbox);
+            if ((*mailbox)->stopped & EXITING) { // Safe to read this because once exiting is set, stopped is never changed again
+                unclaim_mailbox(*mailbox);
+                return MAILBOX_INVALID;
+            } else {
+                return 0;
+            }
         }
-        claim_mailbox(*mailbox);
-        return 0;
     } else {
         return MAILBOX_INVALID;
     }
+
 }
 
 /**
@@ -170,7 +179,7 @@ long remove_mailbox_for_pid(pid_t pid) {
 
     if (mailbox) {
         printk(KERN_INFO "Stopping mailbox %d to prevent new messages, in preperation for destruction", pid);
-        mailbox_stop(mailbox);
+        mailbox_exiting(mailbox);
 
 
         printk(KERN_INFO "Scheduling Mailbox %d for destruction", pid);
