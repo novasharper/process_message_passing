@@ -59,20 +59,18 @@ void test2(void) {
 			SendMsg(childPID, mesg, 17, false);
 		}
 	}
-	
-	if(childPID != 0) {}
-		int failed = 0;
-		int msgCounter;
-		for(msgCounter = 0; msgCounter < CHILD_NUM; msgCounter++) {
-			pid_t aSender;
-			void *reply[MAX_MSG_SIZE];
-			int mLen;
-			
-			if(RcvMsg(&aSender, reply, &mLen, false)) failed++;
-		}
-		if(failed) printf("FAILED\n");
-		else printf("PASSED\n");
+
+	int failed = 0;
+	int msgCounter;
+	for(msgCounter = 0; msgCounter < CHILD_NUM; msgCounter++) {
+		pid_t aSender;
+		void *reply[MAX_MSG_SIZE];
+		int mLen;
+		
+		if(RcvMsg(&aSender, reply, &mLen, false)) failed++;
 	}
+	if(failed) printf("FAILED\n");
+	else printf("PASSED\n");
 }
 
 void test3(void) {
