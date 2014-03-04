@@ -109,7 +109,6 @@ asmlinkage long __manage_mailbox(bool stop, int *count) {
 
 	if (stop) {
 		mailbox_stop(mailbox);
-		unclaim_mailbox(mailbox);
 	}
 
 	unclaim_mailbox(mailbox);

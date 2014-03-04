@@ -69,7 +69,11 @@ void test2(void) {
 		void *reply[MAX_MSG_SIZE];
 		int mLen;
 		
-		if(RcvMsg(&aSender, reply, &mLen, false)) failed++;
+		if(RcvMsg(&aSender, reply, &mLen, false)) {
+			failed++;
+		} else {
+			printf("Message recieved: %s\n", reply);
+		}
 	}
 	if(failed) printf("FAILED\n");
 	else printf("PASSED\n");
