@@ -69,8 +69,8 @@ void test2(void) {
 		
 		if(RcvMsg(&aSender, reply, &mLen, false)) failed++;
 	}
-	if(failed) printf("FAILED");
-	else printf("PASSED");
+	if(failed) printf("FAILED\n");
+	else printf("PASSED\n");
 }
 
 void test3(void) {
@@ -169,14 +169,25 @@ int main(int argc, char **argv) {
 	}
 	int test_num = atoi(argv[1]);
 	switch(test_num) {
-		case 1: test1( );
-		case 2: test2( );
-		case 3: test3( );
-		case 4: test4( );
-		case 5: test5( );
+		case 1:
+			test1( );
+			break;
+		case 2:
+			test2( );
+			break;
+		case 3:
+			test3( );
+			break;
+		case 4:
+			test4( );
+			break;
+		case 5:
+			test5( );
+			break;
 		default:
 			printf("Invalid test case. Test case numbers are between 1-5.\n");
 	}
+	printf("DONE\n");
 	int status;
 	int res = waitpid(-1, &status, 0);
 	return 0;

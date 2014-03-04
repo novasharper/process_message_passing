@@ -10,4 +10,4 @@ mailbox_test.o: mailbox_test.c
 	gcc -Wall -c $(CFLAGS) mailbox_test.c
 
 clean:
-	rm -rf *.o mailbox_test1
+	rm -rf *.o mailbox_test
