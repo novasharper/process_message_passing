@@ -192,13 +192,13 @@ int crash_test(void) {
 }
 
 int main(int argc, char **argv) {
-	do_test(test_send_message( ));
-	do_test(test_message_overflow_wait( ));
+	do_test(test_send_message);
+	do_test(test_message_overflow_wait);
 	re_fork();
-	do_test(test_send_stopped_mailbox( ));
+	do_test(test_send_stopped_mailbox);
 	re_fork();
-	do_test(test_recieve_empty_mailbox( ));
-	do_test(crash_test( ));
+	do_test(test_recieve_empty_mailbox);
+	do_test(crash_test);
 	int status;
 	int res = waitpid(-1, &status, 0);
 	return 0;
