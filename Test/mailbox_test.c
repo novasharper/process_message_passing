@@ -60,17 +60,19 @@ void test2(void) {
 		}
 	}
 	
-	int failed = 0;
-	int msgCounter;
-	for(msgCounter = 0; msgCounter < CHILD_NUM; msgCounter++) {
-		pid_t aSender;
-		void *reply[MAX_MSG_SIZE];
-		int mLen;
-		
-		if(RcvMsg(&aSender, reply, &mLen, false)) failed++;
+	if(childPID != 0) {}
+		int failed = 0;
+		int msgCounter;
+		for(msgCounter = 0; msgCounter < CHILD_NUM; msgCounter++) {
+			pid_t aSender;
+			void *reply[MAX_MSG_SIZE];
+			int mLen;
+			
+			if(RcvMsg(&aSender, reply, &mLen, false)) failed++;
+		}
+		if(failed) printf("FAILED\n");
+		else printf("PASSED\n");
 	}
-	if(failed) printf("FAILED\n");
-	else printf("PASSED\n");
 }
 
 void test3(void) {
@@ -186,8 +188,8 @@ int main(int argc, char **argv) {
 			break;
 		default:
 			printf("Invalid test case. Test case numbers are between 1-5.\n");
+			return 0;
 	}
-	printf("DONE\n");
 	int status;
 	int res = waitpid(-1, &status, 0);
 	return 0;
