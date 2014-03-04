@@ -34,7 +34,7 @@ void mailbox_exit(void);
 
 Mailbox* mailbox_create(pid_t owner);
 
-long mailbox_add_message(Mailbox* mailbox, Message* message, int block);
+long mailbox_add_message(Mailbox* mailbox, Message* message, int block, int head);
 long mailbox_remove_message(Mailbox* mailbox, Message** message, int block);
 long mailbox_stop(Mailbox* mailbox);
 long mailbox_destroy(Mailbox* mailbox);

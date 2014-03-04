@@ -70,7 +70,7 @@ static void mailbox_unlock(Mailbox* mailbox, unsigned long* flags) {
     printk(KERN_INFO "Mailbox %d: Spin released", mailbox->owner);
 }
 
-long mailbox_add_message(Mailbox* mailbox, Message* message, int block) {
+long mailbox_add_message(Mailbox* mailbox, Message* message, int block, int head) {
     unsigned long flags;
 
     mailbox_lock(mailbox, &flags);
@@ -111,7 +111,11 @@ long mailbox_add_message(Mailbox* mailbox, Message* message, int block) {
         }
 
         // Add to the end of the list
-        list_add_tail(&message->list, &mailbox->messages);
+        if (head) {
+            list_add(&message->list, &mailbox->messages);
+        } else {
+            list_add_tail(&message->list, &mailbox->messages);
+        }
         mailbox->message_count++;
         wake_up_locked(&mailbox->modify_queue);
 

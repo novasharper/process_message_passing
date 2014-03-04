@@ -50,7 +50,7 @@ asmlinkage long __send_message(pid_t dest, void *msg, int len, bool block) {
 		return error;
 	}
 
-	error = mailbox_add_message(mailbox, message, block);
+	error = mailbox_add_message(mailbox, message, block, false);
 	if (error) {
 		unclaim_mailbox(mailbox);
 		return error;
@@ -82,8 +82,7 @@ asmlinkage long __recieve_message(pid_t *sender, void *msg, int *len, bool block
 		copy_to_user(msg, &message->msg, message->len)) {
 		printk(KERN_INFO "Failed to copy message, putting it back in the queue");
 
-		// FIXME - we might need to re-init the message before adding back to list
-		mailbox_add_message(mailbox, message, true);
+		mailbox_add_message(mailbox, message, true, true);
 		unclaim_mailbox(mailbox);
 		return MSG_ARG_ERROR;
 	}
