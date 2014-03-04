@@ -29,6 +29,7 @@ void test1(void) {
 		} else {
 			printf("PASSED\n");
 		}
+		return;
 	} else {
 		char mesg[] = "I am your father";
 		int status_p = SendMsg(childPID, mesg, 17, false);
@@ -53,6 +54,7 @@ void test2(void) {
 
 			char myMesg[] = "I am your child";
 			int error = SendMsg(sender, myMesg, 16, true);
+			return;
 		}
 		else{
 			char mesg[] = "I am your father";
@@ -90,6 +92,7 @@ void test3(void) {
 		} else {
 			printf("FAILED\n");
 		}
+		return;
 	} else {
 		int num_mesg;
 		char mesg[] = "I am your father";
@@ -139,7 +142,7 @@ void test5(void) {
 			if(error) {
 //				printf("Child send failed. %d\n", error
 			}
-			
+			return;
 		}
 		else{
 			char mesg[] = "I am your father";
