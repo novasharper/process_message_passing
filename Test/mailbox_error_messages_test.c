@@ -328,16 +328,18 @@ void* thread_that_spams_messages(void* args) {
     int* arg = (int*) args;
     int error = 0;
     while (error != MAILBOX_INVALID) {
-            printf("I'm %d, thread %d and I'm trying to SendMsg, last error %d\n", getpid(), pthread_self(), error);
+            //printf("I'm %d, thread %d and I'm trying to SendMsg, last error %d\n", getpid(), pthread_self(), error);
             error = SendMsg(*arg, "Hello", 6, NO_BLOCK);
     }
-    printf("I'm %d, thread %d, final error %d\n", getpid(), pthread_self(), error);
+    //printf("I'm %d, thread %d, final error %d\n", getpid(), pthread_self(), error);
 
     return 0;
 }
 
 /**
  * Hopefully this can invoke the Mailbox dereference race condition
+ *
+ * This hangs the system, that's getting somewhere at least
  * @return [description]
  */
 int rapid_fire_send_recieve_and_throw_an_exit_in_there() {
@@ -348,7 +350,7 @@ int rapid_fire_send_recieve_and_throw_an_exit_in_there() {
     if (child) {
         pthread_t threads[100];
         int num_threads = 50;
-        printf("Creating threads for %d\n", getpid());
+        //printf("Creating threads for %d\n", getpid());
         for (i = 0; i < num_threads; i++) {
             if (pthread_create(&threads[i], NULL, thread_that_spams_messages, &child)) {
                 printf("Error creating threads, only made %d threads", i);
@@ -364,7 +366,7 @@ int rapid_fire_send_recieve_and_throw_an_exit_in_there() {
     } else {
         // child sleeps a little bit then exits, hopefully eventaully provoking that race condition
         
-        usleep(500000);
+        usleep(5000);
         printf("Main child exiting %d\n", getpid());
         exit(0);
     }
