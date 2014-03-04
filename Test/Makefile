@@ -9,9 +9,6 @@ mailbox_test: mailbox.o
 mailbox_error_test: mailbox.o
 	gcc $(CFLAGS) -pthread mailbox_error_messages_test.c mailbox.o -o mailbox_error_test
 
-test_k: mailbox_error_test
-	./mailbox_error_test
-
 test_p: mailbox_test
 	./mailbox_test
 
