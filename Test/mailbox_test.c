@@ -54,6 +54,7 @@ void test2(void) {
 
 			char myMesg[] = "I am your child";
 			int error = SendMsg(sender, myMesg, 16, true);
+			return;
 		}
 		else{
 			char mesg[] = "I am your father";
