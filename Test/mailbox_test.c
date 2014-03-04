@@ -165,7 +165,7 @@ void test5(void) {
 int main(int argc, char **argv) {
 	if(argc != 2) {
 		printf("Usage: ./mailbox_test [test case number]\n");
-		return;
+		return 0;
 	}
 	int test_num = atoi(argv[1]);
 	switch(test_num) {
@@ -179,4 +179,5 @@ int main(int argc, char **argv) {
 	}
 	int status;
 	int res = waitpid(-1, &status, 0);
+	return 0;
 }
