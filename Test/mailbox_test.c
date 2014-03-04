@@ -3,18 +3,45 @@
  * Feb 21, 2014
  * CS 3013
  * Project 4 - Test Program
- * test1 - Test if messages can be sent and recieved
- * test2 - Tests if programs that chose to wait until able to send a message behave properly
- * test3 - Tests sending message to stopped mailbox
- * test4 - Tests getting message from empty mailbox
- * test5 - Crash test
+ * test_send_message - Test if messages can be sent and recieved
+ * test_message_overflow_wait - Tests if programs that chose to wait until able to send a message behave properly
+ * test_send_stopped_mailbox - Tests sending message to stopped mailbox
+ * test_recieve_empty_mailbox - Tests getting message from empty mailbox
+ * crash_test - Crash test
  */
 
 #include "mailbox.h"
 
 #define CHILD_NUM 50
+#define IGNORE -123124
 
-void test1(void) {
+#define do_test(name) \
+switch(name()) {\
+	case IGNORE:\
+		break;\
+	case 0:\
+		printf("FAILED - Test %s\n",#name);\
+		exit(1);\
+	default:\
+		printf("PASSED - Test %s\n",#name);\
+	}
+
+#define expect_true(val) \
+	if (!(val)) {\
+		printf("Failed expect_true for %s\n", #val);\
+		return 0;\
+	}
+
+int re_fork() {
+	pid_t child = fork();
+	if (child) {
+		int status;
+		waitpid(child, &status, 0);
+		exit(status);
+	}
+}
+
+int test_send_message(void) {
 	int childPID = fork();
 
 	if(childPID == 0) {
@@ -25,21 +52,20 @@ void test1(void) {
 		// Try to get message
 		int status_c = RcvMsg(&sender, msg, &len, true);
 		if(status_c) { // If status is non-zero, there was an error
-			printf("FAILED\n");
+			return 0;
 		} else {
-			printf("PASSED\n");
+			return 1;
 		}
-		return;
 	} else {
 		char mesg[] = "I am your father";
 		int status_p = SendMsg(childPID, mesg, 17, false);
 		if (status_p) { // If status is non-zero, there was an error
-			printf("FAILED\n");
+			return 0;
 		}
 	}
 }
 
-void test2(void) {
+int test_message_overflow_wait(void) {
 	int childCounter;
 	int childPID;
 	for(childCounter = 0; childCounter < CHILD_NUM; childCounter++) {
@@ -54,7 +80,7 @@ void test2(void) {
 
 			char myMesg[] = "I am your child";
 			int error = SendMsg(sender, myMesg, 16, true);
-			return;
+			return 0;
 		}
 		else{
 			char mesg[] = "I am your father";
@@ -81,13 +107,13 @@ void test2(void) {
 		}
 	}
 	if(failed) {
-		printf("[%d]FAILED: %d %d\n", childPID, failed, CHILD_NUM - num_mesg);
+		return 0;
 	} else {
-		printf("[%d]PASSED\n", childPID);
+		return 1;
 	}
 }
 
-void test3(void) {
+int test_send_stopped_mailbox(void) {
 	int childPID = fork();
 
 	if(childPID == 0) {
@@ -99,12 +125,7 @@ void test3(void) {
 		int status_c = RcvMsg(&sender, msg, &len, true);
 		usleep(1000);
 		int error = SendMsg(sender, msg, len, false);
-		if(error == MAILBOX_STOPPED) {
-			printf("PASSED\n");
-		} else {
-			printf("FAILED\n");
-		}
-		return;
+		return error == MAILBOX_STOPPED;
 	} else {
 		int num_mesg;
 		char mesg[] = "I am your father";
@@ -113,7 +134,7 @@ void test3(void) {
 	}
 }
 
-void test4(void) {
+int test_recieve_empty_mailbox(void) {
 	// Variables to hold message data
 	pid_t sender;
 	void *msg[MAX_MSG_SIZE];
@@ -121,17 +142,13 @@ void test4(void) {
 	
 	int error = RcvMsg(&sender, msg, &len, false);
 
-	if(error == MAILBOX_EMPTY) {
-		printf("PASSED\n");
-	} else {
-		printf("FAILED\n");
-	}
+	return error == MAILBOX_EMPTY;
 }
 
 // CRASH TEST
 // Cleaned up version of sample 7
 // WILL CRASH KERNEL UNLESS PROPERLY HANDLED
-void test5(void) {
+int crash_test(void) {
 	int childCounter;
 	
 	// fork enough children so that they can all send a message
@@ -171,36 +188,17 @@ void test5(void) {
 	usleep(1000);
 	int status;
 	int res = waitpid(-1, &status, 0);
-	printf("PASSED\n");
-//	printf("Parent dies.\n");
+	return 1;
 }
 
 int main(int argc, char **argv) {
-	if(argc != 2) {
-		printf("Usage: ./mailbox_test [test case number]\n");
-		return 0;
-	}
-	int test_num = atoi(argv[1]);
-	switch(test_num) {
-		case 1:
-			test1( );
-			break;
-		case 2:
-			test2( );
-			break;
-		case 3:
-			test3( );
-			break;
-		case 4:
-			test4( );
-			break;
-		case 5:
-			test5( );
-			break;
-		default:
-			printf("Invalid test case. Test case numbers are between 1-5.\n");
-			return 0;
-	}
+	do_test(test_send_message( ));
+	do_test(test_message_overflow_wait( ));
+	re_fork();
+	do_test(test_send_stopped_mailbox( ));
+	re_fork();
+	do_test(test_recieve_empty_mailbox( ));
+	do_test(crash_test( ));
 	int status;
 	int res = waitpid(-1, &status, 0);
 	return 0;
