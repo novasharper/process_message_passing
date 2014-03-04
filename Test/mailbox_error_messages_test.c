@@ -360,13 +360,18 @@ int rapid_fire_send_recieve_and_throw_an_exit_in_there() {
         }
 
         for (i = 0; i < num_threads; i++) {
+            printf("joining therad\n");
             pthread_join(&threads[i], NULL);
+            printf("thread joined\n");
         }
+
+        waitpid(child,NULL,0);
+        printf("Mean thrad read\n");
         return 1;
     } else {
         // child sleeps a little bit then exits, hopefully eventaully provoking that race condition
         
-        usleep(5000);
+        usleep(50000);
         printf("Main child exiting %d\n", getpid());
         exit(0);
     }
@@ -404,5 +409,5 @@ int main(void) {
     do_test(rapid_fire_send_recieve_and_throw_an_exit_in_there);
 
 
-    pthread_exit(0);
+    return 0;
 }

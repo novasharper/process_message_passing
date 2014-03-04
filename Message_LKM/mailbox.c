@@ -227,6 +227,7 @@ long mailbox_destroy(Mailbox* mailbox) {
 
     mailbox_unlock(mailbox, &flags);
     wait_until_mailbox_unclaimed(mailbox);
+    printk(KERN_INFO "Mailbox %d is empty on delete: %d", mailbox->owner, list_empty(&mailbox->messages));
     kmem_cache_free(mailbox_cache, mailbox);
     
     return 0;
