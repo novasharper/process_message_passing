@@ -80,7 +80,7 @@ int test_message_overflow_wait(void) {
 
 			char myMesg[] = "I am your child";
 			int error = SendMsg(sender, myMesg, 16, true);
-			return 0;
+			return IGNORE;
 		}
 		else{
 			char mesg[] = "I am your father";
@@ -91,9 +91,7 @@ int test_message_overflow_wait(void) {
 	int failed = 0;
 	int msgCounter;
 	int num_mesg;
-	printf("[%d] Managing my mailbox\n", childPID);
 	ManageMailbox(false, &num_mesg);
-	printf("[%d] Done with my mailbox\n", childPID);
 	for(msgCounter = 0; msgCounter < CHILD_NUM; msgCounter++) {
 		pid_t aSender;
 		char *reply[MAX_MSG_SIZE];
@@ -101,9 +99,6 @@ int test_message_overflow_wait(void) {
 		
 		if(RcvMsg(&aSender, reply, &mLen, true)) {
 			failed++;
-			printf("Message failed\n");
-		} else {
-			printf("Message recieved: %s\n", (char*)reply);
 		}
 	}
 	return (failed == 0);
