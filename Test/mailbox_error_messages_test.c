@@ -28,6 +28,11 @@ long ManageMailbox(bool stop, int *count);
 
 #define IGNORE -123124
 
+/**
+ * Macro to print out test name and result, yay
+ * @param  name [description]
+ * @return      [description]
+ */
 #define do_test(name) \
 switch(name()) {\
     case IGNORE:\
@@ -39,18 +44,27 @@ switch(name()) {\
         printf("PASSED - Test %s\n",#name);\
     }
 
+/**
+ * macro to return if false, print the reason
+ * @param  val [description]
+ * @return     [description]
+ */
 #define expect_true(val) \
     if (!(val)) {\
         printf("Failed expect_true for %s\n", #val);\
         return 0;\
     }
 
+/**
+ * Function to fork and wait for that child, allows creating a new mailbox without having to run another command
+ * @return [description]
+ */
 int re_fork() {
     pid_t child = fork();
     if (child) {
         int status;
         waitpid(child, &status, 0);
-        exit(status);
+        exit(WEXITSTATUS(status));
     }
 }
 
@@ -364,7 +378,7 @@ int rapid_fire_send_and_throw_an_exit_in_there() {
         }
 
         for (i = 0; i < num_threads; i++) {
-            //printf("joining therad\n");
+            //printf("joining thread #%d\n", i);
             pthread_join(&threads[i], NULL);
             //printf("thread joined\n");
         }
