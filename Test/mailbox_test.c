@@ -58,7 +58,7 @@ void test2(void) {
 		}
 		else{
 			char mesg[] = "I am your father";
-			SendMsg(childPID, mesg, 17, false);
+			SendMsg(childPID, mesg, 17, true);
 		}
 	}
 
@@ -75,7 +75,7 @@ void test2(void) {
 			printf("Message recieved: %s\n", reply);
 		}
 	}
-	if(failed) printf("FAILED\n");
+	if(failed) printf("FAILED: %d\n", failed);
 	else printf("PASSED\n");
 }
 
