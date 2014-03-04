@@ -64,6 +64,8 @@ void test2(void) {
 
 	int failed = 0;
 	int msgCounter;
+	int num_mesg;
+	ManageMailbox(false, &num_mesg);
 	for(msgCounter = 0; msgCounter < CHILD_NUM; msgCounter++) {
 		pid_t aSender;
 		void *reply[MAX_MSG_SIZE];
@@ -75,7 +77,7 @@ void test2(void) {
 			printf("Message recieved: %s\n", reply);
 		}
 	}
-	if(failed) printf("FAILED: %d\n", failed);
+	if(failed) printf("FAILED: %d %d\n", failed, CHILD_NUM - num_mesg);
 	else printf("PASSED\n");
 }
 
