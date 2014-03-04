@@ -1,5 +1,9 @@
 /**
  * @file mailbox_manager.c
+ *
+ * @brief This file handles the mailbox table, requesting/destroying mailboxes for specific pids
+ * validates pids, handles the hashtable, etc. 
+ * Handles sync for hash table
  */
 
 // We're in kernel space
@@ -28,6 +32,9 @@ void mailbox_manager_init() {
     for (i = 0; i < MAILBOX_HASHTABLE_SIZE; i++) {
         INIT_HLIST_HEAD(&mailbox_hash_table[i]);
     }
+}
+
+void mailbox_manager_exit() {
 }
 
 static unsigned long mailbox_hash(pid_t key) {
@@ -110,6 +117,7 @@ long get_mailbox_for_pid(Mailbox** mailbox, pid_t pid) {
             *mailbox = mailbox_create(pid);
             hashtable_put(pid, *mailbox);
         }
+        claim_mailbox(*mailbox);
         return 0;
     } else {
         return MAILBOX_INVALID;
@@ -122,12 +130,40 @@ long remove_mailbox_for_pid(pid_t pid) {
     mailbox = hashtable_get(pid);
 
     if (mailbox) {
-        printk(KERN_INFO "Destroying Mailbox for %d", pid);
         hashtable_remove(pid);
+        printk(KERN_INFO "Destroying Mailbox for %d", pid);
         mailbox_destroy(mailbox);
         return 0;
     } else {
         printk(KERN_INFO "Tried to destroy non-existant mailbox %d", pid);
         return MAILBOX_INVALID;
     }
+}
+
+void claim_mailbox(Mailbox* m) {
+    unsigned long flags;
+    spin_lock_irqsave(&m->dereference_queue.lock, flags);
+    m->dereferences++;
+    printk(KERN_INFO "Mailbox for %d now has %d references (1 new claim)", m->owner, m->dereferences);
+    spin_unlock_irqrestore(&m->dereference_queue.lock, flags);
+}
+
+void unclaim_mailbox(Mailbox* m) {
+    unsigned long flags;
+    spin_lock_irqsave(&m->dereference_queue.lock, flags);
+    m->dereferences--;
+    if (m->dereferences == 0) {
+        wake_up_locked(&m->dereference_queue);
+    }
+    printk(KERN_INFO "Mailbox for %d now has %d references (1 released claim)", m->owner, m->dereferences);
+    spin_unlock_irqrestore(&m->dereference_queue.lock, flags);
+}
+
+void wait_until_mailbox_unclaimed(Mailbox* m) {
+    unsigned long flags;
+    spin_lock_irqsave(&m->dereference_queue.lock, flags);
+    printk(KERN_INFO "Mailbox for %d has %d dereferences left", m->owner, m->dereferences);
+    wait_event_interruptible_exclusive_locked_irq(m->dereference_queue, 
+                    m->dereferences == 0);
+    spin_unlock_irqrestore(&m->dereference_queue.lock, flags);
 }

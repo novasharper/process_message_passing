@@ -22,9 +22,11 @@ typedef struct __mailbox {
     int message_max;                                // Mailbox max size;
     int stopped;                                    // Is this mailbox stopped?
     struct list_head messages;                      // Linked list of messages (We are not in this list)
-    struct hlist_node hash_table_entry;             // Hash Table Entry
+    struct hlist_node hash_table_entry;             // Hash Table Entry (for mailbox_manager)
     wait_queue_head_t modify_queue;                 // Lock for this mailbox, and a queue
     atomic_t waiting;                               // How many processes waiting to use this mailbox
+    wait_queue_head_t dereference_queue;            // Dereferences, handled by mm
+    int dereferences;                               // uses dereference_queue lock
 } Mailbox;
 
 void mailbox_init(void);

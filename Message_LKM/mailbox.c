@@ -16,6 +16,7 @@
 
 #include "mailbox.h"
 #include "message.h"
+#include "mailbox_manager.h"
 
 static struct kmem_cache* mailbox_cache;
 
@@ -48,6 +49,9 @@ Mailbox* mailbox_create(pid_t owner) {
 
     // Initialize the wait queue
     init_waitqueue_head(&mailbox->modify_queue);
+
+    init_waitqueue_head(&mailbox->dereference_queue);
+    mailbox->dereferences = 0;
 
     return mailbox;
 }
@@ -82,9 +86,16 @@ long mailbox_add_message(Mailbox* mailbox, Message* message, int block) {
             if (block) {
                 printk(KERN_INFO "Mailbox %d: Mailbox full, waiting until open space", mailbox->owner);
                 atomic_inc(&mailbox->waiting);
-                wait_event_interruptible_exclusive_locked_irq(mailbox->modify_queue, 
-                    (mailbox->stopped || !mailbox_full(mailbox)));
+                if (wait_event_interruptible_exclusive_locked_irq(mailbox->modify_queue, 
+                    (mailbox->stopped || !mailbox_full(mailbox)))) {
+                    printk(KERN_INFO "Recieved signal, exiting...");
+                    atomic_dec(&mailbox->waiting);
+                    wake_up_locked(&mailbox->modify_queue);
+                    mailbox_unlock(mailbox, &flags);
+                    return MAILBOX_ERROR;
+                }
                 atomic_dec(&mailbox->waiting);
+                wake_up_locked(&mailbox->modify_queue);
                 if (mailbox->stopped) {
                     printk(KERN_INFO "Mailbox %d: Mailbox became stopped while waiting to add, cannot add", mailbox->owner);
 
@@ -130,9 +141,16 @@ long mailbox_remove_message(Mailbox* mailbox, Message** message, int block) {
                 printk(KERN_INFO "Mailbox %d: Mailbox empty, waiting until message arrives", mailbox->owner);
                 // Wait until there's a message we want to see, or the mailbox is stopped
                 atomic_inc(&mailbox->waiting);
-                wait_event_interruptible_exclusive_locked_irq(mailbox->modify_queue,
-                    (mailbox->stopped || mailbox->message_count != 0));
+                if (wait_event_interruptible_exclusive_locked_irq(mailbox->modify_queue,
+                    (mailbox->stopped || mailbox->message_count != 0))) {
+                    printk(KERN_INFO "Recieved signal, exiting...");
+                    atomic_dec(&mailbox->waiting);
+                    wake_up_locked(&mailbox->modify_queue);
+                    mailbox_unlock(mailbox, &flags);
+                    return MAILBOX_ERROR;
+                }
                 atomic_dec(&mailbox->waiting);
+                wake_up_locked(&mailbox->modify_queue);
                 if (mailbox->stopped && mailbox->message_count == 0) {
                     printk(KERN_INFO "Mailbox %d: Mailbox became stopped and empty while we were waiting", mailbox->owner);
 
@@ -169,11 +187,11 @@ long mailbox_stop(Mailbox* mailbox) {
     mailbox->stopped = 1;
 
     printk(KERN_INFO "Mailbox %d: Waking up everything", mailbox->owner);
-    wake_up_locked(&mailbox->modify_queue);
+
+    mailbox_unlock(mailbox,&flags);
+    wake_up_all(&mailbox->modify_queue);
 
     printk(KERN_INFO "Mailbox %d: Mailbox Stopped", mailbox->owner);
-
-    mailbox_unlock(mailbox, &flags);
     return 0;
 }
 
@@ -192,7 +210,7 @@ long mailbox_destroy(Mailbox* mailbox) {
 
 
     printk(KERN_INFO "Mailbox %d: Waiting until other processes finish with this mailbox", mailbox->owner);
-    wait_event_interruptible_locked_irq(mailbox->modify_queue, atomic_read(&mailbox->waiting) == 0);
+    wait_event_interruptible_locked_irq(mailbox->modify_queue, printk(KERN_INFO "Mailbox %d is Still waiting, %d left", mailbox->owner, atomic_read(&mailbox->waiting)) && (atomic_read(&mailbox->waiting) == 0));
 
     printk(KERN_INFO "Mailbox %d: Flushing messages", mailbox->owner);
 
@@ -204,6 +222,7 @@ long mailbox_destroy(Mailbox* mailbox) {
     printk(KERN_INFO "Mailbox %d: No more messages, destroying mailbox", mailbox->owner);
 
     //mailbox_unlock(mailbox, &flags);
+    wait_until_mailbox_unclaimed(mailbox);
     kmem_cache_free(mailbox_cache, mailbox);
     
     return 0;

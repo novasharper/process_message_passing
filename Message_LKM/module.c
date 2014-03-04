@@ -46,14 +46,17 @@ asmlinkage long __send_message(pid_t dest, void *msg, int len, bool block) {
 
 	error = message_create(&message, current->pid, msg, len);
 	if (error) {
+		unclaim_mailbox(mailbox);
 		return error;
 	}
 
 	error = mailbox_add_message(mailbox, message, block);
 	if (error) {
+		unclaim_mailbox(mailbox);
 		return error;
 	}
 
+	unclaim_mailbox(mailbox);
 	return 0;
 }
 
@@ -70,6 +73,7 @@ asmlinkage long __recieve_message(pid_t *sender, void *msg, int *len, bool block
 
 	error = mailbox_remove_message(mailbox, &message, block);
 	if (error) {
+		unclaim_mailbox(mailbox);
 		return error;
 	}
 
@@ -80,10 +84,12 @@ asmlinkage long __recieve_message(pid_t *sender, void *msg, int *len, bool block
 
 		// FIXME - we might need to re-init the message before adding back to list
 		mailbox_add_message(mailbox, message, true);
+		unclaim_mailbox(mailbox);
 		return MSG_ARG_ERROR;
 	}
 
 	message_destroy(&message);
+	unclaim_mailbox(mailbox);
 	return 0;
 }
 
@@ -97,18 +103,21 @@ asmlinkage long __manage_mailbox(bool stop, int *count) {
 	}
 
 	if (copy_to_user(count, &mailbox->message_count, sizeof(int))) {
+		unclaim_mailbox(mailbox);
 		return MSG_ARG_ERROR;
 	}
 
 	if (stop) {
 		mailbox_stop(mailbox);
+		unclaim_mailbox(mailbox);
 	}
 
+	unclaim_mailbox(mailbox);
 	return 0;
 }
 
 asmlinkage long __new_sys_exit(int status) {
-	
+	// FIXME - need to check if we are the last task in the group
 	printk(KERN_INFO "Exiting task, destroying mailbox for %d", current->pid);
 
 	remove_mailbox_for_pid(current->pid);
@@ -219,6 +228,7 @@ static void __exit interceptor_end(void) {
 	// exit
 	message_exit();
 	mailbox_exit();
+	mailbox_manager_exit();
 
 	/* Revert all system calls to what they were before we began. */
 	disable_page_protection();
