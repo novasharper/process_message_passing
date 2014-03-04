@@ -225,7 +225,7 @@ long mailbox_destroy(Mailbox* mailbox) {
 
     printk(KERN_INFO "Mailbox %d: No more messages, destroying mailbox", mailbox->owner);
 
-    //mailbox_unlock(mailbox, &flags);
+    mailbox_unlock(mailbox, &flags);
     wait_until_mailbox_unclaimed(mailbox);
     kmem_cache_free(mailbox_cache, mailbox);
     

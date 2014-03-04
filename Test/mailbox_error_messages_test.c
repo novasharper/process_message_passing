@@ -328,12 +328,12 @@ void* thread_that_spams_messages(void* args) {
     int* arg = (int*) args;
     int error = 0;
     while (error != MAILBOX_INVALID) {
-            //printf("I'm %d, thread %d and I'm trying to SendMsg, last error %d\n", getpid(), pthread_self(), error);
+            printf("I'm %d, thread %d and I'm trying to SendMsg, last error %d\n", getpid(), pthread_self(), error);
             error = SendMsg(*arg, "Hello", 6, NO_BLOCK);
     }
-    //printf("I'm %d, thread %d, final error %d\n", getpid(), pthread_self(), error);
+    printf("I'm %d, thread %d, final error %d\n", getpid(), pthread_self(), error);
 
-    return 0;
+    pthread_exit(0);
 }
 
 /**
