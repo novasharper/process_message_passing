@@ -55,6 +55,13 @@ switch(name()) {\
         return 0;\
     }
 
+#define log(...) \
+    if (verbose) {\
+        printf(__VA_ARGS__);\
+    }
+
+static int verbose = 0;
+
 /**
  * Function to fork and wait for that child, allows creating a new mailbox without having to run another command
  * @return [description]
@@ -70,6 +77,7 @@ int re_fork() {
 
 int bad_process_id(void) {
     int error;
+    log("Trying to send message to process 0\n");
     error = SendMsg(0, "Hello", 6, BLOCK);
 
     return error == MAILBOX_INVALID;
@@ -79,13 +87,19 @@ int mailbox_full(void) {
     int i, error;
     pid_t curpid = getpid();
 
+    log("Sending messages to fill up mailbox, assuming mailbox size is 32\n");
     for (i = 0; i < 32; i++) {
+        log("Sending message... ");
         error = SendMsg(curpid, "Hello", 6, NO_BLOCK);
         if (error) {
+            log("Failed\n");
             return false;
+        } else {
+            log("Successful\n");
         }
     }
 
+    log("Sending another message, this should return mailbox full. Test fails if it doesn't\n");
     error = SendMsg(curpid, "Hello", 6, NO_BLOCK);
     return error == MAILBOX_FULL;
 }
@@ -95,14 +109,20 @@ int mailbox_empty(void) {
     pid_t sender;
     void* msg = malloc(MAX_MSG_SIZE);
 
+    log("Emptying mailbox from previous test, there should be 32 messages\n");
     for (i = 0; i < 32; i++) {
+        log("Removing message... ");
         error = RcvMsg(&sender,msg,&len, NO_BLOCK);
         if (error) {
             free(msg);
+            log("Failed\n");
             return false;
+        } else {
+            log("Successful\n");
         }
     }
 
+    log("Recieving another message, this should return mailbox empty. Test fails if it doesn't\n");
     error = RcvMsg(&sender,msg,&len, NO_BLOCK);
     free(msg);
     return error == MAILBOX_EMPTY;
@@ -115,10 +135,13 @@ int mailbox_exited(void) {
     int child_pid = fork();
     if (child_pid) {
         // parent
+        log("Waiting until our child exits to send them a message\n");
         waitpid(child_pid, NULL, 0);
+        log("Sending message, this should return invalid mailbox. Test fails if it doesn't\n");
         error = SendMsg(child_pid, "Hello", 6, BLOCK);
         return (error == MAILBOX_INVALID);
     } else {
+        log("Child exited\n");
         exit(0);
     }
 }
@@ -431,7 +454,10 @@ int c_supports_bitwise_and_right() {
     return 1;
 }
 
-int main(void) {
+int main(int argc, char** argv) {
+    if (argc == 2) {
+        verbose = true;
+    }
     do_test(c_supports_bitwise_and_right);
     do_test(bad_process_id);
     do_test(mailbox_exited);
