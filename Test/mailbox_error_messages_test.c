@@ -466,6 +466,7 @@ int rapid_fire_send_recieve_track_how_many_messages_we_get_eventaully() {
         unsigned long long success = 0;
         pid_t sender;
         void* msg = malloc(MAX_MSG_SIZE);
+        printf("Parent here, recieving messages!\n");
         while (!waitpid(child, &status, WNOHANG)) {
             if(!RcvMsg(&sender, msg, &len, NO_BLOCK)) {
                 log("Got message from %d: %s\n", sender, (char*)msg);

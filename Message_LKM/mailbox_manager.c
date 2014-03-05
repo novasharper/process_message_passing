@@ -20,6 +20,7 @@
 #include <linux/kthread.h>
 #include <linux/kernel.h>
 #include <linux/slab.h>
+#include <linux/delay.h>
 
 #include "mailbox_manager.h"
 #include "mailbox.h"
@@ -170,8 +171,8 @@ int mailbox_deletion_thread(void* arg) {
     pid_t pid = mailbox->owner;
 
     while((task = pid_task(find_get_pid(pid), PIDTYPE_PID)) != NULL) {
-        //// printk(KERN_INFO "Task %d didn't exit yet, waiting", *pid);
-        schedule();
+        // printk(KERN_INFO "Task %d didn't exit yet, waiting", *pid);
+        msleep(50);
     }
     // printk(KERN_INFO "Task %d exited, destroying mailbox", *pid);
 
@@ -189,11 +190,11 @@ long remove_mailbox_for_pid(pid_t pid) {
     mailbox = hashtable_get(pid);
 
     if (mailbox) {
-        // printk(KERN_INFO "Stopping mailbox %d to prevent new messages, in preperation for destruction", pid);
+        printk(KERN_INFO "Stopping mailbox %d to prevent new messages, in preperation for destruction", pid);
         mailbox_exiting(mailbox);
 
 
-        // printk(KERN_INFO "Scheduling Mailbox %d for destruction", pid);
+        printk(KERN_INFO "Scheduling Mailbox %d for destruction", pid);
         
         kthread_run(&mailbox_deletion_thread, mailbox, "mailboxdestroy");
         return 0;
