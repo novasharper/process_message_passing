@@ -1,6 +1,6 @@
 /**
  * Pat Long
- * Feb 21, 2014
+ * Mar 5, 2014
  * CS 3013
  * Project 4 - Test Program
  * test_send_message - Test if messages can be sent and recieved
@@ -8,6 +8,9 @@
  * test_send_stopped_mailbox - Tests sending message to stopped mailbox
  * test_recieve_empty_mailbox - Tests getting message from empty mailbox
  * crash_test - Crash test
+ * Note: all tests are superceded by Khazy's test suite in mailbox_error_messages_test
+ * which is much more rigorus then this suite of tests.
+ * These tests are pretty much cleaned up versions of Project4_SampleTests
  */
 
 #include "mailbox.h"
@@ -15,6 +18,11 @@
 #define CHILD_NUM 50
 #define IGNORE -123124
 
+/**
+ * Macro to print out test name and result, yay
+ * @param  name [description]
+ * @return      [description]
+ */
 #define do_test(name) \
 switch(name()) {\
 	case IGNORE:\
@@ -26,12 +34,28 @@ switch(name()) {\
 		printf("PASSED - Test %s\n",#name);\
 	}
 
+/**
+ * macro to return if false, print the reason
+ * @param  val [description]
+ * @return     [description]
+ */
 #define expect_true(val) \
 	if (!(val)) {\
 		printf("Failed expect_true for %s\n", #val);\
 		return 0;\
 	}
 
+#define log(...) \
+    if (verbose) {\
+        printf(__VA_ARGS__);\
+    }
+
+static int verbose = 0;
+
+/**
+ * Function to fork and wait for that child, allows creating a new mailbox without having to run another command
+ * @return [description]
+ */
 int re_fork() {
 	pid_t child = fork();
 	if (child) {
@@ -41,6 +65,10 @@ int re_fork() {
 	}
 }
 
+/**
+ * Simple test to verify ability to send and recieve messages
+ * @return [description]
+ */
 int test_send_message(void) {
 	int childPID = fork();
 
@@ -70,6 +98,10 @@ int test_send_message(void) {
 	}
 }
 
+/**
+ * Tests if programs that chose to wait until able to send a message behave properly
+ * @return [description]
+ */
 int test_message_overflow_wait(void) {
 	int childCounter;
 	int childPID;
@@ -110,6 +142,10 @@ int test_message_overflow_wait(void) {
 	return (failed == 0);
 }
 
+/**
+ * Tests sending message to stopped mailbox
+ * @return [description]
+ */
 int test_send_stopped_mailbox(void) {
 	// Variables to hold message data
 	pid_t sender = getpid();
@@ -121,12 +157,16 @@ int test_send_stopped_mailbox(void) {
 	return error == MAILBOX_STOPPED;
 }
 
+/**
+ * Test recieving on an empty mailbox
+ * @return [description]
+ */
 int test_recieve_empty_mailbox(void) {
 	// Variables to hold message data
 	pid_t sender;
 	void *msg[MAX_MSG_SIZE];
 	int len;
-	
+	// Try to get message
 	int error = RcvMsg(&sender, msg, &len, false);
 
 	return error == MAILBOX_EMPTY;
@@ -143,7 +183,7 @@ int crash_test(void) {
 	for(childCounter = 0; childCounter < CHILD_NUM; childCounter++) {
 		int childPID = fork();
 		
-		if(childPID == 0){
+		if(childPID == 0) {
 			pid_t sender;
 			void *msg[128];
 			int len;
@@ -155,7 +195,7 @@ int crash_test(void) {
 			int error = SendMsg(sender, myMesg, 16, block);
 			if(error) {
 			}
-			return IGNORE;
+			exit(0);
 		}
 		else{
 			char mesg[] = "I am your father";
@@ -168,7 +208,7 @@ int crash_test(void) {
 	// waiting for some of it's children to get a pointer
 	// to its mailbox
 	// before trying to kill its own process.
-	usleep(1000);
+	usleep(10000);
 	int status;
 	int res = waitpid(-1, &status, 0);
 	return 1;
