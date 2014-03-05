@@ -38,35 +38,39 @@ void mailbox_exit() {
 
 /**
  * Creates a mailbox for given pid. (does not put it anywhere)
+ * @param  mailbox mailbox
  * @param  owner given pid
- * @return       the mailbox
+ * @return       error code
  */
-Mailbox* mailbox_create(pid_t owner) {
-    Mailbox* mailbox = NULL;
-
+long mailbox_create(Mailbox** mailbox, pid_t owner) {
     // printk(KERN_INFO  "Creating new mailbox for %d", owner);
 
     // Allocate it
-    mailbox = kmem_cache_alloc(mailbox_cache, 0);
+    *mailbox = kmem_cache_alloc(mailbox_cache, 0);
+
+    if (!(*mailbox)) {
+        printk(KERN_ALERT "Unable to allocate memory for mailbox!");
+        return MAILBOX_ERROR;
+    }
 
     // Initialize info
-    mailbox->owner = owner;
-    mailbox->message_count = 0;
-    mailbox->message_max = 32; // Magic constant
-    mailbox->stopped = 0;
-    atomic_set(&mailbox->waiting, 0);
+    (*mailbox)->owner = owner;
+    (*mailbox)->message_count = 0;
+    (*mailbox)->message_max = 32; // Magic constant
+    (*mailbox)->stopped = 0;
+    atomic_set(&(*mailbox)->waiting, 0);
 
     // Initialize lists
-    INIT_LIST_HEAD(&mailbox->messages);
-    INIT_HLIST_NODE(&mailbox->hash_table_entry);
+    INIT_LIST_HEAD(&(*mailbox)->messages);
+    INIT_HLIST_NODE(&(*mailbox)->hash_table_entry);
 
     // Initialize the wait queue
-    init_waitqueue_head(&mailbox->modify_queue);
+    init_waitqueue_head(&(*mailbox)->modify_queue);
 
-    init_waitqueue_head(&mailbox->dereference_queue);
-    mailbox->dereferences = 0;
+    init_waitqueue_head(&(*mailbox)->dereference_queue);
+    (*mailbox)->dereferences = 0;
 
-    return mailbox;
+    return 0;
 }
 
 /**
@@ -86,8 +90,8 @@ static int mailbox_full(Mailbox* mailbox) {
 #define mailbox_lock(mailbox, flags) { \
     spin_lock_irqsave(&mailbox->modify_queue.lock, flags); \
 }
-    // printk(KERN_INFO  "Mailbox %d: Spin locked by %d, Flags: %lu", mailbox->owner, current->tgid, flags); \
-//}
+    /* printk(KERN_INFO  "Mailbox %d: Spin locked by %d, Flags: %lu", mailbox->owner, current->tgid, flags); \
+}*/
 
 /**
  * Util function, unlock mailbox, print message
@@ -97,8 +101,8 @@ static int mailbox_full(Mailbox* mailbox) {
 #define mailbox_unlock(mailbox, flags) { \
     spin_unlock_irqrestore(&mailbox->modify_queue.lock, flags); \
 }
-    // printk(KERN_INFO  "Mailbox %d: Spin released by %d, Flags: %lu", mailbox->owner, current->tgid, flags); \
-//}
+    /* printk(KERN_INFO  "Mailbox %d: Spin released by %d, Flags: %lu", mailbox->owner, current->tgid, flags); \
+}*/
 
 /**
  * Adds a message to this mailbox safely

@@ -527,7 +527,6 @@ int main(int argc, char** argv) {
         verbose = true;
     }
     
-    /*
     do_test(c_supports_bitwise_and_right);
     do_test(bad_process_id);
     do_test(mailbox_exited);
@@ -546,7 +545,7 @@ int main(int argc, char** argv) {
     re_fork(); // stopped mailbox
     do_test(closing_thread_does_not_stop_or_destroy_mailbox);
     do_test(rapid_fire_send_and_throw_an_exit_in_there);
-    re_fork();*/
+    re_fork();
     do_test(rapid_fire_send_recieve_track_how_many_messages_we_get_eventaully);
 
 

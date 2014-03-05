@@ -35,7 +35,7 @@ typedef struct __mailbox {
 void mailbox_init(void);
 void mailbox_exit(void);
 
-Mailbox* mailbox_create(pid_t owner);
+long mailbox_create(Mailbox** mailbox, pid_t owner);
 
 long mailbox_add_message(Mailbox* mailbox, Message* message, int block, int head);
 long mailbox_remove_message(Mailbox* mailbox, Message** message, int block);

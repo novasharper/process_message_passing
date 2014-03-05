@@ -12,6 +12,7 @@
 #include <linux/syscalls.h>
 #include <linux/slab.h>
 
+#include "mailbox.h"
 #include "message.h"
 
 static struct kmem_cache* message_cache;
@@ -39,6 +40,11 @@ long message_create(Message** message, pid_t sender, void* msg, int len) {
 
     *message = kmem_cache_alloc(message_cache, 0);
 
+    if (!(*message)) {
+        printk(KERN_ALERT "Unable to allocate memory for message!");
+        return MAILBOX_ERROR;
+    }
+
     INIT_LIST_HEAD(&(*message)->list);
 
     (*message)->sender = sender;
@@ -60,6 +66,5 @@ long message_create(Message** message, pid_t sender, void* msg, int len) {
 long message_destroy(Message** message) {
     // printk(KERN_INFO  "Destroying message");
     kmem_cache_free(message_cache, *message);
-    *message = NULL;
     return 0;
 }

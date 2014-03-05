@@ -29,7 +29,6 @@ static struct hlist_head mailbox_hash_table[MAILBOX_HASHTABLE_SIZE];
 DEFINE_RWLOCK(mailbox_hash_table_rwlock);
 unsigned long flags;
 
-static struct kmem_cache* pid_t_cache_for_destruction_thread;
 
 void mailbox_manager_init() {
     int i;
@@ -38,11 +37,9 @@ void mailbox_manager_init() {
         INIT_HLIST_HEAD(&mailbox_hash_table[i]);
     }
 
-    pid_t_cache_for_destruction_thread = kmem_cache_create("pid_t_cache_for_destruction_thread", sizeof(pid_t), 0, 0, NULL);
 }
 
 void mailbox_manager_exit() {
-    kmem_cache_destroy(pid_t_cache_for_destruction_thread);
 }
 
 static unsigned long mailbox_hash(pid_t key) {
@@ -134,13 +131,18 @@ static int is_process_valid(pid_t process) {
 }
 
 long get_mailbox_for_pid(Mailbox** mailbox, pid_t pid) {
+    int error;
     if (is_process_valid(pid)) {
         *mailbox = hashtable_get(pid);
         if (*mailbox == NULL) {
-            *mailbox = mailbox_create(pid);
-            hashtable_put(pid, *mailbox);
-            claim_mailbox(*mailbox);
-            return 0;
+            error = mailbox_create(mailbox, pid);
+            if (error) {
+                return error;
+            } else {
+                hashtable_put(pid, *mailbox);
+                claim_mailbox(*mailbox);
+                return 0;
+            }
         } else {
             claim_mailbox(*mailbox);
             if ((*mailbox)->stopped & EXITING) { // Safe to read this because once exiting is set, stopped is never changed again
@@ -164,28 +166,25 @@ long get_mailbox_for_pid(Mailbox** mailbox, pid_t pid) {
  */
 int mailbox_deletion_thread(void* arg) {
     struct task_struct* task;
-    Mailbox* mailbox;
-    pid_t* pid = (pid_t*) arg;
+    Mailbox* mailbox = (Mailbox*) arg;
+    pid_t pid = mailbox->owner;
 
-    while((task = pid_task(find_get_pid(*pid), PIDTYPE_PID)) != NULL) {
+    while((task = pid_task(find_get_pid(pid), PIDTYPE_PID)) != NULL) {
         //// printk(KERN_INFO "Task %d didn't exit yet, waiting", *pid);
         schedule();
     }
     // printk(KERN_INFO "Task %d exited, destroying mailbox", *pid);
 
-    mailbox = hashtable_get(*pid);
-    hashtable_remove(*pid);
+    hashtable_remove(pid);
     mailbox_destroy(mailbox);
 
     // printk(KERN_INFO "Mailbox for %d destroyed", *pid);
 
-    kmem_cache_free(pid_t_cache_for_destruction_thread, pid);
     do_exit(0);
 }
 
 long remove_mailbox_for_pid(pid_t pid) {
     Mailbox* mailbox;
-    pid_t* pidsend;
 
     mailbox = hashtable_get(pid);
 
@@ -195,9 +194,8 @@ long remove_mailbox_for_pid(pid_t pid) {
 
 
         // printk(KERN_INFO "Scheduling Mailbox %d for destruction", pid);
-        pidsend = kmem_cache_alloc(pid_t_cache_for_destruction_thread, 0);
-        *pidsend = pid;
-        kthread_run(&mailbox_deletion_thread, pidsend,"mailboxdestroy");
+        
+        kthread_run(&mailbox_deletion_thread, mailbox, "mailboxdestroy");
         return 0;
     } else {
         //// printk(KERN_INFO "Tried to destroy non-existant mailbox %d", pid);
