@@ -28,7 +28,7 @@
 
 // Initialize our hash table
 static struct hlist_head mailbox_hash_table[MAILBOX_HASHTABLE_SIZE];
-DEFINE_RWLOCK(mailbox_hash_table_rwlock);
+DEFINE_SPINLOCK(mailbox_hash_table_lock);
 unsigned long flags;
 
 
@@ -74,28 +74,6 @@ static void __hashtable_put(pid_t key, Mailbox* mailbox) {
 }
 
 
-static Mailbox* hashtable_get(pid_t key) {
-    Mailbox* search;
-    unsigned long flags;
-    read_lock_irqsave(&mailbox_hash_table_rwlock, flags);
-    search = __hashtable_get(key);
-    read_unlock_irqrestore(&mailbox_hash_table_rwlock, flags);
-    return search;
-}
-
-static void hashtable_put(pid_t key, Mailbox* mailbox) {
-    unsigned long flags;
-    write_lock_irqsave(&mailbox_hash_table_rwlock, flags);
-    __hashtable_put(key, mailbox);
-    write_unlock_irqrestore(&mailbox_hash_table_rwlock, flags);
-}
-
-static void hashtable_remove(pid_t key) {
-    write_lock_irqsave(&mailbox_hash_table_rwlock, flags);
-    __hashtable_remove(key);
-    write_unlock_irqrestore(&mailbox_hash_table_rwlock, flags);
-}
-
 /**
  * A process is invalid if:
  * it's task_struct doesn't exist
@@ -135,27 +113,27 @@ long get_mailbox_for_pid(Mailbox** mailbox, pid_t pid) {
     int error;
     unsigned long flags;
     if (is_process_valid(pid)) {
-        write_lock_irqsave(&mailbox_hash_table_rwlock, flags);
+        spin_lock_irqsave(&mailbox_hash_table_lock, flags);
         *mailbox = __hashtable_get(pid);
         if (*mailbox == NULL) {
             error = mailbox_create(mailbox, pid);
             if (error) {
-                write_unlock_irqrestore(&mailbox_hash_table_rwlock, flags);
+                spin_unlock_irqrestore(&mailbox_hash_table_lock, flags);
                 return error;
             } else {
                 __hashtable_put(pid, *mailbox);
                 claim_mailbox(*mailbox);
-                write_unlock_irqrestore(&mailbox_hash_table_rwlock, flags);
+                spin_unlock_irqrestore(&mailbox_hash_table_lock, flags);
                 return 0;
             }
         } else {
             claim_mailbox(*mailbox);
             if ((*mailbox)->stopped & EXITING) { // Safe to read this because once exiting is set, stopped is never changed again
                 unclaim_mailbox(*mailbox);
-                write_unlock_irqrestore(&mailbox_hash_table_rwlock, flags);
+                spin_unlock_irqrestore(&mailbox_hash_table_lock, flags);
                 return MAILBOX_INVALID;
             } else {
-                write_unlock_irqrestore(&mailbox_hash_table_rwlock, flags);
+                spin_unlock_irqrestore(&mailbox_hash_table_lock, flags);
                 return 0;
             }
         }
@@ -175,6 +153,7 @@ int mailbox_deletion_thread(void* arg) {
     struct task_struct* task;
     Mailbox* mailbox = (Mailbox*) arg;
     pid_t pid = mailbox->owner;
+    unsigned long flags;
 
     while((task = pid_task(find_get_pid(pid), PIDTYPE_PID)) != NULL) {
         printk(KERN_INFO "Task %d didn't exit yet, waiting", pid);
@@ -182,7 +161,9 @@ int mailbox_deletion_thread(void* arg) {
     }
     printk(KERN_INFO "Task %d exited, destroying mailbox", pid);
 
-    hashtable_remove(pid);
+    spin_lock_irqsave(&mailbox_hash_table_lock, flags);
+    __hashtable_remove(pid);
+    spin_unlock_irqrestore(&mailbox_hash_table_lock, flags);
     mailbox_destroy(mailbox);
 
     printk(KERN_INFO "Mailbox for %d destroyed", pid);
@@ -194,7 +175,7 @@ long remove_mailbox_for_pid(pid_t pid) {
     Mailbox* mailbox;
     unsigned long flags;
 
-    write_lock_irqsave(&mailbox_hash_table_rwlock, flags);
+    spin_lock_irqsave(&mailbox_hash_table_lock, flags);
     mailbox = __hashtable_get(pid);
 
     if (mailbox) {
@@ -205,12 +186,12 @@ long remove_mailbox_for_pid(pid_t pid) {
         printk(KERN_INFO "Scheduling Mailbox %d for destruction", pid);
         
 
-        write_unlock_irqrestore(&mailbox_hash_table_rwlock, flags);
+        spin_unlock_irqrestore(&mailbox_hash_table_lock, flags);
         kthread_run(&mailbox_deletion_thread, mailbox, "mailboxdestroy");
         return 0;
     } else {
         //printk(KERN_INFO "Tried to destroy non-existant mailbox %d", pid);
-        write_unlock_irqrestore(&mailbox_hash_table_rwlock, flags);
+        spin_unlock_irqrestore(&mailbox_hash_table_lock, flags);
         return MAILBOX_INVALID;
     }
 }

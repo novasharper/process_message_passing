@@ -242,11 +242,10 @@ static long __mailbox_stop(Mailbox* mailbox, int status) {
     mailbox_lock(mailbox, flags);
 
     mailbox->stopped = status;
-
     printk(KERN_INFO "Mailbox %d: Waking up everything", mailbox->owner);
+    wake_up_locked(&mailbox->modify_queue);
 
     mailbox_unlock(mailbox, flags);
-    wake_up_all(&mailbox->modify_queue);
 
     printk(KERN_INFO "Mailbox %d: Mailbox Stopped", mailbox->owner);
     return 0;

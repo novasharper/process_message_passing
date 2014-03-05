@@ -465,14 +465,15 @@ int rapid_fire_send_recieve_track_how_many_messages_we_get_eventaully() {
             }
         }
 
-        log("Sent %llu messages successfully\n", success);
 
         // Lets use our message passage system for something useful :OOO
         char result_message[MAX_MSG_SIZE];
 
         int length_of_message = snprintf(result_message, MAX_MSG_SIZE, "%s %lld", "FINAL_RESULT:", success + 1);
-        SendMsg(parent, result_message, length_of_message + 1, BLOCK);
-
+        if (!SendMsg(parent, result_message, length_of_message + 1, BLOCK)) {
+            success++;
+        }
+        log("Sent %llu messages successfully\n", success);
         exit(0);
     } else {
         int status, len;
