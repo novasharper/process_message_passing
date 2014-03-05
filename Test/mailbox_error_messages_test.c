@@ -441,7 +441,7 @@ int rapid_fire_send_recieve_track_how_many_messages_we_get_eventaully() {
         child = fork();
 
     struct timeval five_seconds;
-    five_seconds.tv_sec = 1;
+    five_seconds.tv_sec = 180;
     five_seconds.tv_usec = 0;
 
     log("Having child send as many messages as possible to parent, recording how many messages sent\n");
@@ -451,7 +451,7 @@ int rapid_fire_send_recieve_track_how_many_messages_we_get_eventaully() {
         struct timeval time_now, end_time;
         gettimeofday(&time_now, NULL);
         timeradd(&time_now, &five_seconds, &end_time);
-        printf("Hi, I'm the child, sending as many messages as I can in 1 second\n");
+        printf("Hi, I'm the child, sending as many messages as I can in %ld seconds\n", five_seconds.tv_sec);
         while(timercmp(&time_now, &end_time, <)) {
             gettimeofday(&time_now, NULL);
             if (!SendMsg(parent, "Hello", 6, NO_BLOCK)) {
