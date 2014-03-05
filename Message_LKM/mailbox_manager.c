@@ -133,23 +133,29 @@ static int is_process_valid(pid_t process) {
 
 long get_mailbox_for_pid(Mailbox** mailbox, pid_t pid) {
     int error;
+    unsigned long flags;
     if (is_process_valid(pid)) {
-        *mailbox = hashtable_get(pid);
+        write_lock_irqsave(&mailbox_hash_table_rwlock, flags);
+        *mailbox = __hashtable_get(pid);
         if (*mailbox == NULL) {
             error = mailbox_create(mailbox, pid);
             if (error) {
+                write_unlock_irqrestore(&mailbox_hash_table_rwlock, flags);
                 return error;
             } else {
-                hashtable_put(pid, *mailbox);
+                __hashtable_put(pid, *mailbox);
                 claim_mailbox(*mailbox);
+                write_unlock_irqrestore(&mailbox_hash_table_rwlock, flags);
                 return 0;
             }
         } else {
             claim_mailbox(*mailbox);
             if ((*mailbox)->stopped & EXITING) { // Safe to read this because once exiting is set, stopped is never changed again
                 unclaim_mailbox(*mailbox);
+                write_unlock_irqrestore(&mailbox_hash_table_rwlock, flags);
                 return MAILBOX_INVALID;
             } else {
+                write_unlock_irqrestore(&mailbox_hash_table_rwlock, flags);
                 return 0;
             }
         }
@@ -186,8 +192,10 @@ int mailbox_deletion_thread(void* arg) {
 
 long remove_mailbox_for_pid(pid_t pid) {
     Mailbox* mailbox;
+    unsigned long flags;
 
-    mailbox = hashtable_get(pid);
+    write_lock_irqsave(&mailbox_hash_table_rwlock, flags);
+    mailbox = __hashtable_get(pid);
 
     if (mailbox) {
         printk(KERN_INFO "Stopping mailbox %d to prevent new messages, in preperation for destruction", pid);
@@ -196,10 +204,13 @@ long remove_mailbox_for_pid(pid_t pid) {
 
         printk(KERN_INFO "Scheduling Mailbox %d for destruction", pid);
         
+
+        write_unlock_irqrestore(&mailbox_hash_table_rwlock, flags);
         kthread_run(&mailbox_deletion_thread, mailbox, "mailboxdestroy");
         return 0;
     } else {
         //printk(KERN_INFO "Tried to destroy non-existant mailbox %d", pid);
+        write_unlock_irqrestore(&mailbox_hash_table_rwlock, flags);
         return MAILBOX_INVALID;
     }
 }
