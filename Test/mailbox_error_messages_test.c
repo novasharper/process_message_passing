@@ -23,6 +23,9 @@ long ManageMailbox(bool stop, int *count);
 #include <sys/wait.h>
 #include <unistd.h>
 #include <stdlib.h>
+#include <sys/time.h>
+#include <errno.h>
+#include <string.h>
 
 #include "mailbox.h"
 
@@ -366,10 +369,24 @@ void* thread_that_spams_messages(void* args) {
     int* arg = (int*) args;
     int error = 0;
     while (error != MAILBOX_INVALID) {
-            //printf("I'm %d, thread %d and I'm trying to SendMsg, last error %d\n", getpid(), pthread_self(), error);
+            log("I'm %d, thread %d and I'm trying to SendMsg, last error %d\n", getpid(), pthread_self(), error);
             error = SendMsg(*arg, "Hello", 6, NO_BLOCK);
     }
-    //printf("I'm %d, thread %d, final error %d\n", getpid(), pthread_self(), error);
+    log("I'm %d, thread %d, final error %d\n", getpid(), pthread_self(), error);
+
+    pthread_exit(0);
+}
+
+void* thread_that_recieves_messages(void* args) {
+    printf("I'm a thread\n");
+    int* arg = (int*) args;
+    int error = 0;
+    printf("I'm a thread\n");
+    while (error != MAILBOX_STOPPED) {
+            printf("I'm %d, thread %d and I'm trying to SendMsg, last error %d\n", getpid(), pthread_self(), error);
+            error = SendMsg(*arg, "Hello", 6, NO_BLOCK);
+    }
+    printf("I'm %d, thread %d, final error %d\n", getpid(), pthread_self(), error);
 
     pthread_exit(0);
 }
@@ -390,11 +407,12 @@ int rapid_fire_send_and_throw_an_exit_in_there() {
 
     if (child) {
         pthread_t threads[100];
-        int num_threads = 50;
+        int num_threads = 100;
         //printf("Creating threads for %d\n", getpid());
         for (i = 0; i < num_threads; i++) {
-            if (pthread_create(&threads[i], NULL, thread_that_spams_messages, &child)) {
-                //printf("Error creating threads, only made %d threads", i);
+            int error = pthread_create(&threads[i], NULL, &thread_that_spams_messages, &child);
+            if (error) {
+                printf("Error creating threads, only made %d threads, %s\n", i, strerror(error));
                 num_threads = i;
                 break;
             }
@@ -402,8 +420,8 @@ int rapid_fire_send_and_throw_an_exit_in_there() {
 
         for (i = 0; i < num_threads; i++) {
             //printf("joining thread #%d\n", i);
-            pthread_join(&threads[i], NULL);
-            //printf("thread joined\n");
+            error = pthread_join(threads[i], NULL);
+            //printf("thread joined, error %s\n", strerror(error));
         }
 
         waitpid(child,NULL,0);
@@ -412,9 +430,59 @@ int rapid_fire_send_and_throw_an_exit_in_there() {
     } else {
         // child sleeps a little bit then exits, hopefully eventaully provoking that race condition
         
-        usleep(50000);
+        usleep(500000);
         //printf("Main child exiting %d\n", getpid());
         exit(0);
+    }
+}
+
+int rapid_fire_send_recieve_track_how_many_messages_we_get_eventaully() {
+    pid_t parent = getpid(),
+        child = fork();
+
+    struct timeval five_seconds;
+    five_seconds.tv_sec = 1;
+    five_seconds.tv_usec = 0;
+
+    log("Having child send as many messages as possible to parent, recording how many messages sent\n");
+    log("Parent records how many messages recieved\n")
+    if (!child) {
+        unsigned long long success = 0;
+        struct timeval time_now, end_time;
+        gettimeofday(&time_now, NULL);
+        timeradd(&time_now, &five_seconds, &end_time);
+        printf("Hi, I'm the child, sending as many messages as I can in 1 second\n");
+        while(timercmp(&time_now, &end_time, <)) {
+            gettimeofday(&time_now, NULL);
+            if (!SendMsg(parent, "Hello", 6, NO_BLOCK)) {
+                log("Sent message successfully\n");
+                success++;
+            }
+        }
+
+        printf("Sent %llu messages successfully\n", success);
+    } else {
+        int status, len;
+        unsigned long long success = 0;
+        pid_t sender;
+        void* msg = malloc(MAX_MSG_SIZE);
+        while (!waitpid(child, &status, WNOHANG)) {
+            if(!RcvMsg(&sender, msg, &len, NO_BLOCK)) {
+                log("Got message from %d: %s\n", sender, (char*)msg);
+                success++;
+            }
+        }
+
+        ManageMailbox(true, &len);
+
+        log("Emptying mailbox");
+        while (!RcvMsg(&sender, msg, &len, BLOCK)) {
+            log("Got message from %d: %s\n", sender, (char*)msg);
+            success++;
+        }
+
+        free(msg);
+        printf("Recieved %llu messages successfully\n", success);
     }
 }
 
@@ -458,6 +526,8 @@ int main(int argc, char** argv) {
     if (argc == 2) {
         verbose = true;
     }
+    
+    /*
     do_test(c_supports_bitwise_and_right);
     do_test(bad_process_id);
     do_test(mailbox_exited);
@@ -476,6 +546,8 @@ int main(int argc, char** argv) {
     re_fork(); // stopped mailbox
     do_test(closing_thread_does_not_stop_or_destroy_mailbox);
     do_test(rapid_fire_send_and_throw_an_exit_in_there);
+    re_fork();*/
+    do_test(rapid_fire_send_recieve_track_how_many_messages_we_get_eventaully);
 
 
     return 0;

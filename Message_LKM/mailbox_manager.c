@@ -200,34 +200,41 @@ long remove_mailbox_for_pid(pid_t pid) {
         kthread_run(&mailbox_deletion_thread, pidsend,"mailboxdestroy");
         return 0;
     } else {
-        printk(KERN_INFO "Tried to destroy non-existant mailbox %d", pid);
+        //printk(KERN_INFO "Tried to destroy non-existant mailbox %d", pid);
         return MAILBOX_INVALID;
     }
 }
 
 void claim_mailbox(Mailbox* m) {
     unsigned long flags;
+    pid_t owner;
+    int refs;
     spin_lock_irqsave(&m->dereference_queue.lock, flags);
     m->dereferences++;
-    printk(KERN_INFO "Mailbox for %d now has %d references (1 new claim)", m->owner, m->dereferences);
+    refs = m->dereferences;
+    owner = m->owner;
     spin_unlock_irqrestore(&m->dereference_queue.lock, flags);
+    printk(KERN_INFO "Mailbox for %d now has %d references (1 new claim)", owner, refs);
 }
 
 void unclaim_mailbox(Mailbox* m) {
     unsigned long flags;
+    pid_t owner;
+    int refs;
     spin_lock_irqsave(&m->dereference_queue.lock, flags);
     m->dereferences--;
     if (m->dereferences == 0) {
         wake_up_locked(&m->dereference_queue);
     }
-    printk(KERN_INFO "Mailbox for %d now has %d references (1 released claim)", m->owner, m->dereferences);
+    owner = m->owner;
+    refs = m->dereferences;
     spin_unlock_irqrestore(&m->dereference_queue.lock, flags);
+    printk(KERN_INFO "Mailbox for %d now has %d references (1 released claim)", owner, refs);
 }
 
 void wait_until_mailbox_unclaimed(Mailbox* m) {
     unsigned long flags;
     spin_lock_irqsave(&m->dereference_queue.lock, flags);
-    printk(KERN_INFO "Mailbox for %d has %d dereferences left", m->owner, m->dereferences);
     wait_event_interruptible_exclusive_locked_irq(m->dereference_queue, 
                     m->dereferences == 0);
     spin_unlock_irqrestore(&m->dereference_queue.lock, flags);

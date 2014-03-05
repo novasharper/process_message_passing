@@ -85,7 +85,7 @@ static int mailbox_full(Mailbox* mailbox) {
  */
 static void mailbox_lock(Mailbox* mailbox, unsigned long* flags) {
     spin_lock_irqsave(&mailbox->modify_queue.lock, *flags);
-    printk(KERN_INFO "Mailbox %d: Spin locked", mailbox->owner);
+    printk(KERN_INFO "Mailbox %d: Spin locked, Flags: %lu", mailbox->owner, *flags);
 }
 
 /**
@@ -95,7 +95,7 @@ static void mailbox_lock(Mailbox* mailbox, unsigned long* flags) {
  */
 static void mailbox_unlock(Mailbox* mailbox, unsigned long* flags) {
     spin_unlock_irqrestore(&mailbox->modify_queue.lock, *flags);
-    printk(KERN_INFO "Mailbox %d: Spin released", mailbox->owner);
+    printk(KERN_INFO "Mailbox %d: Spin released, Flags: %lu", mailbox->owner, *flags);
 }
 
 /**
@@ -174,6 +174,8 @@ long mailbox_remove_message(Mailbox* mailbox, Message** message, int block) {
 
     mailbox_lock(mailbox, &flags);
 
+    printk(KERN_INFO "Locking At begining of remove message: Flags are %lu", flags);
+
     printk(KERN_INFO "Mailbox %d: Removing first message from mailbox", mailbox->owner);
 
     if (mailbox->stopped && mailbox->message_count == 0) {
@@ -221,6 +223,7 @@ long mailbox_remove_message(Mailbox* mailbox, Message** message, int block) {
 
         printk(KERN_INFO "Mailbox %d: Successfully got message from %d", mailbox->owner, (*message)->sender);
 
+        printk(KERN_INFO "Unlocking at end of remove message: Flags are %lu", flags);
         mailbox_unlock(mailbox, &flags);
         return 0;
     }

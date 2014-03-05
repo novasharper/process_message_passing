@@ -86,9 +86,9 @@ asmlinkage long __recieve_message(pid_t *sender, void *msg, int *len, bool block
 		unclaim_mailbox(mailbox);
 		return MSG_ARG_ERROR;
 	}
-
-	message_destroy(&message);
+	
 	unclaim_mailbox(mailbox);
+	message_destroy(&message);
 	return 0;
 }
 
@@ -116,18 +116,18 @@ asmlinkage long __manage_mailbox(bool stop, int *count) {
 
 asmlinkage long __new_sys_exit(int status) {
 	if(atomic_read(&current->signal->live) == 1) {
-		printk(KERN_INFO "Exiting task, destroying mailbox for %d", current->tgid);
+		//printk(KERN_INFO "Exiting task, destroying mailbox for %d", current->tgid);
 
 		remove_mailbox_for_pid(current->tgid);
 		// race condition here
 	} else {
-		printk(KERN_INFO "Exiting task, not destroying mailbox for %d", current->tgid);
+		//printk(KERN_INFO "Exiting task, not destroying mailbox for %d", current->tgid);
 	}
 	return ref_sys_exit(status);
 }
 
 asmlinkage long __new_sys_exit_group(int status) {
-	printk(KERN_INFO "Exiting group, destroying mailbox for %d", current->tgid);
+	//printk(KERN_INFO "Exiting group, destroying mailbox for %d", current->tgid);
 
 	remove_mailbox_for_pid(current->tgid);
 	// race condition here
