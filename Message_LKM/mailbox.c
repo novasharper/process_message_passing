@@ -43,7 +43,7 @@ void mailbox_exit() {
  * @return       error code
  */
 long mailbox_create(Mailbox** mailbox, pid_t owner) {
-    // printk(KERN_INFO  "Creating new mailbox for %d", owner);
+    printk(KERN_INFO "Creating new mailbox for %d", owner);
 
     // Allocate it
     *mailbox = kmem_cache_alloc(mailbox_cache, 0);
@@ -117,7 +117,7 @@ long mailbox_add_message(Mailbox* mailbox, Message* message, int block, int head
 
     mailbox_lock(mailbox, flags);
 
-    // printk(KERN_INFO  "Mailbox %d: Adding message from %d", mailbox->owner, message->sender);
+    //printk(KERN_INFO  "Mailbox %d: Adding message from %d", mailbox->owner, message->sender);
 
     if (mailbox->stopped) {
         // printk(KERN_INFO  "Mailbox %d: Mailbox is stopped, cannot send messages", mailbox->owner);
@@ -161,7 +161,7 @@ long mailbox_add_message(Mailbox* mailbox, Message* message, int block, int head
         mailbox->message_count++;
         wake_up_locked(&mailbox->modify_queue);
 
-        // printk(KERN_INFO  "Mailbox %d: Message from %d added successfully", mailbox->owner, message->sender);
+        printk(KERN_INFO  "Mailbox %d: Message from %d added successfully", mailbox->owner, message->sender);
 
         mailbox_unlock(mailbox, flags);
         return 0;
@@ -179,8 +179,6 @@ long mailbox_remove_message(Mailbox* mailbox, Message** message, int block) {
     unsigned long flags;
 
     mailbox_lock(mailbox, flags);
-
-    // printk(KERN_INFO  "Locking At begining of remove message: Flags are %lu", flags);
 
     // printk(KERN_INFO  "Mailbox %d: Removing first message from mailbox", mailbox->owner);
 
@@ -227,9 +225,8 @@ long mailbox_remove_message(Mailbox* mailbox, Message** message, int block) {
         mailbox->message_count--;
         wake_up_locked(&mailbox->modify_queue);
 
-        // printk(KERN_INFO  "Mailbox %d: Successfully got message from %d", mailbox->owner, (*message)->sender);
+        printk(KERN_INFO  "Mailbox %d: Successfully got message from %d", mailbox->owner, (*message)->sender);
 
-        // printk(KERN_INFO  "Unlocking at end of remove message: Flags are %lu", flags);
         mailbox_unlock(mailbox, flags);
         return 0;
     }

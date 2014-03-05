@@ -436,12 +436,17 @@ int rapid_fire_send_and_throw_an_exit_in_there() {
     }
 }
 
+/**
+ * Stress test sending and recieving messages, one way
+ * hypothetically, two way is the same thing, just need to create two threads in each process
+ * @return [description]
+ */
 int rapid_fire_send_recieve_track_how_many_messages_we_get_eventaully() {
     pid_t parent = getpid(),
         child = fork();
 
     struct timeval five_seconds;
-    five_seconds.tv_sec = 180;
+    five_seconds.tv_sec = 1;
     five_seconds.tv_usec = 0;
 
     log("Having child send as many messages as possible to parent, recording how many messages sent\n");
@@ -451,7 +456,7 @@ int rapid_fire_send_recieve_track_how_many_messages_we_get_eventaully() {
         struct timeval time_now, end_time;
         gettimeofday(&time_now, NULL);
         timeradd(&time_now, &five_seconds, &end_time);
-        printf("Hi, I'm the child, sending as many messages as I can in %ld seconds\n", five_seconds.tv_sec);
+        log("Hi, I'm the child, sending as many messages as I can in %ld seconds\n", five_seconds.tv_sec);
         while(timercmp(&time_now, &end_time, <)) {
             gettimeofday(&time_now, NULL);
             if (!SendMsg(parent, "Hello", 6, NO_BLOCK)) {
@@ -461,15 +466,30 @@ int rapid_fire_send_recieve_track_how_many_messages_we_get_eventaully() {
         }
 
         printf("Sent %llu messages successfully\n", success);
+
+        // Lets use our message passage system for something useful :OOO
+        char result_message[MAX_MSG_SIZE];
+
+        int length_of_message = snprintf(result_message, MAX_MSG_SIZE, "%s %lld", "FINAL_RESULT:", success + 1);
+        SendMsg(parent, result_message, length_of_message + 1, BLOCK);
+
+        exit(0);
     } else {
         int status, len;
-        unsigned long long success = 0;
+        unsigned long long success = 0,
+                            result;
         pid_t sender;
         void* msg = malloc(MAX_MSG_SIZE);
-        printf("Parent here, recieving messages!\n");
+        log("Parent here, recieving messages!\n");
         while (!waitpid(child, &status, WNOHANG)) {
             if(!RcvMsg(&sender, msg, &len, NO_BLOCK)) {
                 log("Got message from %d: %s\n", sender, (char*)msg);
+                // len > 15 because most messages are less than that, we don't wnat to have to run strncmp a lot
+                if (len > 15 && strncmp((char*)msg,"FINAL_RESULT:", 13) == 0) {
+                    log("Got final result message!\n");
+                    sscanf(msg, "FINAL_RESULT: %lld", &result);
+                    log("Result message: %lld\n", result);
+                }
                 success++;
             }
         }
@@ -479,11 +499,21 @@ int rapid_fire_send_recieve_track_how_many_messages_we_get_eventaully() {
         log("Emptying mailbox");
         while (!RcvMsg(&sender, msg, &len, BLOCK)) {
             log("Got message from %d: %s\n", sender, (char*)msg);
+            // len > 15 because most messages are less than that, we don't wnat to have to run strncmp a lot
+            if (len > 15 && strncmp((char*)msg,"FINAL_RESULT:", 13) == 0) {
+                log("Got final result message!\n");
+                sscanf(msg, "FINAL_RESULT: %lld", &result);
+                log("Result message: %lld\n", result);
+            }
             success++;
         }
 
+        expect_true(success == result);
+
         free(msg);
         printf("Recieved %llu messages successfully\n", success);
+
+        return 1;
     }
 }
 
@@ -548,7 +578,7 @@ int main(int argc, char** argv) {
     do_test(rapid_fire_send_and_throw_an_exit_in_there);
     re_fork();
     do_test(rapid_fire_send_recieve_track_how_many_messages_we_get_eventaully);
-
+    re_fork();
 
     return 0;
 }
