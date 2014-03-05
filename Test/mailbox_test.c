@@ -51,17 +51,22 @@ int test_send_message(void) {
 		int len;
 		// Try to get message
 		int status_c = RcvMsg(&sender, msg, &len, true);
-		if(status_c) { // If status is non-zero, there was an error
-			return 0;
-		} else {
-			return 1;
-		}
+
+		char myMesg[] = "I am your child";
+		int error = SendMsg(sender, myMesg, 16, true);
+		if(error) return 0;
+		exit(0);
 	} else {
+		// Variables to hold message data
+		pid_t sender;
+		void *msg[MAX_MSG_SIZE];
+		int len;
 		char mesg[] = "I am your father";
 		int status_p = SendMsg(childPID, mesg, 17, false);
-		if (status_p) { // If status is non-zero, there was an error
-			return 0;
-		}
+		if (status_p) return 0; // If status is non-zero, there was an error
+		status_p = RcvMsg(&sender, msg, &len, true);
+		if(status_p) return 0; // If status is non-zero, there was an error
+		return 1;
 	}
 }
 
@@ -80,9 +85,9 @@ int test_message_overflow_wait(void) {
 
 			char myMesg[] = "I am your child";
 			int error = SendMsg(sender, myMesg, 16, true);
-			return IGNORE;
+			exit(0);
 		}
-		else{
+		else {
 			char mesg[] = "I am your father";
 			SendMsg(childPID, mesg, 17, true);
 		}
@@ -101,28 +106,19 @@ int test_message_overflow_wait(void) {
 			failed++;
 		}
 	}
+	int status;
 	return (failed == 0);
 }
 
 int test_send_stopped_mailbox(void) {
-	int childPID = fork();
-
-	if(childPID == 0) {
-		// Variables to hold message data
-		pid_t sender;
-		void *msg[MAX_MSG_SIZE];
-		int len;
-		// Try to get message
-		int status_c = RcvMsg(&sender, msg, &len, true);
-		usleep(1000);
-		int error = SendMsg(sender, msg, len, false);
-		return error == MAILBOX_STOPPED;
-	} else {
-		int num_mesg;
-		char mesg[] = "I am your father";
-		int status_p = SendMsg(childPID, mesg, 17, false);
-		ManageMailbox(true, &num_mesg);
-	}
+	// Variables to hold message data
+	pid_t sender = getpid();
+	void *msg = malloc(MAX_MSG_SIZE);
+	int len = MAX_MSG_SIZE, num_mesg;
+	ManageMailbox(true, &num_mesg);
+	// Try to get message
+	int error = SendMsg(sender, msg, len, false);
+	return error == MAILBOX_STOPPED;
 }
 
 int test_recieve_empty_mailbox(void) {
