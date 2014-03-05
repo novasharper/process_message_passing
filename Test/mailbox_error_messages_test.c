@@ -497,7 +497,7 @@ int rapid_fire_send_recieve_track_how_many_messages_we_get_eventaully() {
 
         ManageMailbox(true, &len);
 
-        log("Emptying mailbox");
+        log("Emptying mailbox\n");
         while (!RcvMsg(&sender, msg, &len, BLOCK)) {
             log("Got message from %d: %s\n", sender, (char*)msg);
             // len > 15 because most messages are less than that, we don't wnat to have to run strncmp a lot
