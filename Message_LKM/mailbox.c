@@ -89,9 +89,8 @@ static int mailbox_full(Mailbox* mailbox) {
  */
 #define mailbox_lock(mailbox, flags) { \
     spin_lock_irqsave(&mailbox->modify_queue.lock, flags); \
+    printk(KERN_INFO  "Mailbox %d: Spin locked by %d, Flags: %lu", mailbox->owner, current->tgid, flags); \
 }
-    /* printk(KERN_INFO  "Mailbox %d: Spin locked by %d, Flags: %lu", mailbox->owner, current->tgid, flags); \
-}*/
 
 /**
  * Util function, unlock mailbox, print message
@@ -100,9 +99,8 @@ static int mailbox_full(Mailbox* mailbox) {
  */
 #define mailbox_unlock(mailbox, flags) { \
     spin_unlock_irqrestore(&mailbox->modify_queue.lock, flags); \
+    printk(KERN_INFO  "Mailbox %d: Spin released by %d, Flags: %lu", mailbox->owner, current->tgid, flags); \
 }
-    /* printk(KERN_INFO  "Mailbox %d: Spin released by %d, Flags: %lu", mailbox->owner, current->tgid, flags); \
-}*/
 
 /**
  * Adds a message to this mailbox safely

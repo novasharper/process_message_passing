@@ -21,6 +21,7 @@
 #include <linux/kernel.h>
 #include <linux/slab.h>
 #include <linux/delay.h>
+#include <linux/hash.h>
 
 #include "mailbox_manager.h"
 #include "mailbox.h"
@@ -44,8 +45,7 @@ void mailbox_manager_exit() {
 }
 
 static unsigned long mailbox_hash(pid_t key) {
-    // FIXME - this isn't a very good hash function
-    return key % MAILBOX_HASHTABLE_SIZE;
+    return hash_32(key, 32) % MAILBOX_HASHTABLE_SIZE;
 }
 
 static Mailbox* __hashtable_get(pid_t key) {
