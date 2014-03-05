@@ -120,17 +120,17 @@ long mailbox_add_message(Mailbox* mailbox, Message* message, int block, int head
     //printk(KERN_INFO  "Mailbox %d: Adding message from %d", mailbox->owner, message->sender);
 
     if (mailbox->stopped) {
-        // printk(KERN_INFO  "Mailbox %d: Mailbox is stopped, cannot send messages", mailbox->owner);
+        printk(KERN_INFO "Mailbox %d: Mailbox is stopped, cannot send messages", mailbox->owner);
         mailbox_unlock(mailbox, flags);
         return MAILBOX_STOPPED;
     } else {
         if (mailbox_full(mailbox)) {
             if (block) {
-                // printk(KERN_INFO  "Mailbox %d: Mailbox full, waiting until open space", mailbox->owner);
+                printk(KERN_INFO "Mailbox %d: Mailbox full, waiting until open space", mailbox->owner);
                 atomic_inc(&mailbox->waiting);
                 if (wait_event_interruptible_exclusive_locked_irq(mailbox->modify_queue, 
                     (mailbox->stopped || !mailbox_full(mailbox)))) {
-                    // printk(KERN_INFO  "Recieved signal, exiting...");
+                    printk(KERN_INFO "Recieved signal, exiting...");
                     atomic_dec(&mailbox->waiting);
                     wake_up_locked(&mailbox->modify_queue);
                     mailbox_unlock(mailbox, flags);
@@ -139,13 +139,13 @@ long mailbox_add_message(Mailbox* mailbox, Message* message, int block, int head
                 atomic_dec(&mailbox->waiting);
                 wake_up_locked(&mailbox->modify_queue);
                 if (mailbox->stopped) {
-                    // printk(KERN_INFO  "Mailbox %d: Mailbox became stopped while waiting to add, cannot add", mailbox->owner);
+                    printk(KERN_INFO "Mailbox %d: Mailbox became stopped while waiting to add, cannot add", mailbox->owner);
 
                     mailbox_unlock(mailbox, flags);
                     return MAILBOX_STOPPED;
                 }
             } else {
-                // printk(KERN_INFO  "Mailbox %d: Mailbox full, not adding message", mailbox->owner);
+                printk(KERN_INFO "Mailbox %d: Mailbox full, not adding message", mailbox->owner);
 
                 mailbox_unlock(mailbox, flags);
                 return MAILBOX_FULL;
@@ -180,10 +180,10 @@ long mailbox_remove_message(Mailbox* mailbox, Message** message, int block) {
 
     mailbox_lock(mailbox, flags);
 
-    // printk(KERN_INFO  "Mailbox %d: Removing first message from mailbox", mailbox->owner);
+    printk(KERN_INFO "Mailbox %d: Removing first message from mailbox", mailbox->owner);
 
     if (mailbox->stopped && mailbox->message_count == 0) {
-        // printk(KERN_INFO  "Mailbox %d: Mailbox is stopped, and there are no more messages to recieve", mailbox->owner);
+        printk(KERN_INFO "Mailbox %d: Mailbox is stopped, and there are no more messages to recieve", mailbox->owner);
 
         mailbox_unlock(mailbox, flags);
         return MAILBOX_STOPPED;
@@ -191,12 +191,12 @@ long mailbox_remove_message(Mailbox* mailbox, Message** message, int block) {
         if (mailbox->message_count == 0) {
             // Wait if we want to, otherwise don't
             if (block) {
-                // printk(KERN_INFO  "Mailbox %d: Mailbox empty, waiting until message arrives", mailbox->owner);
+                printk(KERN_INFO "Mailbox %d: Mailbox empty, waiting until message arrives", mailbox->owner);
                 // Wait until there's a message we want to see, or the mailbox is stopped
                 atomic_inc(&mailbox->waiting);
                 if (wait_event_interruptible_exclusive_locked_irq(mailbox->modify_queue,
                     (mailbox->stopped || mailbox->message_count != 0))) {
-                    // printk(KERN_INFO  "Recieved signal, exiting...");
+                    printk(KERN_INFO "Recieved signal, exiting...");
                     atomic_dec(&mailbox->waiting);
                     wake_up_locked(&mailbox->modify_queue);
                     mailbox_unlock(mailbox, flags);
@@ -205,13 +205,13 @@ long mailbox_remove_message(Mailbox* mailbox, Message** message, int block) {
                 atomic_dec(&mailbox->waiting);
                 wake_up_locked(&mailbox->modify_queue);
                 if (mailbox->stopped && mailbox->message_count == 0) {
-                    // printk(KERN_INFO  "Mailbox %d: Mailbox became stopped and empty while we were waiting", mailbox->owner);
+                    printk(KERN_INFO "Mailbox %d: Mailbox became stopped and empty while we were waiting", mailbox->owner);
 
                     mailbox_unlock(mailbox, flags);
                     return MAILBOX_STOPPED;
                 }
             } else {
-                // printk(KERN_INFO  "Mailbox %d: Mailbox empty, no message recieved", mailbox->owner);
+                printk(KERN_INFO "Mailbox %d: Mailbox empty, no message recieved", mailbox->owner);
 
                 mailbox_unlock(mailbox, flags);
                 return MAILBOX_EMPTY;
@@ -245,12 +245,12 @@ static long __mailbox_stop(Mailbox* mailbox, int status) {
 
     mailbox->stopped = status;
 
-    // printk(KERN_INFO  "Mailbox %d: Waking up everything", mailbox->owner);
+    printk(KERN_INFO "Mailbox %d: Waking up everything", mailbox->owner);
 
     mailbox_unlock(mailbox, flags);
     wake_up_all(&mailbox->modify_queue);
 
-    // printk(KERN_INFO  "Mailbox %d: Mailbox Stopped", mailbox->owner);
+    printk(KERN_INFO "Mailbox %d: Mailbox Stopped", mailbox->owner);
     return 0;
 }
 
@@ -281,31 +281,31 @@ long mailbox_destroy(Mailbox* mailbox) {
     Message *msg, *next_msg;
     unsigned long flags;
 
-    // printk(KERN_INFO  "Mailbox %d: Destroying, stopping", mailbox->owner);
-    // printk(KERN_INFO  "Mailbox %d: Stopping mailbox with %d left waiting", mailbox->owner, atomic_read(&mailbox->waiting));
+    printk(KERN_INFO "Mailbox %d: Destroying, stopping", mailbox->owner);
+    printk(KERN_INFO "Mailbox %d: Stopping mailbox with %d left waiting", mailbox->owner, atomic_read(&mailbox->waiting));
     mailbox_stop(mailbox);
 
-    // printk(KERN_INFO  "Mailbox %d: Trying to get mailbox lock", mailbox->owner);
+    printk(KERN_INFO "Mailbox %d: Trying to get mailbox lock", mailbox->owner);
     
     
     mailbox_lock(mailbox, flags);
 
 
-    // printk(KERN_INFO  "Mailbox %d: Waiting until other processes finish with this mailbox", mailbox->owner);
+    printk(KERN_INFO "Mailbox %d: Waiting until other processes finish with this mailbox", mailbox->owner);
     wait_event_interruptible_locked_irq(mailbox->modify_queue, /* printk(KERN_INFO  "Mailbox %d is Still waiting, %d left", mailbox->owner, atomic_read(&mailbox->waiting)) && */(atomic_read(&mailbox->waiting) == 0));
 
-    // printk(KERN_INFO  "Mailbox %d: Flushing messages", mailbox->owner);
+    printk(KERN_INFO "Mailbox %d: Flushing messages", mailbox->owner);
 
     list_for_each_entry_safe(msg, next_msg, &mailbox->messages, list) {
         list_del(&msg->list);
         message_destroy(&msg);
     }
 
-    // printk(KERN_INFO  "Mailbox %d: No more messages, destroying mailbox", mailbox->owner);
+    printk(KERN_INFO "Mailbox %d: No more messages, destroying mailbox", mailbox->owner);
 
     mailbox_unlock(mailbox, flags);
     wait_until_mailbox_unclaimed(mailbox);
-    // printk(KERN_INFO  "Mailbox %d is empty on delete: %d", mailbox->owner, list_empty(&mailbox->messages));
+    printk(KERN_INFO "Mailbox %d is empty on delete: %d", mailbox->owner, list_empty(&mailbox->messages));
     kmem_cache_free(mailbox_cache, mailbox);
     
     return 0;

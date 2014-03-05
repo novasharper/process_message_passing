@@ -64,7 +64,7 @@ long message_create(Message** message, pid_t sender, void* msg, int len) {
  * @return         [description]
  */
 long message_destroy(Message** message) {
-    // printk(KERN_INFO  "Destroying message");
+    printk(KERN_INFO "Destroying message");
     kmem_cache_free(message_cache, *message);
     return 0;
 }

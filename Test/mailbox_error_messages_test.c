@@ -465,7 +465,7 @@ int rapid_fire_send_recieve_track_how_many_messages_we_get_eventaully() {
             }
         }
 
-        printf("Sent %llu messages successfully\n", success);
+        log("Sent %llu messages successfully\n", success);
 
         // Lets use our message passage system for something useful :OOO
         char result_message[MAX_MSG_SIZE];
@@ -511,7 +511,7 @@ int rapid_fire_send_recieve_track_how_many_messages_we_get_eventaully() {
         expect_true(success == result);
 
         free(msg);
-        printf("Recieved %llu messages successfully\n", success);
+        log("Recieved %llu messages successfully\n", success);
 
         return 1;
     }

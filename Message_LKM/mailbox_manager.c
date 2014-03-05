@@ -113,20 +113,20 @@ static int is_process_valid(pid_t process) {
 
     if (task) {
         if (task->state == TASK_DEAD) {
-            // printk(KERN_INFO "Task %d is invalid because it's state is %ld dead", process, task->state);
+            printk(KERN_INFO "Task %d is invalid because it's state is %ld dead", process, task->state);
             return 0;
         } else if(task->cred->uid < 1000) {
-            // printk(KERN_INFO "Task %d is invalid because it's a kernel task, uid %d", process, task->cred->uid);
+            printk(KERN_INFO "Task %d is invalid because it's a kernel task, uid %d", process, task->cred->uid);
             return 0;
         } else if(task->flags & PF_EXITING) {
-            // printk(KERN_INFO "Task %d is invalid because it's exiting", process);
+            printk(KERN_INFO "Task %d is invalid because it's exiting", process);
             return 0;
         } else {
-            // printk(KERN_INFO "Task %d is valid because it's state is %ld", process, task->state);
+            printk(KERN_INFO "Task %d is valid because it's state is %ld", process, task->state);
             return 1;
         }
     } else {
-        // printk(KERN_INFO "Task %d is invalid because it doesn't exist", process);
+        printk(KERN_INFO "Task %d is invalid because it doesn't exist", process);
         return 0;
     }
 }
@@ -171,15 +171,15 @@ int mailbox_deletion_thread(void* arg) {
     pid_t pid = mailbox->owner;
 
     while((task = pid_task(find_get_pid(pid), PIDTYPE_PID)) != NULL) {
-        // printk(KERN_INFO "Task %d didn't exit yet, waiting", *pid);
+        printk(KERN_INFO "Task %d didn't exit yet, waiting", pid);
         msleep(50);
     }
-    // printk(KERN_INFO "Task %d exited, destroying mailbox", *pid);
+    printk(KERN_INFO "Task %d exited, destroying mailbox", pid);
 
     hashtable_remove(pid);
     mailbox_destroy(mailbox);
 
-    // printk(KERN_INFO "Mailbox for %d destroyed", *pid);
+    printk(KERN_INFO "Mailbox for %d destroyed", pid);
 
     do_exit(0);
 }
@@ -199,7 +199,7 @@ long remove_mailbox_for_pid(pid_t pid) {
         kthread_run(&mailbox_deletion_thread, mailbox, "mailboxdestroy");
         return 0;
     } else {
-        //// printk(KERN_INFO "Tried to destroy non-existant mailbox %d", pid);
+        //printk(KERN_INFO "Tried to destroy non-existant mailbox %d", pid);
         return MAILBOX_INVALID;
     }
 }
@@ -213,7 +213,7 @@ void claim_mailbox(Mailbox* m) {
     refs = m->dereferences;
     owner = m->owner;
     spin_unlock_irqrestore(&m->dereference_queue.lock, flags);
-    // printk(KERN_INFO "Mailbox for %d now has %d references (1 new claim)", owner, refs);
+    printk(KERN_INFO "Mailbox for %d now has %d references (1 new claim)", owner, refs);
 }
 
 void unclaim_mailbox(Mailbox* m) {
@@ -228,7 +228,7 @@ void unclaim_mailbox(Mailbox* m) {
     owner = m->owner;
     refs = m->dereferences;
     spin_unlock_irqrestore(&m->dereference_queue.lock, flags);
-    // printk(KERN_INFO "Mailbox for %d now has %d references (1 released claim)", owner, refs);
+    printk(KERN_INFO "Mailbox for %d now has %d references (1 released claim)", owner, refs);
 }
 
 void wait_until_mailbox_unclaimed(Mailbox* m) {

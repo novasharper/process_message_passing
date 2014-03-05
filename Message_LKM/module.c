@@ -80,7 +80,7 @@ asmlinkage long __recieve_message(pid_t *sender, void *msg, int *len, bool block
 	if (copy_to_user(sender, &message->sender, sizeof(pid_t)) ||
 		copy_to_user(len, &message->len, sizeof(int)) ||
 		copy_to_user(msg, &message->msg, message->len)) {
-		// printk(KERN_INFO "Failed to copy message, putting it back in the queue");
+		printk(KERN_INFO "Failed to copy message, putting it back in the queue");
 
 		mailbox_add_message(mailbox, message, true, true);
 		unclaim_mailbox(mailbox);
@@ -116,18 +116,18 @@ asmlinkage long __manage_mailbox(bool stop, int *count) {
 
 asmlinkage long __new_sys_exit(int status) {
 	if(atomic_read(&current->signal->live) == 1) {
-		//// printk(KERN_INFO "Exiting task, destroying mailbox for %d", current->tgid);
+		//printk(KERN_INFO "Exiting task, destroying mailbox for %d", current->tgid);
 
 		remove_mailbox_for_pid(current->tgid);
 		// race condition here
 	} else {
-		//// printk(KERN_INFO "Exiting task, not destroying mailbox for %d", current->tgid);
+		//printk(KERN_INFO "Exiting task, not destroying mailbox for %d", current->tgid);
 	}
 	return ref_sys_exit(status);
 }
 
 asmlinkage long __new_sys_exit_group(int status) {
-	//// printk(KERN_INFO "Exiting group, destroying mailbox for %d", current->tgid);
+	//printk(KERN_INFO "Exiting group, destroying mailbox for %d", current->tgid);
 
 	remove_mailbox_for_pid(current->tgid);
 	// race condition here
@@ -142,7 +142,7 @@ static unsigned long **find_sys_call_table(void) {
 		sct = (unsigned long **)offset;
 
 		if (sct[__NR_close] == (unsigned long *) sys_close) {
-			// printk(KERN_INFO "Interceptor: Found syscall table at address: 0x%02lX", (unsigned long) sct);
+			printk(KERN_INFO "Interceptor: Found syscall table at address: 0x%02lX", (unsigned long) sct);
 			return sct;
 		}
 
@@ -215,7 +215,7 @@ static int __init interceptor_start(void) {
 	enable_page_protection();
 
 	/* And indicate the load was successful */
-	// printk(KERN_INFO "Loaded interceptor!");
+	printk(KERN_INFO "Loaded interceptor!");
 
 	return 0;
 }	// static int __init interceptor_start(void)
@@ -240,7 +240,7 @@ static void __exit interceptor_end(void) {
 	sys_call_table[__NR_exit_group] = (unsigned long *)ref_sys_exit_group;
 	enable_page_protection();
 
-	// printk(KERN_INFO "Unloaded interceptor!");
+	printk(KERN_INFO "Unloaded interceptor!");
 }	// static void __exit interceptor_end(void)
 
 MODULE_LICENSE("GPL");
