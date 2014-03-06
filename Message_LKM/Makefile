@@ -1,6 +1,6 @@
 # Khazhismel Kumykov
 # cs3013
-obj-m := mailbox_LKM.o
+obj-m := Message_LKM.o
 mailbox_LKM-objs := module.o mailbox_manager.o mailbox.o message.o
 KDIR := /lib/modules/$(shell uname -r)/build
 PWD := $(shell pwd)
@@ -12,7 +12,7 @@ clean:
 	$(MAKE) -C $(KDIR) M=$(PWD) clean
 
 unload:
-	sudo rmmod mailbox_LKM
+	sudo rmmod Message_LKM
 
 load:
-	sudo insmod mailbox_LKM.ko
+	sudo insmod Message_LKM.ko
