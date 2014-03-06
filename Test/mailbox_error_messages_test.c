@@ -724,7 +724,7 @@ int main(int argc, char** argv) {
     do_test(closing_thread_does_not_stop_or_destroy_mailbox);
     do_test(rapid_fire_send_and_throw_an_exit_in_there);
     re_fork();
-    //do_test(rapid_fire_send_recieve_track_how_many_messages_we_get_eventaully);
+    do_test(rapid_fire_send_recieve_track_how_many_messages_we_get_eventaully);
     re_fork();
     do_test(the_crazy_test_that_is_suggested_in_the_pdf_handout);
 
