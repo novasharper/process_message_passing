@@ -1,7 +1,7 @@
 # Khazhismel Kumykov
 # cs3013
 obj-m := Message_LKM.o
-mailbox_LKM-objs := module.o mailbox_manager.o mailbox.o message.o
+Message_LKM-objs := module.o mailbox_manager.o mailbox.o message.o
 KDIR := /lib/modules/$(shell uname -r)/build
 PWD := $(shell pwd)
 
