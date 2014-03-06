@@ -1,0 +1,22 @@
+student@ubuntu:~/CS3013P4/Test$ ./mailbox_test 
+PASSED - Test test_send_message
+PASSED - Test test_message_overflow_wait
+PASSED - Test test_send_stopped_mailbox
+PASSED - Test test_recieve_empty_mailbox
+PASSED - Test crash_test
+student@ubuntu:~/CS3013P4/Test$ ./mailbox_error_test 
+PASSED - Test c_supports_bitwise_and_right
+PASSED - Test bad_process_id
+PASSED - Test mailbox_exited
+PASSED - Test mailbox_stopped
+PASSED - Test mailbox_full
+PASSED - Test mailbox_empty
+PASSED - Test blocked_wait_then_stopped
+PASSED - Test blocked_wait_rcv_then_stopped
+PASSED - Test msg_arg_error_invoke
+PASSED - Test msg_len_errors
+PASSED - Test fifo_even_if_errors
+PASSED - Test recieve_messages_even_after_stopped
+PASSED - Test closing_thread_does_not_stop_or_destroy_mailbox
+PASSED - Test rapid_fire_send_and_throw_an_exit_in_there
+PASSED - Test rapid_fire_send_recieve_track_how_many_messages_we_get_eventaully
