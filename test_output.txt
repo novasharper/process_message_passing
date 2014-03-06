@@ -20,3 +20,4 @@ PASSED - Test recieve_messages_even_after_stopped
 PASSED - Test closing_thread_does_not_stop_or_destroy_mailbox
 PASSED - Test rapid_fire_send_and_throw_an_exit_in_there
 PASSED - Test rapid_fire_send_recieve_track_how_many_messages_we_get_eventaully
+Recieved 7527 messages successfully in 1s
