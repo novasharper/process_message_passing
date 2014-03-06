@@ -565,8 +565,8 @@ void* thread_that_randomly_sends_messages(void* args) {
         usleep(drand48()*100);
     }
 
-    printf("I sent:\n");
-    printf("Successfully %d times\nFull mailbox %d times\nStopped mailbox %d times\nOther error %d times\n",success,full,stopped,othererror);
+    
+    log("I send successfully %d times\nFull mailbox %d times\nStopped mailbox %d times\nOther error %d times\n",success,full,stopped,othererror);
     pthread_exit(0);
 }
 
@@ -577,8 +577,8 @@ void* thread_that_randomly_recieves_messages(void* args) {
     int empty = 0;
     int stopped = 0;
     int othererror = 0;
-    printf("Going to make %d threads\n", messages_to_rcv);
-    printf("rcvniog for %d\n",getpid());
+    log("Going to make %d threads\n", messages_to_rcv);
+    log("rcvniog for %d\n",getpid());
 
     for (i = 0; i < messages_to_rcv; i++) {
         int block = (int)(drand48()+0.5);
@@ -607,8 +607,7 @@ void* thread_that_randomly_recieves_messages(void* args) {
         usleep(drand48()*100);
     }
 
-    printf("I recieved:\n");
-    printf("Successfully %d times\nEmpty mailbox %d times\nStopped mailbox %d times\nOther error %d times\n",success,empty,stopped,othererror);
+    log("I recieved successfully %d times\nEmpty mailbox %d times\nStopped mailbox %d times\nOther error %d times\n",success,empty,stopped,othererror);
 
     pthread_exit(0);
 }
@@ -680,6 +679,7 @@ int the_crazy_test_that_is_suggested_in_the_pdf_handout() {
     for (i = 0; i < threads_to_create; i++) {
         if(!pthread_join(thrds[i], NULL)) {
             printf("Failed thread join uh oh\n");
+            break;
         }
     }
 
@@ -687,7 +687,7 @@ int the_crazy_test_that_is_suggested_in_the_pdf_handout() {
     free(targs);
     free(pids_send);
 
-    return 1;
+    exit(0);
 }
 
 
@@ -724,9 +724,9 @@ int main(int argc, char** argv) {
     do_test(recieve_messages_even_after_stopped);
     re_fork(); // stopped mailbox
     do_test(closing_thread_does_not_stop_or_destroy_mailbox);
-    //do_test(rapid_fire_send_and_throw_an_exit_in_there);
+    do_test(rapid_fire_send_and_throw_an_exit_in_there);
     re_fork();
-    //do_test(rapid_fire_send_recieve_track_how_many_messages_we_get_eventaully);
+    do_test(rapid_fire_send_recieve_track_how_many_messages_we_get_eventaully);
     re_fork();
     do_test(the_crazy_test_that_is_suggested_in_the_pdf_handout);
 
