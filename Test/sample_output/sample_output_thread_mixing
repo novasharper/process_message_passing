@@ -1,0 +1,1159 @@
+PASSED - Test c_supports_bitwise_and_right
+PASSED - Test bad_process_id
+PASSED - Test c_supports_bitwise_and_right
+PASSED - Test bad_process_id
+PASSED - Test mailbox_exited
+PASSED - Test mailbox_stopped
+PASSED - Test mailbox_full
+PASSED - Test mailbox_empty
+PASSED - Test c_supports_bitwise_and_right
+PASSED - Test bad_process_id
+PASSED - Test mailbox_exited
+PASSED - Test mailbox_stopped
+PASSED - Test mailbox_full
+PASSED - Test mailbox_empty
+PASSED - Test blocked_wait_then_stopped
+PASSED - Test blocked_wait_rcv_then_stopped
+PASSED - Test msg_arg_error_invoke
+PASSED - Test msg_len_errors
+PASSED - Test c_supports_bitwise_and_right
+PASSED - Test bad_process_id
+PASSED - Test mailbox_exited
+PASSED - Test mailbox_stopped
+PASSED - Test mailbox_full
+PASSED - Test mailbox_empty
+PASSED - Test blocked_wait_then_stopped
+PASSED - Test blocked_wait_rcv_then_stopped
+PASSED - Test msg_arg_error_invoke
+PASSED - Test msg_len_errors
+PASSED - Test fifo_even_if_errors
+PASSED - Test recieve_messages_even_after_stopped
+PASSED - Test closing_thread_does_not_stop_or_destroy_mailbox
+Going to make 630 threads
+rcvniog for 4305
+Going to make 192 threads
+rcvniog for 4305
+Going to make 541 threads
+rcvniog for 4305
+Going to make 215 threads
+rcvniog for 4305
+Going to make 498 threads
+rcvniog for 4305
+Going to make 994 threads
+rcvniog for 4305
+I sent:
+Successfully 1 times
+Full mailbox 0 times
+Stopped mailbox 0 times
+Other error 0 times
+Failed thread join uh oh
+Going to make 167 threads
+rcvniog for 4305
+Going to make 713 threads
+rcvniog for 4305
+Going to make 243 threads
+rcvniog for 4305
+Going to make 44 threads
+rcvniog for 4305
+Going to make 712 threads
+rcvniog for 4305
+Going to make 534 threads
+rcvniog for 4305
+Going to make 2 threads
+rcvniog for 4305
+Going to make 191 threads
+rcvniog for 4305
+Going to make 716 threads
+rcvniog for 4305
+Going to make 52 threads
+rcvniog for 4305
+Going to make 41 threads
+rcvniog for 4305
+Going to make 108 threads
+rcvniog for 4305
+Going to make 401 threads
+rcvniog for 4305
+Going to make 618 threads
+rcvniog for 4305
+Going to make 900 threads
+rcvniog for 4305
+Going to make 681 threads
+rcvniog for 4305
+Going to make 293 threads
+rcvniog for 4305
+Going to make 305 threads
+rcvniog for 4305
+Going to make 619 threads
+rcvniog for 4305
+Going to make 346 threads
+rcvniog for 4305
+I recieved:
+Successfully 2 times
+Empty mailbox 0 times
+Stopped mailbox 0 times
+Other error 0 times
+I sent:
+Successfully 15 times
+Full mailbox 7 times
+Stopped mailbox 0 times
+Other error 0 times
+I recieved:
+Successfully 37 times
+Empty mailbox 4 times
+Stopped mailbox 0 times
+Other error 0 times
+I sent:
+Successfully 23 times
+Full mailbox 18 times
+Stopped mailbox 0 times
+Other error 0 times
+I recieved:
+Successfully 40 times
+Empty mailbox 4 times
+Stopped mailbox 0 times
+Other error 0 times
+I recieved:
+Successfully 49 times
+Empty mailbox 3 times
+Stopped mailbox 0 times
+Other error 0 times
+I recieved:
+Successfully 104 times
+Empty mailbox 4 times
+Stopped mailbox 0 times
+Other error 0 times
+I recieved:
+Successfully 159 times
+Empty mailbox 8 times
+Stopped mailbox 0 times
+Other error 0 times
+I recieved:
+Successfully 209 times
+Empty mailbox 6 times
+Stopped mailbox 0 times
+Other error 0 times
+I recieved:
+Successfully 186 times
+Empty mailbox 6 times
+Stopped mailbox 0 times
+Other error 0 times
+Failed thread join uh oh
+I recieved:
+Successfully 187 times
+Empty mailbox 4 times
+Stopped mailbox 0 times
+Other error 0 times
+I sent:
+Successfully 73 times
+Full mailbox 62 times
+Stopped mailbox 0 times
+Other error 0 times
+I recieved:
+Successfully 290 times
+Empty mailbox 3 times
+Stopped mailbox 0 times
+Other error 0 times
+I recieved:
+Successfully 236 times
+Empty mailbox 7 times
+Stopped mailbox 0 times
+Other error 0 times
+I sent:
+Successfully 60 times
+Full mailbox 35 times
+Stopped mailbox 0 times
+Other error 0 times
+I recieved:
+Successfully 298 times
+Empty mailbox 7 times
+Stopped mailbox 0 times
+Other error 0 times
+I recieved:
+Successfully 342 times
+Empty mailbox 4 times
+Stopped mailbox 0 times
+Other error 0 times
+I recieved:
+Successfully 392 times
+Empty mailbox 9 times
+Stopped mailbox 0 times
+Other error 0 times
+I sent:
+Successfully 97 times
+Full mailbox 61 times
+Stopped mailbox 0 times
+Other error 0 times
+I sent:
+Successfully 111 times
+Full mailbox 87 times
+Stopped mailbox 0 times
+Other error 0 times
+I recieved:
+Successfully 491 times
+Empty mailbox 7 times
+Stopped mailbox 0 times
+Other error 0 times
+I recieved:
+Successfully 534 times
+Empty mailbox 7 times
+Stopped mailbox 0 times
+Other error 0 times
+I recieved:
+Successfully 623 times
+Empty mailbox 7 times
+Stopped mailbox 0 times
+Other error 0 times
+I recieved:
+Successfully 529 times
+Empty mailbox 5 times
+Stopped mailboPASSED - Test c_supports_bitwise_and_right
+PASSED - Test bad_process_id
+PASSED - Test mailbox_exited
+PASSED - Test mailbox_stopped
+PASSED - Test mailbox_full
+PASSED - Test mailbox_empty
+PASSED - Test blocked_wait_then_stopped
+PASSED - Test blocked_wait_rcv_then_stopped
+PASSED - Test msg_arg_error_invoke
+PASSED - Test msg_len_errors
+PASSED - Test fifo_even_if_errors
+PASSED - Test recieve_messages_even_after_stopped
+PASSED - Test closing_thread_does_not_stop_or_destroy_mailbox
+Going to make 325 threads
+rcvniog for 4304
+Going to make 733 threads
+rcvniog for 4304
+Going to make 897 threads
+rcvniog for 4304
+Going to make 833 threads
+rcvniog for 4304
+Going to make 810 threads
+rcvniog for 4304
+Going to make 619 threads
+rcvniog for 4304
+Going to make 231 threads
+rcvniog for 4304
+Going to make 802 threads
+rcvniog for 4304
+Going to make 659 threads
+rcvniog for 4304
+Going to make 805 threads
+rcvniog for 4304
+Going to make 685 threads
+rcvniog for 4304
+Going to make 474 threads
+rcvniog for 4304
+Going to make 159 threads
+rcvniog for 4304
+Going to make 646 threads
+rcvniog for 4304
+Going to make 566 threads
+rcvniog for 4304
+Going to make 772 threads
+rcvniog for 4304
+Going to make 363 threads
+rcvniog for 4304
+Going to make 326 threads
+rcvniog for 4304
+Going to make 747 threads
+rcvniog for 4304
+Going to make 260 threads
+rcvniog for 4304
+Going to make 492 threads
+rcvniog for 4304
+Going to make 956 threads
+rcvniog for 4304
+Going to make 992 threads
+rcvniog for 4304
+Going to make 741 threads
+rcvniog for 4304
+Going to make 524 threads
+rcvniog for 4304
+Going to make 882 threads
+rcvniog for 4304
+I sent:
+Successfully 18 times
+Full mailbox 11 times
+Stopped mailbox 0 times
+Other error 0 times
+I sent:
+Successfully 48 times
+Full mailbox 6 times
+Stopped mailbox 0 times
+Other error 0 times
+I sent:
+Successfully 51 times
+Full mailbox 10 times
+Stopped mailbox 0 times
+Other error 0 times
+I sent:
+Successfully 70 times
+Full mailbox 9 times
+Stopped mailbox 0 times
+Other error 0 times
+I sent:
+Successfully 61 times
+Full mailbox 15 times
+Stopped mailbox 0 times
+Other error 0 times
+I sent:
+Successfully 71 times
+Full mailbox 12 times
+Stopped mailbox 0 times
+Other error 0 times
+I sent:
+Successfully 74 times
+Full mailbox 9 times
+Stopped mailbox 0 times
+Other error 0 times
+I recieved:
+Successfully 159 times
+Empty mailbox 0 times
+Stopped mailbox 0 times
+Other error 0 times
+I sent:
+Successfully 143 times
+Full mailbox 13 times
+Stopped mailbox 0 times
+Other error 0 times
+I recieved:
+Successfully 228 times
+Empty mailbox 3 times
+Stopped mailbox 0 times
+Other error 0 times
+I recieved:
+Successfully 260 times
+Empty mailbox 0 times
+Stopped mailbox 0 times
+Other error 0 times
+I recieved:
+Successfully 313 times
+Empty mailbox 12 times
+Stopped mailbox 0 times
+Other error 0 times
+I sent:
+Successfully 305 times
+Full mailbox 38 times
+Stopped mailbox 0 times
+Other error 0 times
+I sent:
+Successfully 388 times
+Full mailbox 37 times
+Stopped mailbox 0 times
+Other error 0 times
+I recieved:
+Successfully 326 times
+Empty mailbox 0 times
+Stopped mailbox 0 times
+Other error 0 times
+I recieved:
+Successfully 363 times
+Empty mailbox 0 times
+Stopped mailbox 0 times
+Other error 0 times
+I sent:
+Successfully 399 times
+Full mailbox 49 times
+Stopped mailbox 0 times
+Other error 0 times
+I sent:
+Successfully 388 times
+Full mailbox 55 times
+Stopped mailbox 0 times
+Other error 0 times
+I recieved:
+Successfully 474 times
+Empty mailbox 0 times
+Stopped mailbox 0 times
+Other error 0 times
+I sent:
+Successfully 433 times
+Full mailbox 65 times
+Stopped mailbox 0 times
+Other error 0 times
+Failed thread join uh oh
+I recieved:
+Successfully 492 times
+Empty mailbox 0 times
+Stopped mailbox 0 times
+Other error 0 times
+I sent:
+Successfully 471 times
+Full mailbox 61 times
+Stopped mailbox 0 times
+Other error 0 times
+I recieved:
+Successfully 524 times
+Empty mailbox 0 times
+Stopped mailbox 0 times
+Other error 0 times
+I sent:
+Successfully 536 times
+Full mailbox 54 times
+Stopped mailbox 0 times
+Other error 0 times
+I recieved:
+Successfully 566 times
+Empty mailbox 0 times
+Stopped mailbox 0 times
+Other error 0 times
+I recieved:
+SuccePASSED - Test c_supports_bitwise_and_right
+PASSED - Test bad_process_id
+PASSED - Test mailbox_exited
+PASSED - Test mailbox_stopped
+PASSED - Test mailbox_full
+PASSED - Test mailbox_empty
+PASSED - Test blocked_wait_then_stopped
+PASSED - Test blocked_wait_rcv_then_stopped
+PASSED - Test msg_arg_error_invoke
+PASSED - Test msg_len_errors
+PASSED - Test fifo_even_if_errors
+PASSED - Test recieve_messages_even_after_stopped
+PASSED - Test closing_thread_does_not_stop_or_destroy_mailbox
+Going to make 310 threads
+rcvniog for 4307
+Going to make 552 threads
+rcvniog for 4307
+Going to make 241 threads
+rcvniog for 4307
+Going to make 619 threads
+rcvniog for 4307
+Going to make 266 threads
+rcvniog for 4307
+Going to make 713 threads
+rcvniog for 4307
+Going to make 547 threads
+rcvniog for 4307
+Going to make 524 threads
+rcvniog for 4307
+Going to make 198 threads
+rcvniog for 4307
+Going to make 642 threads
+rcvniog for 4307
+Going to make 140 threads
+rcvniog for 4307
+Going to make 315 threads
+rcvniog for 4307
+Going to make 557 threads
+rcvniog for 4307
+Going to make 543 threads
+rcvniog for 4307
+Going to make 135 threads
+rcvniog for 4307
+Going to make 945 threads
+rcvniog for 4307
+Going to make 912 threads
+rcvniog for 4307
+Going to make 981 threads
+rcvniog for 4307
+Going to make 242 threads
+rcvniog for 4307
+Going to make 108 threads
+rcvniog for 4307
+Going to make 618 threads
+rcvniog for 4307
+Going to make 839 threads
+rcvniog for 4307
+Going to make 544 threads
+rcvniog for 4307
+Going to make 165 threads
+rcvniog for 4307
+Going to make 994 threads
+rcvniog for 4307
+Going to make 902 threads
+rcvniog for 4307
+I sent:
+Successfully 29 times
+Full mailbox 12 times
+Stopped mailbox 0 times
+Other error 0 times
+I recieved:
+Successfully 89 times
+Empty mailbox 19 times
+Stopped mailbox 0 times
+Other error 0 times
+I sent:
+Successfully 57 times
+Full mailbox 22 times
+Stopped mailbox 0 times
+Other error 0 times
+I recieved:
+Successfully 97 times
+Empty mailbox 38 times
+Stopped mailbox 0 times
+Other error 0 times
+I recieved:
+Successfully 105 times
+Empty mailbox 35 times
+Stopped mailbox 0 times
+Other error 0 times
+I recieved:
+Successfully 126 times
+Empty mailbox 39 times
+Stopped mailbox 0 times
+Other error 0 times
+I recieved:
+Successfully 142 times
+Empty mailbox 56 times
+Stopped mailbox 0 times
+Other error 0 times
+I sent:
+Successfully 116 times
+Full mailbox 61 times
+Stopped mailbox 0 times
+Other error 0 times
+I sent:
+Successfully 118 times
+Full mailbox 59 times
+Stopped mailbox 0 times
+Other error 0 times
+I recieved:
+Successfully 188 times
+Empty mailbox 54 times
+Stopped mailbox 0 times
+Other error 0 times
+I recieved:
+Successfully 186 times
+Empty mailbox 55 times
+Stopped mailbox 0 times
+Other error 0 times
+I recieved:
+Successfully 209 times
+Empty mailbox 57 times
+Stopped mailbox 0 times
+Other error 0 times
+I recieved:
+Successfully 244 times
+Empty mailbox 66 times
+Stopped mailbox 0 times
+Other error 0 times
+I recieved:
+Successfully 251 times
+Empty mailbox 64 times
+Stopped mailbox 0 times
+Other error 0 times
+I sent:
+Successfully 135 times
+Full mailbox 63 times
+Stopped mailbox 0 times
+Other error 0 times
+I sent:
+Successfully 137 times
+Full mailbox 84 times
+Stopped mailbox 0 times
+Other error 0 times
+I sent:
+Successfully 144 times
+Full mailbox 95 times
+Stopped mailbox 0 times
+Other error 0 times
+I sent:
+Successfully 217 times
+Full mailbox 108 times
+Stopped mailbox 0 times
+Other error 0 times
+I sent:
+Successfully 183 times
+Full mailbox 127 times
+Stopped mailbox 0 times
+Other error 0 times
+I sent:
+Successfully 262 times
+Full mailbox 163 times
+Stopped mailbox 0 times
+Other error 0 times
+I recieved:
+Successfully 434 times
+Empty mailbox 90 times
+Stopped mailbox 0 times
+Other error 0 times
+I recieved:
+Successfully 434 times
+Empty mailbox 110 times
+Stopped mailbox 0 times
+Other error 0 times
+I recieved:
+Successfully 448 times
+Empty mailbox 99 times
+Stopped mailbox 0 times
+Other error 0 times
+I recieved:
+Successfully 453 times
+Empty mailbox 104 times
+Stopped mailbox 0 times
+Other error 0 times
+I recieved:
+Successfully 435 times
+Empty mailbox 108 times
+Stopped mailbox 0 times
+Other error 0 tiPASSED - Test c_supports_bitwise_and_right
+PASSED - Test bad_process_id
+PASSED - Test mailbox_exited
+PASSED - Test mailbox_stopped
+PASSED - Test mailbox_full
+PASSED - Test mailbox_empty
+PASSED - Test blocked_wait_then_stopped
+PASSED - Test blocked_wait_rcv_then_stopped
+PASSED - Test msg_arg_error_invoke
+PASSED - Test msg_len_errors
+PASSED - Test fifo_even_if_errors
+PASSED - Test recieve_messages_even_after_stopped
+PASSED - Test closing_thread_does_not_stop_or_destroy_mailbox
+Going to make 457 threads
+rcvniog for 4308
+Going to make 633 threads
+rcvniog for 4308
+Going to make 617 threads
+rcvniog for 4308
+Going to make 166 threads
+rcvniog for 4308
+Going to make 779 threads
+rcvniog for 4308
+Going to make 117 threads
+rcvniog for 4308
+Going to make 24 threads
+rcvniog for 4308
+Going to make 241 threads
+rcvniog for 4308
+Going to make 366 threads
+rcvniog for 4308
+Going to make 79 threads
+rcvniog for 4308
+Going to make 752 threads
+rcvniog for 4308
+Going to make 986 threads
+rcvniog for 4308
+Going to make 590 threads
+rcvniog for 4308
+Going to make 616 threads
+rcvniog for 4308
+Going to make 333 threads
+rcvniog for 4308
+Going to make 168 threads
+rcvniog for 4308
+Going to make 676 threads
+rcvniog for 4308
+Going to make 650 threads
+rcvniog for 4308
+Going to make 632 threads
+rcvniog for 4308
+Going to make 780 threads
+rcvniog for 4308
+Going to make 850 threads
+rcvniog for 4308
+Going to make 944 threads
+rcvniog for 4308
+Going to make 239 threads
+rcvniog for 4308
+Going to make 225 threads
+rcvniog for 4308
+Going to make 328 threads
+rcvniog for 4308
+Going to make 315 threads
+rcvniog for 4308
+I recieved:
+Successfully 12 times
+Empty mailbox 12 times
+Stopped mailbox 0 times
+Other error 0 times
+I recieved:
+Successfully 52 times
+Empty mailbox 27 times
+Stopped mailbox 0 times
+Other error 0 times
+I recieved:
+Successfully 84 times
+Empty mailbox 33 times
+Stopped mailbox 0 times
+Other error 0 times
+I sent:
+Successfully 122 times
+Full mailbox 45 times
+Stopped mailbox 0 times
+Other error 0 times
+I recieved:
+Successfully 108 times
+Empty mailbox 60 times
+Stopped mailbox 0 times
+Other error 0 times
+I recieved:
+Successfully 111 times
+Empty mailbox 55 times
+Stopped mailbox 0 times
+Other error 0 times
+I sent:
+Successfully 133 times
+Full mailbox 44 times
+Stopped mailbox 0 times
+Other error 0 times
+I recieved:
+Successfully 141 times
+Empty mailbox 84 times
+Stopped mailbox 0 times
+Other error 0 times
+I sent:
+Successfully 141 times
+Full mailbox 41 times
+Stopped mailbox 0 times
+Other error 0 times
+I recieved:
+Successfully 163 times
+Empty mailbox 76 times
+Stopped mailbox 0 times
+Other error 0 times
+I recieved:
+Successfully 167 times
+Empty mailbox 74 times
+Stopped mailbox 0 times
+Other error 0 times
+I sent:
+Successfully 129 times
+Full mailbox 58 times
+Stopped mailbox 0 times
+Other error 0 times
+I recieved:
+Successfully 212 times
+Empty mailbox 103 times
+Stopped mailbox 0 times
+Other error 0 times
+I sent:
+Successfully 209 times
+Full mailbox 82 times
+Stopped mailbox 0 times
+Other error 0 times
+I sent:
+Successfully 193 times
+Full mailbox 84 times
+Stopped mailbox 0 times
+Other error 0 times
+I recieved:
+Successfully 224 times
+Empty mailbox 104 times
+Stopped mailbox 0 times
+Other error 0 times
+I recieved:
+Successfully 225 times
+Empty mailbox 108 times
+Stopped mailbox 0 times
+Other error 0 times
+I recieved:
+Successfully 243 times
+Empty mailbox 123 times
+Stopped mailbox 0 times
+Other error 0 times
+I sent:
+Successfully 198 times
+Full mailbox 99 times
+Stopped mailbox 0 times
+Other error 0 times
+I recieved:
+Successfully 336 times
+Empty mailbox 121 times
+Stopped mailbox 0 times
+Other error 0 times
+I sent:
+Successfully 265 times
+Full mailbox 130 times
+Stopped mailbox 0 times
+Other error 0 times
+I sent:
+Successfully 286 times
+Full mailbox 128 times
+Stopped mailbox 0 times
+Other error 0 times
+I sent:
+Successfully 289 times
+Full mailbox 112 times
+Stopped mailbox 0 times
+Other error 0 times
+I sent:
+Successfully 316 times
+Full mailbox 109 times
+Stopped mailbox 0 times
+Other error 0 times
+Failed thread join uh oh
+Failed thread join uh oh
+I sent:
+Successfully 313 times
+Full mailbox 128 timPASSED - Test c_supports_bitwise_and_right
+PASSED - Test bad_process_id
+PASSED - Test mailbox_exited
+PASSED - Test mailbox_stopped
+PASSED - Test mailbox_full
+PASSED - Test mailbox_empty
+PASSED - Test blocked_wait_then_stopped
+PASSED - Test blocked_wait_rcv_then_stopped
+PASSED - Test msg_arg_error_invoke
+PASSED - Test msg_len_errors
+PASSED - Test fifo_even_if_errors
+PASSED - Test recieve_messages_even_after_stopped
+PASSED - Test closing_thread_does_not_stop_or_destroy_mailbox
+Going to make 325 threads
+rcvniog for 4309
+Going to make 430 threads
+rcvniog for 4309
+Going to make 143 threads
+rcvniog for 4309
+Going to make 798 threads
+rcvniog for 4309
+Going to make 876 threads
+rcvniog for 4309
+Going to make 541 threads
+rcvniog for 4309
+Going to make 166 threads
+rcvniog for 4309
+Going to make 897 threads
+rcvniog for 4309
+Going to make 643 threads
+rcvniog for 4309
+Going to make 127 threads
+rcvniog for 4309
+Going to make 54 threads
+rcvniog for 4309
+Going to make 156 threads
+rcvniog for 4309
+Going to make 438 threads
+rcvniog for 4309
+Going to make 986 threads
+rcvniog for 4309
+Going to make 243 threads
+rcvniog for 4309
+Going to make 780 threads
+rcvniog for 4309
+Going to make 433 threads
+rcvniog for 4309
+Going to make 601 threads
+rcvniog for 4309
+Going to make 619 threads
+rcvniog for 4309
+Going to make 346 threads
+rcvniog for 4309
+Going to make 620 threads
+rcvniog for 4309
+Going to make 986 threads
+rcvniog for 4309
+Going to make 821 threads
+rcvniog for 4309
+Going to make 545 threads
+rcvniog for 4309
+Going to make 784 threads
+rcvniog for 4309
+Going to make 466 threads
+rcvniog for 4309
+I sent:
+Successfully 14 times
+Full mailbox 3 times
+Stopped mailbox 0 times
+Other error 0 times
+I recieved:
+Successfully 31 times
+Empty mailbox 23 times
+Stopped mailbox 0 times
+Other error 0 times
+I sent:
+Successfully 52 times
+Full mailbox 26 times
+Stopped mailbox 0 times
+Other error 0 times
+I sent:
+Successfully 64 times
+Full mailbox 23 times
+Stopped mailbox 0 times
+Other error 0 times
+I sent:
+Successfully 91 times
+Full mailbox 26 times
+Stopped mailbox 0 times
+Other error 0 times
+I sent:
+Successfully 96 times
+Full mailbox 35 times
+Stopped mailbox 0 times
+Other error 0 times
+I recieved:
+Successfully 73 times
+Empty mailbox 70 times
+Stopped mailbox 0 times
+Other error 0 times
+I recieved:
+Successfully 70 times
+Empty mailbox 57 times
+Stopped mailbox 0 times
+Other error 0 times
+I recieved:
+Successfully 82 times
+Empty mailbox 84 times
+Stopped mailbox 0 times
+Other error 0 times
+I sent:
+Successfully 159 times
+Full mailbox 56 times
+Stopped mailbox 0 times
+Other error 0 times
+I recieved:
+Successfully 87 times
+Empty mailbox 69 times
+Stopped mailbox 0 times
+Other error 0 times
+I sent:
+Successfully 173 times
+Full mailbox 58 times
+Stopped mailbox 0 times
+Other error 0 times
+I sent:
+Successfully 149 times
+Full mailbox 49 times
+Stopped mailbox 0 times
+Other error 0 times
+I sent:
+Successfully 211 times
+Full mailbox 62 times
+Stopped mailbox 0 times
+Other error 0 times
+I recieved:
+Successfully 128 times
+Empty mailbox 115 times
+Stopped mailbox 0 times
+Other error 0 times
+I sent:
+Successfully 320 times
+Full mailbox 105 times
+Stopped mailbox 0 times
+Other error 0 times
+I sent:
+Successfully 297 times
+Full mailbox 84 times
+Stopped mailbox 0 times
+Other error 0 times
+I recieved:
+Successfully 181 times
+Empty mailbox 144 times
+Stopped mailbox 0 times
+Other error 0 times
+I sent:
+Successfully 308 times
+Full mailbox 85 times
+Stopped mailbox 0 times
+Other error 0 times
+I sent:
+Successfully 237 times
+Full mailbox 68 times
+Stopped mailbox 0 times
+Other error 0 times
+I sent:
+Successfully 303 times
+Full mailbox 88 times
+Stopped mailbox 0 times
+Other error 0 times
+I recieved:
+Successfully 187 times
+Empty mailbox 159 times
+Stopped mailbox 0 times
+Other error 0 times
+I sent:
+Successfully 379 times
+Full mailbox 119 times
+Stopped mailbox 0 times
+Other error 0 times
+I sent:
+Successfully 355 times
+Full mailbox 102 times
+Stopped mailbox 0 times
+Other error 0 times
+I recieved:
+Successfully 213 times
+Empty mailbox 217 times
+Stopped mailbox 0 times
+Other error 0 times
+I sent:
+Successfully 503 times
+FuPASSED - Test c_supports_bitwise_and_right
+PASSED - Test bad_process_id
+PASSED - Test mailbox_exited
+PASSED - Test mailbox_stopped
+PASSED - Test mailbox_full
+PASSED - Test mailbox_empty
+PASSED - Test blocked_wait_then_stopped
+PASSED - Test blocked_wait_rcv_then_stopped
+PASSED - Test msg_arg_error_invoke
+PASSED - Test msg_len_errors
+PASSED - Test fifo_even_if_errors
+PASSED - Test recieve_messages_even_after_stopped
+PASSED - Test closing_thread_does_not_stop_or_destroy_mailbox
+Going to make 425 threads
+rcvniog for 4306
+Going to make 765 threads
+rcvniog for 4306
+Going to make 658 threads
+rcvniog for 4306
+Going to make 312 threads
+rcvniog for 4306
+Going to make 733 threads
+rcvniog for 4306
+Going to make 859 threads
+rcvniog for 4306
+Going to make 597 threads
+rcvniog for 4306
+Going to make 414 threads
+rcvniog for 4306
+Going to make 907 threads
+rcvniog for 4306
+Going to make 45 threads
+rcvniog for 4306
+Going to make 205 threads
+rcvniog for 4306
+Going to make 594 threads
+rcvniog for 4306
+Going to make 986 threads
+rcvniog for 4306
+Going to make 140 threads
+rcvniog for 4306
+Going to make 535 threads
+rcvniog for 4306
+Going to make 598 threads
+rcvniog for 4306
+Going to make 343 threads
+rcvniog for 4306
+Going to make 411 threads
+rcvniog for 4306
+Going to make 684 threads
+rcvniog for 4306
+Going to make 594 threads
+rcvniog for 4306
+Going to make 158 threads
+rcvniog for 4306
+Going to make 108 threads
+rcvniog for 4306
+Going to make 177 threads
+rcvniog for 4306
+Going to make 655 threads
+rcvniog for 4306
+Going to make 762 threads
+rcvniog for 4306
+Going to make 610 threads
+rcvniog for 4306
+I recieved:
+Successfully 45 times
+Empty mailbox 0 times
+Stopped mailbox 0 times
+Other error 0 times
+I sent:
+Successfully 11 times
+Full mailbox 11 times
+Stopped mailbox 0 times
+Other error 0 times
+I recieved:
+Successfully 107 times
+Empty mailbox 1 times
+Stopped mailbox 0 times
+Other error 0 times
+I recieved:
+Successfully 138 times
+Empty mailbox 2 times
+Stopped mailbox 0 times
+Other error 0 times
+I recieved:
+Successfully 176 times
+Empty mailbox 1 times
+Stopped mailbox 0 times
+Other error 0 times
+I recieved:
+Successfully 158 times
+Empty mailbox 0 times
+Stopped mailbox 0 times
+Other error 0 times
+I sent:
+Successfully 26 times
+Full mailbox 15 times
+Stopped mailbox 0 times
+Other error 0 times
+I recieved:
+Successfully 200 times
+Empty mailbox 5 times
+Stopped mailbox 0 times
+Other error 0 times
+I recieved:
+Successfully 332 times
+Empty mailbox 11 times
+Stopped mailbox 0 times
+Other error 0 times
+I recieved:
+Successfully 303 times
+Empty mailbox 9 times
+Stopped mailbox 0 times
+Other error 0 times
+I recieved:
+Successfully 405 times
+Empty mailbox 9 times
+Stopped mailbox 0 times
+Other error 0 times
+I recieved:
+Successfully 409 times
+Empty mailbox 16 times
+Stopped mailbox 0 times
+Other error 0 times
+I recieved:
+Successfully 402 times
+Empty mailbox 9 times
+Stopped mailbox 0 times
+Other error 0 times
+I recieved:
+Successfully 523 times
+Empty mailbox 12 times
+Stopped mailbox 0 times
+Other error 0 times
+I recieved:
+Successfully 573 times
+Empty mailbox 21 times
+Stopped mailbox 0 times
+Other error 0 times
+I recieved:
+Successfully 564 times
+Empty mailbox 30 times
+Stopped mailbox 0 times
+Other error 0 times
+I recieved:
+Successfully 570 times
+Empty mailbox 28 times
+Stopped mailbox 0 times
+Other error 0 times
+I recieved:
+Successfully 568 times
+Empty mailbox 29 times
+Stopped mailbox 0 times
+Other error 0 times
+I recieved:
+Successfully 578 times
+Empty mailbox 32 times
+Stopped mailbox 0 times
+Other error 0 times
+I recieved:
+Successfully 632 times
+Empty mailbox 26 times
+Stopped mailbox 0 times
+Other error 0 times
+I recieved:
+Successfully 681 times
+Empty mailbox 52 times
+Stopped mailbox 0 times
+Other error 0 times
+I recieved:
+Successfully 646 times
+Empty mailbox 38 times
+Stopped mailbox 0 times
+Other error 0 times
+I recieved:
+Successfully 583 times
+Empty mailbox 72 times
+Stopped mailbox 0 times
+Other error 0 times
+I recieved:
+Successfully 689 times
+Empty mailbox 76 times
+Stopped mailbox 0 times
+Other error 0 times
+I recieved:
+Successfully 677 times
+Empty mailbox 85 times
+Stopped mailbox
