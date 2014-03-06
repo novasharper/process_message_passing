@@ -562,6 +562,7 @@ void* thread_that_randomly_sends_messages(void* args) {
                 log("send othereror\n");
                 othererror++;
         }
+        usleep(drand48()*100);
     }
 
     printf("I sent:\n");
@@ -603,6 +604,7 @@ void* thread_that_randomly_recieves_messages(void* args) {
                 log("rcv, othererr\n");
                 othererror++;
         }
+        usleep(drand48()*100);
     }
 
     printf("I recieved:\n");
