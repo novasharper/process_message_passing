@@ -728,7 +728,9 @@ int main(int argc, char** argv) {
     re_fork();
     do_test(rapid_fire_send_recieve_track_how_many_messages_we_get_eventaully);
     re_fork();
-    do_test(the_crazy_test_that_is_suggested_in_the_pdf_handout);
+
+    //You need to sigint this one, i made it in like 20 minutes and i don't clean up all the threads properly
+    //do_test(the_crazy_test_that_is_suggested_in_the_pdf_handout);
 
     return 0;
 }
