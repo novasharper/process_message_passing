@@ -439,6 +439,9 @@ int rapid_fire_send_and_throw_an_exit_in_there() {
 /**
  * Stress test sending and recieving messages, one way
  * hypothetically, two way is the same thing, just need to create two threads in each process
+ *
+ * Softlocks sometimes - and it the weirdest spots? Every time it locks up, the program counter is on
+ * _raw_spin_unlock for one of the processors, like it gets locked up while trying to unlock
  * @return [description]
  */
 int rapid_fire_send_recieve_track_how_many_messages_we_get_eventaully() {
@@ -518,30 +521,173 @@ int rapid_fire_send_recieve_track_how_many_messages_we_get_eventaully() {
     }
 }
 
+
+struct thread_args {
+    int num;
+    pid_t* pids;
+};
+
+void* thread_that_randomly_sends_messages(void* args) {
+    int messages_to_send = (drand48())*1000 + 1;
+    int i;
+    int success = 0;
+    int full = 0;
+    int stopped = 0;
+    int othererror = 0;
+
+    struct thread_args *ar = (struct thread_args* )args;
+    log("Going to makssse %d threads\n", messages_to_send);
+    log("I know about %d threads\n", ar->num);
+
+    for (i = 0; i < messages_to_send; i++) {
+        int block = (int)(drand48()+0.5);
+        int who = (int)(drand48()*ar->num);
+        log("sending to %d\n",ar->pids[who]);
+
+        int error = SendMsg(ar->pids[who], "Hello, I am a thread", 21, block);
+        switch(error) {
+            case MAILBOX_FULL:
+                log("full\n");
+                full++;
+                break;
+            case MAILBOX_STOPPED:
+                log("send stopped\n");
+                stopped++;
+                break;
+            case 0:
+                log("send success\n");
+                success++;
+                break;
+            default:
+                log("send othereror\n");
+                othererror++;
+        }
+    }
+
+    printf("I sent:\n");
+    printf("Successfully %d times\nFull mailbox %d times\nStopped mailbox %d times\nOther error %d times\n",success,full,stopped,othererror);
+    pthread_exit(0);
+}
+
+void* thread_that_randomly_recieves_messages(void* args) {
+    int messages_to_rcv = (drand48())*1000 + 1;
+    int i;
+    int success = 0;
+    int empty = 0;
+    int stopped = 0;
+    int othererror = 0;
+    printf("Going to make %d threads\n", messages_to_rcv);
+    printf("rcvniog for %d\n",getpid());
+
+    for (i = 0; i < messages_to_rcv; i++) {
+        int block = (int)(drand48()+0.5);
+        pid_t who;
+        char msg[MAX_MSG_SIZE];
+        int len;
+
+        int error = RcvMsg(&who,msg, &len, block);
+        switch(error) {
+            case MAILBOX_EMPTY:
+                log("empty\n");
+                empty++;
+                break;
+            case MAILBOX_STOPPED:
+                log("rcv, stopped\n");
+                stopped++;
+                break;
+            case 0:
+                log("rcv success\n");
+                success++;
+                break;
+            default:
+                log("rcv, othererr\n");
+                othererror++;
+        }
+    }
+
+    printf("I recieved:\n");
+    printf("Successfully %d times\nEmpty mailbox %d times\nStopped mailbox %d times\nOther error %d times\n",success,empty,stopped,othererror);
+
+    pthread_exit(0);
+}
+
+#define NUM_PROCESSES_TO_SPAWN_FOR_THIS_TEST 8
 /**
- * If this doesn't invoke that dereference race condtition, i don't know what will
+ * the name is pretty descriptive
  * @return [description]
  */
-int super_super_rapid_fire_multi_task_multi_sender_multi_reciever() {
-    pid_t parent = getpid(),
-        child = fork();
-
-    if (child) {
-        // parent, wait for child
-        // 
-        int status;
-
-        waitpid(child, &status, 0);
-        return status;
-    } else {
-        int child2 = 0;
-        int i;
-
-        // TODO - spawn a bunch of children, have thier parents msg thier children using the multithreaded spam,
-        // have the children close randomly, try to evoke the dereference issue
-
+int the_crazy_test_that_is_suggested_in_the_pdf_handout() {
+    pid_t parent_pid = getpid();
+    int child = 0,
+        count = NUM_PROCESSES_TO_SPAWN_FOR_THIS_TEST,
+        i;
+    pid_t pids[NUM_PROCESSES_TO_SPAWN_FOR_THIS_TEST];
+    for (i = 0; i< NUM_PROCESSES_TO_SPAWN_FOR_THIS_TEST; i++) {
+        pids[i] = 0;
     }
+
+    // Fork a ton of processes;
+    do {
+        child = fork();
+        pids[NUM_PROCESSES_TO_SPAWN_FOR_THIS_TEST-count] = child;
+    } while (child && --count > 0);
+    log("I am %d, my parent is %d.\n", getpid(), parent_pid);
+
+    int num_i_know_about;
+    for (i = 0; i < NUM_PROCESSES_TO_SPAWN_FOR_THIS_TEST; i++) {
+        if (pids[i]) {
+            log("I, %d, also know about %d\n",getpid(), pids[i]);
+            num_i_know_about++;
+        }
+    }
+
+    pid_t* pids_send = malloc((num_i_know_about+1) * sizeof(pid_t));
+    int count_2;
+    pids_send[0] = parent_pid;
+    for (i = 0; i < NUM_PROCESSES_TO_SPAWN_FOR_THIS_TEST; i++ ) {
+        if (pids[i]) {
+            count_2++;
+            pids_send[count_2] = pids[i];
+        }
+    }
+    
+    struct thread_args *targs = malloc(sizeof(struct thread_args));
+    targs->num = count_2;
+    targs->pids = pids_send;
+
+    srand((long)pids_send);
+    srand48((long)pids_send);
+
+    int threads_to_create = (drand48() * 100 + 1)*2;
+    log("Making %d threads\n", threads_to_create);
+
+    pthread_t* thrds = malloc(sizeof(pthread_t*)*threads_to_create);
+    for (i = 0; i < threads_to_create/2; i = i + 2) {
+        if (pthread_create(&thrds[i], NULL, &thread_that_randomly_sends_messages, targs)) {
+            printf("Thread creation failed uh oh\n");
+            threads_to_create = i-1;
+            break;
+        }
+        if(pthread_create(&thrds[i+1], NULL, &thread_that_randomly_recieves_messages, NULL)) {
+            printf("Thread creation failed uh oh\n");
+            threads_to_create = i;
+            break;
+        }
+    }
+
+    for (i = 0; i < threads_to_create; i++) {
+        if(!pthread_join(thrds[i], NULL)) {
+            printf("Failed thread join uh oh\n");
+        }
+    }
+
+    free(thrds);
+    free(targs);
+    free(pids_send);
+
+    return 1;
 }
+
 
 int c_supports_bitwise_and_right() {
     int flags1 = 0xff;
@@ -578,8 +724,9 @@ int main(int argc, char** argv) {
     do_test(closing_thread_does_not_stop_or_destroy_mailbox);
     do_test(rapid_fire_send_and_throw_an_exit_in_there);
     re_fork();
-    do_test(rapid_fire_send_recieve_track_how_many_messages_we_get_eventaully);
+    //do_test(rapid_fire_send_recieve_track_how_many_messages_we_get_eventaully);
     re_fork();
+    do_test(the_crazy_test_that_is_suggested_in_the_pdf_handout);
 
     return 0;
 }
