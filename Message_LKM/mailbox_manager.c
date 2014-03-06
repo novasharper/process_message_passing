@@ -130,6 +130,7 @@ long get_mailbox_for_pid(Mailbox** mailbox, pid_t pid) {
             claim_mailbox(*mailbox);
             if ((*mailbox)->stopped & EXITING) { // Safe to read this because once exiting is set, stopped is never changed again
                 unclaim_mailbox(*mailbox);
+                *mailbox = NULL; // don't hand out the pointer
                 spin_unlock_irqrestore(&mailbox_hash_table_lock, flags);
                 return MAILBOX_INVALID;
             } else {
@@ -150,12 +151,11 @@ long get_mailbox_for_pid(Mailbox** mailbox, pid_t pid) {
  * @return     [description]
  */
 int mailbox_deletion_thread(void* arg) {
-    struct task_struct* task;
     Mailbox* mailbox = (Mailbox*) arg;
     pid_t pid = mailbox->owner;
     unsigned long flags;
 
-    while((task = pid_task(find_get_pid(pid), PIDTYPE_PID)) != NULL) {
+    while(is_process_valid(pid)) {
         printk(KERN_INFO "Task %d didn't exit yet, waiting", pid);
         msleep(50);
     }

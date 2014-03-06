@@ -88,6 +88,7 @@ static int mailbox_full(Mailbox* mailbox) {
  * @param flags   [description]
  */
 #define mailbox_lock(mailbox, flags) { \
+    printk(KERN_INFO  "Mailbox %d: Requesting spin lock by %d", mailbox->owner, current->tgid); \
     spin_lock_irqsave(&mailbox->modify_queue.lock, flags); \
     printk(KERN_INFO  "Mailbox %d: Spin locked by %d, Flags: %lu", mailbox->owner, current->tgid, flags); \
 }
@@ -98,6 +99,7 @@ static int mailbox_full(Mailbox* mailbox) {
  * @param flags   [description]
  */
 #define mailbox_unlock(mailbox, flags) { \
+    printk(KERN_INFO  "Mailbox %d: Requesting spin unlock by %d", mailbox->owner, current->tgid); \
     spin_unlock_irqrestore(&mailbox->modify_queue.lock, flags); \
     printk(KERN_INFO  "Mailbox %d: Spin released by %d, Flags: %lu", mailbox->owner, current->tgid, flags); \
 }
@@ -299,7 +301,7 @@ long mailbox_destroy(Mailbox* mailbox) {
 
     printk(KERN_INFO "Mailbox %d: Destroying, stopping", mailbox->owner);
     printk(KERN_INFO "Mailbox %d: Stopping mailbox with %d left waiting", mailbox->owner, atomic_read(&mailbox->waiting));
-    mailbox_stop(mailbox);
+    mailbox_exiting(mailbox);
 
     printk(KERN_INFO "Mailbox %d: Trying to get mailbox lock", mailbox->owner);
     
